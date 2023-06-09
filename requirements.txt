@@ -1,0 +1,3 @@
+pandas
+numpy <1.24
+sqlalchemy <2.0
