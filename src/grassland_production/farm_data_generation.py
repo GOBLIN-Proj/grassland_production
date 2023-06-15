@@ -44,6 +44,7 @@ class FarmData:
 
         """
         fert_rate = self.fertiliser_class.compute_inorganic_fertilization_rate()
+
         grass_total_area = self.grassland_class.get_grass_total_area()
         nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
         
@@ -156,7 +157,7 @@ class FarmData:
                                         year, g_type
                                     ]
                                 )
-            return fert_rate_total
+        return fert_rate_total
     
 
     def compute_farm_data_in_scenarios(self):
@@ -164,11 +165,13 @@ class FarmData:
         Computation of farm_data, exported for use in LCA calculation in goblin tool
         """
         calibration_year = self.calibration_year
+        target_year = self.target_year
 
         FAO_fertilizer = self.loader_class.fao_fertilization()
 
         
         fert_rate_total = self.compute_fertilization_total()
+
         farm_data = pd.DataFrame()
 
         try:
@@ -184,21 +187,21 @@ class FarmData:
             N_type_list = ["Urea", "N", "Urea abated"]
 
             Share_fertilizer = pd.DataFrame(
-                columns=N_type_list, index=[self.calibration_year]
+                columns=N_type_list, index=[calibration_year]
             )
             for N_type in N_type_list:
                 Share_fertilizer.loc[
-                    self.calibration_year, N_type
+                    calibration_year, N_type
                 ] = (
-                    FAO_fertilizer.loc[self.calibration_year, N_type]
-                    / FAO_fertilizer.loc[self.calibration_year, "Total N"]
+                    FAO_fertilizer.loc[calibration_year, N_type]
+                    / FAO_fertilizer.loc[calibration_year, "Total N"]
                 )
 
             Share_fertilizer["prop_p"] = FAO_fertilizer["P"]/FAO_fertilizer["Total N"]
             Share_fertilizer["prop_k"] = FAO_fertilizer["K"]/FAO_fertilizer["Total N"]
 
         except KeyError:
-            self.calibration_year = self.default_calibration_year
+            calibration_year = self.default_calibration_year
             if "Urea abated" in FAO_fertilizer.columns:
                 FAO_fertilizer["Total N"] = (
                     FAO_fertilizer["Urea"]
@@ -211,63 +214,62 @@ class FarmData:
             N_type_list = ["Urea", "N", "Urea abated"]
 
             Share_fertilizer = pd.DataFrame(
-                columns=N_type_list, index=[self.calibration_year]
+                columns=N_type_list, index=[calibration_year]
             )
             for N_type in N_type_list:
                 Share_fertilizer.loc[
-                    self.calibration_year, N_type
+                    calibration_year, N_type
                 ] = (
-                    FAO_fertilizer.loc[self.calibration_year, N_type]
-                    / FAO_fertilizer.loc[self.calibration_year, "Total N"]
+                    FAO_fertilizer.loc[calibration_year, N_type]
+                    / FAO_fertilizer.loc[calibration_year, "Total N"]
                 )
 
-            Share_fertilizer["prop_p"] = FAO_fertilizer["P"]/FAO_fertilizer["Total N"]
-            Share_fertilizer["prop_k"] = FAO_fertilizer["K"]/FAO_fertilizer["Total N"]
+        Share_fertilizer["prop_p"] = FAO_fertilizer["P"]/FAO_fertilizer["Total N"]
+        Share_fertilizer["prop_k"] = FAO_fertilizer["K"]/FAO_fertilizer["Total N"]
 
-
+        print(Share_fertilizer)
         new_index = 0
-
         for index in fert_rate_total.columns:
 
             farm_data.loc[new_index, "ef_country"] = "ireland"
             farm_data.loc[new_index, "farm_id"] = index
             farm_data.loc[new_index, "year"] = int(
-                self.target_year
+                target_year
             )
             farm_data.loc[new_index, "total_urea"] = (
                 Share_fertilizer.loc[
-                    self.calibration_year, "Urea"
+                    calibration_year, "Urea"
                 ]
                 * fert_rate_total.loc[
-                    self.target_year, index
+                    target_year, index
                 ]
             )
             farm_data.loc[new_index, "total_urea_abated"] = (
                 Share_fertilizer.loc[
-                    self.calibration_year, "Urea abated"
+                    calibration_year, "Urea abated"
                 ]
                 * fert_rate_total.loc[
-                    self.target_year, index
+                    target_year, index
                 ]
             )
             farm_data.loc[new_index, "total_n_fert"] = (
-                Share_fertilizer.loc[self.calibration_year, "N"]
+                Share_fertilizer.loc[calibration_year, "N"]
                 * fert_rate_total.loc[
-                    self.target_year, index
+                    target_year, index
                 ]
             )
 
             farm_data.loc[new_index, "total_p_fert"] = (
-                Share_fertilizer.loc[self.calibration_year, "prop_p"]
+                Share_fertilizer.loc[calibration_year, "prop_p"]
                 * fert_rate_total.loc[
-                    self.target_year, index
+                    target_year, index
                 ]
             )
 
             farm_data.loc[new_index, "total_k_fert"] = (
-                Share_fertilizer.loc[self.calibration_year, "prop_k"]
+                Share_fertilizer.loc[calibration_year, "prop_k"]
                 * fert_rate_total.loc[
-                    self.target_year, index
+                    target_year, index
                 ]
             )
 
@@ -278,4 +280,66 @@ class FarmData:
 
         return farm_data
 
+
+    def compute_farm_data_in_baseline(self):
+        """
+        Computation of farm_data, exported for use in LCA calculation in goblin tool
+        """
+        calibration_year = self.calibration_year
+
+        FAO_fertilizer = self.loader_class.fao_fertilization()
+
+
+        farm_data = pd.DataFrame()
+
+        
+        if "Urea abated" in FAO_fertilizer.columns:
+            FAO_fertilizer["Total N"] = (
+                FAO_fertilizer["Urea"]
+                + FAO_fertilizer["N"]
+                + FAO_fertilizer["Urea abated"]
+            )
+        else:
+            FAO_fertilizer["Total N"] = FAO_fertilizer["Urea"] + FAO_fertilizer["N"]
+            FAO_fertilizer["Urea abated"] = 0
+
+
+
+        new_index = 0
+
+
+        try:
+            farm_data.loc[new_index, "ef_country"] = "ireland"
+            farm_data.loc[new_index, "farm_id"] = calibration_year
+            farm_data.loc[new_index, "year"] = int(
+                calibration_year
+            )
+            farm_data.loc[new_index, "total_urea"] = FAO_fertilizer.loc[calibration_year, "Urea"]
+            farm_data.loc[new_index, "total_urea_abated"] = FAO_fertilizer.loc[calibration_year, "Urea abated"]
+            farm_data.loc[new_index, "total_n_fert"] = FAO_fertilizer.loc[calibration_year, "N"]
+            farm_data.loc[new_index, "total_p_fert"] = FAO_fertilizer.loc[calibration_year, "P"]
+            farm_data.loc[new_index, "total_k_fert"] = FAO_fertilizer.loc[calibration_year, "K"]
+
+            farm_data.loc[new_index, "diesel_kg"] = 0
+            farm_data.loc[new_index, "elec_kwh"] = 0
+
+        except KeyError:
+
+            default_calibration_year = self.default_calibration_year
+
+            farm_data.loc[new_index, "ef_country"] = "ireland"
+            farm_data.loc[new_index, "farm_id"] = calibration_year
+            farm_data.loc[new_index, "year"] = int(
+                calibration_year
+            )
+            farm_data.loc[new_index, "total_urea"] = FAO_fertilizer.loc[default_calibration_year, "Urea"]
+            farm_data.loc[new_index, "total_urea_abated"] = FAO_fertilizer.loc[default_calibration_year, "Urea abated"]
+            farm_data.loc[new_index, "total_n_fert"] = FAO_fertilizer.loc[default_calibration_year, "N"]
+            farm_data.loc[new_index, "total_p_fert"] = FAO_fertilizer.loc[default_calibration_year, "P"]
+            farm_data.loc[new_index, "total_k_fert"] = FAO_fertilizer.loc[default_calibration_year, "K"]
+
+            farm_data.loc[new_index, "diesel_kg"] = 0
+            farm_data.loc[new_index, "elec_kwh"] = 0
+
+        return farm_data
     

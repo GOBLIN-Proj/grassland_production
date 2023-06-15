@@ -15,5 +15,10 @@ class GrasslandOutput:
     def total_grassland_area(self):
         return self.grassland_class.get_grass_total_area()
 
+
     def farm_inputs_data(self):
         return self.farm_data_class.compute_farm_data_in_scenarios()
+    
+
+    def baseline_farm_inputs_data(self):
+        return self.farm_data_class.compute_farm_data_in_baseline()

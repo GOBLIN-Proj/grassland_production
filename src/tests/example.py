@@ -19,5 +19,7 @@ def main():
 
     print(grassland.farm_inputs_data())
 
+    print(grassland.baseline_farm_inputs_data())
+
 if __name__ == "__main__":
     main()
