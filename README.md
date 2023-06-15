@@ -32,41 +32,24 @@ pip install "grassland_production@git+https://github.com/colmduff/grassland_prod
 ## Usage
 ```python
 import pandas as pd
-from crop_lca.models import load_crop_farm_data
-from crop_lca.lca import ClimateChangeTotals
-
-
-def main():
-import pandas as pd
 from grassland_production.grassland_output import GrasslandOutput
 
 
 def main():
-    #The emission factor country, always Ireland
-    ef_country = "ireland"
 
-    #The calibration year, defaults to 2015 if data is not available
+    ef_country = "ireland"
     calibration_year = 2018 
 
-    #The scenario variables dataframe, replace path
     scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
-
-    #The animal dataframe for future scenarios 
     scenario_animal_dataframe = pd.read_csv("./data/future_animals.csv")
-
-    #The baseline animal dataframe 
     baseline_animal_dataframe = pd.read_csv("./data/past_animals.csv")
 
-    #Instance of teh Grassland class
     grassland = GrasslandOutput(ef_country, calibration_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
 
-    #The total spared area, which is the difference between the baseline grassland area and the scenario grassland area
     print(grassland.total_spared_area())
 
-    #The total grassland area remaining for scenarios
     print(grassland.total_grassland_area())
 
-    # The dataframe of inorganic grassland inputs used in Lifecycle analysis
     print(grassland.farm_inputs_data())
 
 if __name__ == "__main__":
