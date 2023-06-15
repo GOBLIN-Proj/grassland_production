@@ -227,7 +227,6 @@ class FarmData:
         Share_fertilizer["prop_p"] = FAO_fertilizer["P"]/FAO_fertilizer["Total N"]
         Share_fertilizer["prop_k"] = FAO_fertilizer["K"]/FAO_fertilizer["Total N"]
 
-        print(Share_fertilizer)
         new_index = 0
         for index in fert_rate_total.columns:
 
