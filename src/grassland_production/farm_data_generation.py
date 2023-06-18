@@ -223,6 +223,7 @@ class FarmData:
                     FAO_fertilizer.loc[calibration_year, N_type]
                     / FAO_fertilizer.loc[calibration_year, "Total N"]
                 )
+            print("... calibration year not present, 2015 default year used for Scenario farm data generation")
 
         Share_fertilizer["prop_p"] = FAO_fertilizer["P"]/FAO_fertilizer["Total N"]
         Share_fertilizer["prop_k"] = FAO_fertilizer["K"]/FAO_fertilizer["Total N"]
@@ -339,6 +340,8 @@ class FarmData:
 
             farm_data.loc[new_index, "diesel_kg"] = 0
             farm_data.loc[new_index, "elec_kwh"] = 0
+
+            print("... calibration year not present, 2015 default year used for total Baseline farm data")
 
         return farm_data
     

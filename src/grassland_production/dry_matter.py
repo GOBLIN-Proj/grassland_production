@@ -79,6 +79,7 @@ class DryMatter:
                                         grassland_areas.loc[calibration_year_value, grassland_type] *
                                         dairy_nfs_system_proportions.loc[calibration_year_value, grassland_type]
                                 )
+                                print("... calibration year not present, 2015 default year used for total Dry Matter: Dairy")
                         elif farm_type == "beef":
                             try:
                                 total_dm.loc[grassland_type, year] += yield_per_ha[sc][farm_type].loc[
@@ -94,6 +95,7 @@ class DryMatter:
                                         grassland_areas.loc[calibration_year_value, grassland_type] *
                                         beef_nfs_system_proportions.loc[calibration_year_value, grassland_type]
                                 )
+                                print("... calibration year not present, 2015 default year used for total Dry Matter: Beef")
                         elif farm_type == "sheep":
                             try:
                                 total_dm.loc[grassland_type, year] += yield_per_ha[sc][farm_type].loc[
@@ -109,6 +111,7 @@ class DryMatter:
                                         grassland_areas.loc[calibration_year_value, grassland_type] *
                                         sheep_nfs_system_proportions.loc[calibration_year_value, grassland_type]
                                 )
+                                print("... calibration year not present, 2015 default year used for total Dry Matter: Sheep")
 
 
         transposed_dry_matter_produced = {

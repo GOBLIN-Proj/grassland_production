@@ -312,9 +312,10 @@ class Fertilisation:
                             spread_dict[_dict].loc[int(year), sys] = organic_input / (
                                 (grassland_areas.loc[self.default_calibration_year, "Pasture"]
                                 * dairy_nfs_system_proportions.loc[self.default_calibration_year, "Pasture"])
-                                + (grassland_areas.loc[int(year), "Grass silage"]
+                                + (grassland_areas.loc[self.default_calibration_year, "Grass silage"]
                                 * dairy_nfs_system_proportions.loc[self.default_calibration_year, "Grass silage"])
                             )
+                            print("... calibration year not present, 2015 default year used for spread dict dairy")
 
                     if sys == "beef":
                         try:
@@ -330,9 +331,11 @@ class Fertilisation:
                             spread_dict[_dict].loc[int(year), sys] = organic_input / (
                                 (grassland_areas.loc[self.default_grassland_year, "Pasture"]
                                 * beef_nfs_system_proportions.loc[self.default_calibration_year, "Pasture"])
-                                + (grassland_areas.loc[int(year), "Grass silage"]
+                                + (grassland_areas.loc[self.default_calibration_year, "Grass silage"]
                                 * beef_nfs_system_proportions.loc[self.default_calibration_year, "Grass silage"])
                             )
+
+                            print("... calibration year not present, 2015 default year used for spread dict beef")
 
                 spread_dict[_dict].loc[int(self.target_year), sys] = spread_dict[_dict].loc[int(self.calibration_year), sys]
 

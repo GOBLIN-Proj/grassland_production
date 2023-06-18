@@ -36,17 +36,17 @@ class Areas:
                     dairy_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(dairy_area_nfs.loc[ix, grassland_type], farm_system_number, ix, "dairy")
                 except KeyError:
                     dairy_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(dairy_area_nfs.loc[ix, grassland_type], farm_system_number, self.default_calibration_year, "dairy")
-
+                    print("... calibration year not present, 2015 default year used for NFS system proportions: Dairy")
                 try:
                     beef_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(beef_area_nfs.loc[ix, grassland_type], farm_system_number, ix, "beef")
                 except KeyError:
                     beef_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(beef_area_nfs.loc[ix, grassland_type], farm_system_number, self.default_calibration_year, "beef")
-
+                    print("... calibration year not present, 2015 default year used for NFS system proportions: Beef")
                 try:
                     sheep_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(sheep_area_nfs.loc[ix, grassland_type], farm_system_number, ix, "sheep")
                 except KeyError:
                     sheep_nfs_system_proportions.loc[ix, grassland_type] = self.get_proportion_weight(sheep_area_nfs.loc[ix, grassland_type], farm_system_number, self.default_calibration_year, "sheep")
-
+                    print("... calibration year not present, 2015 default year used for NFS system proportions: Sheep")
         return dairy_nfs_system_proportions, beef_nfs_system_proportions, sheep_nfs_system_proportions
 
 
