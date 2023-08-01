@@ -10,15 +10,15 @@ import sheep_lca.lca as sheep_lca
 
 class DryMatter:
 
-    def __init__(self,ef_country, calibration_year, scenario_data, scenario_animals_df,basline_animals_df):
+    def __init__(self,ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
         
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,basline_animals_df)
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
-        self.yield_class = Yield(ef_country, calibration_year, scenario_data, scenario_animals_df,basline_animals_df)
-        self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
-        self.fertiliser_class = Fertilisation(ef_country, calibration_year, scenario_data, scenario_animals_df,basline_animals_df)
+        self.yield_class = Yield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.areas_class = Areas(target_year, calibration_year, self.default_calibration_year)
+        self.fertiliser_class = Fertilisation(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.loader_class = Loader()
         self.grass_feed_class = cattle_lca.GrassFeed(ef_country)
         self.sheep_grass_feed_class = sheep_lca.GrassFeed(ef_country)

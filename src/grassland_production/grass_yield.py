@@ -6,10 +6,10 @@ from grassland_production.fertilisation import Fertilisation
 
 class Yield:
 
-    def __init__(self,ef_country, calibration_year, scenario_data, scenario_animals_df,basline_animals_df):
+    def __init__(self,ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df):
         
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,basline_animals_df)
-        self.fertiliser_class = Fertilisation(ef_country, calibration_year, scenario_data, scenario_animals_df,basline_animals_df)
+        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.fertiliser_class = Fertilisation(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.loader_class = Loader()
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
