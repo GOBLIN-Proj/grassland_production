@@ -10,20 +10,17 @@ from grassland_production.fertilisation import Fertilisation
 
 class FarmData: 
     
-    def __init__(self, ef_country, calibration_year, scenario_data, scenario_animals_df, baseline_animals_df):
-
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
-        
+    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df):
+        self.loader_class = Loader()
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
         self.default_grassland_year = self.data_manager_class.default_grassland_year
         self.target_year = self.data_manager_class.target_year
     
-        self.loader_class = Loader()
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
-        self.grassland_class = Grasslands(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
-        self.fertiliser_class = Fertilisation(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.grassland_class = Grasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.fertiliser_class = Fertilisation(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
 
 
 

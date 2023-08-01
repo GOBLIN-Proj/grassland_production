@@ -7,9 +7,9 @@ from cattle_lca.lca import DailySpread
 
 class Fertilisation: 
     
-    def __init__(self, ef_country, calibration_year, scenario_data, scenario_animals_df, baseline_animals_df):
+    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df):
 
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         
         self.calibration_year = self.data_manager_class.calibration_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
@@ -17,9 +17,7 @@ class Fertilisation:
         self.target_year = self.data_manager_class.target_year
     
         self.loader_class = Loader()
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
-        self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
-
+        self.areas_class = Areas(self.target_year, calibration_year, self.default_calibration_year)
 
         self.cattle_spread_class = DailySpread(ef_country)
         

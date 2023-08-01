@@ -9,9 +9,7 @@ import cattle_lca.lca as cattle_lca
 import sheep_lca.lca as sheep_lca
 
 class DryMatter:
-
     def __init__(self,ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
-        
         self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year

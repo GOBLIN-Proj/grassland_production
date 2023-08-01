@@ -5,14 +5,14 @@ from grassland_production.data_loader import Loader
 
 class DataManager:
 
-    def __init__(self, calibration_year, scenario_inputs_df, scenario_animals_df, baseline_animals_df):
+    def __init__(self, calibration_year, target_year, scenario_inputs_df, scenario_animals_df, baseline_animals_df):
 
         self.loader_class = Loader()
 
         self.calibration_year = calibration_year
         self.default_calibration_year = 2015
         self.default_grassland_year = 2018
-        self.target_year = 2050
+        self.target_year = target_year
 
         self.COHORTS_DICT = {
             "Cattle": [

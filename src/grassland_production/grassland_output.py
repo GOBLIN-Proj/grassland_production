@@ -3,10 +3,10 @@ from grassland_production.farm_data_generation import FarmData
 
 
 class GrasslandOutput:
-    def __init__(self,ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df):
+    def __init__(self,ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
 
-        self.grassland_class = Grasslands(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
-        self.farm_data_class = FarmData(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.grassland_class = Grasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.farm_data_class = FarmData(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
 
     def total_spared_area(self):
         return self.grassland_class.get_non_grass_total_area()

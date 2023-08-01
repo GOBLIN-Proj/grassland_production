@@ -9,16 +9,16 @@ from grassland_production.grassland_area import Areas
     
 class Grasslands:
 
-    def __init__(self, ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df):
+    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
 
-        self.data_manager_class = DataManager(calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
         self.loader_class = Loader()
-        self.yield_class = Yield(ef_country, calibration_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.yield_class = Yield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
-        self.dm_class = DryMatter(ef_country, self.calibration_year, scenario_data, scenario_animals_df, baseline_animals_df)
+        self.dm_class = DryMatter(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
         
     
     def get_grass_total_area(self):
