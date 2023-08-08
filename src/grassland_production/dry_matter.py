@@ -20,6 +20,8 @@ class DryMatter:
         self.loader_class = Loader()
         self.grass_feed_class = cattle_lca.GrassFeed(ef_country)
         self.sheep_grass_feed_class = sheep_lca.GrassFeed(ef_country)
+        self.concentrate_feed_class = cattle_lca.Energy(ef_country)
+        self.sheep_concentrate_feed_class = sheep_lca.Energy(ef_country)
 
 
 
@@ -157,66 +159,26 @@ class DryMatter:
 
             animal_past = getattr(self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"], animal_name)
 
-            mask_validation = (
-                baseline_animals_df["year"]
-                == self.calibration_year
-            ) & (baseline_animals_df["cohort"] == animal_name)
+            mask_validation = (baseline_animals_df["year"]== self.calibration_year) & (baseline_animals_df["cohort"] == animal_name)
 
             if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]:
 
-                past_total_dm_df.loc[
-                    self.calibration_year, "dairy"
-                ] += (
-                    self.grass_feed_class.dry_matter_from_grass(
-                        animal_past,
-                    )
-                    * kg_to_t
-                    * 365
-                    * baseline_animals_df.loc[mask_validation, "pop"].values[0]
-                )
+                past_total_dm_df.loc[self.calibration_year, "dairy"] += (self.grass_feed_class.dry_matter_from_grass(animal_past,)* kg_to_t* 365 * baseline_animals_df.loc[mask_validation, "pop"].values[0])
 
             if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]:
-                past_total_dm_df.loc[
-                    self.calibration_year, "beef"
-                ] += (
-                    self.grass_feed_class.dry_matter_from_grass(
-                        animal_past,
-                    )
-                    * kg_to_t
-                    * 365
-                    * baseline_animals_df.loc[mask_validation, "pop"].values[0]
-                )
+                past_total_dm_df.loc[self.calibration_year, "beef"] += (self.grass_feed_class.dry_matter_from_grass(animal_past,)* kg_to_t* 365* baseline_animals_df.loc[mask_validation, "pop"].values[0])
 
             elif animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]:
                 for landtype in ["flat_pasture", "hilly_pasture"]:
-                    sheep_mask_validation = (
-                        (
-                            baseline_animals_df["year"]
-                            == self.calibration_year
-                        )
-                        & (baseline_animals_df["cohort"] == animal_name)
-                        & (baseline_animals_df["grazing"] == landtype)
-                    )
-                    past_total_dm_df.loc[
-                        self.calibration_year, "sheep"
-                    ] += (
-                        self.sheep_grass_feed_class.dry_matter_from_grass(
-                            animal_past,
-                        )
-                        * kg_to_t
-                        * 365
-                        * baseline_animals_df.loc[
-                            sheep_mask_validation, "pop"
-                        ].values[0]
-                    )
+                    sheep_mask_validation = ((baseline_animals_df["year"]== self.calibration_year)& (baseline_animals_df["cohort"] == animal_name)& (baseline_animals_df["grazing"] == landtype))
+                    past_total_dm_df.loc[self.calibration_year, "sheep"] += (self.sheep_grass_feed_class.dry_matter_from_grass(animal_past,)* kg_to_t* 365* baseline_animals_df.loc[sheep_mask_validation, "pop"].values[0])
 
         past_total_dm_df["total"] = (
             past_total_dm_df["dairy"]
             + past_total_dm_df["beef"]
             + past_total_dm_df["sheep"]
         )
-        
-        
+
         for sc in scenario_list:
             total_dm_df = past_total_dm_df.copy(deep=True)
             dry_matter_req[sc] = total_dm_df
@@ -228,44 +190,17 @@ class DryMatter:
                 for animal_name in animal_list:
                     if animal_name in self.data_manager_class.scenario_animals_dict[farm_id]["animals"].__dict__.keys():
                         animal_scenario = getattr(self.data_manager_class.scenario_animals_dict[farm_id]["animals"], animal_name)
-                        mask = (
-                            (scenario_animals_df["farm_id"] == farm_id)
-                            & (scenario_animals_df["cohort"] == animal_name)
-                        )
+                        mask = ((scenario_animals_df["farm_id"] == farm_id)& (scenario_animals_df["cohort"] == animal_name))
 
                         if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]:
-                            dry_matter_req[sc].loc[
-                                self.target_year, "dairy"
-                            ] += (
-                                self.grass_feed_class.dry_matter_from_grass(animal_scenario)
-                                * kg_to_t
-                                * 365
-                                * scenario_animals_df.loc[mask, "pop"].values[0]
-                            )
+                            dry_matter_req[sc].loc[self.target_year, "dairy"] += (self.grass_feed_class.dry_matter_from_grass(animal_scenario)* kg_to_t* 365* scenario_animals_df.loc[mask, "pop"].values[0])
+
                         elif animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]:
-                            dry_matter_req[sc].loc[
-                                self.target_year, "beef"
-                            ] += (
-                                self.grass_feed_class.dry_matter_from_grass(animal_scenario)
-                                * kg_to_t
-                                * 365
-                                * scenario_animals_df.loc[mask, "pop"].values[0]
-                            )
+                            dry_matter_req[sc].loc[self.target_year, "beef"] += (self.grass_feed_class.dry_matter_from_grass(animal_scenario)* kg_to_t* 365* scenario_animals_df.loc[mask, "pop"].values[0])
                         elif animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]:
                             for landtype in ["flat_pasture", "hilly_pasture"]:
-                                sheep_mask = (
-                                    (scenario_animals_df["farm_id"] == farm_id)
-                                    & (scenario_animals_df["cohort"] == animal_name)
-                                    & (scenario_animals_df["grazing"] == landtype)
-                                )
-                                dry_matter_req[sc].loc[
-                                    self.target_year, "sheep"
-                                ] += (
-                                    self.sheep_grass_feed_class.dry_matter_from_grass(animal_scenario)
-                                    * kg_to_t
-                                    * 365
-                                    * scenario_animals_df.loc[sheep_mask, "pop"].values[0]
-                                )
+                                sheep_mask = ((scenario_animals_df["farm_id"] == farm_id)& (scenario_animals_df["cohort"] == animal_name)& (scenario_animals_df["grazing"] == landtype))
+                                dry_matter_req[sc].loc[self.target_year, "sheep"] += (self.sheep_grass_feed_class.dry_matter_from_grass(animal_scenario)* kg_to_t* 365* scenario_animals_df.loc[sheep_mask, "pop"].values[0])
 
             dry_matter_req[sc]["total"] = (
                 dry_matter_req[sc]["dairy"]
@@ -322,3 +257,79 @@ class DryMatter:
             utilisation_rate[sc] = copy.deepcopy(utilisation_rate_df)
 
         return utilisation_rate
+
+    def get_total_concentrate_feed(self):
+        """
+        Calculates the total amount of concentrate feed that is required by all livestock within each farm system in tonnes per year.
+        """
+        kg_to_t = 1e-3
+        year_list = [self.calibration_year, self.target_year]
+        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+
+        baseline_animals_df = self.data_manager_class.baseline_animals_df
+        scenario_animals_df = self.data_manager_class.scenario_animals_df
+
+        cols = ["dairy", "beef", "sheep", "total"]
+
+        animal_list = list(self.data_manager_class.COHORTS_DICT["Cattle"]) + list(
+            self.data_manager_class.COHORTS_DICT["Sheep"]
+        )
+
+        past_total_conc_df = pd.DataFrame(0, index=year_list, columns=cols)
+
+        total_concentrate_feed = {}
+
+        for animal_name in animal_list:
+
+            animal_past = getattr(self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"], animal_name)
+
+            mask_validation = (baseline_animals_df["year"]== self.calibration_year) & (baseline_animals_df["cohort"] == animal_name)
+
+            if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]:
+
+                past_total_conc_df.loc[self.calibration_year, "dairy"] += (self.concentrate_feed_class.concentrate_needs(animal_past,) * kg_to_t * 365 * baseline_animals_df.loc[mask_validation, "pop"].values[0])
+
+            if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]:
+                past_total_conc_df.loc[self.calibration_year, "beef"] += (self.concentrate_feed_class.concentrate_needs(animal_past,) * kg_to_t * 365 * baseline_animals_df.loc[mask_validation, "pop"].values[0])
+
+            elif animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]:
+                for landtype in ["flat_pasture", "hilly_pasture"]:
+                    sheep_mask_validation = ((baseline_animals_df["year"]== self.calibration_year)& (baseline_animals_df["cohort"] == animal_name)& (baseline_animals_df["grazing"] == landtype))
+                    past_total_conc_df.loc[self.calibration_year, "sheep"] += (self.sheep_concentrate_feed_class.concentrate_needs(animal_past,) * kg_to_t * 365 * baseline_animals_df.loc[sheep_mask_validation, "pop"].values[0])
+
+        past_total_conc_df["total"] = (
+            past_total_conc_df["dairy"]
+            + past_total_conc_df["beef"]
+            + past_total_conc_df["sheep"]
+        )
+
+        for sc in scenario_list:
+            total_conc_df = past_total_conc_df.copy(deep=True)
+            total_concentrate_feed[sc] = total_conc_df
+
+            farm_mask = self.data_manager_class.scenario_aggregation["Scenarios"] == sc
+            farm_ids = self.data_manager_class.scenario_aggregation.loc[farm_mask, "farm_id"].unique()
+
+            for farm_id in farm_ids:
+                for animal_name in animal_list:
+                    if animal_name in self.data_manager_class.scenario_animals_dict[farm_id]["animals"].__dict__.keys():
+                        animal_scenario = getattr(self.data_manager_class.scenario_animals_dict[farm_id]["animals"], animal_name)
+                        mask = ((scenario_animals_df["farm_id"] == farm_id)& (scenario_animals_df["cohort"] == animal_name))
+
+                        if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]:
+                            total_concentrate_feed[sc].loc[self.target_year, "dairy"] += (self.concentrate_feed_class.concentrate_needs(animal_scenario) * kg_to_t * 365 * scenario_animals_df.loc[mask, "pop"].values[0])
+
+                        elif animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]:
+                            total_concentrate_feed[sc].loc[self.target_year, "beef"] += (self.concentrate_feed_class.concentrate_needs(animal_scenario) * kg_to_t * 365 * scenario_animals_df.loc[mask, "pop"].values[0])
+                        elif animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]:
+                            for landtype in ["flat_pasture", "hilly_pasture"]:
+                                sheep_mask = ((scenario_animals_df["farm_id"] == farm_id)& (scenario_animals_df["cohort"] == animal_name)& (scenario_animals_df["grazing"] == landtype))
+                                total_concentrate_feed[sc].loc[self.target_year, "sheep"] += (self.sheep_concentrate_feed_class.concentrate_needs(animal_scenario) * kg_to_t * 365 * scenario_animals_df.loc[sheep_mask, "pop"].values[0])
+
+            total_concentrate_feed[sc]["total"] = (
+                total_concentrate_feed[sc]["dairy"]
+                + total_concentrate_feed[sc]["beef"]
+                + total_concentrate_feed[sc]["sheep"]
+            )
+
+        return total_concentrate_feed
