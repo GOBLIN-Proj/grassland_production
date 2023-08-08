@@ -19,8 +19,8 @@ class Grasslands:
         self.yield_class = Yield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
         self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
         self.dm_class = DryMatter(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
-        
-    
+
+
     def get_grass_total_area(self):
 
         """
@@ -46,7 +46,6 @@ class Grasslands:
         dry_matter_req = self.dm_class.actual_dry_matter_required()
         utilisation_rate = self.dm_class.get_utilisation_rate()
 
-
         nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
 
         grass_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
@@ -62,14 +61,14 @@ class Grasslands:
                     for grassland_type in transposed_yield_per_ha[sc][sys].columns:
 
                         if year != self.target_year:
-                                average_yield += (
+                            average_yield += (
                                     transposed_yield_per_ha[sc][sys].loc[
                                         year, grassland_type
                                     ]
                                     * nfs_within_grassland_proportions[sys].loc[
                                         year, grassland_type
                                     ]
-                                )
+                            )
                         else:
                             average_yield += (
                                     transposed_yield_per_ha[sc][sys].loc[
@@ -77,21 +76,230 @@ class Grasslands:
                                         grassland_type,
                                     ]
                                     * nfs_within_grassland_proportions[sys].loc[
-                                            self.calibration_year,
+                                        self.calibration_year,
                                         grassland_type,
                                     ]
-                                )
+                            )
 
                     grass_total_area.loc[year, sc] += (
-                        dry_matter_req[sc][sys].loc[year]
-                        / average_yield
-                        / utilisation_rate[sc][sys].loc[year]
+                            dry_matter_req[sc][sys].loc[year]
+                            / average_yield
+                            / utilisation_rate[sc][sys].loc[year]
                     )
 
                     average_yield = 0
-    
+
         return grass_total_area
-    
+
+    def get_dairy_total_area(self):
+
+        """
+        for years 2005 to 2015, for each scenario, for each system, the yearly grassland yield is calculated.
+
+        A single weighted number is produced based on the yield of each grassland type for each system. The weights used
+        are the proportions of each grassland type in each system.
+
+        The total area then is calculated as the dry matter requirment for each system divided by the weighted yield for each
+        system divided by that systems utilisation rate.
+
+        The ouputs are then aggregated into a single dataframe.
+
+        """
+
+        # grass drymatter requirement for cattle and sheep, is dictionary
+        year_list = [self.calibration_year, self.target_year]
+        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+
+        keys = self.data_manager_class.systems
+
+        transposed_yield_per_ha = self.yield_class.get_yield()
+        dry_matter_req = self.dm_class.actual_dry_matter_required()
+        utilisation_rate = self.dm_class.get_utilisation_rate()
+
+        nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
+
+        dairy_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
+
+        average_yield = 0
+
+        for sc in scenario_list:
+
+            for sys in keys:
+
+                for year in year_list:
+
+                    for grassland_type in transposed_yield_per_ha[sc][sys].columns:
+
+                        if year != self.target_year:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["dairy"].loc[
+                                        year, grassland_type
+                                    ]
+                                    * nfs_within_grassland_proportions["dairy"].loc[
+                                        year, grassland_type
+                                    ]
+                            )
+                        else:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["dairy"].loc[
+                                        self.target_year,
+                                        grassland_type,
+                                    ]
+                                    * nfs_within_grassland_proportions["dairy"].loc[
+                                        self.calibration_year,
+                                        grassland_type,
+                                    ]
+                            )
+
+                    dairy_total_area.loc[year, sc] = (
+                            dry_matter_req[sc]["dairy"].loc[year]
+                            / average_yield
+                            / utilisation_rate[sc]["dairy"].loc[year]
+                    )
+
+                    average_yield = 0
+
+        return dairy_total_area
+
+    def get_beef_total_area(self):
+
+        """
+        for years 2005 to 2015, for each scenario, for each system, the yearly grassland yield is calculated.
+
+        A single weighted number is produced based on the yield of each grassland type for each system. The weights used
+        are the proportions of each grassland type in each system.
+
+        The total area then is calculated as the dry matter requirment for each system divided by the weighted yield for each
+        system divided by that systems utilisation rate.
+
+        The ouputs are then aggregated into a single dataframe.
+
+        """
+
+        # grass drymatter requirement for cattle and sheep, is dictionary
+        year_list = [self.calibration_year, self.target_year]
+        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+
+        keys = self.data_manager_class.systems
+
+        transposed_yield_per_ha = self.yield_class.get_yield()
+        dry_matter_req = self.dm_class.actual_dry_matter_required()
+        utilisation_rate = self.dm_class.get_utilisation_rate()
+
+        nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
+
+        beef_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
+
+        average_yield = 0
+
+        for sc in scenario_list:
+
+            for sys in keys:
+
+                for year in year_list:
+
+                    for grassland_type in transposed_yield_per_ha[sc][sys].columns:
+
+                        if year != self.target_year:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["beef"].loc[
+                                        year, grassland_type
+                                    ]
+                                    * nfs_within_grassland_proportions["beef"].loc[
+                                        year, grassland_type
+                                    ]
+                            )
+                        else:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["beef"].loc[
+                                        self.target_year,
+                                        grassland_type,
+                                    ]
+                                    * nfs_within_grassland_proportions["beef"].loc[
+                                        self.calibration_year,
+                                        grassland_type,
+                                    ]
+                            )
+
+                    beef_total_area.loc[year, sc] = (
+                            dry_matter_req[sc]["beef"].loc[year]
+                            / average_yield
+                            / utilisation_rate[sc]["beef"].loc[year]
+                    )
+
+                    average_yield = 0
+
+        return beef_total_area
+
+    def get_sheep_total_area(self):
+
+        """
+        for years 2005 to 2015, for each scenario, for each system, the yearly grassland yield is calculated.
+
+        A single weighted number is produced based on the yield of each grassland type for each system. The weights used
+        are the proportions of each grassland type in each system.
+
+        The total area then is calculated as the dry matter requirment for each system divided by the weighted yield for each
+        system divided by that systems utilisation rate.
+
+        The ouputs are then aggregated into a single dataframe.
+
+        """
+
+        # grass drymatter requirement for cattle and sheep, is dictionary
+        year_list = [self.calibration_year, self.target_year]
+        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+
+        keys = self.data_manager_class.systems
+
+        transposed_yield_per_ha = self.yield_class.get_yield()
+        dry_matter_req = self.dm_class.actual_dry_matter_required()
+        utilisation_rate = self.dm_class.get_utilisation_rate()
+
+        nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
+
+        sheep_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
+
+        average_yield = 0
+
+        for sc in scenario_list:
+
+            for sys in keys:
+
+                for year in year_list:
+
+                    for grassland_type in transposed_yield_per_ha[sc][sys].columns:
+
+                        if year != self.target_year:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["sheep"].loc[
+                                        year, grassland_type
+                                    ]
+                                    * nfs_within_grassland_proportions["sheep"].loc[
+                                        year, grassland_type
+                                    ]
+                            )
+                        else:
+                            average_yield += (
+                                    transposed_yield_per_ha[sc]["sheep"].loc[
+                                        self.target_year,
+                                        grassland_type,
+                                    ]
+                                    * nfs_within_grassland_proportions["sheep"].loc[
+                                        self.calibration_year,
+                                        grassland_type,
+                                    ]
+                            )
+
+                    sheep_total_area.loc[year, sc] = (
+                            dry_matter_req[sc]["sheep"].loc[year]
+                            / average_yield
+                            / utilisation_rate[sc]["sheep"].loc[year]
+                    )
+
+                    average_yield = 0
+
+        return sheep_total_area
 
     def get_non_grass_total_area(self):
 
