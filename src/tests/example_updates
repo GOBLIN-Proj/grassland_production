@@ -1,0 +1,96 @@
+import pandas as pd
+from grassland_production.grassland_output import GrasslandOutput
+from grassland_production.grassland_area import Areas
+from grassland_production.fertilisation import Fertilisation
+from grassland_production.grass_yield import Yield
+from grassland_production.dry_matter import DryMatter
+from grassland_production.spared_area import Grasslands
+from grassland_production.stocking_rate import StockingRate
+from grassland_production.farm_data_generation import FarmData
+from grassland_production.grassland_soils import SoilGroups
+
+
+def main():
+    ef_country = "ireland"
+    calibration_year = 2018
+    target_year = 2050
+    default_calibration_year = 2015
+
+    scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
+    scenario_animal_dataframe = pd.read_csv("./data/future_animals.csv")
+    baseline_animal_dataframe = pd.read_csv("./data/past_animals.csv")
+
+areas = Areas(target_year, calibration_year, default_calibration_year)
+
+    grassland_output = GrasslandOutput(ef_country, calibration_year, target_year, scenario_dataframe,
+                                scenario_animal_dataframe, baseline_animal_dataframe)
+
+    fertilisation = Fertilisation(ef_country,calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    yields = Yield(ef_country,calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    DM = DryMatter(ef_country, calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    spared_land = Grasslands(ef_country, calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    stockingrates = StockingRate(ef_country, calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    farmdata = FarmData(ef_country, calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    soilgroups = SoilGroups(ef_country, calibration_year, target_year, scenario_dataframe, scenario_animal_dataframe, baseline_animal_dataframe)
+
+    #Areas
+    #print(areas.get_nfs_system_proportions())
+    #print(areas.get_nfs_within_system_grassland_distribution())
+
+    #Fertilisation
+    #print(fertilisation.compute_inorganic_fertilization_rate())
+    #print(fertilisation.compute_organic_fertilization_rate())
+    #print(fertilisation.organic_fertilisation_per_ha())
+
+    #Yield
+    #print(yields.get_yield())
+
+    #DryMatter
+    #print(DM.get_actual_dry_matter_produced())
+    #print(DM.actual_dry_matter_required())
+    #print(DM.get_utilisation_rate())
+    #print(DM.get_total_concentrate_feed())
+
+    #Spared land
+    #print(spared_land.get_grass_total_area())
+    #print(spared_land.get_non_grass_total_area())
+    #print(spared_land.get_dairy_total_area())
+    #print(spared_land.get_beef_total_area())
+    #print(spared_land.get_sheep_total_area())
+
+    #Stocking rates
+    #print(stockingrates.get_livestock_units())
+    #print(stockingrates.get_stocking_rate())
+
+    #Farm Data
+    #print(farmdata.compute_fertilization_total())
+    #print(farmdata.compute_farm_data_in_baseline())
+    #print(farmdata.compute_farm_data_in_scenarios())
+
+    #Soil groups
+    #print(soilgroups.get_dairy_soil_groups())
+    #print(soilgroups.get_beef_soil_groups())
+    #print(soilgroups.get_sheep_soil_groups())
+
+    #Grassland_output
+
+    print(grassland_output.total_spared_area())
+    print(grassland_output.total_grassland_area())
+    print(grassland_output.farm_inputs_data())
+    print(grassland_output.baseline_farm_inputs_data())
+    #grassland_output.total_spared_area().to_csv("./data_grassland/spared_area.csv")
+    #grassland_output.total_grassland_area().to_csv("./data_grassland/total_grassland_area.csv")
+    #grassland_output.farm_inputs_data().to_csv("./data_grassland/farm_inputs_data.csv")
+    #grassland_output.baseline_farm_inputs_data().to_csv("./data_grassland/baseline_farm_inputs_data.csv")
+
+
+
+
+if __name__ == "__main__":
+    main()
