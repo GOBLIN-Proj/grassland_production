@@ -159,4 +159,12 @@ class DataManager:
         
         return dataframe
 
+    def get_livestock_units(self):
+        table = "livestock_units"
 
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+        )
+
+        return dataframe
