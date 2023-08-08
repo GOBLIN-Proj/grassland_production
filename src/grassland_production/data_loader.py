@@ -44,3 +44,6 @@ class Loader:
     
     def fao_fertilization(self):
         return self.dataframes.get_fao_fertiliser_data()
+
+    def livestock_units(self):
+        return self.dataframes.get_livestock_units()
