@@ -60,7 +60,6 @@ def main():
     grassland.total_spared_area().to_csv("./data/spared_area.csv")
     grassland.total_grassland_area().to_csv("./data/total_grassland_area.csv")
     
-if __name__ == "__main__":
 
 if __name__ == "__main__":
     main()
