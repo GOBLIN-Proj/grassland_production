@@ -1,12 +1,16 @@
-
 from cattle_lca.models import load_livestock_data
 from grassland_production.data_loader import Loader
 
 
 class DataManager:
-
-    def __init__(self, calibration_year, target_year, scenario_inputs_df, scenario_animals_df, baseline_animals_df):
-
+    def __init__(
+        self,
+        calibration_year,
+        target_year,
+        scenario_inputs_df,
+        scenario_animals_df,
+        baseline_animals_df,
+    ):
         self.loader_class = Loader()
 
         self.calibration_year = calibration_year
@@ -38,7 +42,13 @@ class DataManager:
                 "BxB_heifers_more_2_yr",
                 "BxB_steers_more_2_yr",
             ],
-            "Sheep": ["ewes", "lamb_less_1_yr", "lamb_more_1_yr", "male_less_1_yr", "ram"],
+            "Sheep": [
+                "ewes",
+                "lamb_less_1_yr",
+                "lamb_more_1_yr",
+                "male_less_1_yr",
+                "ram",
+            ],
         }
 
         self.DAIRY_BEEF_COHORTS = {
@@ -76,7 +86,6 @@ class DataManager:
         self.baseline_animals_dict = load_livestock_data(self.baseline_animals_df)
         self.scenario_animals_dict = load_livestock_data(self.scenario_animals_df)
 
-
         self.scenario_aggregation = self.scenario_animals_df[["Scenarios", "farm_id"]]
 
         self.soil_class_yield_gap = {"1": 0.85, "2": 0.8, "3": 0.7}
@@ -89,6 +98,3 @@ class DataManager:
 
         self.grasslands = ["Grass silage", "Hay", "Pasture", "Rough grazing in use"]
         self.systems = ["dairy", "beef", "sheep"]
-
-
-

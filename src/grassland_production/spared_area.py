@@ -6,23 +6,49 @@ from grassland_production.grass_yield import Yield
 from grassland_production.dry_matter import DryMatter
 from grassland_production.grassland_area import Areas
 
-    
+
 class Grasslands:
-
-    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
-
-        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+    def __init__(
+        self,
+        ef_country,
+        calibration_year,
+        target_year,
+        scenario_data,
+        scenario_animals_df,
+        baseline_animals_df,
+    ):
+        self.data_manager_class = DataManager(
+            calibration_year,
+            target_year,
+            scenario_data,
+            scenario_animals_df,
+            baseline_animals_df,
+        )
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
         self.loader_class = Loader()
-        self.yield_class = Yield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
-        self.areas_class = Areas(self.target_year, self.calibration_year, self.default_calibration_year)
-        self.dm_class = DryMatter(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
-        
-    
-    def get_grass_total_area(self):
+        self.yield_class = Yield(
+            ef_country,
+            calibration_year,
+            target_year,
+            scenario_data,
+            scenario_animals_df,
+            baseline_animals_df,
+        )
+        self.areas_class = Areas(
+            self.target_year, self.calibration_year, self.default_calibration_year
+        )
+        self.dm_class = DryMatter(
+            ef_country,
+            self.calibration_year,
+            target_year,
+            scenario_data,
+            scenario_animals_df,
+            baseline_animals_df,
+        )
 
+    def get_grass_total_area(self):
         """
         for years 2005 to 2015, for each scenario, for each system, the yearly grassland yield is calculated.
 
@@ -46,41 +72,38 @@ class Grasslands:
         dry_matter_req = self.dm_class.actual_dry_matter_required()
         utilisation_rate = self.dm_class.get_utilisation_rate()
 
-
-        nfs_within_grassland_proportions = self.areas_class.get_nfs_within_system_grassland_distribution()
+        nfs_within_grassland_proportions = (
+            self.areas_class.get_nfs_within_system_grassland_distribution()
+        )
 
         grass_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
 
         average_yield = 0
 
         for sc in scenario_list:
-
             for sys in keys:
-
                 for year in year_list:
-
                     for grassland_type in transposed_yield_per_ha[sc][sys].columns:
-
                         if year != self.target_year:
-                                average_yield += (
-                                    transposed_yield_per_ha[sc][sys].loc[
-                                        year, grassland_type
-                                    ]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        year, grassland_type
-                                    ]
-                                )
+                            average_yield += (
+                                transposed_yield_per_ha[sc][sys].loc[
+                                    year, grassland_type
+                                ]
+                                * nfs_within_grassland_proportions[sys].loc[
+                                    year, grassland_type
+                                ]
+                            )
                         else:
                             average_yield += (
-                                    transposed_yield_per_ha[sc][sys].loc[
-                                        self.target_year,
-                                        grassland_type,
-                                    ]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                            self.calibration_year,
-                                        grassland_type,
-                                    ]
-                                )
+                                transposed_yield_per_ha[sc][sys].loc[
+                                    self.target_year,
+                                    grassland_type,
+                                ]
+                                * nfs_within_grassland_proportions[sys].loc[
+                                    self.calibration_year,
+                                    grassland_type,
+                                ]
+                            )
 
                     grass_total_area.loc[year, sc] += (
                         dry_matter_req[sc][sys].loc[year]
@@ -89,12 +112,10 @@ class Grasslands:
                     )
 
                     average_yield = 0
-    
+
         return grass_total_area
-    
 
     def get_non_grass_total_area(self):
-
         """
         A single dataframe is produced with spared area. If the row does not equal the target year,
         then the value is assumed as zero. If the row is the target year, the output value is equal to the
@@ -107,16 +128,11 @@ class Grasslands:
         spared_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
 
         grass_total_area = self.get_grass_total_area()
-            
-                
+
         for sc in scenario_list:
             spared_area.loc[self.target_year, sc] = (
-                grass_total_area.loc[
-                    self.calibration_year, sc
-                ]
-                - grass_total_area.loc[
-                    self.target_year, sc
-                ]
+                grass_total_area.loc[self.calibration_year, sc]
+                - grass_total_area.loc[self.target_year, sc]
             )
 
         return spared_area

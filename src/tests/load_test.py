@@ -19,7 +19,7 @@ class DatasetLoadingTestCase(unittest.TestCase):
         chars_path = os.path.join(self.data_dir, "crop_params.csv")
         ef_path = os.path.join(self.data_dir, "emission_factor_crop.csv")
         upstream_path = os.path.join(self.data_dir, "upstream_crop.csv")
-        fertiliser_path = os.path.join(self.data_dir,"FAOSTAT_yield_data.csv")
+        fertiliser_path = os.path.join(self.data_dir, "FAOSTAT_yield_data.csv")
 
         # Load the datasets as DataFrames
         crop_chars = pd.read_csv(chars_path, index_col=0)
@@ -38,6 +38,7 @@ class DatasetLoadingTestCase(unittest.TestCase):
         self.assertTrue(ef_class.is_loaded())
         self.assertTrue(upstream_class.is_loaded())
         self.assertTrue(fertiliser_class.is_loaded())
+
 
 if __name__ == "__main__":
     unittest.main()

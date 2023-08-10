@@ -16,7 +16,6 @@ class DataManager:
         engine_url = f"sqlite:///{database_path}"
 
         return sqa.create_engine(engine_url)
-    
 
     def get_cso_grassland_data(self):
         table = "CSO_grassland_areas"
@@ -31,132 +30,103 @@ class DataManager:
 
         return dataframe
 
-
-
     def get_grassland_fertilization_by_system(self):
-
         table = "grassland_fertilization_by_system"
-        
+
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["Grasslandtype", "Farmsystem"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["Grasslandtype", "Farmsystem"],
+        )
 
         return dataframe
-    
 
     def get_dairy_area_nfs(self):
-
         table = "dairy_nfs_areas"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-    
 
     def get_beef_area_nfs(self):
-
         table = "cattle_nfs_areas"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-    
 
     def get_sheep_area_nfs(self):
-
         table = "sheep_nfs_areas"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-
 
     def get_nfs_farm_numbers(self):
-
         table = "national_farm_survey_system_numbers"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-    
-    
-    def get_dairy_soil_group(self):
 
+    def get_dairy_soil_group(self):
         table = "dairy_soil_group"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-    
-    
-    def get_cattle_soil_group(self):
 
+    def get_cattle_soil_group(self):
         table = "cattle_soil_group"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-    
-    
-    def get_sheep_soil_group(self):
 
+    def get_sheep_soil_group(self):
         table = "sheep_soil_group"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["year"],
-            )
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
 
         return dataframe
-
 
     def get_fao_fertiliser_data(self):
-
         table = "FAO_fertilization"
 
-  
         dataframe = pd.read_sql(
-                "SELECT * FROM '%s'" % (table),
-                self.engine,
-                index_col=["Year"],
-            )
-        
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["Year"],
+        )
+
         dataframe *= 1000
-        
+
         return dataframe
-
-
