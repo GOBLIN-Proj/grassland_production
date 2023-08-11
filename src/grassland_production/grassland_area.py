@@ -11,14 +11,14 @@ class Areas:
         self.default_calibration_year = default_calibration_year
 
     def get_proportion_weight(
-        self, area_nfs, farm_system_number, calibration_year, system, dairy_area_nfs, beef_area_nfs, sheep_area_nfs
+        self, area_nfs, farm_system_number, calibration_year, system
     ):
         return area_nfs * (
             farm_system_number.loc[calibration_year, system]
             / (
-                (dairy_area_nfs * farm_system_number.loc[calibration_year, "dairy"])
-                + (beef_area_nfs * farm_system_number.loc[calibration_year, "beef"])
-                + (sheep_area_nfs * farm_system_number.loc[calibration_year, "sheep"])
+                (area_nfs * farm_system_number.loc[calibration_year, "dairy"])
+                + (area_nfs * farm_system_number.loc[calibration_year, "beef"])
+                + (area_nfs * farm_system_number.loc[calibration_year, "sheep"])
             )
         )
 
@@ -53,9 +53,7 @@ class Areas:
         ):
             try:
                 systems_dict[sys].loc[ix, grassland_type] = self.get_proportion_weight(
-                    dairy_area_nfs.loc[ix, grassland_type], farm_system_number, ix, sys,
-                    dairy_area_nfs.loc[ix, grassland_type],beef_area_nfs.loc[ix, grassland_type],
-                    sheep_area_nfs.loc[ix, grassland_type]
+                    dairy_area_nfs.loc[ix, grassland_type], farm_system_number, ix, sys
                 )
             except KeyError:
                 if default_year_flag == True:
@@ -68,8 +66,7 @@ class Areas:
                     dairy_area_nfs.loc[ix, grassland_type],
                     farm_system_number,
                     self.default_calibration_year,
-                    sys,dairy_area_nfs.loc[ix, grassland_type],beef_area_nfs.loc[ix, grassland_type],
-                    sheep_area_nfs.loc[ix, grassland_type]
+                    sys,
                 )
 
         return systems_dict["dairy"], systems_dict["beef"], systems_dict["sheep"]
