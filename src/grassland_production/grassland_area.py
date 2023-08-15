@@ -47,6 +47,7 @@ class Areas:
 
         return combined_dataframe
 
+
     def get_nfs_system_proportions(self):
         grassland_types = ["Grass silage", "Hay", "Pasture", "Rough grazing in use"]
 
@@ -56,33 +57,21 @@ class Areas:
 
         nfs_dict = {
             "dairy": dairy_area_nfs,
-            "beef": dairy_area_nfs,
-            "sheep": dairy_area_nfs,
+            "beef": beef_area_nfs,
+            "sheep": sheep_area_nfs,
         }
-
-        # total_areas_nfs = self.get_total_nfs_areas_for_proportions(dairy_area_nfs, beef_area_nfs, sheep_area_nfs)
 
         farm_system_number = self.loader_class.nfs_farm_numbers()
 
-        dairy_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
-        )
-        beef_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
-        )
-        sheep_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
-        )
-
         systems_dict = {
-            "dairy": dairy_nfs_system_proportions,
-            "beef": beef_nfs_system_proportions,
-            "sheep": sheep_nfs_system_proportions,
+            "dairy": pd.DataFrame(0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index),
+            "beef": pd.DataFrame(0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index),
+            "sheep": pd.DataFrame(0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index),
         }
 
         default_year_flag = False
         for sys, grassland_type, ix in product(
-            systems_dict.keys(), grassland_types, dairy_nfs_system_proportions.index
+                systems_dict.keys(), grassland_types, dairy_area_nfs.index
         ):
             try:
                 systems_dict[sys].at[ix, grassland_type] = self.get_proportion_weight(
