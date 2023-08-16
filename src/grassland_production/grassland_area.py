@@ -56,8 +56,8 @@ class Areas:
 
         nfs_dict = {
             "dairy": dairy_area_nfs,
-            "beef": dairy_area_nfs,
-            "sheep": dairy_area_nfs,
+            "beef": beef_area_nfs,
+            "sheep": sheep_area_nfs,
         }
 
         # total_areas_nfs = self.get_total_nfs_areas_for_proportions(dairy_area_nfs, beef_area_nfs, sheep_area_nfs)
