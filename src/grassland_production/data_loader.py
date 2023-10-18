@@ -34,3 +34,6 @@ class Loader:
 
     def fao_fertilization(self):
         return self.dataframes.get_fao_fertiliser_data()
+    
+    def nir_fertilization(self):
+        return self.dataframes.get_nir_fertiliser_data()
