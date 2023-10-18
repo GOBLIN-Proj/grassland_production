@@ -193,8 +193,6 @@ class FarmData:
             
             Share_fertilizer = pd.DataFrame(index=[calibration_year])
 
-            Share_fertilizer["AN_N_t"] =(NIR_fertilizer.loc[calibration_year,"Total_N_t"].item() - NIR_fertilizer.loc[calibration_year, "Urea_N_t"].item())/NIR_fertilizer.loc[calibration_year, "Total_N_t"].item()
-            Share_fertilizer["Urea_N_t"] = NIR_fertilizer.loc[calibration_year, "Urea_N_t"].item()/NIR_fertilizer.loc[calibration_year, "Total_N_t"].item()
             Share_fertilizer["prop_p"] = FAO_fertilizer.loc[calibration_year, "Total_P_t"].item() / NIR_fertilizer.loc[calibration_year, "Total_N_t"].item() 
             Share_fertilizer["prop_k"] = FAO_fertilizer.loc[calibration_year, "Total_K_t"].item() / NIR_fertilizer.loc[calibration_year, "Total_N_t"].item() 
             Share_fertilizer["Lime_t"] = NIR_fertilizer.loc[calibration_year,"Lime_t"].item()
@@ -202,8 +200,6 @@ class FarmData:
             default_calibration_year = self.default_calibration_year
             Share_fertilizer = pd.DataFrame(index=[calibration_year])
 
-            Share_fertilizer["AN_N_t"] =(NIR_fertilizer.loc[default_calibration_year,"Total_N_t"].item() - NIR_fertilizer.loc[default_calibration_year, "Urea_N_t"].item())/NIR_fertilizer.loc[default_calibration_year, "Total_N_t"].item()
-            Share_fertilizer["Urea_N_t"] = NIR_fertilizer.loc[default_calibration_year, "Urea_N_t"].item()/NIR_fertilizer.loc[default_calibration_year, "Total_N_t"].item()
             Share_fertilizer["prop_p"] = FAO_fertilizer.loc[default_calibration_year, "Total_P_t"].item() / NIR_fertilizer.loc[default_calibration_year, "Total_N_t"].item() 
             Share_fertilizer["prop_k"] = FAO_fertilizer.loc[default_calibration_year, "Total_K_t"].item() / NIR_fertilizer.loc[default_calibration_year, "Total_N_t"].item() 
             Share_fertilizer["Lime_t"] = NIR_fertilizer.loc[default_calibration_year,"Lime_t"].item()
@@ -213,14 +209,20 @@ class FarmData:
 
         new_index = 0
         for index in fert_rate_total.columns:
+            urea_mask = (self.data_manager_class.scenario_inputs_df["Scenarios"]==index)
+
             farm_data.loc[new_index, "ef_country"] = "ireland"
             farm_data.loc[new_index, "farm_id"] = index
             farm_data.loc[new_index, "year"] = int(target_year)
 
+            share_urea = self.data_manager_class.scenario_inputs_df.loc[urea_mask, "Urea proportion"].unique()
+            share_urea_abated = self.data_manager_class.scenario_inputs_df.loc[urea_mask, "Urea abated proportion"].unique()
+
             urea_t = ((
-                Share_fertilizer.loc[calibration_year, "Urea_N_t"].item()
+                share_urea
                 * fert_rate_total.loc[target_year, index].item()
             )* 100)/46
+
 
             farm_data.loc[new_index, "total_urea_kg"] = urea_t 
 
@@ -229,17 +231,20 @@ class FarmData:
             ].item()
 
             farm_data.loc[new_index, "an_n_fert"] = (
-                Share_fertilizer.loc[calibration_year, "AN_N_t"].item()
+                (1-share_urea)
                 * fert_rate_total.loc[target_year, index].item()
             )
 
 
             farm_data.loc[new_index, "urea_n_fert"] = (
-                Share_fertilizer.loc[calibration_year, "Urea_N_t"].item()
+                share_urea
                 * fert_rate_total.loc[target_year, index].item()
-            )
+            ) * (1 - share_urea_abated)
 
-            farm_data.loc[new_index, "total_urea_abated"] = 0
+            farm_data.loc[new_index, "total_urea_abated"] = (
+                share_urea
+                * fert_rate_total.loc[target_year, index].item()
+            ) * share_urea_abated
 
 
             farm_data.loc[new_index, "total_p_fert"] = (
