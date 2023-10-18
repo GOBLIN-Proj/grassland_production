@@ -130,3 +130,17 @@ class DataManager:
         dataframe *= 1000
 
         return dataframe
+    
+
+    def get_nir_fertiliser_data(self):
+        table = "NIR_fertilization"
+
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
+
+        dataframe *= 1000
+
+        return dataframe
