@@ -186,6 +186,9 @@ class FarmData:
         FAO_fertilizer = self.loader_class.fao_fertilization()
         NIR_fertilizer = self.loader_class.nir_fertilization()
 
+        phosphorus_conversion_factor = 0.436
+        potassium_conversion_factor = 0.83
+
         fert_rate_total = self.compute_fertilization_total()
 
         farm_data = pd.DataFrame()
@@ -251,12 +254,12 @@ class FarmData:
             farm_data.loc[new_index, "total_p_fert"] = (
                 Share_fertilizer.loc[calibration_year, "prop_p"].item()
                 * fert_rate_total.loc[target_year, index].item()
-            )
+            ) * phosphorus_conversion_factor
 
             farm_data.loc[new_index, "total_k_fert"] = (
                 Share_fertilizer.loc[calibration_year, "prop_k"].item()
                 * fert_rate_total.loc[target_year, index].item()
-            )
+            ) * potassium_conversion_factor
 
             farm_data.loc[new_index, "diesel_kg"] = 0
             farm_data.loc[new_index, "elec_kwh"] = 0
@@ -274,6 +277,9 @@ class FarmData:
         FAO_fertilizer = self.loader_class.fao_fertilization()
         NIR_fertilizer = self.loader_class.nir_fertilization()
 
+        phosphorus_conversion_factor = 0.436
+        potassium_conversion_factor = 0.83
+        
         farm_data = pd.DataFrame()
 
 
@@ -333,10 +339,10 @@ class FarmData:
 
             farm_data.loc[new_index, "total_p_fert"] = FAO_fertilizer.loc[
                 default_calibration_year, "Total_P_t"
-            ].item()
+            ].item() * phosphorus_conversion_factor
             farm_data.loc[new_index, "total_k_fert"] = FAO_fertilizer.loc[
                 default_calibration_year, "Total_K_t"
-            ].item()
+            ].item() * potassium_conversion_factor
 
             farm_data.loc[new_index, "diesel_kg"] = 0
             farm_data.loc[new_index, "elec_kwh"] = 0
