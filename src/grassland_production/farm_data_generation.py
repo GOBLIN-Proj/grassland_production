@@ -242,7 +242,7 @@ class FarmData:
                 * fert_rate_total.loc[target_year, index].item()
             ) * (1 - share_urea_abated)
 
-            farm_data.loc[new_index, "total_urea_abated"] = (
+            farm_data.loc[new_index, "urea_abated_n_fert"] = (
                 share_urea
                 * fert_rate_total.loc[target_year, index].item()
             ) * share_urea_abated
