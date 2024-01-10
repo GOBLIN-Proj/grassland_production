@@ -7,7 +7,7 @@ def main():
     calibration_year = 2020
     target_year = 2050
 
-    scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
+    scenario_dataframe = pd.read_csv("./data/scenario_dataframe1.csv")
     scenario_animal_dataframe = pd.read_csv("./data/future_animals.csv")
     baseline_animal_dataframe = pd.read_csv("./data/past_animals.csv")
 

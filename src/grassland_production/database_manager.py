@@ -144,3 +144,37 @@ class DataManager:
         dataframe *= 1000
 
         return dataframe
+
+
+    def get_dairy_nfs_animals(self):
+        table = "dairy_nfs_animals"
+
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
+
+        return dataframe
+
+    def get_cattle_nfs_animals(self):
+        table = "cattle_nfs_animals"
+
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
+
+        return dataframe
+
+    def get_sheep_nfs_animals(self):
+        table = "sheep_nfs_animals"
+
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["year"],
+        )
+
+        return dataframe

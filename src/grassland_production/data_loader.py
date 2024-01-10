@@ -38,3 +38,11 @@ class Loader:
     def nir_fertilization(self):
         return self.dataframes.get_nir_fertiliser_data()
 
+    def dairy_nfs_animals(self):
+        return self.dataframes.get_dairy_nfs_animals()
+
+    def cattle_nfs_animals(self):
+        return self.dataframes.get_cattle_nfs_animals()
+
+    def sheep_nfs_animals(self):
+        return self.dataframes.get_sheep_nfs_animals()

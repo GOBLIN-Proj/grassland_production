@@ -5,7 +5,7 @@ from grassland_production.grassland_data_manager import DataManager
 from grassland_production.grass_yield import Yield
 from grassland_production.dry_matter import DryMatter
 from grassland_production.grassland_area import Areas
-
+from grassland_production.utilisation_rate import UtilisationRate
 
 class Grasslands:
     def __init__(
@@ -48,6 +48,13 @@ class Grasslands:
             baseline_animals_df,
         )
 
+        self.farm_based_UR = UtilisationRate(ef_country,
+            self.calibration_year,
+            target_year,
+            scenario_data,
+            scenario_animals_df,
+            baseline_animals_df,)
+
     def get_grass_total_area(self):
         """
         for years 2005 to 2015, for each scenario, for each system, the yearly grassland yield is calculated.
@@ -71,6 +78,7 @@ class Grasslands:
         transposed_yield_per_ha = self.yield_class.get_yield()
         dry_matter_req = self.dm_class.actual_dry_matter_required()
         utilisation_rate = self.dm_class.get_utilisation_rate()
+        #farm_based_UR = self.farm_based_UR.get_farm_based_utilisation_rate()
 
         nfs_within_grassland_proportions = (
             self.areas_class.get_nfs_within_system_grassland_distribution()
@@ -110,6 +118,10 @@ class Grasslands:
                         / average_yield
                         / utilisation_rate[sc][sys].loc[year]
                     )
+                    print(sys)
+                    print(dry_matter_req[sc][sys].loc[year])
+                    print(utilisation_rate[sc][sys].loc[year])
+                    print(average_yield)
 
                     average_yield = 0
 
@@ -136,3 +148,19 @@ class Grasslands:
             )
 
         return spared_area
+
+
+    def get_cohort_spared_area(self):
+        cohort_weights = self.dm_class.weighted_dm_reduction_contribution()
+
+        spared_area = self.get_non_grass_total_area()
+
+        cohort_spared_area = {}
+
+        for sc in cohort_weights.keys():
+            cohort_spared_area[sc] = {}
+            for cohort in cohort_weights[sc].keys():
+                cohort_spared_area[sc][cohort] = spared_area.loc[self.target_year, sc].item() * cohort_weights[sc][cohort]
+
+
+        return cohort_spared_area

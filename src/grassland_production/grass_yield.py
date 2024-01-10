@@ -38,6 +38,46 @@ class Yield:
 
         self.soil_class_prop = self.data_manager_class.soil_class_prop
 
+
+    def get_clover_parameters(self):
+        """
+        Defines clover proportion and rate from each scenario that is used to differentiate between conventional yield response
+        curves and clover-grass systems. Only dairy and beef (liquid manure) are considered here.
+        """
+        scenario_df = self.data_manager_class.scenario_inputs_df
+
+        keys = ["dairy", "beef", "sheep"]
+        inner_keys = ["proportion", "fertilisation"]
+
+        clover_dict = {key: {inner_key: {} for inner_key in inner_keys} for key in keys}
+
+        conditions = {
+            "dairy": (
+                    (scenario_df["Cattle systems"] == "Dairy")
+                    & (scenario_df["Manure management"] == "tank liquid")
+            ),
+            "beef": (
+                    (scenario_df["Cattle systems"] == "Beef")
+                    & (scenario_df["Manure management"] == "tank liquid")
+            ),
+            "sheep": (
+                    (scenario_df["Cattle systems"] == "Lowland sheep")
+                    & (scenario_df["Manure management"] == "tank solid")
+            )
+        }
+
+        for key in keys:
+            for sc in scenario_df["Scenarios"]:
+                mask = (scenario_df["Scenarios"] == sc) & conditions[key]
+                clover_proportion = scenario_df.loc[mask, "Clover proportion"].item()
+                clover_fertilisation = scenario_df.loc[mask, "Clover fertilisation"].item()
+                clover_dict[key]["proportion"][sc] = clover_proportion
+                clover_dict[key]["fertilisation"][sc] = clover_fertilisation
+
+
+        return clover_dict
+       
+
     def get_yield(self):
         fertilization_by_system_data_frame = (
             self.loader_class.grassland_fertilization_by_system()
@@ -47,6 +87,8 @@ class Yield:
 
         year_list = [self.calibration_year, self.target_year]
         scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+
+        clover_parameters_dict = self.get_clover_parameters()
 
         keys = ["dairy", "beef", "sheep"]
 
@@ -79,16 +121,21 @@ class Yield:
                         grassland_type, str(self.calibration_year)
                     ],
                     grassland_type,
-                    organic_manure[sc].loc[int(self.calibration_year), farm_type],
+                    manure_spread=organic_manure[sc].loc[int(self.calibration_year), farm_type],
                 )
                 * self.soil_class_yield_gap[soil_group]
             ) * soil_class_prop
+
+            clover_prop = clover_parameters_dict[farm_type]["proportion"][sc]
+            clover_fert = clover_parameters_dict[farm_type]["fertilisation"][sc]
 
             yield_per_ha_df.loc[grassland_type, int(self.target_year)] += (
                 self._yield_response_function_to_fertilizer(
                     fert_rate[farm_type][sc].loc[grassland_type, str(self.target_year)],
                     grassland_type,
-                    organic_manure[sc].loc[int(self.target_year), farm_type],
+                    clover_prop=clover_prop,
+                    clover_fert=clover_fert,
+                    manure_spread=organic_manure[sc].loc[int(self.target_year), farm_type],
                 )
                 * self.soil_class_yield_gap[soil_group]
             ) * soil_class_prop
@@ -100,8 +147,9 @@ class Yield:
 
         return transposed_yield_per_ha
 
+
     def _yield_response_function_to_fertilizer(
-        self, fertilizer, grassland, manure_spread=0
+        self, fertilizer, grassland, clover_prop=0, clover_fert=0, manure_spread=0
     ):
         """
         This yield response function to fertilizer is taken from Finneran et al. (2011)
@@ -111,11 +159,15 @@ class Yield:
 
         kg_to_t = 1e-3
         if grassland == "Grass silage" or grassland == "Pasture":
-            yield_response = (
-                -0.0444 * ((fertilizer + manure_spread) ** 2)
+         
+            yield_response_default = ((-0.0444 * ((fertilizer + manure_spread) ** 2)
                 + 38.419 * (fertilizer + manure_spread)
-                + 6257
-            )
+                + 6257) * (1 - clover_prop)) 
+            
+            yield_response_clover = (0.7056 * (clover_fert + manure_spread) + 12829) * clover_prop
+
+            yield_response = yield_response_default + yield_response_clover
+
         else:
             yield_response = -0.0444 * (fertilizer**2) + 38.419 * fertilizer + 6257
 

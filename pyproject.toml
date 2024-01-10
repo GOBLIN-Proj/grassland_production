@@ -9,10 +9,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.3.0"
-numpy = "^1.21.0"
+numpy = "^1.25.0"
 seaborn = "^0.11.2"
 matplotlib = "^3.4.3"
-sqlalchemy = "^1.4.0"
+sqlalchemy = "<2.0"
 cattle_lca = {git = "https://github.com/colmduff/cattle_lca.git", branch = "main"}
 sheep_lca = {git = "https://github.com/colmduff/sheep_lca.git", branch = "main"}
 
