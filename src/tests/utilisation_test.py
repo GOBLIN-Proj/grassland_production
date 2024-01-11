@@ -21,7 +21,7 @@ class TestUtilisationFunctions(unittest.TestCase):
         self.instance = UtilisationRate(self.ef_country, self.calibration_year, self.target_year, self.scenario_data, self.scenario_animals_df, self.baseline_animals_df)
 
     def test_get_farm_type_dry_matter_produced(self):
-        print(self.instance.get_farm_based_utilisation_rate_old())
+        print(self.instance.get_dynamic_utilisation_rate())
 
 
 if __name__ == '__main__':

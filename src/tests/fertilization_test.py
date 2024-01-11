@@ -3,10 +3,11 @@ import pandas as pd
 from grassland_production.fertilisation import Fertilisation
 import matplotlib.pyplot as plt
 import os
-
+import warnings
 
 class FertilizationTestCase(unittest.TestCase):
     def setUp(self):
+        warnings.simplefilter(action="ignore")
         # Create the DataFrame with the provided data
 
         self.scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
@@ -15,7 +16,8 @@ class FertilizationTestCase(unittest.TestCase):
 
         self.fert_class = Fertilisation(
             "ireland",
-            2018,
+            2020,
+            2050,
             self.scenario_dataframe,
             self.scenario_animal_dataframe,
             self.baseline_animal_dataframe,

@@ -1,0 +1,329 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Example Usage\n",
+    "\n",
+    "Here is a demonstartion of the potential usage of  the```Grassland Production``` module.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Imports\n",
+    "\n",
+    "Firstly, we start of by importing the relevant classes from the toolkit. \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "from grassland_production.grassland_output import GrasslandOutput\n",
+    "import shutil\n",
+    "import os\n",
+    "\n",
+    "import warnings\n",
+    "\n",
+    "# Filter out the RuntimeWarning related to unsupported linux distribution\n",
+    "warnings.filterwarnings(\"ignore\", message=\"unsupported linux distribution:\", category=RuntimeWarning)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The ```GrasslandOutput``` class abstracts away the lower level details for the user and allows for easier access to final outputs from the model."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Grassland Model\n",
+    "\n",
+    "In the example below, we will set the path to the input data and make the necessary directory. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "#check for previous test data and remove if exists\n",
+    "if os.path.exists(\"./test_data\"):\n",
+    "    shutil.rmtree(\"./test_data\")\n",
+    "\n",
+    "#create new test data directory\n",
+    "os.mkdir(\"./test_data\")\n",
+    "\n",
+    "#set up test data\n",
+    "path_to_data = \"../src/tests/data/\"\n",
+    "\n",
+    "ef_country = \"ireland\"\n",
+    "calibration_year = 2020\n",
+    "target_year = 2050\n",
+    "\n",
+    "scenario_dataframe = pd.read_csv(os.path.join(path_to_data,\"scenario_dataframe1.csv\"))\n",
+    "scenario_animal_dataframe = pd.read_csv(os.path.join(path_to_data,\"future_animals.csv\"))\n",
+    "baseline_animal_dataframe = pd.read_csv(os.path.join(path_to_data,\"past_animals.csv\"))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Define classes and Generate Data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "#class instance\n",
+    "grassland = GrasslandOutput(\n",
+    "    ef_country,\n",
+    "    calibration_year,\n",
+    "    target_year,\n",
+    "    scenario_dataframe,\n",
+    "    scenario_animal_dataframe,\n",
+    "    baseline_animal_dataframe,\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "                 0             1\n",
+      "2020  0.000000e+00  0.000000e+00\n",
+      "2050  3.720118e+06  3.709208e+06\n"
+     ]
+    }
+   ],
+   "source": [
+    "#total destocked area\n",
+    "print(grassland.total_spared_area())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "                 0             1\n",
+      "2020  3.937751e+06  3.937751e+06\n",
+      "2050  2.176326e+05  2.285426e+05\n"
+     ]
+    }
+   ],
+   "source": [
+    "#total remaining grassland \n",
+    "print(grassland.total_grassland_area())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "  ef_country  farm_id    year  total_urea_kg  total_lime_kg     an_n_fert  \\\n",
+      "0    ireland      0.0  2050.0   1.008022e+07    907916000.0  1.854760e+07   \n",
+      "1    ireland      1.0  2050.0   1.058554e+07    907916000.0  1.947740e+07   \n",
+      "\n",
+      "    urea_n_fert  urea_abated_n_fert  total_p_fert  total_k_fert  diesel_kg  \\\n",
+      "0  4.636900e+06                 0.0  3.814380e+06  8.690584e+06        0.0   \n",
+      "1  4.869350e+06                 0.0  4.005597e+06  9.126247e+06        0.0   \n",
+      "\n",
+      "   elec_kwh  \n",
+      "0       0.0  \n",
+      "1       0.0  \n"
+     ]
+    }
+   ],
+   "source": [
+    "#farm inputs (nitrogen, phosphorus, potassium, lime)\n",
+    "print(grassland.farm_inputs_data())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "  ef_country  farm_id    year  total_urea_kg  total_lime_kg    an_n_fert  \\\n",
+      "0    ireland   2020.0  2020.0    149185000.0    907916000.0  310893900.0   \n",
+      "\n",
+      "   urea_n_fert  urea_abated_n_fert  total_p_fert  total_k_fert  diesel_kg  \\\n",
+      "0   68625100.0                 0.0   62439555.64   142260647.1        0.0   \n",
+      "\n",
+      "   elec_kwh  \n",
+      "0       0.0  \n"
+     ]
+    }
+   ],
+   "source": [
+    "#baseline (calibration) farm inputs (nitrogen, phosphorus, potassium, lime)\n",
+    "print(grassland.baseline_farm_inputs_data())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "    Scenario  year cohort soil_group        area_ha\n",
+      "0          0  2050  dairy          1  650219.598155\n",
+      "1          0  2050   beef          1  525751.031194\n",
+      "2          0  2050  sheep          1  433707.308971\n",
+      "3          0  2050  dairy          2  461256.862951\n",
+      "4          0  2050   beef          2  629649.449263\n",
+      "5          0  2050  sheep          2  644735.044380\n",
+      "6          0  2050  dairy          3   62205.124011\n",
+      "7          0  2050   beef          3   96387.689052\n",
+      "8          0  2050  sheep          3  216206.330144\n",
+      "9          1  2050  dairy          1  643178.033662\n",
+      "10         1  2050   beef          1  526122.746511\n",
+      "11         1  2050  sheep          1  434013.947741\n",
+      "12         1  2050  dairy          2  456261.673699\n",
+      "13         1  2050   beef          2  630094.622607\n",
+      "14         1  2050  sheep          2  645190.883508\n",
+      "15         1  2050  dairy          3   61531.472534\n",
+      "16         1  2050   beef          3   96455.836860\n",
+      "17         1  2050  sheep          3  216359.191859\n"
+     ]
+    }
+   ],
+   "source": [
+    "#total destocked area by soil group\n",
+    "print(grassland.total_spared_area_breakdown())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "           dairy      beef     sheep\n",
+      "0 2020  1.514853  1.940218  0.821168\n",
+      "  2050  1.727175  1.891744  1.089763\n",
+      "1 2020  1.514853  1.940218  0.821168\n",
+      "  2050  1.740164  1.914750  1.103016\n"
+     ]
+    }
+   ],
+   "source": [
+    "#per hectare stocking rate\n",
+    "print(grassland.grassland_stocking_rate())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n",
+      "... calibration year not present, 2015 default year used for Spread Manure Dictionary...\n"
+     ]
+    }
+   ],
+   "source": [
+    "#save results to csv\n",
+    "test_data_path = \"./test_data\"\n",
+    "\n",
+    "grassland.total_spared_area().to_csv(os.path.join(test_data_path,\"spared_area.csv\"))\n",
+    "grassland.total_grassland_area().to_csv(os.path.join(test_data_path,\"total_grassland_area.csv\"))\n",
+    "grassland.total_spared_area_breakdown().to_csv(os.path.join(test_data_path,\"spared_area_breakdown.csv\"))\n",
+    "grassland.total_concentrate_feed().to_csv(os.path.join(test_data_path,\"concentrate_feed.csv\"))\n",
+    "grassland.grassland_stocking_rate().to_csv(os.path.join(test_data_path,\"stocking_rate.csv\"))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  },
+  "mystnb": {
+   "execution_timeout": 600
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

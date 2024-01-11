@@ -25,9 +25,13 @@ class SpatAreasTestCase(unittest.TestCase):
         )
 
     def test_fertilisation(self):
-        test = self.grassland_class.get_grass_total_area()
+        test = self.grassland_class.get_cohort_grassland_area()
 
         print(test)
+
+        test2 = self.grassland_class.get_grass_total_area()
+
+        print(test2)
 
 
 if __name__ == "__main__":

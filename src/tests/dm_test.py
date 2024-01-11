@@ -26,12 +26,12 @@ class DryMatterTestCase(unittest.TestCase):
 
 
     def test_concentrate_and_dry_matter(self):
-        test1 = self.dm_class.get_total_concentrate_feed()
+        #test1 = self.dm_class.get_total_concentrate_feed()
 
         #print(test1)
 
 
-        test2 = self.dm_class.weighted_dm_reduction_contribution()
+        test2 = self.dm_class.get_actual_dm_weights()
 
         print(test2)
 

@@ -1,0 +1,154 @@
+:py:mod:`grassland_production.grassland_data_manager`
+=====================================================
+
+.. py:module:: grassland_production.grassland_data_manager
+
+.. autoapi-nested-parse::
+
+   =====================================
+   Grassland Static Data Manager Module
+   =====================================
+   The Grassland Static Data Manager Module is a part of the grassland production system that deals with loading and managing
+   static data for grassland production analysis. It is designed to provide essential data for grassland production analysis.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   grassland_production.grassland_data_manager.DataManager
+
+
+
+
+.. py:class:: DataManager(calibration_year, target_year, scenario_inputs_df, scenario_animals_df, baseline_animals_df)
+
+
+   The Grassland Static Data Manager Module is responsible for loading and managing static data for grassland production analysis.
+   It provides essential data for grassland production analysis, including livestock cohorts, soil data, and grassland types.
+
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param target_year: The target year for future scenario projections.
+   :type target_year: int
+   :param scenario_inputs_df: DataFrame containing scenario input variables data.
+   :type scenario_inputs_df: DataFrame
+   :param scenario_animals_df: DataFrame containing scenario animal data.
+   :type scenario_animals_df: DataFrame
+   :param baseline_animals_df: DataFrame containing baseline animal data.
+   :type baseline_animals_df: DataFrame
+
+   .. attribute:: loader_class
+
+      Instance of the Loader class for loading various datasets.
+
+      :type: Loader
+
+   .. attribute:: calibration_year
+
+      The calibration year for data reference.
+
+      :type: int
+
+   .. attribute:: default_calibration_year
+
+      The default calibration year used as a fallback when data for the specified year is not available.
+
+      :type: int
+
+   .. attribute:: default_grassland_year
+
+      The default year used for grassland data when it is not specified.
+
+      :type: int
+
+   .. attribute:: target_year
+
+      The target year for future scenario projections.
+
+      :type: int
+
+   .. attribute:: COHORTS_DICT
+
+      A dictionary mapping livestock categories to their cohorts.
+
+      :type: dict
+
+   .. attribute:: DAIRY_BEEF_COHORTS
+
+      A dictionary mapping livestock categories to cohorts for dairy and beef systems.
+
+      :type: dict
+
+   .. attribute:: COHORTS_GROUPS
+
+      A dictionary mapping farm systems to the corresponding livestock cohorts.
+
+      :type: dict
+
+   .. attribute:: scenario_inputs_df
+
+      DataFrame containing scenario input data.
+
+      :type: DataFrame
+
+   .. attribute:: scenario_animals_df
+
+      DataFrame containing scenario animal data.
+
+      :type: DataFrame
+
+   .. attribute:: baseline_animals_df
+
+      DataFrame containing baseline animal data.
+
+      :type: DataFrame
+
+   .. attribute:: baseline_animals_dict
+
+      A dictionary containing baseline livestock data.
+
+      :type: dict
+
+   .. attribute:: scenario_animals_dict
+
+      A dictionary containing scenario livestock data.
+
+      :type: dict
+
+   .. attribute:: scenario_aggregation
+
+      DataFrame containing scenario aggregation data.
+
+      :type: DataFrame
+
+   .. attribute:: soil_class_yield_gap
+
+      A dictionary mapping soil classes to yield gaps.
+
+      :type: dict
+
+   .. attribute:: soil_class_prop
+
+      A dictionary containing soil properties for different farm systems.
+
+      :type: dict
+
+   .. attribute:: grasslands
+
+      A list of grassland types.
+
+      :type: list
+
+   .. attribute:: systems
+
+      A list of farm systems.
+
+      :type: list
+
+

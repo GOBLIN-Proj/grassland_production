@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.farm_data_generation &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">grassland_production.farm_data_generation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for grassland_production.farm_data_generation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">==================</span>
+<span class="sd">Farm Data Module</span>
+<span class="sd">==================</span>
+
+<span class="sd">This module includes the FarmData class which is responsible for computing various aspects of farm data, </span>
+<span class="sd">such as fertilization totals and farm data in different scenarios. This data is essential for lifecycle </span>
+<span class="sd">assessment calculations and agricultural planning.</span>
+
+<span class="sd">Classes:</span>
+<span class="sd">    FarmData: Manages the computation of farm data for lifecycle assessments and scenario analysis.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">grassland_production.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
+<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">grassland_production.grassland_area</span> <span class="kn">import</span> <span class="n">Areas</span>
+<span class="kn">from</span> <span class="nn">grassland_production.spared_area</span> <span class="kn">import</span> <span class="n">Grasslands</span>
+<span class="kn">from</span> <span class="nn">grassland_production.fertilisation</span> <span class="kn">import</span> <span class="n">Fertilisation</span>
+
+
+<div class="viewcode-block" id="FarmData">
+<a class="viewcode-back" href="../../autoapi/grassland_production/farm_data_generation/index.html#grassland_production.farm_data_generation.FarmData">[docs]</a>
+<span class="k">class</span> <span class="nc">FarmData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The FarmData class handles the computation of various farm-related data elements, including </span>
+<span class="sd">    fertilization rates and overall farm data for baseline and future scenarios. This class plays </span>
+<span class="sd">    a pivotal role in lifecycle assessment and agricultural scenario analysis by providing essential </span>
+<span class="sd">    data for these processes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ef_country (str): The country for which the analysis is performed.</span>
+<span class="sd">        calibration_year (int): The calibration year.</span>
+<span class="sd">        target_year (int): The target year for future scenario projections.</span>
+<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.</span>
+<span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
+<span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        loader_class (Loader): Instance of Loader to load various datasets.</span>
+<span class="sd">        data_manager_class (DataManager): Instance of DataManager for managing scenario and baseline data.</span>
+<span class="sd">        areas_class (Areas): Instance of Areas for calculating areas-related data.</span>
+<span class="sd">        grassland_class (Grasslands): Instance for calculating grassland related data.</span>
+<span class="sd">        fertiliser_class (Fertilisation): Instance for handling fertilization-related calculations.</span>
+<span class="sd">        calibration_year (int): The base year for data calibration.</span>
+<span class="sd">        target_year (int): The target year for future scenario projections.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        compute_fertilization_total():</span>
+<span class="sd">            Calculates the total fertilization rates across different scenarios, considering various livestock </span>
+<span class="sd">            systems and grassland types.</span>
+
+<span class="sd">        compute_farm_data_in_scenarios():</span>
+<span class="sd">            Computes farm data required for lifecycle assessment in different future scenarios.</span>
+
+<span class="sd">        compute_farm_data_in_baseline():</span>
+<span class="sd">            Computes baseline farm data for use in lifecycle assessments and scenario comparisons.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ef_country</span><span class="p">,</span>
+        <span class="n">calibration_year</span><span class="p">,</span>
+        <span class="n">target_year</span><span class="p">,</span>
+        <span class="n">scenario_data</span><span class="p">,</span>
+        <span class="n">scenario_animals_df</span><span class="p">,</span>
+        <span class="n">baseline_animals_df</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span>
+            <span class="n">calibration_year</span><span class="p">,</span>
+            <span class="n">target_year</span><span class="p">,</span>
+            <span class="n">scenario_data</span><span class="p">,</span>
+            <span class="n">scenario_animals_df</span><span class="p">,</span>
+            <span class="n">baseline_animals_df</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">calibration_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_calibration_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_grassland_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">target_year</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span> <span class="o">=</span> <span class="n">Areas</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grassland_class</span> <span class="o">=</span> <span class="n">Grasslands</span><span class="p">(</span>
+            <span class="n">ef_country</span><span class="p">,</span>
+            <span class="n">calibration_year</span><span class="p">,</span>
+            <span class="n">target_year</span><span class="p">,</span>
+            <span class="n">scenario_data</span><span class="p">,</span>
+            <span class="n">scenario_animals_df</span><span class="p">,</span>
+            <span class="n">baseline_animals_df</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fertiliser_class</span> <span class="o">=</span> <span class="n">Fertilisation</span><span class="p">(</span>
+            <span class="n">ef_country</span><span class="p">,</span>
+            <span class="n">calibration_year</span><span class="p">,</span>
+            <span class="n">target_year</span><span class="p">,</span>
+            <span class="n">scenario_data</span><span class="p">,</span>
+            <span class="n">scenario_animals_df</span><span class="p">,</span>
+            <span class="n">baseline_animals_df</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="FarmData.compute_fertilization_total">
+<a class="viewcode-back" href="../../autoapi/grassland_production/farm_data_generation/index.html#grassland_production.farm_data_generation.FarmData.compute_fertilization_total">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_fertilization_total</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculation of total fertilisation rate across scenarios.</span>
+
+<span class="sd">        This function aggregates the values for the livestock systems (Dairy, Beef, Sheep) and grassland types (Pasture, Silage, Hay, Rough grazing in use).</span>
+
+<span class="sd">        If the year is less than 2005, outside the NFS range, a mean value across years is used.</span>
+
+<span class="sd">        For past years, the livestock system proportions for that year are utilised in the calculations as weights for grassland types.</span>
+<span class="sd">        Again, a mean value is used for past years outside the NFS range.</span>
+<span class="sd">        In relation to the target year and the grassland type weights, the calibration year is used.</span>
+
+<span class="sd">        The self.fert_rate_total is used to set the farm_data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fert_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fertiliser_class</span><span class="o">.</span><span class="n">compute_inorganic_fertilization_rate</span><span class="p">()</span>
+
+        <span class="n">grass_total_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grassland_class</span><span class="o">.</span><span class="n">get_grass_total_area</span><span class="p">()</span>
+        <span class="n">nfs_within_grassland_proportions</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span><span class="o">.</span><span class="n">get_nfs_within_system_grassland_distribution</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">nfs_system_proportions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span><span class="o">.</span><span class="n">get_nfs_system_proportions</span><span class="p">()</span>
+
+        <span class="n">dairy_nfs_system_proportions</span> <span class="o">=</span> <span class="n">nfs_system_proportions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">beef_nfs_system_proportions</span> <span class="o">=</span> <span class="n">nfs_system_proportions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sheep_nfs_system_proportions</span> <span class="o">=</span> <span class="n">nfs_system_proportions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">SYS_PROPS</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="n">dairy_nfs_system_proportions</span><span class="p">,</span>
+            <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="n">beef_nfs_system_proportions</span><span class="p">,</span>
+            <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="n">sheep_nfs_system_proportions</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">grassland_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">grasslands</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">year_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">fert_rate_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">scenario_list</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">year_list</span><span class="p">)</span>
+
+        <span class="n">systems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">systems</span>
+
+        <span class="k">for</span> <span class="n">sc</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">g_type</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">scenario_list</span><span class="p">,</span> <span class="n">systems</span><span class="p">,</span> <span class="n">grassland_type</span><span class="p">,</span> <span class="n">year_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">year</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">:</span>
+                
+                <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">sc</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fert_rate</span><span class="p">[</span><span class="n">sys</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                        <span class="n">g_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+                    <span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                        <span class="n">grass_total_area</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">sc</span><span class="p">]</span>
+                        <span class="o">*</span> <span class="n">SYS_PROPS</span><span class="p">[</span><span class="n">sys</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
+                            <span class="n">g_type</span><span class="p">,</span>
+                        <span class="p">]</span>
+                        <span class="o">*</span> <span class="n">nfs_within_grassland_proportions</span><span class="p">[</span><span class="n">sys</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
+                            <span class="n">g_type</span><span class="p">,</span>
+                        <span class="p">]</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">sc</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fert_rate</span><span class="p">[</span><span class="n">sys</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                    <span class="n">g_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+                <span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="n">grass_total_area</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">sc</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">SYS_PROPS</span><span class="p">[</span><span class="n">sys</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">g_type</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">nfs_within_grassland_proportions</span><span class="p">[</span><span class="n">sys</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                        <span class="n">year</span><span class="p">,</span> <span class="n">g_type</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">fert_rate_total</span></div>
+
+
+
+<div class="viewcode-block" id="FarmData.compute_farm_data_in_scenarios">
+<a class="viewcode-back" href="../../autoapi/grassland_production/farm_data_generation/index.html#grassland_production.farm_data_generation.FarmData.compute_farm_data_in_scenarios">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_farm_data_in_scenarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes farm data for various future scenarios to be used in lifecycle assessment (LCA) calculations. </span>
+<span class="sd">        This method integrates data on fertilizer usage, urea proportions, and other farm-specific details to </span>
+<span class="sd">        generate a comprehensive dataset for each scenario.</span>
+
+<span class="sd">        The computation involves determining the proportions of different types of fertilizers (P, K, Lime) and </span>
+<span class="sd">        calculating the total usage of each based on the fertilization rates and scenarios. It also accounts for </span>
+<span class="sd">        urea usage and abatement (abated urea) in the scenarios.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame with farm data for each scenario. Each row corresponds to a scenario, </span>
+<span class="sd">                    including information about fertilizer usage, urea proportions, and other essential data </span>
+<span class="sd">                    for LCA calculations.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            - The method attempts to use the calibration year data; if unavailable, it falls back to a default year.</span>
+<span class="sd">            - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,</span>
+<span class="sd">            along with diesel and electricity usage.</span>
+<span class="sd">            - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span>
+        <span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span>
+
+        <span class="n">FAO_fertilizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">fao_fertilization</span><span class="p">()</span>
+        <span class="n">NIR_fertilizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">nir_fertilization</span><span class="p">()</span>
+
+        <span class="n">fert_rate_total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_fertilization_total</span><span class="p">()</span>
+
+        <span class="n">farm_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            
+            <span class="n">Share_fertilizer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">])</span>
+
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;prop_p&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_P_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> 
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;prop_k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_K_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> 
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;Lime_t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span><span class="s2">&quot;Lime_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
+            <span class="n">Share_fertilizer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">])</span>
+
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;prop_p&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_P_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> 
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;prop_k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_K_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">/</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> 
+            <span class="n">Share_fertilizer</span><span class="p">[</span><span class="s2">&quot;Lime_t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">default_calibration_year</span><span class="p">,</span><span class="s2">&quot;Lime_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;... calibration year not present, 2015 default year used for Scenario farm data generation&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">new_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">urea_mask</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">index</span><span class="p">)</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;ef_country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_year</span><span class="p">)</span>
+
+            <span class="n">share_urea</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">share_urea_abated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea abated proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+            <span class="n">urea_t</span> <span class="o">=</span> <span class="p">((</span>
+                <span class="n">share_urea</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span><span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">46</span>
+
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_urea_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urea_t</span> 
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_lime_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Share_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Lime_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;an_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">share_urea</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span>
+
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">share_urea</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">share_urea_abated</span><span class="p">)</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_abated_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">share_urea</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="n">share_urea_abated</span>
+
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_p_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Share_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;prop_p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_k_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Share_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;prop_k&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="o">*</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">target_year</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">)</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;diesel_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;elec_kwh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">new_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">farm_data</span></div>
+
+
+
+<div class="viewcode-block" id="FarmData.compute_farm_data_in_baseline">
+<a class="viewcode-back" href="../../autoapi/grassland_production/farm_data_generation/index.html#grassland_production.farm_data_generation.FarmData.compute_farm_data_in_baseline">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_farm_data_in_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes baseline farm data for use in lifecycle assessment (LCA) calculations. This method focuses on </span>
+<span class="sd">        generating a dataset reflecting the baseline agricultural practices and inputs for the calibration year, </span>
+<span class="sd">        which serves as a reference point.</span>
+
+<span class="sd">        The computation includes the assessment of various types of fertilizers (P, K, Lime, Urea) and their </span>
+<span class="sd">        quantities used in the calibration year. It also accounts for diesel and electricity (currently set to zero) usage in farming </span>
+<span class="sd">        operations.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing baseline farm data. It includes detailed information about </span>
+<span class="sd">                    fertilizer usage, urea proportions, and other essential data elements for LCA calculations.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            - The method attempts to use the data from the calibration year; if unavailable, it falls back to a </span>
+<span class="sd">            default year.</span>
+<span class="sd">            - This method is essential for establishing a baseline in LCA studies, against which future scenarios </span>
+<span class="sd">            and changes in agricultural practices can be compared.</span>
+<span class="sd">            - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers, </span>
+<span class="sd">            along with diesel and electricity usage.</span>
+<span class="sd">            - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span>
+
+        <span class="n">FAO_fertilizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">fao_fertilization</span><span class="p">()</span>
+        <span class="n">NIR_fertilizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">nir_fertilization</span><span class="p">()</span>
+
+        <span class="n">farm_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+
+        <span class="n">new_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            
+            <span class="n">AN_fert</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;ef_country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_year</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">)</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_urea_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_lime_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Lime_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;an_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AN_fert</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_N_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_abated_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_p_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_P_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_k_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_K_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;diesel_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;elec_kwh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
+
+            <span class="n">AN_fert</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_N_t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;ef_country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibration_year</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">)</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_urea_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_lime_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Lime_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;an_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AN_fert</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NIR_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Urea_N_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;urea_abated_n_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_p_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_P_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;total_k_fert&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAO_fertilizer</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">default_calibration_year</span><span class="p">,</span> <span class="s2">&quot;Total_K_t&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;diesel_kg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;elec_kwh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;... calibration year not present, 2015 default year used for total Baseline farm data&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">farm_data</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

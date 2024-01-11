@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.farm_data_generation &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="grassland_production.fertilisation" href="../fertilisation/index.html" />
+    <link rel="prev" title="grassland_production.dry_matter" href="../dry_matter/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../data_loader/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.data_loader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../database_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.database_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dry_matter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.dry_matter</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.farm_data_generation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fertilisation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.fertilisation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grass_yield/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grass_yield</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_area/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_data_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_data_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_output/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_output</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_soils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_soils</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../spared_area/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.spared_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../stocking_rate/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.stocking_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../utilisation_rate/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.utilisation_rate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.farm_data_generation</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/grassland_production/farm_data_generation/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-grassland_production.farm_data_generation">
+<span id="grassland-production-farm-data-generation"></span><h1><a class="reference internal" href="#module-grassland_production.farm_data_generation" title="grassland_production.farm_data_generation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.farm_data_generation</span></code></a><a class="headerlink" href="#module-grassland_production.farm_data_generation" title="Link to this heading"></a></h1>
+<section id="farm-data-module">
+<p>This module includes the FarmData class which is responsible for computing various aspects of farm data,
+such as fertilization totals and farm data in different scenarios. This data is essential for lifecycle
+assessment calculations and agricultural planning.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>FarmData: Manages the computation of farm data for lifecycle assessments and scenario analysis.</p>
+</dd>
+</dl>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.farm_data_generation.FarmData" title="grassland_production.farm_data_generation.FarmData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FarmData</span></code></a></p></td>
+<td><p>The FarmData class handles the computation of various farm-related data elements, including</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.farm_data_generation.</span></span><span class="sig-name descname"><span class="pre">FarmData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData" title="Link to this definition"></a></dt>
+<dd><p>The FarmData class handles the computation of various farm-related data elements, including
+fertilization rates and overall farm data for baseline and future scenarios. This class plays
+a pivotal role in lifecycle assessment and agricultural scenario analysis by providing essential
+data for these processes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ef_country</strong> (<em>str</em>) – The country for which the analysis is performed.</p></li>
+<li><p><strong>calibration_year</strong> (<em>int</em>) – The calibration year.</p></li>
+<li><p><strong>target_year</strong> (<em>int</em>) – The target year for future scenario projections.</p></li>
+<li><p><strong>scenario_inputs_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario input variables data.</p></li>
+<li><p><strong>scenario_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario animal data.</p></li>
+<li><p><strong>baseline_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing baseline animal data.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.loader_class" title="Link to this definition"></a></dt>
+<dd><p>Instance of Loader to load various datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../data_loader/index.html#grassland_production.data_loader.Loader" title="grassland_production.data_loader.Loader">Loader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.data_manager_class" title="Link to this definition"></a></dt>
+<dd><p>Instance of DataManager for managing scenario and baseline data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../database_manager/index.html#grassland_production.database_manager.DataManager" title="grassland_production.database_manager.DataManager">DataManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.areas_class">
+<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.areas_class" title="Link to this definition"></a></dt>
+<dd><p>Instance of Areas for calculating areas-related data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../grassland_area/index.html#grassland_production.grassland_area.Areas" title="grassland_production.grassland_area.Areas">Areas</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.grassland_class">
+<span class="sig-name descname"><span class="pre">grassland_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.grassland_class" title="Link to this definition"></a></dt>
+<dd><p>Instance for calculating grassland related data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../spared_area/index.html#grassland_production.spared_area.Grasslands" title="grassland_production.spared_area.Grasslands">Grasslands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.fertiliser_class">
+<span class="sig-name descname"><span class="pre">fertiliser_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.fertiliser_class" title="Link to this definition"></a></dt>
+<dd><p>Instance for handling fertilization-related calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../fertilisation/index.html#grassland_production.fertilisation.Fertilisation" title="grassland_production.fertilisation.Fertilisation">Fertilisation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.calibration_year" title="Link to this definition"></a></dt>
+<dd><p>The base year for data calibration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.target_year">
+<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.target_year" title="Link to this definition"></a></dt>
+<dd><p>The target year for future scenario projections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.compute_fertilization_total">
+<span class="sig-name descname"><span class="pre">compute_fertilization_total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_fertilization_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.compute_fertilization_total" title="Link to this definition"></a></dt>
+<dd><p>Calculates the total fertilization rates across different scenarios, considering various livestock
+systems and grassland types.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.compute_farm_data_in_scenarios">
+<span class="sig-name descname"><span class="pre">compute_farm_data_in_scenarios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_farm_data_in_scenarios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.compute_farm_data_in_scenarios" title="Link to this definition"></a></dt>
+<dd><p>Computes farm data required for lifecycle assessment in different future scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.compute_farm_data_in_baseline">
+<span class="sig-name descname"><span class="pre">compute_farm_data_in_baseline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_farm_data_in_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.compute_farm_data_in_baseline" title="Link to this definition"></a></dt>
+<dd><p>Computes baseline farm data for use in lifecycle assessments and scenario comparisons.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">compute_fertilization_total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_fertilization_total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Calculation of total fertilisation rate across scenarios.</p>
+<p>This function aggregates the values for the livestock systems (Dairy, Beef, Sheep) and grassland types (Pasture, Silage, Hay, Rough grazing in use).</p>
+<p>If the year is less than 2005, outside the NFS range, a mean value across years is used.</p>
+<p>For past years, the livestock system proportions for that year are utilised in the calculations as weights for grassland types.
+Again, a mean value is used for past years outside the NFS range.
+In relation to the target year and the grassland type weights, the calibration year is used.</p>
+<p>The self.fert_rate_total is used to set the farm_data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">compute_farm_data_in_scenarios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_farm_data_in_scenarios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Computes farm data for various future scenarios to be used in lifecycle assessment (LCA) calculations.
+This method integrates data on fertilizer usage, urea proportions, and other farm-specific details to
+generate a comprehensive dataset for each scenario.</p>
+<p>The computation involves determining the proportions of different types of fertilizers (P, K, Lime) and
+calculating the total usage of each based on the fertilization rates and scenarios. It also accounts for
+urea usage and abatement (abated urea) in the scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A pandas DataFrame with farm data for each scenario. Each row corresponds to a scenario,</dt><dd><p>including information about fertilizer usage, urea proportions, and other essential data
+for LCA calculations.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method attempts to use the calibration year data; if unavailable, it falls back to a default year.</p></li>
+<li><p>Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,</p></li>
+</ul>
+<p>along with diesel and electricity usage.
+- Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">compute_farm_data_in_baseline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/farm_data_generation.html#FarmData.compute_farm_data_in_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Computes baseline farm data for use in lifecycle assessment (LCA) calculations. This method focuses on
+generating a dataset reflecting the baseline agricultural practices and inputs for the calibration year,
+which serves as a reference point.</p>
+<p>The computation includes the assessment of various types of fertilizers (P, K, Lime, Urea) and their
+quantities used in the calibration year. It also accounts for diesel and electricity (currently set to zero) usage in farming
+operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A pandas DataFrame containing baseline farm data. It includes detailed information about</dt><dd><p>fertilizer usage, urea proportions, and other essential data elements for LCA calculations.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method attempts to use the data from the calibration year; if unavailable, it falls back to a</p></li>
+</ul>
+<p>default year.
+- This method is essential for establishing a baseline in LCA studies, against which future scenarios
+and changes in agricultural practices can be compared.
+- Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,
+along with diesel and electricity usage.
+- Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../dry_matter/index.html" class="btn btn-neutral float-left" title="grassland_production.dry_matter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../fertilisation/index.html" class="btn btn-neutral float-right" title="grassland_production.fertilisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

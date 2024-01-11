@@ -1,8 +1,47 @@
+"""
+=====================================
+Grassland Static Data Manager Module
+=====================================
+The Grassland Static Data Manager Module is a part of the grassland production system that deals with loading and managing
+static data for grassland production analysis. It is designed to provide essential data for grassland production analysis.
+"""
+
 from cattle_lca.models import load_livestock_data
 from grassland_production.data_loader import Loader
 
 
 class DataManager:
+    """
+    The Grassland Static Data Manager Module is responsible for loading and managing static data for grassland production analysis.
+    It provides essential data for grassland production analysis, including livestock cohorts, soil data, and grassland types.
+
+    Args:
+        calibration_year (int): The calibration year.
+        target_year (int): The target year for future scenario projections.
+        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
+        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
+        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+    
+    Attributes:
+        loader_class (Loader): Instance of the Loader class for loading various datasets.
+        calibration_year (int): The calibration year for data reference.
+        default_calibration_year (int): The default calibration year used as a fallback when data for the specified year is not available.
+        default_grassland_year (int): The default year used for grassland data when it is not specified.
+        target_year (int): The target year for future scenario projections.
+        COHORTS_DICT (dict): A dictionary mapping livestock categories to their cohorts.
+        DAIRY_BEEF_COHORTS (dict): A dictionary mapping livestock categories to cohorts for dairy and beef systems.
+        COHORTS_GROUPS (dict): A dictionary mapping farm systems to the corresponding livestock cohorts.
+        scenario_inputs_df (DataFrame): DataFrame containing scenario input data.
+        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
+        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+        baseline_animals_dict (dict): A dictionary containing baseline livestock data.
+        scenario_animals_dict (dict): A dictionary containing scenario livestock data.
+        scenario_aggregation (DataFrame): DataFrame containing scenario aggregation data.
+        soil_class_yield_gap (dict): A dictionary mapping soil classes to yield gaps.
+        soil_class_prop (dict): A dictionary containing soil properties for different farm systems.
+        grasslands (list): A list of grassland types.
+        systems (list): A list of farm systems.
+    """
     def __init__(
         self,
         calibration_year,
@@ -77,6 +116,13 @@ class DataManager:
                 "BxB_heifers_more_2_yr",
                 "BxB_steers_more_2_yr",
             ],
+        }
+
+        self.COHORTS_GROUPS = {
+            "dairy": self.DAIRY_BEEF_COHORTS["Dairy"],
+            "beef": self.DAIRY_BEEF_COHORTS["Beef"],
+            "sheep": {"flat_pasture": self.COHORTS_DICT["Sheep"],
+                    "hilly_pasture": self.COHORTS_DICT["Sheep"]}
         }
 
         self.scenario_inputs_df = scenario_inputs_df

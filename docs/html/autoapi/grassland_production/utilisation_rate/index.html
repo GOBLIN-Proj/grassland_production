@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.utilisation_rate &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example Usage" href="../../../example.html" />
+    <link rel="prev" title="grassland_production.stocking_rate" href="../stocking_rate/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../data_loader/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.data_loader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../database_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.database_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dry_matter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.dry_matter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../farm_data_generation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.farm_data_generation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fertilisation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.fertilisation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grass_yield/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grass_yield</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_area/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_data_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_data_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_output/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_output</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../grassland_soils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.grassland_soils</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../spared_area/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.spared_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../stocking_rate/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.stocking_rate</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.utilisation_rate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.utilisation_rate</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/grassland_production/utilisation_rate/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-grassland_production.utilisation_rate">
+<span id="grassland-production-utilisation-rate"></span><h1><a class="reference internal" href="#module-grassland_production.utilisation_rate" title="grassland_production.utilisation_rate"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.utilisation_rate</span></code></a><a class="headerlink" href="#module-grassland_production.utilisation_rate" title="Link to this heading"></a></h1>
+<section id="utilisation-rate-module">
+<p>This module contains the UtilisationRate class, which is focused on calculating and
+managing the utilisation rates of grassland for different farm types across various scenarios.
+This class is a crucial part of the grassland_production package, integrating components
+like grassland yield, fertilisation, and dry matter production for comprehensive analysis.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>UtilisationRate: Manages and computes utilisation rates of grassland.</p>
+</dd>
+</dl>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.utilisation_rate.UtilisationRate" title="grassland_production.utilisation_rate.UtilisationRate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UtilisationRate</span></code></a></p></td>
+<td><p>A class to manage and compute the utilisation rates of grassland for different farm types and scenarios.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.utilisation_rate.</span></span><span class="sig-name descname"><span class="pre">UtilisationRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate" title="Link to this definition"></a></dt>
+<dd><p>A class to manage and compute the utilisation rates of grassland for different farm types and scenarios.</p>
+<p>The UtilisationRate class calculates the utilisation rate, defined as the ratio of dry matter required
+by livestock to the dry matter produced on grasslands. It integrates data from various sources, including
+grass yield, fertilisation, and livestock needs, to compute the utilisation rates for dairy, beef,
+and sheep farms under various scenarios. This information is vital for sustainable grassland and livestock management.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ef_country</strong> (<em>str</em>) – The country for which the analysis is performed.</p></li>
+<li><p><strong>calibration_year</strong> (<em>int</em>) – The calibration year.</p></li>
+<li><p><strong>target_year</strong> (<em>int</em>) – The target year for future scenario projections.</p></li>
+<li><p><strong>scenario_inputs_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario input variables data.</p></li>
+<li><p><strong>scenario_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario animal data.</p></li>
+<li><p><strong>baseline_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing baseline animal data.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.data_manager_class" title="Link to this definition"></a></dt>
+<dd><p>Manages and processes grassland and livestock data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../database_manager/index.html#grassland_production.database_manager.DataManager" title="grassland_production.database_manager.DataManager">DataManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.calibration_year" title="Link to this definition"></a></dt>
+<dd><p>Year of data calibration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.target_year">
+<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.target_year" title="Link to this definition"></a></dt>
+<dd><p>Target year for data analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.default_calibration_year">
+<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.default_calibration_year" title="Link to this definition"></a></dt>
+<dd><p>Default year used for calibration in case of data discrepancies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.yield_class">
+<span class="sig-name descname"><span class="pre">yield_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.yield_class" title="Link to this definition"></a></dt>
+<dd><p>Class for managing grassland yield data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../grass_yield/index.html#grassland_production.grass_yield.Yield" title="grassland_production.grass_yield.Yield">Yield</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.areas_class">
+<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.areas_class" title="Link to this definition"></a></dt>
+<dd><p>Class for managing grassland area data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../grassland_area/index.html#grassland_production.grassland_area.Areas" title="grassland_production.grassland_area.Areas">Areas</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.fertiliser_class">
+<span class="sig-name descname"><span class="pre">fertiliser_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.fertiliser_class" title="Link to this definition"></a></dt>
+<dd><p>Class for managing fertilisation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../fertilisation/index.html#grassland_production.fertilisation.Fertilisation" title="grassland_production.fertilisation.Fertilisation">Fertilisation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.dm_class">
+<span class="sig-name descname"><span class="pre">dm_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.dm_class" title="Link to this definition"></a></dt>
+<dd><p>Class for managing dry matter data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../dry_matter/index.html#grassland_production.dry_matter.DryMatter" title="grassland_production.dry_matter.DryMatter">DryMatter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.loader_class" title="Link to this definition"></a></dt>
+<dd><p>Class for loading necessary data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../data_loader/index.html#grassland_production.data_loader.Loader" title="grassland_production.data_loader.Loader">Loader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.cattle_grass_feed_class">
+<span class="sig-name descname"><span class="pre">cattle_grass_feed_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.cattle_grass_feed_class" title="Link to this definition"></a></dt>
+<dd><p>Class for calculating grass feed for cattle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cattle_lca.GrassFeed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.sheep_grass_feed_class">
+<span class="sig-name descname"><span class="pre">sheep_grass_feed_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.sheep_grass_feed_class" title="Link to this definition"></a></dt>
+<dd><p>Class for calculating grass feed for sheep.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sheep_lca.GrassFeed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.concentrate_feed_class">
+<span class="sig-name descname"><span class="pre">concentrate_feed_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.concentrate_feed_class" title="Link to this definition"></a></dt>
+<dd><p>Class for calculating energy requirements for cattle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cattle_lca.Energy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.sheep_concentrate_feed_class">
+<span class="sig-name descname"><span class="pre">sheep_concentrate_feed_class</span></span><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.sheep_concentrate_feed_class" title="Link to this definition"></a></dt>
+<dd><p>Class for calculating energy requirements for sheep.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sheep_lca.Energy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.get_farm_type_dry_matter_produced">
+<span class="sig-name descname"><span class="pre">get_farm_type_dry_matter_produced</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_type_dry_matter_produced"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.get_farm_type_dry_matter_produced" title="Link to this definition"></a></dt>
+<dd><p>Calculates dry matter produced by each farm type (uses NFS areas).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.get_farm_type_dry_matter_required">
+<span class="sig-name descname"><span class="pre">get_farm_type_dry_matter_required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_type_dry_matter_required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.get_farm_type_dry_matter_required" title="Link to this definition"></a></dt>
+<dd><p>Calculates dry matter required by each farm type (uses NFS areas).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.get_farm_based_utilisation_rate">
+<span class="sig-name descname"><span class="pre">get_farm_based_utilisation_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_based_utilisation_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.get_farm_based_utilisation_rate" title="Link to this definition"></a></dt>
+<dd><p>Computes utilisation rate based on farm type and scenario.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.utilisation_rate.UtilisationRate.get_dynamic_utilisation_rate">
+<span class="sig-name descname"><span class="pre">get_dynamic_utilisation_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_dynamic_utilisation_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.utilisation_rate.UtilisationRate.get_dynamic_utilisation_rate" title="Link to this definition"></a></dt>
+<dd><p>Calculates dynamic utilisation rate considering scenario-specific parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">get_farm_type_dry_matter_produced</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_type_dry_matter_produced"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Calculates and returns the dry matter produced by different farm types across various scenarios.</p>
+<p>This method utilizes the grass yield per hectare, obtained from the Yield class, combined with
+area data from the National Farm Survey (NFS) to compute the total dry matter produced on dairy,
+beef, and sheep farms. The calculations are performed for both the calibration year and the target year.</p>
+<p>The method iterates over each scenario and farm type, summing the product of yield per hectare and
+the corresponding area for each type of grassland.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary where each key is a scenario, and its value is a DataFrame. Each DataFrame</dt><dd><p>has years as the index and farm types (dairy, beef, sheep) as columns. Each cell contains
+the total dry matter produced for that farm type in the respective year.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">get_farm_type_dry_matter_required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_type_dry_matter_required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Calculates and returns the dry matter required by the National Farm Survey (NFS) average livestock population on each of
+the three farm types (dairy, beef, sheep).</p>
+<p>This method determines the amount of dry matter required by dairy, beef, and sheep farms based on
+the average livestock populations from NFS data. It involves converting the NFS data into dry matter
+requirements from grass. The calculation is performed for both the calibration year and the target year across various scenarios.</p>
+<p>The method iterates through each scenario, farm type, and animal cohort, using the grass feed class
+to calculate the dry matter required from grass for each animal type. This provides essential insights
+into the feed requirements of different farm types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary where each key is a scenario, and its value is a DataFrame. Each DataFrame has years</dt><dd><p>as the index and farm types (dairy, beef, sheep) as columns. Each cell contains the total dry matter
+required for that farm type in the respective year.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">get_farm_based_utilisation_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_farm_based_utilisation_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Calculates and returns the utilisation rate of grassland for different farm types across various scenarios.</p>
+<p>This method computes the grassland utilisation rate, defined as the ratio of dry matter demand to dry matter
+availability, for dairy, beef, and sheep farms. The calculations consider both the calibration year and the
+target year, and they incorporate scenario-specific adjustments for dairy and beef Grass Use Efficiency (GUE) increases.</p>
+<p>This method incorporates NFS data related to dry matter demand and dry matter availability.</p>
+<p>The utilisation rate is calculated separately for each scenario and farm type. For years other than the target
+year, it is the ratio of the dry matter demand in the calibration year to the dry matter availability in the
+calibration year. For the target year, the utilisation rate includes additional adjustments based on the
+scenario-specific GUE increases for dairy and beef farms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary where each key is a scenario, and its value is a DataFrame. The DataFrame has years</dt><dd><p>as the index and farm types (dairy, beef, sheep) as columns. Each cell contains the utilisation
+rate for that farm type in the respective year and scenario.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">get_dynamic_utilisation_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/utilisation_rate.html#UtilisationRate.get_dynamic_utilisation_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Calculates and returns a dynamic utilisation rate for each livestock system and scenario.</p>
+<p>This method computes the utilisation rate, which is the ratio of dry matter required to dry matter produced,
+for dairy, beef, and sheep farms. For years prior to the target year, the utilisation rate is calculated by
+aggregating the dry matter produced for each livestock system and grassland type, then dividing the dry matter
+requirement by this aggregated amount. For the target year, the utilisation rate is determined by adding the
+utilisation rate increase specified in the scenario parameters to the utilisation rate of the calibration year.</p>
+<p>The method considers various scenarios and adjusts the utilisation rates based on scenario-specific parameters
+for dairy and beef Grass Use Efficiency (GUE) increases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary where each key is a scenario, and its value is a DataFrame. The DataFrame has years</dt><dd><p>as the index and farm types (dairy, beef, sheep) as columns. Each cell contains the dynamic
+utilisation rate for that farm type in the respective year and scenario.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../stocking_rate/index.html" class="btn btn-neutral float-left" title="grassland_production.stocking_rate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../example.html" class="btn btn-neutral float-right" title="Example Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
