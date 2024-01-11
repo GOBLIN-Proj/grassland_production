@@ -1,0 +1,155 @@
+:py:mod:`grassland_production.grassland_area`
+=============================================
+
+.. py:module:: grassland_production.grassland_area
+
+.. autoapi-nested-parse::
+
+   =======================
+   Grassland Area Module
+   =======================
+   The Grassland Area Module is a part of the grassland production system that deals with calculating and managing
+   the proportions and distributions of grassland areas within different farming systems.
+   It is designed to provide essential data for grassland production analysis, taking into account various factors and scenarios.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   grassland_production.grassland_area.Areas
+
+
+
+
+.. py:class:: Areas(target_year, calibration_year, default_calibration_year)
+
+
+   The `Areas` class is responsible for calculating and managing the proportions and distributions of grassland areas for
+   different farming systems within the Grassland Area Module.
+
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param target_year: The target year for future scenario projections.
+   :type target_year: int
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param defaul_calibration_year: The default calibration year.
+   :type defaul_calibration_year: int
+
+   .. attribute:: loader_class
+
+      An instance of the Loader class for loading various datasets.
+
+      :type: Loader
+
+   .. attribute:: target_year
+
+      The target year for calculations.
+
+      :type: int
+
+   .. attribute:: calibration_year
+
+      The calibration year for data reference.
+
+      :type: int
+
+   .. attribute:: default_calibration_year
+
+      The default calibration year used for fallback when data for the specified year is not available.
+
+      :type: int
+
+   .. method:: get_proportion_weight(
+
+      
+      area_nfs, farm_system_number, nfs_dict, calibration_year, system, grassland_type
+
+   .. method:: )
+
+      
+      Calculates the proportion weight for a specific farming system and grassland type.
+      
+
+   .. method:: get_total_nfs_areas_for_proportions(
+
+      
+      dairy_area_nfs, beef_area_nfs, sheep_area_nfs
+
+   .. method:: )
+
+      
+      Computes the total areas for NFS (Nitrogen Fertilization System) proportions.
+      
+
+   .. method:: get_nfs_system_proportions()
+
+      
+      Calculates the proportions of grassland areas for dairy, beef, and sheep farming systems.
+      
+
+   .. method:: get_nfs_within_system_grassland_distribution()
+
+      
+      Computes the distribution of grassland areas within each farming system (dairy, beef, sheep).
+      
+
+   .. py:method:: get_proportion_weight(area_nfs, farm_system_number, nfs_dict, calibration_year, system, grassland_type)
+
+      Calculates the proportion weight for a specific farming system and grassland type.
+
+      :param area_nfs: The area associated with the National Farm Survey (NFS) data.
+      :type area_nfs: float
+      :param farm_system_number: Farm system numbers for different years (NFS).
+      :type farm_system_number: DataFrame
+      :param nfs_dict: A dictionary containing NFS data for dairy, beef, and sheep farming systems.
+      :type nfs_dict: dict
+      :param calibration_year: The calibration year for data reference.
+      :type calibration_year: int
+      :param system: The farming system (e.g., "dairy", "beef", "sheep").
+      :type system: str
+      :param grassland_type: The type of grassland (e.g., "Grass silage", "Hay", "Pasture", "Rough grazing in use").
+      :type grassland_type: str
+
+      :returns: The proportion weight for the specified farming system and grassland type.
+      :rtype: float
+
+
+   .. py:method:: get_total_nfs_areas_for_proportions(dairy_area_nfs, beef_area_nfs, sheep_area_nfs)
+
+      Calculates the total areas associated with the National Farm Survey (NFS) for different farming systems.
+
+      :param dairy_area_nfs: Area data for dairy farming system from NFS.
+      :type dairy_area_nfs: DataFrame
+      :param beef_area_nfs: Area data for beef farming system from NFS.
+      :type beef_area_nfs: DataFrame
+      :param sheep_area_nfs: Area data for sheep farming system from NFS.
+      :type sheep_area_nfs: DataFrame
+
+      :returns: A combined DataFrame containing the total areas for NFS across dairy, beef, and sheep farming systems.
+      :rtype: DataFrame
+
+
+   .. py:method:: get_nfs_system_proportions()
+
+      Calculates the proportions of grassland areas for different farming systems based on National Farm Survey (NFS) data.
+
+      :returns: A tuple containing DataFrames for dairy, beef, and sheep farming systems, each with proportions of grassland types.
+      :rtype: tuple
+
+
+   .. py:method:: get_nfs_within_system_grassland_distribution()
+
+      Calculates the distribution of grassland areas within different farming systems based on National Farm Survey (NFS) data.
+
+      :returns: A dictionary containing DataFrames for dairy, beef, and sheep farming systems, each with the distribution of grassland types.
+      :rtype: dict
+
+
+

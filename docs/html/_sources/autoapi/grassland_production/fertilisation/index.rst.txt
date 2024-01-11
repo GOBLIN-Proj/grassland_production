@@ -1,0 +1,180 @@
+:py:mod:`grassland_production.fertilisation`
+============================================
+
+.. py:module:: grassland_production.fertilisation
+
+.. autoapi-nested-parse::
+
+   ======================
+   Fertilisation Module
+   ======================
+
+   This module encompasses the Fertilisation class, which is focused on computing various fertilization
+   rates and their distribution across different farm systems and scenarios. This class is used in the calculation of
+   grassland production.
+
+   Classes:
+       Fertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   grassland_production.fertilisation.Fertilisation
+
+
+
+
+.. py:class:: Fertilisation(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+
+
+   The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates
+   and their application across various farm systems and scenarios. This class plays a role in the calculation of
+   grassland production.
+
+   :param ef_country: The country for which the analysis is performed.
+   :type ef_country: str
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param target_year: The target year for future scenario projections.
+   :type target_year: int
+   :param scenario_inputs_df: DataFrame containing scenario input variables data.
+   :type scenario_inputs_df: DataFrame
+   :param scenario_animals_df: DataFrame containing scenario animal data.
+   :type scenario_animals_df: DataFrame
+   :param baseline_animals_df: DataFrame containing baseline animal data.
+   :type baseline_animals_df: DataFrame
+
+   .. attribute:: data_manager_class
+
+      Instance of DataManager for managing data related to fertilization.
+
+      :type: DataManager
+
+   .. attribute:: loader_class
+
+      Instance of Loader to load various datasets.
+
+      :type: Loader
+
+   .. attribute:: areas_class
+
+      Instance of Areas for calculating area-related data.
+
+      :type: Areas
+
+   .. attribute:: cattle_spread_class
+
+      Instance for handling daily spread rates of fertilizers.
+
+      :type: DailySpread
+
+   .. attribute:: calibration_year
+
+      The base year for data calibration.
+
+      :type: int
+
+   .. attribute:: target_year
+
+      The target year for future scenario projections.
+
+      :type: int
+
+   .. method:: compute_inorganic_fertilization_rate()
+
+      
+      Calculates the inorganic fertilization rate for various farm systems and scenarios.
+      
+
+   .. method:: compute_organic_fertilization_rate()
+
+      
+      Computes the rate of organic fertilizer application for different farm systems.
+      
+
+   .. method:: organic_fertilisation_per_ha()
+
+      
+      Calculates the organic fertilization rate per hectare for different farm systems and scenarios.
+      
+
+   .. py:method:: compute_inorganic_fertilization_rate()
+
+      Calculates the inorganic fertilization rate for various farm systems (dairy, beef, sheep) across
+      different scenarios. This method determines the average fertilization rate per grassland type
+      (Pasture, Silage, Hay) within each farm system, considering both historical data and future scenario
+      projections.
+
+      The computation uses fertilization data by system and farm numbers to estimate the average fertilization
+      rate. For the target year, scenario-specific values are used for dairy and beef systems, while sheep
+      systems use an average value based on historical data.
+
+      :returns:
+
+                A dictionary with keys for each farm system ('dairy', 'beef', 'sheep'), containing DataFrames
+                    with fertilization rates for each grassland type. Each DataFrame is indexed by grassland type
+                    and contains columns for the calibration year and the target year.
+      :rtype: dict
+
+      .. rubric:: Notes
+
+      - The method uses scenario-specific fertilization values for 'Pasture' and 'Grass silage' types in dairy
+      and beef systems. For sheep and other grassland types, average historical values are used.
+
+
+   .. py:method:: compute_organic_fertilization_rate()
+
+      Computes the rate of organic fertilizer application (primarily cattle slurry) for different farm systems.
+      This calculation is based on the net excretion rate of nutrients from cattle, as determined by the DailySpread
+      class. The method considers the nutrient content in the cattle slurry and its spread rate across various farm
+      systems. Notably, sheep systems are excluded from this calculation, assuming that slurry consists only of cattle
+      slurry.
+
+      The method calculates organic fertilization rates for both the calibration year and the target year under
+      different scenarios, considering the changes in livestock populations and management practices.
+
+      :returns:
+
+                A dictionary with keys for different scenarios. Each entry contains a DataFrame with columns
+                    representing different farm systems ('dairy', 'beef', 'sheep') and rows representing years
+                    (calibration year, target year). Each cell in the DataFrame represents the total organic
+                    nitrogen spread for that farm system and year.
+      :rtype: dict
+
+      .. rubric:: Notes
+
+      - Sheep systems are excluded from this calculation.
+
+
+   .. py:method:: organic_fertilisation_per_ha()
+
+      Calculates the rate of organic fertilization per hectare for dairy and beef farm systems. This method
+      adjusts the total organic nitrogen spread calculated in 'compute_organic_fertilization_rate' to a per
+      hectare basis, considering the area of different types of grasslands (Pasture, Grass silage) and the
+      proportion of these grasslands within each farm system.
+
+      The calculation is performed for both the calibration year and the target year across various scenarios.
+      It provides a detailed view of how organic fertilization is distributed across different types of
+      grasslands within dairy and beef systems.
+
+      :returns:
+
+                A dictionary with keys for different scenarios. Each entry contains a DataFrame with columns
+                    for 'dairy' and 'beef' systems and rows for the calibration year and the target year. Each cell
+                    in the DataFrame represents the organic nitrogen spread per hectare for that system and year.
+      :rtype: dict
+
+      .. rubric:: Notes
+
+      - Sheep systems are excluded from this calculation.
+      - If data for the calibration year is not present, a default year is used.
+
+
+

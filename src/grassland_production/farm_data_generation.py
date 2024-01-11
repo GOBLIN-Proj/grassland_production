@@ -1,13 +1,60 @@
+"""
+==================
+Farm Data Module
+==================
+
+This module includes the FarmData class which is responsible for computing various aspects of farm data, 
+such as fertilization totals and farm data in different scenarios. This data is essential for lifecycle 
+assessment calculations and agricultural planning.
+
+Classes:
+    FarmData: Manages the computation of farm data for lifecycle assessments and scenario analysis.
+"""
+
 import pandas as pd
+import itertools
 from grassland_production.data_loader import Loader
 from grassland_production.grassland_data_manager import DataManager
 from grassland_production.grassland_area import Areas
 from grassland_production.spared_area import Grasslands
-from cattle_lca.lca import DailySpread
 from grassland_production.fertilisation import Fertilisation
 
 
 class FarmData:
+    """
+    The FarmData class handles the computation of various farm-related data elements, including 
+    fertilization rates and overall farm data for baseline and future scenarios. This class plays 
+    a pivotal role in lifecycle assessment and agricultural scenario analysis by providing essential 
+    data for these processes.
+
+    Args:
+        ef_country (str): The country for which the analysis is performed.
+        calibration_year (int): The calibration year.
+        target_year (int): The target year for future scenario projections.
+        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
+        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
+        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+
+    Attributes:
+        loader_class (Loader): Instance of Loader to load various datasets.
+        data_manager_class (DataManager): Instance of DataManager for managing scenario and baseline data.
+        areas_class (Areas): Instance of Areas for calculating areas-related data.
+        grassland_class (Grasslands): Instance for calculating grassland related data.
+        fertiliser_class (Fertilisation): Instance for handling fertilization-related calculations.
+        calibration_year (int): The base year for data calibration.
+        target_year (int): The target year for future scenario projections.
+
+    Methods:
+        compute_fertilization_total():
+            Calculates the total fertilization rates across different scenarios, considering various livestock 
+            systems and grassland types.
+
+        compute_farm_data_in_scenarios():
+            Computes farm data required for lifecycle assessment in different future scenarios.
+
+        compute_farm_data_in_baseline():
+            Computes baseline farm data for use in lifecycle assessments and scenario comparisons.
+    """
     def __init__(
         self,
         ef_country,
@@ -78,6 +125,12 @@ class FarmData:
         beef_nfs_system_proportions = nfs_system_proportions[1]
         sheep_nfs_system_proportions = nfs_system_proportions[2]
 
+        SYS_PROPS = {
+            "dairy": dairy_nfs_system_proportions,
+            "beef": beef_nfs_system_proportions,
+            "sheep": sheep_nfs_system_proportions,
+        }
+
         grassland_type = self.data_manager_class.grasslands
         scenario_list = list(
             self.data_manager_class.scenario_inputs_df.Scenarios.unique()
@@ -94,91 +147,55 @@ class FarmData:
 
         systems = self.data_manager_class.systems
 
-        for sc in scenario_list:
-            for sys in systems:
-                for g_type in grassland_type:
-                    for year in year_list:
-                        if year == self.target_year:
-                            if sys == "dairy":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * dairy_nfs_system_proportions.loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                )
-                            elif sys == "beef":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * beef_nfs_system_proportions.loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                )
-                            elif sys == "sheep":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * sheep_nfs_system_proportions.loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        self.calibration_year,
-                                        g_type,
-                                    ]
-                                )
-
-                        else:
-                            if sys == "dairy":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * dairy_nfs_system_proportions.loc[year, g_type]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        year, g_type
-                                    ]
-                                )
-                            elif sys == "beef":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * beef_nfs_system_proportions.loc[year, g_type]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        year, g_type
-                                    ]
-                                )
-                            elif sys == "sheep":
-                                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
-                                    g_type, str(year)
-                                ] * (
-                                    grass_total_area.loc[year, sc]
-                                    * sheep_nfs_system_proportions.loc[year, g_type]
-                                    * nfs_within_grassland_proportions[sys].loc[
-                                        year, g_type
-                                    ]
-                                )
+        for sc, sys, g_type, year in itertools.product(scenario_list, systems, grassland_type, year_list):
+            if year == self.target_year:
+                
+                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
+                        g_type, str(year)
+                    ] * (
+                        grass_total_area.loc[year, sc]
+                        * SYS_PROPS[sys].loc[
+                            self.calibration_year,
+                            g_type,
+                        ]
+                        * nfs_within_grassland_proportions[sys].loc[
+                            self.calibration_year,
+                            g_type,
+                        ]
+                    )
+            else:
+                fert_rate_total.loc[year, sc] += fert_rate[sys][sc].loc[
+                    g_type, str(year)
+                ] * (
+                    grass_total_area.loc[year, sc]
+                    * SYS_PROPS[sys].loc[year, g_type]
+                    * nfs_within_grassland_proportions[sys].loc[
+                        year, g_type
+                    ]
+                )
         return fert_rate_total
 
 
     def compute_farm_data_in_scenarios(self):
         """
-        Computation of farm_data, exported for use in LCA calculation in goblin tool
+        Computes farm data for various future scenarios to be used in lifecycle assessment (LCA) calculations. 
+        This method integrates data on fertilizer usage, urea proportions, and other farm-specific details to 
+        generate a comprehensive dataset for each scenario.
+
+        The computation involves determining the proportions of different types of fertilizers (P, K, Lime) and 
+        calculating the total usage of each based on the fertilization rates and scenarios. It also accounts for 
+        urea usage and abatement (abated urea) in the scenarios.
+
+        Returns:
+            DataFrame: A pandas DataFrame with farm data for each scenario. Each row corresponds to a scenario, 
+                    including information about fertilizer usage, urea proportions, and other essential data 
+                    for LCA calculations.
+
+        Notes:
+            - The method attempts to use the calibration year data; if unavailable, it falls back to a default year.
+            - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,
+            along with diesel and electricity usage.
+            - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.
         """
         calibration_year = self.calibration_year
         target_year = self.target_year
@@ -265,9 +282,29 @@ class FarmData:
 
         return farm_data
 
+
     def compute_farm_data_in_baseline(self):
         """
-        Computation of farm_data, exported for use in LCA calculation in goblin tool
+        Computes baseline farm data for use in lifecycle assessment (LCA) calculations. This method focuses on 
+        generating a dataset reflecting the baseline agricultural practices and inputs for the calibration year, 
+        which serves as a reference point.
+
+        The computation includes the assessment of various types of fertilizers (P, K, Lime, Urea) and their 
+        quantities used in the calibration year. It also accounts for diesel and electricity (currently set to zero) usage in farming 
+        operations.
+
+        Returns:
+            DataFrame: A pandas DataFrame containing baseline farm data. It includes detailed information about 
+                    fertilizer usage, urea proportions, and other essential data elements for LCA calculations.
+
+        Notes:
+            - The method attempts to use the data from the calibration year; if unavailable, it falls back to a 
+            default year.
+            - This method is essential for establishing a baseline in LCA studies, against which future scenarios 
+            and changes in agricultural practices can be compared.
+            - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers, 
+            along with diesel and electricity usage.
+            - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.
         """
         calibration_year = self.calibration_year
 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">grassland_production.grassland_data_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for grassland_production.grassland_data_manager</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">=====================================</span>
+<span class="sd">Grassland Static Data Manager Module</span>
+<span class="sd">=====================================</span>
+<span class="sd">The Grassland Static Data Manager Module is a part of the grassland production system that deals with loading and managing</span>
+<span class="sd">static data for grassland production analysis. It is designed to provide essential data for grassland production analysis.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">cattle_lca.models</span> <span class="kn">import</span> <span class="n">load_livestock_data</span>
+<span class="kn">from</span> <span class="nn">grassland_production.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
+
+
+<div class="viewcode-block" id="DataManager">
+<a class="viewcode-back" href="../../autoapi/grassland_production/grassland_data_manager/index.html#grassland_production.grassland_data_manager.DataManager">[docs]</a>
+<span class="k">class</span> <span class="nc">DataManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Grassland Static Data Manager Module is responsible for loading and managing static data for grassland production analysis.</span>
+<span class="sd">    It provides essential data for grassland production analysis, including livestock cohorts, soil data, and grassland types.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        calibration_year (int): The calibration year.</span>
+<span class="sd">        target_year (int): The target year for future scenario projections.</span>
+<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.</span>
+<span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
+<span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        loader_class (Loader): Instance of the Loader class for loading various datasets.</span>
+<span class="sd">        calibration_year (int): The calibration year for data reference.</span>
+<span class="sd">        default_calibration_year (int): The default calibration year used as a fallback when data for the specified year is not available.</span>
+<span class="sd">        default_grassland_year (int): The default year used for grassland data when it is not specified.</span>
+<span class="sd">        target_year (int): The target year for future scenario projections.</span>
+<span class="sd">        COHORTS_DICT (dict): A dictionary mapping livestock categories to their cohorts.</span>
+<span class="sd">        DAIRY_BEEF_COHORTS (dict): A dictionary mapping livestock categories to cohorts for dairy and beef systems.</span>
+<span class="sd">        COHORTS_GROUPS (dict): A dictionary mapping farm systems to the corresponding livestock cohorts.</span>
+<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input data.</span>
+<span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
+<span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
+<span class="sd">        baseline_animals_dict (dict): A dictionary containing baseline livestock data.</span>
+<span class="sd">        scenario_animals_dict (dict): A dictionary containing scenario livestock data.</span>
+<span class="sd">        scenario_aggregation (DataFrame): DataFrame containing scenario aggregation data.</span>
+<span class="sd">        soil_class_yield_gap (dict): A dictionary mapping soil classes to yield gaps.</span>
+<span class="sd">        soil_class_prop (dict): A dictionary containing soil properties for different farm systems.</span>
+<span class="sd">        grasslands (list): A list of grassland types.</span>
+<span class="sd">        systems (list): A list of farm systems.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">calibration_year</span><span class="p">,</span>
+        <span class="n">target_year</span><span class="p">,</span>
+        <span class="n">scenario_inputs_df</span><span class="p">,</span>
+        <span class="n">scenario_animals_df</span><span class="p">,</span>
+        <span class="n">baseline_animals_df</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="n">calibration_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="mi">2015</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="mi">2018</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="n">target_year</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_DICT</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Cattle&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;dairy_cows&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;suckler_cows&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;bulls&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_steers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_steers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_steers_more_2_yr&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;Sheep&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;ewes&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;lamb_less_1_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;lamb_more_1_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;male_less_1_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ram&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Dairy&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;dairy_cows&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxD_steers_more_2_yr&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;Beef&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;suckler_cows&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;bulls&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_calves_m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_calves_f&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_heifers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_steers_less_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DxB_steers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_heifers_more_2_yr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;BxB_steers_more_2_yr&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_GROUPS</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Beef&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flat_pasture&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;hilly_pasture&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]}</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_inputs_df</span> <span class="o">=</span> <span class="n">scenario_inputs_df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_df</span> <span class="o">=</span> <span class="n">scenario_animals_df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseline_animals_df</span> <span class="o">=</span> <span class="n">baseline_animals_df</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseline_animals_dict</span> <span class="o">=</span> <span class="n">load_livestock_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseline_animals_df</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_dict</span> <span class="o">=</span> <span class="n">load_livestock_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_df</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_aggregation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_df</span><span class="p">[[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">soil_class_yield_gap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">soil_class_prop</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">dairy_soil_group</span><span class="p">(),</span>
+            <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">cattle_soil_group</span><span class="p">(),</span>
+            <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">sheep_soil_group</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">grasslands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Grass silage&quot;</span><span class="p">,</span> <span class="s2">&quot;Hay&quot;</span><span class="p">,</span> <span class="s2">&quot;Pasture&quot;</span><span class="p">,</span> <span class="s2">&quot;Rough grazing in use&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">systems</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">,</span> <span class="s2">&quot;beef&quot;</span><span class="p">,</span> <span class="s2">&quot;sheep&quot;</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
