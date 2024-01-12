@@ -281,7 +281,7 @@ class Fertilisation:
 
         spread_dict = {}
 
-        N_spread_past = pd.DataFrame(0, columns=cols, index=year_list)
+        N_spread_past = pd.DataFrame(0.0, columns=cols, index=year_list)
 
         baseline_animals_df = self.data_manager_class.baseline_animals_df
         scenario_animals_df = self.data_manager_class.scenario_animals_df

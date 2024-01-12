@@ -137,7 +137,7 @@ class Grasslands:
             self.areas_class.get_nfs_within_system_grassland_distribution()
         )
 
-        grass_total_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
+        grass_total_area = pd.DataFrame(0.0, index=year_list, columns=scenario_list)
 
         average_yield = 0
 
@@ -198,7 +198,7 @@ class Grasslands:
         year_list = [self.calibration_year, self.target_year]
         scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
 
-        spared_area = pd.DataFrame(0, index=year_list, columns=scenario_list)
+        spared_area = pd.DataFrame(0.0, index=year_list, columns=scenario_list)
 
         grass_total_area = self.get_grass_total_area()
 

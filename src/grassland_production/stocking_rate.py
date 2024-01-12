@@ -84,7 +84,7 @@ class StockingRate:
 
         animal_list = self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"]
 
-        past_livestock_units = pd.DataFrame(0, index=[self.calibration_year], columns=keys)
+        past_livestock_units = pd.DataFrame(0.0, index=[self.calibration_year], columns=keys)
 
         # Process dairy and beef
         for cohort in ["dairy", "beef"]:
@@ -143,7 +143,7 @@ class StockingRate:
         livestock_units = {}
 
         for sc in scenario_list:
-            total_livestock_units = pd.DataFrame(0, index=[self.target_year], columns=keys)
+            total_livestock_units = pd.DataFrame(0.0, index=[self.target_year], columns=keys)
             livestock_units[sc] = total_livestock_units
 
             farm_mask = self.data_manager_class.scenario_aggregation["Scenarios"] == sc
@@ -230,9 +230,9 @@ class StockingRate:
         stocking_rate = {}
 
         for sc in scenario_list:
-            stocking_rate_df = pd.DataFrame(0, index=year_list, columns=keys)
+            stocking_rate_df = pd.DataFrame(0.0, index=year_list, columns=keys)
             for sys, year in itertools.product(keys, year_list):
-                stocking_rate_df.loc[year, sys] = livestock_units[sc].loc[year, sys] / areas[sc][sys][year]
+                stocking_rate_df.loc[year, sys] = livestock_units[sc].loc[year, sys].item() / areas[sc][sys][year]
                 
 
             stocking_rate[sc]=stocking_rate_df
