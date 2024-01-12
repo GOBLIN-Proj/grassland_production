@@ -1,0 +1,32 @@
+index,ef_country,farm_id,Scenarios,year,cohort,pop,daily_milk,weight,forage,grazing,con_type,con_amount,wool,t_outdoors,t_indoors,t_stabled,mm_storage,daily_spreading,n_sold,n_bought
+0,ireland,2020,-1,2020,dairy_cows,1511850.0,14.953,538.0,irish_grass,pasture,concentrate,2.99282829606,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+1,ireland,2020,-1,2020,suckler_cows,953000.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.842751605333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
+2,ireland,2020,-1,2020,bulls,50950.0,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+3,ireland,2020,-1,2020,DxD_calves_m,248603.4044,0.0,171.4,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+4,ireland,2020,-1,2020,DxD_calves_f,353736.5672,0.0,138.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+5,ireland,2020,-1,2020,DxB_calves_m,320162.304,0.0,176.875,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+6,ireland,2020,-1,2020,DxB_calves_f,318937.9177,0.0,158.625,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+7,ireland,2020,-1,2020,BxB_calves_m,405995.1708,0.0,211.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+8,ireland,2020,-1,2020,BxB_calves_f,404151.345,0.0,175.05,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+9,ireland,2020,-1,2020,DxD_heifers_less_2_yr,346588.2016,0.0,335.65,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+10,ireland,2020,-1,2020,DxD_steers_less_2_yr,239469.3704,0.0,434.2,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+11,ireland,2020,-1,2020,DxB_heifers_less_2_yr,308321.8997,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+12,ireland,2020,-1,2020,DxB_steers_less_2_yr,309256.3276,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+13,ireland,2020,-1,2020,BxB_heifers_less_2_yr,390849.4704,0.0,445.15,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+14,ireland,2020,-1,2020,BxB_steers_less_2_yr,392328.5725,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+15,ireland,2020,-1,2020,DxD_heifers_more_2_yr,10467.02461,0.0,481.65,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+16,ireland,2020,-1,2020,DxD_steers_more_2_yr,58236.56831,0.0,592.975,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+17,ireland,2020,-1,2020,DxB_heifers_more_2_yr,20214.7923,0.0,527.275,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+18,ireland,2020,-1,2020,DxB_steers_more_2_yr,71217.56859,0.0,624.0,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+19,ireland,2020,-1,2020,BxB_heifers_more_2_yr,56567.98695,0.0,603.925,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+20,ireland,2020,-1,2020,BxB_steers_more_2_yr,62663.66722,0.0,751.75,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+21,ireland,2020,-1,2020,ewes,2137040.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+22,ireland,2020,-1,2020,ewes,534260.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+23,ireland,2020,-1,2020,lamb_less_1_yr,960385.2,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+24,ireland,2020,-1,2020,lamb_less_1_yr,240096.3,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+25,ireland,2020,-1,2020,lamb_more_1_yr,102708.0746,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+26,ireland,2020,-1,2020,lamb_more_1_yr,25677.01864,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+27,ireland,2020,-1,2020,male_less_1_yr,240096.3,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+28,ireland,2020,-1,2020,male_less_1_yr,960385.2,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+29,ireland,2020,-1,2020,ram,68760.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+30,ireland,2020,-1,2020,ram,17190.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0

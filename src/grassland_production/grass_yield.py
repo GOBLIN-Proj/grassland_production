@@ -120,12 +120,12 @@ class Yield:
             ),
             "sheep": (
                     (scenario_df["Cattle systems"] == "Lowland sheep")
-                    & (scenario_df["Manure management"] == "tank solid")
+                    & (scenario_df["Manure management"] == "solid")
             )
         }
 
         for key in keys:
-            for sc in scenario_df["Scenarios"]:
+            for sc in scenario_df["Scenarios"].unique():
                 mask = (scenario_df["Scenarios"] == sc) & conditions[key]
                 clover_proportion = scenario_df.loc[mask, "Clover proportion"].item()
                 clover_fertilisation = scenario_df.loc[mask, "Clover fertilisation"].item()

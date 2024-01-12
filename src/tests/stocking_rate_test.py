@@ -11,9 +11,9 @@ class StockingRateTestCase(unittest.TestCase):
         warnings.simplefilter(action='ignore')
         self.path_to_data = "./data/"
 
-        self.data_frame = pd.read_csv(os.path.join(self.path_to_data, "scenario_dataframe1.csv"))
-        self.animal_dataframe_baseline = pd.read_csv("./data/past_animals.csv")
-        self.animal_dataframe_scenarios = pd.read_csv("./data/future_animals.csv")
+        self.data_frame = pd.read_csv(os.path.join(self.path_to_data, "scenario_input_dataframe2.csv"))
+        self.animal_dataframe_baseline = pd.read_csv("./data/baseline_animal_data.csv")
+        self.animal_dataframe_scenarios = pd.read_csv("./data/scenario_animal_data.csv")
 
         self.stock_class = StockingRate(
             "ireland",

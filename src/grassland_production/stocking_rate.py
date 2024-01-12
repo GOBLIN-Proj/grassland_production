@@ -232,9 +232,20 @@ class StockingRate:
         for sc in scenario_list:
             stocking_rate_df = pd.DataFrame(0.0, index=year_list, columns=keys)
             for sys, year in itertools.product(keys, year_list):
-                stocking_rate_df.loc[year, sys] = livestock_units[sc].loc[year, sys].item() / areas[sc][sys][year]
-                
+                try:
+                    area = areas[sc][sys][year]
+                    livestock_units_item = livestock_units[sc].loc[year, sys].item()
+                    
+                    # Check if area is zero or NaN
+                    if area == 0 or pd.isna(area) or pd.isna(livestock_units_item):
+                        stocking_rate_df.loc[year, sys] = 0.0
+                    else:
+                        stocking_rate_df.loc[year, sys] = livestock_units_item / area
+                except Exception as e:  # Catching a more general exception
+                    print(f"Error encountered: {e}")
+                    stocking_rate_df.loc[year, sys] = 0.0
 
+            
             stocking_rate[sc]=stocking_rate_df
 
         return stocking_rate
