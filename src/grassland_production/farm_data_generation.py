@@ -143,7 +143,7 @@ class FarmData:
             )
         )
 
-        fert_rate_total = pd.DataFrame(0, columns=scenario_list, index=year_list)
+        fert_rate_total = pd.DataFrame(0.0, columns=scenario_list, index=year_list)
 
         systems = self.data_manager_class.systems
 

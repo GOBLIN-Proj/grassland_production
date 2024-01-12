@@ -148,7 +148,7 @@ class UtilisationRate:
         keys = ["dairy", "beef", "sheep"]
 
         for sc in scenario_list:
-            farm_dm_production_df = pd.DataFrame(0, index=year_list, columns=keys)
+            farm_dm_production_df = pd.DataFrame(0.0, index=year_list, columns=keys)
 
             for key in keys:
                 for year in year_list:
@@ -209,7 +209,7 @@ class UtilisationRate:
         dry_matter_req = {}
 
         for sc in scenario_list:
-            NFS_farm_dm_df = pd.DataFrame(0, index=year_list, columns=keys)
+            NFS_farm_dm_df = pd.DataFrame(0.0, index=year_list, columns=keys)
 
             for animal_name in animal_list:
 
@@ -261,7 +261,7 @@ class UtilisationRate:
         utilisation_rate = {}
 
         for sc in scenario_list:
-            utilisation_rate_df = pd.DataFrame(0, index=year_list, columns=cols)
+            utilisation_rate_df = pd.DataFrame(0.0, index=year_list, columns=cols)
 
             dairy_mask = (scenario_df["Scenarios"] == sc) & (scenario_df["Cattle systems"] == "Dairy") & (scenario_df["Manure management"] == "tank liquid")
             beef_mask = (scenario_df["Scenarios"] == sc) & (scenario_df["Cattle systems"] == "Beef") & (scenario_df["Manure management"] == "tank liquid")
@@ -324,7 +324,7 @@ class UtilisationRate:
             dairy_GUE_scenario_increase = scenario_df.loc[dairy_mask, "Dairy GUE"].unique()
             beef_GUE_scenario_increase = scenario_df.loc[beef_mask, "Beef GUE"].unique()
 
-            utilisation_rate_df = pd.DataFrame(0, index=year_list, columns=cols)
+            utilisation_rate_df = pd.DataFrame(0.0, index=year_list, columns=cols)
 
             for farm_type in cols:
                 for year in year_list:

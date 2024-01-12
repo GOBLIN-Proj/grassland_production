@@ -272,7 +272,7 @@ class DryMatter:
 
         animal_list = self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"]
 
-        past_total_dm_df = pd.DataFrame(0, index=[self.calibration_year], columns=cols)
+        past_total_dm_df = pd.DataFrame(0.0, index=[self.calibration_year], columns=cols)
 
         # Process dairy and beef
         for cohort in ["dairy", "beef"]:
@@ -358,7 +358,7 @@ class DryMatter:
         animal_list = self.data_manager_class.scenario_animals_dict
  
         for sc in scenario_list:
-            dry_matter_req[sc] = pd.DataFrame(0, index=[self.target_year], columns=cols)
+            dry_matter_req[sc] = pd.DataFrame(0.0, index=[self.target_year], columns=cols)
             farm_mask = self.data_manager_class.scenario_aggregation["Scenarios"] == sc
             farm_ids = self.data_manager_class.scenario_aggregation.loc[farm_mask, "farm_id"].unique()
 
@@ -576,7 +576,7 @@ class DryMatter:
 
         animal_list = self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"]
 
-        past_total_conc_df = pd.DataFrame(0, index=[self.calibration_year], columns=cols)
+        past_total_conc_df = pd.DataFrame(0.0, index=[self.calibration_year], columns=cols)
 
         for cohort in ["dairy", "beef"]:
             for animal_name in COHORTS[cohort]:
@@ -636,7 +636,7 @@ class DryMatter:
         total_concentrate_feed = {}
         
         for sc in scenario_list:
-            total_conc_df = pd.DataFrame(0, index=[self.target_year], columns=cols)
+            total_conc_df = pd.DataFrame(0.0, index=[self.target_year], columns=cols)
             total_concentrate_feed[sc] = total_conc_df
 
             farm_mask = self.data_manager_class.scenario_aggregation["Scenarios"] == sc

@@ -139,13 +139,13 @@ class Areas:
         farm_system_number = self.loader_class.nfs_farm_numbers()
 
         dairy_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
+            0.0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
         )
         beef_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
+            0.0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
         )
         sheep_nfs_system_proportions = pd.DataFrame(
-            0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
+            0.0, columns=dairy_area_nfs.columns, index=dairy_area_nfs.index
         )
 
         systems_dict = {
@@ -200,7 +200,7 @@ class Areas:
         columns = dairy_area_nfs.columns
         index = dairy_area_nfs.index
 
-        zeros = pd.DataFrame(0, columns=columns, index=index)
+        zeros = pd.DataFrame(0.0, columns=columns, index=index)
 
         proportions = {
             "dairy": zeros.copy(),

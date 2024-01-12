@@ -170,7 +170,7 @@ class Yield:
         yield_per_ha = {
             farm_type: {
                 sc: pd.DataFrame(
-                    0,
+                    0.0,
                     index=fertilization_by_system_data_frame.index.levels[0],
                     columns=year_list,
                 )
