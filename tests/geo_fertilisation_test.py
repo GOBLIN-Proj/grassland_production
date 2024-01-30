@@ -1,7 +1,6 @@
 import unittest
 import pandas as pd
-from grassland_production.fertilisation import Fertilisation
-import matplotlib.pyplot as plt
+from geo_grassland_production.fertilisation import Fertilisation
 import os
 import warnings
 
@@ -24,7 +23,7 @@ class FertilizationTestCase(unittest.TestCase):
         )
 
     def test_fertilisation(self):
-        test = self.fert_class.compute_inorganic_fertilization_rate()
+        test = self.fert_class.compute_organic_fertilization_rate()
 
         print(test)
 

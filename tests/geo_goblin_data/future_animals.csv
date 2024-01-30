@@ -1,0 +1,125 @@
+,ef_country,farm_id,Scenarios,Catchment,year,cohort,pop,daily_milk,weight,forage,grazing,con_type,con_amount,wool,t_outdoors,t_indoors,t_stabled,mm_storage,daily_spreading,n_sold,n_bought
+0,ireland,0.0,0.0,Blackwater (Munster),2050.0,dairy_cows,176009.0,13.8,538.0,irish_grass,pasture,concentrate,5.5200000000000005,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+1,ireland,0.0,0.0,Blackwater (Munster),2050.0,suckler_cows,0.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.8427516053333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
+2,ireland,0.0,0.0,Blackwater (Munster),2050.0,bulls,3638.21674746942,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489003,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+3,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_calves_m,28942.31346035625,0.0,171.4,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+4,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_calves_f,41181.87614929048,0.0,138.55,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+5,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_calves_m,37273.17324121838,0.0,176.875,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+6,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_calves_f,37130.630655461384,0.0,158.625,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+7,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_calves_m,0.0,0.0,211.54999999999998,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+8,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_calves_f,0.0,0.0,175.05,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+9,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_heifers_less_2_yr,40349.66615432377,0.0,335.65000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+10,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_steers_less_2_yr,27878.932708095115,0.0,434.20000000000005,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+11,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_heifers_less_2_yr,35894.71789152185,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+12,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_steers_less_2_yr,36003.503631013926,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+13,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_heifers_less_2_yr,0.0,0.0,445.15000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+14,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_steers_less_2_yr,0.0,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+15,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_heifers_more_2_yr,1218.5670103393127,0.0,481.65000000000003,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+16,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxD_steers_more_2_yr,6779.879056569626,0.0,592.975,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+17,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_heifers_more_2_yr,2353.3984045577936,0.0,527.275,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+18,ireland,0.0,0.0,Blackwater (Munster),2050.0,DxB_steers_more_2_yr,8291.122154947454,0.0,624.0,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+19,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_heifers_more_2_yr,0.0,0.0,603.9250000000001,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+20,ireland,0.0,0.0,Blackwater (Munster),2050.0,BxB_steers_more_2_yr,0.0,0.0,751.7499999999999,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+21,ireland,1.0,0.0,Blackwater (Munster),2050.0,dairy_cows,0.0,0.0,538.0,irish_grass,pasture,concentrate,0.0,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+22,ireland,1.0,0.0,Blackwater (Munster),2050.0,suckler_cows,30602.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.8427516053333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
+23,ireland,1.0,0.0,Blackwater (Munster),2050.0,bulls,632.5625900156197,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489003,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+24,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_calves_m,0.0,0.0,171.4,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+25,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_calves_f,0.0,0.0,138.55,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+26,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_calves_m,0.0,0.0,176.875,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+27,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_calves_f,0.0,0.0,158.625,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+28,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_calves_m,13037.003375468625,0.0,211.54999999999998,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+29,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_calves_f,12977.795865362014,0.0,175.05,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+30,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_heifers_less_2_yr,0.0,0.0,335.65000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+31,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_steers_less_2_yr,0.0,0.0,434.20000000000005,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+32,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_heifers_less_2_yr,0.0,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+33,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_steers_less_2_yr,0.0,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+34,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_heifers_less_2_yr,12550.656341218048,0.0,445.15000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+35,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_steers_less_2_yr,12598.152125545645,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+36,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_heifers_more_2_yr,0.0,0.0,481.65000000000003,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+37,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxD_steers_more_2_yr,0.0,0.0,592.975,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+38,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_heifers_more_2_yr,0.0,0.0,527.275,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+39,ireland,1.0,0.0,Blackwater (Munster),2050.0,DxB_steers_more_2_yr,0.0,0.0,624.0,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+40,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_heifers_more_2_yr,1816.4675095948583,0.0,603.9250000000001,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+41,ireland,1.0,0.0,Blackwater (Munster),2050.0,BxB_steers_more_2_yr,2012.2072867433787,0.0,751.7499999999999,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+42,ireland,4.0,1.0,Blackwater (Munster),2050.0,dairy_cows,20000.0,13.8,538.0,irish_grass,pasture,concentrate,5.5200000000000005,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+43,ireland,4.0,1.0,Blackwater (Munster),2050.0,suckler_cows,0.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.8427516053333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
+44,ireland,4.0,1.0,Blackwater (Munster),2050.0,bulls,413.4125808872751,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489003,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+45,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_calves_m,3288.7310831100967,0.0,171.4,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+46,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_calves_f,4679.519359724842,0.0,138.55,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+47,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_calves_m,4235.371286834012,0.0,176.875,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+48,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_calves_f,4219.174093990806,0.0,158.625,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+49,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_calves_m,0.0,0.0,211.54999999999998,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+50,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_calves_f,0.0,0.0,175.05,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+51,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_heifers_less_2_yr,4584.954877798723,0.0,335.65000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+52,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_steers_less_2_yr,3167.898540199094,0.0,434.20000000000005,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+53,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_heifers_less_2_yr,4078.7366431855016,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+54,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_steers_less_2_yr,4091.0980269206602,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+55,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_heifers_less_2_yr,0.0,0.0,445.15000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+56,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_steers_less_2_yr,0.0,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+57,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_heifers_more_2_yr,138.4664432318021,0.0,481.65000000000003,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+58,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxD_steers_more_2_yr,770.4014063564507,0.0,592.975,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+59,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_heifers_more_2_yr,267.41796209941464,0.0,527.275,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+60,ireland,4.0,1.0,Blackwater (Munster),2050.0,DxB_steers_more_2_yr,942.1247953169956,0.0,624.0,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+61,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_heifers_more_2_yr,0.0,0.0,603.9250000000001,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+62,ireland,4.0,1.0,Blackwater (Munster),2050.0,BxB_steers_more_2_yr,0.0,0.0,751.7499999999999,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+63,ireland,5.0,1.0,Blackwater (Munster),2050.0,dairy_cows,0.0,0.0,538.0,irish_grass,pasture,concentrate,0.0,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+64,ireland,5.0,1.0,Blackwater (Munster),2050.0,suckler_cows,200.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.8427516053333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
+65,ireland,5.0,1.0,Blackwater (Munster),2050.0,bulls,4.134125808872751,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489003,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+66,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_calves_m,0.0,0.0,171.4,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+67,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_calves_f,0.0,0.0,138.55,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+68,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_calves_m,0.0,0.0,176.875,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+69,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_calves_f,0.0,0.0,158.625,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+70,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_calves_m,85.20360352570829,0.0,211.54999999999998,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+71,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_calves_f,84.8166516264428,0.0,175.05,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
+72,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_heifers_less_2_yr,0.0,0.0,335.65000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+73,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_steers_less_2_yr,0.0,0.0,434.20000000000005,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+74,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_heifers_less_2_yr,0.0,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+75,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_steers_less_2_yr,0.0,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+76,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_heifers_less_2_yr,82.02507248688352,0.0,445.15000000000003,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
+77,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_steers_less_2_yr,82.33548216159497,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+78,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_heifers_more_2_yr,0.0,0.0,481.65000000000003,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+79,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxD_steers_more_2_yr,0.0,0.0,592.975,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+80,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_heifers_more_2_yr,0.0,0.0,527.275,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+81,ireland,5.0,1.0,Blackwater (Munster),2050.0,DxB_steers_more_2_yr,0.0,0.0,624.0,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+82,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_heifers_more_2_yr,11.87156074501574,0.0,603.9250000000001,irish_grass,pasture,concentrate,2.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
+83,ireland,5.0,1.0,Blackwater (Munster),2050.0,BxB_steers_more_2_yr,13.1508220818468,0.0,751.7499999999999,irish_grass,pasture,concentrate,2.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
+84,ireland,2.0,0.0,Blackwater (Munster),2050.0,ewes,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+85,ireland,2.0,0.0,Blackwater (Munster),2050.0,ewes,69.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+86,ireland,2.0,0.0,Blackwater (Munster),2050.0,lamb_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+87,ireland,2.0,0.0,Blackwater (Munster),2050.0,lamb_less_1_yr,31.00858140231348,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+88,ireland,2.0,0.0,Blackwater (Munster),2050.0,lamb_more_1_yr,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+89,ireland,2.0,0.0,Blackwater (Munster),2050.0,lamb_more_1_yr,3.316202384906225,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+90,ireland,2.0,0.0,Blackwater (Munster),2050.0,male_less_1_yr,31.00858140231348,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+91,ireland,2.0,0.0,Blackwater (Munster),2050.0,male_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+92,ireland,2.0,0.0,Blackwater (Munster),2050.0,ram,0.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+93,ireland,2.0,0.0,Blackwater (Munster),2050.0,ram,2.2200988282858534,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+94,ireland,3.0,0.0,Blackwater (Munster),2050.0,ewes,276.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+95,ireland,3.0,0.0,Blackwater (Munster),2050.0,ewes,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+96,ireland,3.0,0.0,Blackwater (Munster),2050.0,lamb_less_1_yr,124.03432560925393,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+97,ireland,3.0,0.0,Blackwater (Munster),2050.0,lamb_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+98,ireland,3.0,0.0,Blackwater (Munster),2050.0,lamb_more_1_yr,13.264809544790927,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+99,ireland,3.0,0.0,Blackwater (Munster),2050.0,lamb_more_1_yr,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+100,ireland,3.0,0.0,Blackwater (Munster),2050.0,male_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+101,ireland,3.0,0.0,Blackwater (Munster),2050.0,male_less_1_yr,124.03432560925393,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+102,ireland,3.0,0.0,Blackwater (Munster),2050.0,ram,8.880395313143413,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+103,ireland,3.0,0.0,Blackwater (Munster),2050.0,ram,0.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+104,ireland,6.0,1.0,Blackwater (Munster),2050.0,ewes,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+105,ireland,6.0,1.0,Blackwater (Munster),2050.0,ewes,20.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+106,ireland,6.0,1.0,Blackwater (Munster),2050.0,lamb_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+107,ireland,6.0,1.0,Blackwater (Munster),2050.0,lamb_less_1_yr,8.987994609366227,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+108,ireland,6.0,1.0,Blackwater (Munster),2050.0,lamb_more_1_yr,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+109,ireland,6.0,1.0,Blackwater (Munster),2050.0,lamb_more_1_yr,0.9612180825815146,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+110,ireland,6.0,1.0,Blackwater (Munster),2050.0,male_less_1_yr,8.987994609366227,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+111,ireland,6.0,1.0,Blackwater (Munster),2050.0,male_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+112,ireland,6.0,1.0,Blackwater (Munster),2050.0,ram,0.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+113,ireland,6.0,1.0,Blackwater (Munster),2050.0,ram,0.6435069067495227,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+114,ireland,7.0,1.0,Blackwater (Munster),2050.0,ewes,200.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+115,ireland,7.0,1.0,Blackwater (Munster),2050.0,ewes,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+116,ireland,7.0,1.0,Blackwater (Munster),2050.0,lamb_less_1_yr,89.87994609366227,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+117,ireland,7.0,1.0,Blackwater (Munster),2050.0,lamb_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+118,ireland,7.0,1.0,Blackwater (Munster),2050.0,lamb_more_1_yr,9.612180829558643,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+119,ireland,7.0,1.0,Blackwater (Munster),2050.0,lamb_more_1_yr,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+120,ireland,7.0,1.0,Blackwater (Munster),2050.0,male_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+121,ireland,7.0,1.0,Blackwater (Munster),2050.0,male_less_1_yr,89.87994609366227,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+122,ireland,7.0,1.0,Blackwater (Munster),2050.0,ram,6.435069067495228,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+123,ireland,7.0,1.0,Blackwater (Munster),2050.0,ram,0.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0

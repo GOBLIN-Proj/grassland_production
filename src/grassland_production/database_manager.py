@@ -14,7 +14,7 @@ Classes:
 
 import sqlalchemy as sqa
 import pandas as pd
-from grassland_production.database import get_local_dir
+from database import get_local_dir
 import os
 
 
