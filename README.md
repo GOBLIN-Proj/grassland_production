@@ -1,13 +1,30 @@
-# 🌱 Grassland_production, a grassland balance tool for Ireland
+# 🌱 Grassland_production, a grassland balance tool for catchment and national level analysis in the Irish context
 [![license](https://img.shields.io/badge/License-MIT-red)](https://github.com/colmduff/grassland_production/blob/0.1.0/LICENSE)
 [![python](https://img.shields.io/badge/python-3.9-blue?logo=python&logoColor=white)](https://github.com/colmduff/grassland_production)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
- Based on the [GOBLIN](https://gmd.copernicus.org/articles/15/2239/2022/) (**G**eneral **O**verview for a **B**ackcasting approach of **L**ivestock **IN**tensification) Grassland module, the Grassland_production module decouples this module making it an independent distribution package.
+ Based on the [GOBLIN](https://gmd.copernicus.org/articles/15/2239/2022/) (**G**eneral **O**verview for a **B**ackcasting approach of **L**ivestock **IN**tensification) Grassland module, the Grassland_production library decouples this module making it an independent distribution package.
 
- The package is shipped with key data for Central Statistics Office grassland areas, Irish National Farm Survey data and FAO fertiliser data. 
+## Structure
+ The package is structured for use in national and catchment level analysis. 
 
- Currently parameterised for Ireland, refactoring is possible, however, this is designed to work alongside other GOBLIN modules specifically for producing scenarios in an Irish context. The module uses the energy requirements of livestock as well as organic and inorganic field inputs to estimate the area required to support the herd.  
+ The geo_grassland_production sub module is intended for use at the catchment level and interfaces with the catchment_data_api to 
+ retrieve catchment specific grassland data that has been retrieved from [Ireland's National Land Cover map](https://www.epa.ie/our-services/monitoring--assessment/assessment/mapping/national-land-cover-map/)
+
+ ```
+    src/
+    │
+    ├── geo_grassland_production/
+    │   └── ... (other modules and sub-packages)
+    │
+    ├── geo_grassland_production/
+    |   └── ... (other modules and sub-packages)
+
+ ```
+
+ For national level analysis, the package is shipped with key data for [Central Statistics Office](https://www.cso.ie/en/index.html) grassland areas, Irish [National Farm Survey](https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/) data and [FAO](https://www.fao.org/faostat/en/#home) fertiliser data. 
+
+ Currently parameterised for Ireland, refactoring is possible, however, this is designed to work alongside other GOBLIN (and GOBLIN derivative) modules specifically for producing scenarios in an Irish national and catchment context. The module uses the energy requirements of livestock as well as organic and inorganic field inputs to estimate the area required to support the herd.  
 
  The final outputs are dataframes for:
 
@@ -36,6 +53,8 @@ pip install "grassland_production@git+https://github.com/colmduff/grassland_prod
 ```
 
 ## Usage
+Below is an example usage of the grassland_production submodule, for the national level. 
+
 ```python
 import pandas as pd
 from grassland_production.grassland_output import GrasslandOutput

@@ -13,7 +13,7 @@ Classes:
 
 from itertools import product
 import pandas as pd
-from grassland_production.data_loader import Loader
+from resource_manager.data_loader import Loader
 from grassland_production.grassland_data_manager import DataManager
 from grassland_production.grassland_area import Areas
 from cattle_lca.lca import DailySpread

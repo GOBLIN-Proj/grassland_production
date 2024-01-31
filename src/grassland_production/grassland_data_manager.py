@@ -7,7 +7,7 @@ static data for grassland production analysis. It is designed to provide essenti
 """
 
 from cattle_lca.models import load_livestock_data
-from grassland_production.data_loader import Loader
+from resource_manager.data_loader import Loader
 
 
 class DataManager:

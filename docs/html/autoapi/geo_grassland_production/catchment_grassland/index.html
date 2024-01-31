@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geo_grassland_production.catchment_grassland &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="geo_grassland_production.geo_fertilisation" href="../geo_fertilisation/index.html" />
+    <link rel="prev" title="geo_grassland_production" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../database/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">database</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../resource_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">resource_manager</span></code></a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.catchment_grassland</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo_fertilisation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.geo_fertilisation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo_grass_yield/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.geo_grass_yield</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo_grassland_output/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.geo_grassland_output</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo_spared_area/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.geo_spared_area</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../grassland_production/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.catchment_grassland</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/geo_grassland_production/catchment_grassland/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-geo_grassland_production.catchment_grassland">
+<span id="geo-grassland-production-catchment-grassland"></span><h1><a class="reference internal" href="#module-geo_grassland_production.catchment_grassland" title="geo_grassland_production.catchment_grassland"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geo_grassland_production.catchment_grassland</span></code></a><a class="headerlink" href="#module-geo_grassland_production.catchment_grassland" title="Link to this heading"></a></h1>
+<section id="catchment-grassland-module">
+<p>This module provides functionality for managing and analyzing grassland data within specified catchment areas.
+It is designed to support environmental and agricultural studies, focusing on grassland distribution, usage, and management strategies under
+various scenarios.</p>
+<p>The module primarily includes the CatchmentGrass class, which interfaces with different data sources to aggregate, process,
+and calculate grassland areas. It utilizes a combination of catchment-specific grassland data, proportion data for grassland areas,
+and scenario-based analysis to derive insights about grassland utilization and distribution.</p>
+<p>Key Features:
+- Aggregation of grassland area data by cover type for specific catchment areas.
+- Calculation of grassland area proportions based on different environmental and agricultural scenarios.
+- Utilization of external data sources and APIs for up-to-date and accurate grassland data retrieval.
+- Support for scenario-based analysis to aid in environmental impact studies and agricultural planning.</p>
+<p>Classes:
+- CatchmentGrass: Manages and processes grassland data for a given catchment area.</p>
+<p>Dependencies:
+- catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.
+- resource_manager.data_loader.Loader: For loading necessary proportion data.
+- grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.
+- pandas: For data handling and processing.</p>
+<p>Note:
+This module is part of a larger suite of environmental analysis tools and should be used in conjunction with other related
+modules and datasets for comprehensive analysis.</p>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#geo_grassland_production.catchment_grassland.CatchmentGrass" title="geo_grassland_production.catchment_grassland.CatchmentGrass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatchmentGrass</span></code></a></p></td>
+<td><p>A class to manage and process grassland data for a specified catchment.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geo_grassland_production.catchment_grassland.</span></span><span class="sig-name descname"><span class="pre">CatchmentGrass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catchment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/geo_grassland_production/catchment_grassland.html#CatchmentGrass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass" title="Link to this definition"></a></dt>
+<dd><p>A class to manage and process grassland data for a specified catchment.</p>
+<p>This class interfaces with various data sources to aggregate and calculate
+grassland area data relevant to a given catchment area. It leverages data
+from CatchmentDataAPI for catchment-specific grassland data, uses Loader
+to retrieve grassland area proportions, and utilizes DataManager for
+additional data management and calculations.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.api">
+<span class="sig-name descname"><span class="pre">api</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.api" title="Link to this definition"></a></dt>
+<dd><p>An instance of CatchmentDataAPI to fetch catchment-specific grassland data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CatchmentDataAPI</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.loader_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of Loader to load necessary proportion data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../resource_manager/data_loader/index.html#resource_manager.data_loader.Loader" title="resource_manager.data_loader.Loader">Loader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.data_manager_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of DataManager for data management and calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../grassland_production/grassland_data_manager/index.html#grassland_production.grassland_data_manager.DataManager" title="grassland_production.grassland_data_manager.DataManager">DataManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.catchment">
+<span class="sig-name descname"><span class="pre">catchment</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.catchment" title="Link to this definition"></a></dt>
+<dd><p>The name of the catchment area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.calibration_year" title="Link to this definition"></a></dt>
+<dd><p>The year for which calibration is done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.default_grassland_year">
+<span class="sig-name descname"><span class="pre">default_grassland_year</span></span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.default_grassland_year" title="Link to this definition"></a></dt>
+<dd><p>Default year for grassland data, set from the DataManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>catchment</strong> (<em>str</em>) – The name of the catchment area.</p></li>
+<li><p><strong>calibration_year</strong> (<em>int</em>) – The year for which calibration is done.</p></li>
+<li><p><strong>target_year</strong> (<em>int</em>) – The target year for the analysis.</p></li>
+<li><p><strong>scenario_data</strong> (<em>pandas.DataFrame</em>) – DataFrame containing scenario data.</p></li>
+<li><p><strong>scenario_animals_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing animal data for the scenario.</p></li>
+<li><p><strong>baseline_animals_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing baseline animal data.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_areas">
+<span class="sig-name descname"><span class="pre">get_catchment_grassland_areas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/geo_grassland_production/catchment_grassland.html#CatchmentGrass.get_catchment_grassland_areas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_areas" title="Link to this definition"></a></dt>
+<dd><p>Retrieves and sums grassland areas by cover type for the catchment.
+Returns a DataFrame with area in hectares.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_area_calculated">
+<span class="sig-name descname"><span class="pre">get_catchment_grassland_area_calculated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_area_calculated" title="Link to this definition"></a></dt>
+<dd><p>Calculates grassland area based on catchment data and proportion data.
+Returns a DataFrame with calculated grassland areas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">get_catchment_grassland_areas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/geo_grassland_production/catchment_grassland.html#CatchmentGrass.get_catchment_grassland_areas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Retrieves and processes grassland areas by cover type for a specified catchment.</p>
+<p>This method fetches grassland data for the catchment area defined in the class instance.
+It transposes the data for better organization, groups it by cover type (‘cover_type’),
+and sums the areas. The resulting DataFrame has the total area for each grassland type
+within the catchment, expressed in hectares.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A DataFrame with cover types as the index and a single column ‘area_ha’</dt><dd><p>representing the total area in hectares for each cover type.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_area_caluclated">
+<span class="sig-name descname"><span class="pre">get_catchment_grassland_area_caluclated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/geo_grassland_production/catchment_grassland.html#CatchmentGrass.get_catchment_grassland_area_caluclated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_area_caluclated" title="Link to this definition"></a></dt>
+<dd><p>Calculates the grassland area distribution for the catchment based on the calibration year.</p>
+<p>This method combines the grassland area data for the catchment with proportion data
+(such as the percentages of different grassland types). It takes into account the
+calibration year specified in the class. If the calibration year is not present in the
+proportion data, it defaults to using a predefined grassland year.</p>
+<p>The calculated data includes the area in hectares for different grassland cover types,
+adjusted according to the proportions for the selected year. It also includes data for
+‘Rough grazing in use’, calculated separately.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A DataFrame with each row representing a grassland cover type and</dt><dd><p>its calculated area in hectares (‘area_ha’).</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="geo_grassland_production" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geo_fertilisation/index.html" class="btn btn-neutral float-right" title="geo_grassland_production.geo_fertilisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

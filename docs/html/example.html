@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example Usage &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+  <title>Example Usage &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/documentation_options.js?v=e259d695"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -117,15 +117,15 @@
 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;./test_data&quot;</span><span class="p">)</span>
 
 <span class="c1">#set up test data</span>
-<span class="n">path_to_data</span> <span class="o">=</span> <span class="s2">&quot;../src/tests/data/&quot;</span>
+<span class="n">path_to_data</span> <span class="o">=</span> <span class="s2">&quot;../tests/data/&quot;</span>
 
 <span class="n">ef_country</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
 <span class="n">calibration_year</span> <span class="o">=</span> <span class="mi">2020</span>
 <span class="n">target_year</span> <span class="o">=</span> <span class="mi">2050</span>
 
-<span class="n">scenario_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;scenario_dataframe1.csv&quot;</span><span class="p">))</span>
-<span class="n">scenario_animal_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;future_animals.csv&quot;</span><span class="p">))</span>
-<span class="n">baseline_animal_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;past_animals.csv&quot;</span><span class="p">))</span>
+<span class="n">scenario_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;scenario_input_dataframe2.csv&quot;</span><span class="p">))</span>
+<span class="n">scenario_animal_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;scenario_animal_data.csv&quot;</span><span class="p">))</span>
+<span class="n">baseline_animal_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">,</span><span class="s2">&quot;baseline_animal_data.csv&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -161,7 +161,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>... calibration year not present, 2015 default year used for Spread Manure Dictionary...
                  0             1
 2020  0.000000e+00  0.000000e+00
-2050  3.720118e+06  3.709208e+06
+2050  2.833798e+06  2.846840e+06
 </pre></div>
 </div>
 </div>
@@ -179,8 +179,8 @@
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>... calibration year not present, 2015 default year used for Spread Manure Dictionary...
                  0             1
-2020  3.937751e+06  3.937751e+06
-2050  2.176326e+05  2.285426e+05
+2020  3.904877e+06  3.904877e+06
+2050  1.071079e+06  1.058037e+06
 </pre></div>
 </div>
 </div>
@@ -198,12 +198,12 @@
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>... calibration year not present, 2015 default year used for Spread Manure Dictionary...
   ef_country  farm_id    year  total_urea_kg  total_lime_kg     an_n_fert  \
-0    ireland      0.0  2050.0   1.008022e+07    907916000.0  1.854760e+07   
-1    ireland      1.0  2050.0   1.058554e+07    907916000.0  1.947740e+07   
+0    ireland      0.0  2050.0   4.997540e+07    907916000.0  9.195474e+07   
+1    ireland      1.0  2050.0   4.936687e+07    907916000.0  9.083505e+07   
 
     urea_n_fert  urea_abated_n_fert  total_p_fert  total_k_fert  diesel_kg  \
-0  4.636900e+06                 0.0  3.814380e+06  8.690584e+06        0.0   
-1  4.869350e+06                 0.0  4.005597e+06  9.126247e+06        0.0   
+0  2.298869e+07                 0.0  1.891082e+07  4.308592e+07        0.0   
+1  2.270876e+07                 0.0  1.868055e+07  4.256128e+07        0.0   
 
    elec_kwh  
 0       0.0  
@@ -245,24 +245,24 @@
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>... calibration year not present, 2015 default year used for Spread Manure Dictionary...
     Scenario  year cohort soil_group        area_ha
-0          0  2050  dairy          1  650219.598155
-1          0  2050   beef          1  525751.031194
-2          0  2050  sheep          1  433707.308971
-3          0  2050  dairy          2  461256.862951
-4          0  2050   beef          2  629649.449263
-5          0  2050  sheep          2  644735.044380
-6          0  2050  dairy          3   62205.124011
-7          0  2050   beef          3   96387.689052
-8          0  2050  sheep          3  216206.330144
-9          1  2050  dairy          1  643178.033662
-10         1  2050   beef          1  526122.746511
-11         1  2050  sheep          1  434013.947741
-12         1  2050  dairy          2  456261.673699
-13         1  2050   beef          2  630094.622607
-14         1  2050  sheep          2  645190.883508
-15         1  2050  dairy          3   61531.472534
-16         1  2050   beef          3   96455.836860
-17         1  2050  sheep          3  216359.191859
+0          0  2050  dairy          1  231598.362076
+1          0  2050   beef          1  457829.055388
+2          0  2050  sheep          1  444103.143935
+3          0  2050  dairy          2  164292.700895
+4          0  2050   beef          2  548304.797286
+5          0  2050  sheep          2  660189.151283
+6          0  2050  dairy          3   22156.522004
+7          0  2050   beef          3   83935.326821
+8          0  2050  sheep          3  221388.731454
+9          1  2050  dairy          1  230481.714206
+10         1  2050   beef          1  455621.639778
+11         1  2050  sheep          1  450908.163218
+12         1  2050  dairy          2  163500.566214
+13         1  2050   beef          2  545661.154306
+14         1  2050  sheep          2  670305.269500
+15         1  2050  dairy          3   22049.694680
+16         1  2050   beef          3   83530.633959
+17         1  2050  sheep          3  224781.084350
 </pre></div>
 </div>
 </div>
@@ -280,10 +280,10 @@
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>... calibration year not present, 2015 default year used for Spread Manure Dictionary...
            dairy      beef     sheep
-0 2020  1.514853  1.940218  0.821168
-  2050  1.727175  1.891744  1.089763
-1 2020  1.514853  1.940218  0.821168
-  2050  1.740164  1.914750  1.103016
+0 2020  1.453272  1.437856  0.905161
+  2050  1.952814  2.167088  1.198574
+1 2020  1.453272  1.437856  0.905161
+  2050  1.960734  2.175877  0.000000
 </pre></div>
 </div>
 </div>

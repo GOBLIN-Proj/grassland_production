@@ -13,7 +13,7 @@ Classes:
 
 import pandas as pd
 from itertools import product
-from grassland_production.data_loader import Loader
+from resource_manager.data_loader import Loader
 from grassland_production.grassland_data_manager import DataManager
 from grassland_production.grass_yield import Yield
 from grassland_production.fertilisation import Fertilisation
@@ -533,15 +533,18 @@ class DryMatter:
             - This method provides insight into which livestock cohort is contributing the most to the reduction in 
             dry matter requirements in each scenario, allowing for targeted analysis and planning.
         """
-        proprotion_reduction = self.get_dm_proportional_reduction()
+        proportion_reduction = self.get_dm_proportional_reduction()
 
         weights = {} 
 
-        for sc in proprotion_reduction.keys():
+        for sc in proportion_reduction.keys():
             weights[sc] = {}
-            for cohort in proprotion_reduction[sc].keys():
-                if cohort != "total":
-                    weights[sc][cohort] = proprotion_reduction[sc][cohort]/proprotion_reduction[sc]["total"]
+            for cohort in proportion_reduction[sc].keys():
+                if proportion_reduction[sc]["total"] != 0:
+                    weights[sc][cohort] = proportion_reduction[sc][cohort] / proportion_reduction[sc]["total"]
+                else:
+                    # Assign 0 if there is no reduction
+                    weights[sc][cohort] = 0
 
         return weights
 

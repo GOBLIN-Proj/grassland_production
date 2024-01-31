@@ -4,23 +4,12 @@
 .. py:module:: grassland_production
 
 
-Subpackages
------------
-.. toctree::
-   :titlesonly:
-   :maxdepth: 3
-
-   database/index.rst
-
-
 Submodules
 ----------
 .. toctree::
    :titlesonly:
    :maxdepth: 1
 
-   data_loader/index.rst
-   database_manager/index.rst
    dry_matter/index.rst
    farm_data_generation/index.rst
    fertilisation/index.rst

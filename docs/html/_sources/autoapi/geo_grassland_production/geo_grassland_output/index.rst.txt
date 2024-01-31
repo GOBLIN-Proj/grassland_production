@@ -1,0 +1,190 @@
+:py:mod:`geo_grassland_production.geo_grassland_output`
+=======================================================
+
+.. py:module:: geo_grassland_production.geo_grassland_output
+
+.. autoapi-nested-parse::
+
+   =================================
+   Grassland Output Manager Module
+   =================================
+   This module contains the GrasslandOutput class, which is responsible for managing and
+   processing various outputs related to grassland production and management. The class
+   integrates different aspects of grassland management, such as grasslands, farm data,
+   soil groups, dry matter production, and stocking rates, to provide easy retrieval of grassland
+   scenario results.
+
+   Classes:
+       GrasslandOutput: Manages and computes outputs for grassland management for catchment analysis.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   geo_grassland_production.geo_grassland_output.GrasslandOutput
+
+
+
+
+.. py:class:: GrasslandOutput(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+
+
+   A class to manage and format outputs related to grassland production and management.
+
+   This class integrates several aspects of grassland management, including grasslands,
+   farm data, soil groups, dry matter production, and stocking rates. It is used to
+   format and retrieve various metrics important for grassland management decision-making.
+
+   :param ef_country: The country for which the analysis is performed.
+   :type ef_country: str
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param target_year: The target year for future scenario projections.
+   :type target_year: int
+   :param scenario_inputs_df: DataFrame containing scenario input variables data.
+   :type scenario_inputs_df: DataFrame
+   :param scenario_animals_df: DataFrame containing scenario animal data.
+   :type scenario_animals_df: DataFrame
+   :param baseline_animals_df: DataFrame containing baseline animal data.
+   :type baseline_animals_df: DataFrame
+
+   .. attribute:: grassland_class
+
+      An instance of the (geo) Grasslands class.
+
+      :type: Grasslands
+
+   .. attribute:: farm_data_class
+
+      An instance of the FarmData class.
+
+      :type: FarmData
+
+   .. attribute:: soil_groups_class
+
+      An instance of the SoilGroups class.
+
+      :type: SoilGroups
+
+   .. attribute:: dm_class
+
+      An instance of the DryMatter class.
+
+      :type: DryMatter
+
+   .. attribute:: stock_class
+
+      An instance of the StockingRate class.
+
+      :type: StockingRate
+
+   .. method:: total_spared_area()
+
+      Returns the total area spared (former grassland).
+
+   .. method:: total_grassland_area()
+
+      Returns the total area of grassland (remaining).
+
+   .. method:: total_spared_area_breakdown()
+
+      Provides a breakdown of spared areas by soil group.
+
+   .. method:: farm_inputs_data()
+
+      Computes and returns farm data for different scenarios.
+
+   .. method:: baseline_farm_inputs_data()
+
+      Computes and returns baseline farm data.
+
+   .. method:: total_concentrate_feed()
+
+      formats and returns total concentrate feed data.
+
+   .. method:: grassland_stocking_rate()
+
+      formats and returns the grassland stocking rate.
+      
+
+   .. py:method:: total_spared_area()
+
+      Calculate and return the total spared area (grassland no longer stocked).
+
+      This method invokes a function from the Grasslands class to determine the total
+      area that is available but not being used for grazing purposes.
+
+      :returns: Total area spared from grassland use.
+      :rtype: DataFrame
+
+
+   .. py:method:: total_grassland_area()
+
+      Calculate and return the total area covered by grassland.
+
+      This method retrieves the total area of grassland (in use) from the Grasslands class.
+
+      :returns: Total area of grassland.
+      :rtype: DataFrame
+
+
+   .. py:method:: total_spared_area_breakdown()
+
+      Provide a breakdown of the spared areas by soil group.
+
+      This method uses the SoilGroups class to categorize spared areas (destocked)
+      into different soil groups. Provides information on the potential productivity of
+      spared areas.
+
+      :returns: A breakdown of spared areas by soil groups.
+      :rtype: DataFrame
+
+
+   .. py:method:: farm_inputs_data()
+
+      Compute and return farm data for various scenarios.
+
+      This method computes detailed farm data based on different scenarios using the
+      FarmData class.
+
+      :returns: Farm data computed for different scenarios.
+      :rtype: DataFrame
+
+
+   .. py:method:: baseline_farm_inputs_data()
+
+      Compute and return baseline farm data.
+
+      This method calculates farm data for the baseline scenario using the FarmData
+      class.
+
+      :returns: Baseline farm data.
+      :rtype: DataFrame
+
+
+   .. py:method:: total_concentrate_feed()
+
+      Calculate and return the total concentrate feed data.
+
+      This method aggregates total concentrate feed data across various parameters,
+      utilizing the DryMatter class.
+
+      :returns: total concentrate feed data.
+      :rtype: DataFrame
+
+
+   .. py:method:: grassland_stocking_rate()
+
+      Calculate and return the grassland stocking rate per hectare, per system (dairy, beef, sheep).
+
+      :returns: Computed grassland stocking rates.
+      :rtype: DataFrame
+
+
+
