@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geo_grassland_production.catchment_grassland &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">geo_grassland_production.catchment_grassland</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for geo_grassland_production.catchment_grassland</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">===========================</span>
+<span class="sd">Catchment Grassland Module</span>
+<span class="sd">===========================</span>
+<span class="sd">This module provides functionality for managing and analyzing grassland data within specified catchment areas. </span>
+<span class="sd">It is designed to support environmental and agricultural studies, focusing on grassland distribution, usage, and management strategies under </span>
+<span class="sd">various scenarios.</span>
+
+<span class="sd">The module primarily includes the CatchmentGrass class, which interfaces with different data sources to aggregate, process, </span>
+<span class="sd">and calculate grassland areas. It utilizes a combination of catchment-specific grassland data, proportion data for grassland areas, </span>
+<span class="sd">and scenario-based analysis to derive insights about grassland utilization and distribution.</span>
+
+<span class="sd">Key Features:</span>
+<span class="sd">- Aggregation of grassland area data by cover type for specific catchment areas.</span>
+<span class="sd">- Calculation of grassland area proportions based on different environmental and agricultural scenarios.</span>
+<span class="sd">- Utilization of external data sources and APIs for up-to-date and accurate grassland data retrieval.</span>
+<span class="sd">- Support for scenario-based analysis to aid in environmental impact studies and agricultural planning.</span>
+
+<span class="sd">Classes:</span>
+<span class="sd">- CatchmentGrass: Manages and processes grassland data for a given catchment area.</span>
+
+<span class="sd">Dependencies:</span>
+<span class="sd">- catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.</span>
+<span class="sd">- resource_manager.data_loader.Loader: For loading necessary proportion data.</span>
+<span class="sd">- grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.</span>
+<span class="sd">- pandas: For data handling and processing.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">This module is part of a larger suite of environmental analysis tools and should be used in conjunction with other related </span>
+<span class="sd">modules and datasets for comprehensive analysis.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">catchment_data_api.catchment_data_api</span> <span class="kn">import</span> <span class="n">CatchmentDataAPI</span>
+<span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
+<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<div class="viewcode-block" id="CatchmentGrass">
+<a class="viewcode-back" href="../../autoapi/geo_grassland_production/catchment_grassland/index.html#geo_grassland_production.catchment_grassland.CatchmentGrass">[docs]</a>
+<span class="k">class</span> <span class="nc">CatchmentGrass</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to manage and process grassland data for a specified catchment.</span>
+
+<span class="sd">    This class interfaces with various data sources to aggregate and calculate</span>
+<span class="sd">    grassland area data relevant to a given catchment area. It leverages data</span>
+<span class="sd">    from CatchmentDataAPI for catchment-specific grassland data, uses Loader </span>
+<span class="sd">    to retrieve grassland area proportions, and utilizes DataManager for </span>
+<span class="sd">    additional data management and calculations.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        api (CatchmentDataAPI): An instance of CatchmentDataAPI to fetch catchment-specific grassland data.</span>
+<span class="sd">        loader_class (Loader): An instance of Loader to load necessary proportion data.</span>
+<span class="sd">        data_manager_class (DataManager): An instance of DataManager for data management and calculation.</span>
+<span class="sd">        catchment (str): The name of the catchment area.</span>
+<span class="sd">        calibration_year (int): The year for which calibration is done.</span>
+<span class="sd">        default_grassland_year (int): Default year for grassland data, set from the DataManager instance.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        catchment (str): The name of the catchment area.</span>
+<span class="sd">        calibration_year (int): The year for which calibration is done.</span>
+<span class="sd">        target_year (int): The target year for the analysis.</span>
+<span class="sd">        scenario_data (pandas.DataFrame): DataFrame containing scenario data.</span>
+<span class="sd">        scenario_animals_df (pandas.DataFrame): DataFrame containing animal data for the scenario.</span>
+<span class="sd">        baseline_animals_df (pandas.DataFrame): DataFrame containing baseline animal data.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        get_catchment_grassland_areas(self):</span>
+<span class="sd">            Retrieves and sums grassland areas by cover type for the catchment.</span>
+<span class="sd">            Returns a DataFrame with area in hectares.</span>
+
+<span class="sd">        get_catchment_grassland_area_calculated(self):</span>
+<span class="sd">            Calculates grassland area based on catchment data and proportion data.</span>
+<span class="sd">            Returns a DataFrame with calculated grassland areas.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catchment</span><span class="p">,</span>
+                        <span class="n">calibration_year</span><span class="p">,</span>
+                        <span class="n">target_year</span><span class="p">,</span>
+                        <span class="n">scenario_data</span><span class="p">,</span>
+                        <span class="n">scenario_animals_df</span><span class="p">,</span>
+                        <span class="n">baseline_animals_df</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">CatchmentDataAPI</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">,</span>
+                                    <span class="n">target_year</span><span class="p">,</span>
+                                    <span class="n">scenario_data</span><span class="p">,</span>
+                                    <span class="n">scenario_animals_df</span><span class="p">,</span>
+                                    <span class="n">baseline_animals_df</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">catchment</span> <span class="o">=</span> <span class="n">catchment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="n">calibration_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_grassland_year</span>
+
+
+<div class="viewcode-block" id="CatchmentGrass.get_catchment_grassland_areas">
+<a class="viewcode-back" href="../../autoapi/geo_grassland_production/catchment_grassland/index.html#geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_areas">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_catchment_grassland_areas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and processes grassland areas by cover type for a specified catchment.</span>
+
+<span class="sd">        This method fetches grassland data for the catchment area defined in the class instance. </span>
+<span class="sd">        It transposes the data for better organization, groups it by cover type (&#39;cover_type&#39;), </span>
+<span class="sd">        and sums the areas. The resulting DataFrame has the total area for each grassland type </span>
+<span class="sd">        within the catchment, expressed in hectares.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame with cover types as the index and a single column &#39;area_ha&#39; </span>
+<span class="sd">                            representing the total area in hectares for each cover type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">grassland_catchment_areas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_catchment_grass_data_by_catchment_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catchment</span><span class="p">)</span>
+
+        <span class="n">grouped_df</span> <span class="o">=</span> <span class="n">grassland_catchment_areas</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;cover_type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="c1"># Rename the first (and only) column to &#39;area_ha&#39;</span>
+        <span class="n">grouped_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;area_ha&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">grouped_df</span></div>
+
+    
+
+<div class="viewcode-block" id="CatchmentGrass.get_catchment_grassland_area_caluclated">
+<a class="viewcode-back" href="../../autoapi/geo_grassland_production/catchment_grassland/index.html#geo_grassland_production.catchment_grassland.CatchmentGrass.get_catchment_grassland_area_caluclated">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_catchment_grassland_area_caluclated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the grassland area distribution for the catchment based on the calibration year.</span>
+
+<span class="sd">        This method combines the grassland area data for the catchment with proportion data </span>
+<span class="sd">        (such as the percentages of different grassland types). It takes into account the </span>
+<span class="sd">        calibration year specified in the class. If the calibration year is not present in the </span>
+<span class="sd">        proportion data, it defaults to using a predefined grassland year.</span>
+
+<span class="sd">        The calculated data includes the area in hectares for different grassland cover types, </span>
+<span class="sd">        adjusted according to the proportions for the selected year. It also includes data for </span>
+<span class="sd">        &#39;Rough grazing in use&#39;, calculated separately.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame with each row representing a grassland cover type and </span>
+<span class="sd">                            its calculated area in hectares (&#39;area_ha&#39;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">catchment_grassland_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_catchment_grassland_areas</span><span class="p">()</span>
+        <span class="n">grassland_proprotions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">cso_grassland_area_percent</span><span class="p">()</span>
+
+        <span class="n">data</span> <span class="o">=</span><span class="p">[]</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">catchment_grassland_area</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="s2">&quot;Pasture&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">grassland_proprotions</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="ow">in</span> <span class="n">grassland_proprotions</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;... calibration year not present, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span><span class="si">}</span><span class="s2"> default year used for catchment grass distribution&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span>
+
+            <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;cover_type&#39;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span>
+                <span class="s1">&#39;area_ha&#39;</span><span class="p">:</span> <span class="n">catchment_grassland_area</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">grassland_proprotions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+        <span class="n">rough_grazing_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">catchment_grassland_area</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="s2">&quot;Rough_grazing_in_use&quot;</span><span class="p">)</span>
+
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;cover_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Rough grazing in use&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;area_ha&#39;</span><span class="p">:</span> <span class="n">catchment_grassland_area</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rough_grazing_mask</span><span class="p">,</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+</div>
+
+
+        
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

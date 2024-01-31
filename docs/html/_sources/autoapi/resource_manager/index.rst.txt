@@ -1,0 +1,16 @@
+:py:mod:`resource_manager`
+==========================
+
+.. py:module:: resource_manager
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   data_loader/index.rst
+   database_manager/index.rst
+
+

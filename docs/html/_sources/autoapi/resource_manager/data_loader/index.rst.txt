@@ -1,0 +1,319 @@
+:py:mod:`resource_manager.data_loader`
+======================================
+
+.. py:module:: resource_manager.data_loader
+
+.. autoapi-nested-parse::
+
+   ===================
+   Data Loader Module
+   ===================
+
+   The Data Loader module provides a set of classes and methods to facilitate the retrieval of various agricultural data.
+   The data is retrieved from a DataManager instance which manages the underlying database connections and queries.
+
+   Classes:
+       Loader: Provides methods to retrieve data from a DataManager instance.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   resource_manager.data_loader.Loader
+
+
+
+
+.. py:class:: Loader
+
+
+   The Loader class is designed to facilitate the retrieval of various agricultural data
+   related to grassland and livestock management from a DataManager instance.
+   This class primarily focuses on providing easy access to different sets of data
+   related to grassland fertilization, livestock areas, soil groups, and livestock numbers.
+
+   .. attribute:: dataframes
+
+      An instance of DataManager which manages the underlying
+      database connections and queries.
+
+      :type: DataManager
+
+   .. method:: grassland_fertilization_by_system()
+
+      
+      Retrieves data on grassland fertilization by system.
+      
+
+   .. method:: cso_grassland_areas()
+
+      
+      Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas.
+      
+
+   .. method:: cso_grassland_area_percent()
+
+      
+      Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas as a percentage of total area (Hay, Silage, and Pasture).
+      
+
+   .. method:: dairy_area_nfs()
+
+      
+      Retrieves data on dairy areas from NFS (National Farm Survey).
+      
+
+   .. method:: beef_area_nfs()
+
+      
+      Retrieves data on beef areas from NFS (National Farm Survey).
+      
+
+   .. method:: sheep_area_nfs()
+
+      
+      Retrieves data on sheep areas from NFS (National Farm Survey).
+      
+
+   .. method:: nfs_farm_numbers()
+
+      
+      Retrieves data on NFS (National Farm Survey) farm numbers.
+      
+
+   .. method:: dairy_soil_group()
+
+      
+      Retrieves data on dairy soil groups.
+      
+
+   .. method:: cattle_soil_group()
+
+      
+      Retrieves data on cattle soil groups.
+      
+
+   .. method:: sheep_soil_group()
+
+      
+      Retrieves data on sheep soil groups.
+      
+
+   .. method:: fao_fertilization()
+
+      
+      Retrieves FAO (Food and Agriculture Organisation of the United Nations) data on fertilization.
+      
+
+   .. method:: nir_fertilization()
+
+      
+      Retrieves NIR (Ireland's National Inventory Report) data on fertilization.
+      
+
+   .. method:: dairy_nfs_animals()
+
+      
+      Retrieves data on dairy animals from NFS (National Farm Survey).
+      
+
+   .. method:: cattle_nfs_animals()
+
+      
+      Retrieves data on cattle animals from NFS (National Farm Survey).
+      
+
+   .. method:: sheep_nfs_animals()
+
+      
+      Retrieves data on sheep animals from NFS (National Farm Survey).
+      
+
+   .. method:: livestock_units()
+
+      
+      Retrieves data on livestock units (Teagasc).
+      
+
+   .. py:method:: grassland_fertilization_by_system()
+
+      Retrieves data on grassland fertilization application rates segmented by various systems and
+      grassland types.
+
+      This method accesses the DataManager's 'get_grassland_fertilization_by_system'
+      function to fetch data related to the application of fertilizers in different
+      grassland management systems.
+
+      :returns:
+
+                A pandas DataFrame containing detailed information about
+                        grassland fertilization rates segmented by system and grassland type.
+      :rtype: DataFrame
+
+
+   .. py:method:: cso_grassland_areas()
+
+      Retrieves data on grassland areas from the Central Statistics Office (CSO) in Ireland.
+
+      This method provides access to detailed statistical information about grassland areas
+      reported by the CSO. The data is segmented by grassland type.
+
+      :returns: A pandas DataFrame with CSO grassland areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: cso_grassland_area_percent()
+
+      Retrieves data on grassland areas as a percentage of total area (Hay, Grass silage, Pasture) from the Central Statistics Office (CSO) in Ireland.
+
+      This method provides access to detailed statistical information about grassland areas
+      reported by the CSO. The data is segmented by grassland type.
+
+      :returns: A pandas DataFrame with CSO grassland areas as a percentage of total area by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: dairy_area_nfs()
+
+      Retrieves data on dairy farming areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for dairy farming. It provides insights into
+      the size of dairy farms. The data is segmented by grassland type.
+
+      :returns: A pandas DataFrame containing NFS data on dairy farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: beef_area_nfs()
+
+      Retrieves data on beef farming areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for beef farming. It provides insights into
+      the size of beef farms. The data is segmented by grassland type.
+
+      :returns: A pandas DataFrame containing NFS data on beef farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: sheep_area_nfs()
+
+      Retrieves data on sheep farming areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for sheep farming. It provides insights into
+      the size of sheep farms. The data is segmented by grassland type.
+
+      :returns: A pandas DataFrame containing NFS data on sheep farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: nfs_farm_numbers()
+
+      Retrieves data on the number of farms reported in the National Farm Survey (NFS).
+
+      This method provides aggregate data on the number of farms surveyed by the NFS and is
+      segmented by system (dairy, beef, sheep) and year.
+
+      :returns: A pandas DataFrame containing data on the number of farms per system by year.
+      :rtype: DataFrame
+
+
+   .. py:method:: dairy_soil_group()
+
+      Retrieves data on dairy farming soil group areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for dairy farming. It provides insights into
+      the size of dairy farms. The data is segmented by soil group and year.
+
+      :returns: A pandas DataFrame containing NFS data on dairy farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: cattle_soil_group()
+
+      Retrieves data on beef farming soil group areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for beef farming. It provides insights into
+      the size of beef farms. The data is segmented by soil group and year.
+
+      :returns: A pandas DataFrame containing NFS data on beef farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: sheep_soil_group()
+
+      Retrieves data on sheep farming soil group areas from the National Farm Survey (NFS).
+
+      This method accesses NFS data focusing on areas used for sheep farming. It provides insights into
+      the size of sheep farms. The data is segmented by soil group and year.
+
+      :returns: A pandas DataFrame containing NFS data on sheep farming areas by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: fao_fertilization()
+
+      Retrieves FAO (Food and Agriculture Organisation of the United Nations) data on fertilization.
+
+      This method provides access to FAO data on fertilization rates segmented by type (phosphorus, potassium) and year.
+
+      :returns: A pandas DataFrame containing FAO data on fertilization by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: nir_fertilization()
+
+      Retrieves NIR (Ireland's National Inventory Report) data on fertilization.
+
+      This method provides access to NIR data on fertilization rates segmented by type (ammonium nitrate and urea) and year.
+
+      :returns: A pandas DataFrame containing NIR data on fertilization by type and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: dairy_nfs_animals()
+
+      Retrieves data on dairy animals numbers from NFS (National Farm Survey).
+
+      This method provides access to NFS data on dairy animals numbers segmented by cohort and year.
+
+      :returns: A pandas DataFrame containing NFS data on dairy animals numbers by cohort and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: cattle_nfs_animals()
+
+      Retrieves data on cattle animals numbers from NFS (National Farm Survey).
+
+      This method provides access to NFS data on cattle animals numbers segmented by cohort and year.
+
+      :returns: A pandas DataFrame containing NFS data on cattle animals numbers by cohort and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: sheep_nfs_animals()
+
+      Retrieves data on sheep animals numbers from NFS (National Farm Survey).
+
+      This method provides access to NFS data on sheep animals numbers segmented by cohort and year.
+
+      :returns: A pandas DataFrame containing NFS data on sheep animals numbers by cohort and year.
+      :rtype: DataFrame
+
+
+   .. py:method:: livestock_units()
+
+      Retrieves data on livestock units (Teagasc).
+
+      This method provides access to Teagasc data on livestock units coefs segmented by cohort and year.
+
+      :returns: A pandas DataFrame containing Teagasc data on livestock units coefs by cohort and year.
+      :rtype: DataFrame
+
+
+

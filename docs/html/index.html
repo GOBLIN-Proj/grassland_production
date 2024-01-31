@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌱 Grassland_production, a grassland balance tool for Ireland &mdash; Grassland Production, a GOBLIN module 0.2.0 documentation</title>
+  <title>🌱 Grassland_production, a grassland balance tool for catchment and national level analysis in the Irish context &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="_static/documentation_options.js?v=e259d695"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -64,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">🌱 Grassland_production, a grassland balance tool for Ireland</li>
+      <li class="breadcrumb-item active">🌱 Grassland_production, a grassland balance tool for catchment and national level analysis in the Irish context</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,14 +74,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="grassland-production-a-grassland-balance-tool-for-ireland">
-<h1>🌱 Grassland_production, a grassland balance tool for Ireland<a class="headerlink" href="#grassland-production-a-grassland-balance-tool-for-ireland" title="Link to this heading"></a></h1>
+  <section id="grassland-production-a-grassland-balance-tool-for-catchment-and-national-level-analysis-in-the-irish-context">
+<h1>🌱 Grassland_production, a grassland balance tool for catchment and national level analysis in the Irish context<a class="headerlink" href="#grassland-production-a-grassland-balance-tool-for-catchment-and-national-level-analysis-in-the-irish-context" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/colmduff/grassland_production/blob/0.1.0/LICENSE"><img alt="license" src="https://img.shields.io/badge/License-MIT-red" /></a>
 <a class="reference external" href="https://github.com/colmduff/grassland_production"><img alt="python" src="https://img.shields.io/badge/python-3.9-blue?logo=python&amp;logoColor=white" /></a>
 <a class="reference external" href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
-<p>Based on the <a class="reference external" href="https://gmd.copernicus.org/articles/15/2239/2022/">GOBLIN</a> (<strong>G</strong>eneral <strong>O</strong>verview for a <strong>B</strong>ackcasting approach of <strong>L</strong>ivestock <strong>IN</strong>tensification) Grassland module, the Grassland_production module decouples this module making it an independent distribution package.</p>
-<p>The package is shipped with key data for Central Statistics Office grassland areas, Irish National Farm Survey data and FAO fertiliser data.</p>
-<p>Currently parameterised for Ireland, refactoring is possible, however, this is designed to work alongside other GOBLIN modules specifically for producing scenarios in an Irish context. The module uses the energy requirements of livestock as well as organic and inorganic field inputs to estimate the area required to support the herd.</p>
+<p>Based on the <a class="reference external" href="https://gmd.copernicus.org/articles/15/2239/2022/">GOBLIN</a> (<strong>G</strong>eneral <strong>O</strong>verview for a <strong>B</strong>ackcasting approach of <strong>L</strong>ivestock <strong>IN</strong>tensification) Grassland module, the Grassland_production library decouples this module making it an independent distribution package.</p>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Link to this heading"></a></h2>
+<p>The package is structured for use in national and catchment level analysis.</p>
+<p>The geo_grassland_production sub module is intended for use at the catchment level and interfaces with the catchment_data_api to
+retrieve catchment specific grassland data that has been retrieved from <a class="reference external" href="https://www.epa.ie/our-services/monitoring--assessment/assessment/mapping/national-land-cover-map/">Ireland’s National Land Cover map</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   src/
+   │
+   ├── geo_grassland_production/
+   │   └── ... (other modules and sub-packages)
+   │
+   ├── geo_grassland_production/
+   |   └── ... (other modules and sub-packages)
+
+</pre></div>
+</div>
+<p>For national level analysis, the package is shipped with key data for <a class="reference external" href="https://www.cso.ie/en/index.html">Central Statistics Office</a> grassland areas, Irish <a class="reference external" href="https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/">National Farm Survey</a> data and <a class="reference external" href="https://www.fao.org/faostat/en/#home">FAO</a> fertiliser data.</p>
+<p>Currently parameterised for Ireland, refactoring is possible, however, this is designed to work alongside other GOBLIN (and GOBLIN derivative) modules specifically for producing scenarios in an Irish national and catchment context. The module uses the energy requirements of livestock as well as organic and inorganic field inputs to estimate the area required to support the herd.</p>
 <p>The final outputs are dataframes for:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-   Total spared (destocked) area relative to a given baseline year
 -   Total remaining grassland area
@@ -91,6 +106,7 @@
 -   Per ha stocking rate
 </pre></div>
 </div>
+</section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>Install from git hub.</p>
@@ -103,6 +119,7 @@
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>Below is an example usage of the grassland_production submodule, for the national level.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_output</span> <span class="kn">import</span> <span class="n">GrasslandOutput</span>
 <span class="kn">import</span> <span class="nn">shutil</span>

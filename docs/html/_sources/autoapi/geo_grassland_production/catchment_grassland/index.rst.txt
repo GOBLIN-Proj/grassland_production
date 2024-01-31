@@ -1,0 +1,163 @@
+:py:mod:`geo_grassland_production.catchment_grassland`
+======================================================
+
+.. py:module:: geo_grassland_production.catchment_grassland
+
+.. autoapi-nested-parse::
+
+   ===========================
+   Catchment Grassland Module
+   ===========================
+   This module provides functionality for managing and analyzing grassland data within specified catchment areas.
+   It is designed to support environmental and agricultural studies, focusing on grassland distribution, usage, and management strategies under
+   various scenarios.
+
+   The module primarily includes the CatchmentGrass class, which interfaces with different data sources to aggregate, process,
+   and calculate grassland areas. It utilizes a combination of catchment-specific grassland data, proportion data for grassland areas,
+   and scenario-based analysis to derive insights about grassland utilization and distribution.
+
+   Key Features:
+   - Aggregation of grassland area data by cover type for specific catchment areas.
+   - Calculation of grassland area proportions based on different environmental and agricultural scenarios.
+   - Utilization of external data sources and APIs for up-to-date and accurate grassland data retrieval.
+   - Support for scenario-based analysis to aid in environmental impact studies and agricultural planning.
+
+   Classes:
+   - CatchmentGrass: Manages and processes grassland data for a given catchment area.
+
+   Dependencies:
+   - catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.
+   - resource_manager.data_loader.Loader: For loading necessary proportion data.
+   - grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.
+   - pandas: For data handling and processing.
+
+   Note:
+   This module is part of a larger suite of environmental analysis tools and should be used in conjunction with other related
+   modules and datasets for comprehensive analysis.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   geo_grassland_production.catchment_grassland.CatchmentGrass
+
+
+
+
+.. py:class:: CatchmentGrass(catchment, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+
+
+   A class to manage and process grassland data for a specified catchment.
+
+   This class interfaces with various data sources to aggregate and calculate
+   grassland area data relevant to a given catchment area. It leverages data
+   from CatchmentDataAPI for catchment-specific grassland data, uses Loader
+   to retrieve grassland area proportions, and utilizes DataManager for
+   additional data management and calculations.
+
+   .. attribute:: api
+
+      An instance of CatchmentDataAPI to fetch catchment-specific grassland data.
+
+      :type: CatchmentDataAPI
+
+   .. attribute:: loader_class
+
+      An instance of Loader to load necessary proportion data.
+
+      :type: Loader
+
+   .. attribute:: data_manager_class
+
+      An instance of DataManager for data management and calculation.
+
+      :type: DataManager
+
+   .. attribute:: catchment
+
+      The name of the catchment area.
+
+      :type: str
+
+   .. attribute:: calibration_year
+
+      The year for which calibration is done.
+
+      :type: int
+
+   .. attribute:: default_grassland_year
+
+      Default year for grassland data, set from the DataManager instance.
+
+      :type: int
+
+   :param catchment: The name of the catchment area.
+   :type catchment: str
+   :param calibration_year: The year for which calibration is done.
+   :type calibration_year: int
+   :param target_year: The target year for the analysis.
+   :type target_year: int
+   :param scenario_data: DataFrame containing scenario data.
+   :type scenario_data: pandas.DataFrame
+   :param scenario_animals_df: DataFrame containing animal data for the scenario.
+   :type scenario_animals_df: pandas.DataFrame
+   :param baseline_animals_df: DataFrame containing baseline animal data.
+   :type baseline_animals_df: pandas.DataFrame
+
+   .. method:: get_catchment_grassland_areas(self)
+
+      
+      Retrieves and sums grassland areas by cover type for the catchment.
+      Returns a DataFrame with area in hectares.
+      
+
+   .. method:: get_catchment_grassland_area_calculated(self)
+
+      
+      Calculates grassland area based on catchment data and proportion data.
+      Returns a DataFrame with calculated grassland areas.
+      
+
+   .. py:method:: get_catchment_grassland_areas()
+
+      Retrieves and processes grassland areas by cover type for a specified catchment.
+
+      This method fetches grassland data for the catchment area defined in the class instance.
+      It transposes the data for better organization, groups it by cover type ('cover_type'),
+      and sums the areas. The resulting DataFrame has the total area for each grassland type
+      within the catchment, expressed in hectares.
+
+      :returns:
+
+                A DataFrame with cover types as the index and a single column 'area_ha'
+                                representing the total area in hectares for each cover type.
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: get_catchment_grassland_area_caluclated()
+
+      Calculates the grassland area distribution for the catchment based on the calibration year.
+
+      This method combines the grassland area data for the catchment with proportion data
+      (such as the percentages of different grassland types). It takes into account the
+      calibration year specified in the class. If the calibration year is not present in the
+      proportion data, it defaults to using a predefined grassland year.
+
+      The calculated data includes the area in hectares for different grassland cover types,
+      adjusted according to the proportions for the selected year. It also includes data for
+      'Rough grazing in use', calculated separately.
+
+      :returns:
+
+                A DataFrame with each row representing a grassland cover type and
+                                its calculated area in hectares ('area_ha').
+      :rtype: pandas.DataFrame
+
+
+

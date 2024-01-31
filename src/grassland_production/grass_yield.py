@@ -13,7 +13,7 @@ Classes:
 
 import pandas as pd
 from itertools import product
-from grassland_production.data_loader import Loader
+from resource_manager.data_loader import Loader
 from grassland_production.grassland_data_manager import DataManager
 from grassland_production.fertilisation import Fertilisation
 

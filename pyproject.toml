@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "grassland_production"
-version = "0.2.0"
+version = "0.3.0"
 description = "Computation of grassland area and production based on animal energy calculations and grassland inputs"
 authors = ["Colm Duffy"]
 license = "MIT"
@@ -10,12 +10,10 @@ readme = "README.md"
 python = "^3.9"
 pandas = "2.1.4"
 numpy = "^1.25.0"
-seaborn = "^0.13.1"
-matplotlib = "^3.4.3"
 sqlalchemy = "<2.0"
 cattle_lca = {git = "https://github.com/colmduff/cattle_lca.git", branch = "main"}
 sheep_lca = {git = "https://github.com/colmduff/sheep_lca.git", branch = "main"}
-
+catchment_data_api = {git = "https://github.com/colmduff/catchment_data_api.git", branch = "main"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>resource_manager.database_manager &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">resource_manager.database_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for resource_manager.database_manager</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">========================</span>
+<span class="sd">Database Manager Module</span>
+<span class="sd">========================</span>
+
+<span class="sd">This module contains the DataManager class, which is responsible for managing database interactions</span>
+<span class="sd">for the grassland production system. It uses SQLAlchemy for database connectivity and Pandas for </span>
+<span class="sd">data manipulation.</span>
+
+<span class="sd">Classes:</span>
+<span class="sd">    DataManager: Manages database interactions and data retrieval.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sqa</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="n">get_local_dir</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="DataManager">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager">[docs]</a>
+<span class="k">class</span> <span class="nc">DataManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The DataManager class manages interactions with the grassland management database. </span>
+<span class="sd">    It creates a connection to the database and provides methods to retrieve data in the </span>
+<span class="sd">    form of pandas DataFrames.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        database_dir (str): Directory where the database file is located.</span>
+<span class="sd">        engine (sqa.engine.base.Engine): SQLAlchemy engine object for database connection.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        data_engine_creater():</span>
+<span class="sd">            Creates and returns a SQLAlchemy engine for database connectivity.</span>
+
+<span class="sd">        get_cso_grassland_data():</span>
+<span class="sd">            Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas.</span>
+
+<span class="sd">        get_cso_grassland_data_as_percent():</span>
+<span class="sd">            Retrieves and transforms data on CSO (Central Statistics Office, Ireland) grassland areas.</span>
+
+<span class="sd">        get_grassland_fertilization_by_system():</span>
+<span class="sd">            Retrieves data on grassland fertilization by system.</span>
+
+<span class="sd">        get_dairy_area_nfs():</span>
+<span class="sd">            Retrieves data on dairy areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_beef_area_nfs():</span>
+<span class="sd">            Retrieves data on beef areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_sheep_area_nfs():</span>
+<span class="sd">            Retrieves data on sheep areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_nfs_farm_numbers():</span>
+<span class="sd">            Retrieves data on NFS farm numbers (National Farm Survey).</span>
+
+<span class="sd">        get_dairy_soil_group():</span>
+<span class="sd">            Retrieves data on dairy soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_cattle_soil_group():</span>
+<span class="sd">            Retrieves data on cattle soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_sheep_soil_group():</span>
+<span class="sd">            Retrieves data on sheep soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_fao_fertiliser_data():</span>
+<span class="sd">            Retrieves FAO (Food and Agricutlure Organisation) data on fertilization.</span>
+
+<span class="sd">        get_nir_fertiliser_data():</span>
+<span class="sd">            Retrieves NIR (National Inventory Report, Ireland) data on fertilization.</span>
+
+<span class="sd">        get_dairy_nfs_animals():</span>
+<span class="sd">            Retrieves data on dairy animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_cattle_nfs_animals():</span>
+<span class="sd">            Retrieves data on cattle animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_sheep_nfs_animals():</span>
+<span class="sd">            Retrieves data on sheep animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        get_livestock_units():</span>
+<span class="sd">            Retrieves data on livestock units (Teagasc).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the DataManager class by setting up the database directory and creating a database engine.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database_dir</span> <span class="o">=</span> <span class="n">get_local_dir</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_engine_creater</span><span class="p">()</span>
+
+<div class="viewcode-block" id="DataManager.data_engine_creater">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.data_engine_creater">[docs]</a>
+    <span class="k">def</span> <span class="nf">data_engine_creater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates and returns a SQLAlchemy engine for the database.</span>
+
+<span class="sd">        This method constructs the full path to the database file and then uses SQLAlchemy to create an engine </span>
+<span class="sd">        that facilitates database connectivity.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            sqa.engine.base.Engine: An SQLAlchemy engine for database operations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">database_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database_dir</span><span class="p">,</span> <span class="s2">&quot;grassland_management_database.db&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">engine_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sqlite:///</span><span class="si">{</span><span class="n">database_path</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">sqa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="n">engine_url</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="DataManager.get_cso_grassland_data">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_cso_grassland_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cso_grassland_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the CSO grassland areas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;CSO_grassland_areas&quot;</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Scale the values by 1000</span>
+        <span class="n">dataframe</span> <span class="o">*=</span> <span class="mi">1000</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+
+<div class="viewcode-block" id="DataManager.get_cso_grassland_data_as_percent">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_cso_grassland_data_as_percent">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cso_grassland_data_as_percent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and transforms data on CSO (Central Statistics Office, Ireland) grassland areas.</span>
+<span class="sd">        Returns a DataFrame with percentages of the total area for each year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the percentage of each grassland area type per year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;CSO_grassland_areas&quot;</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT Year, Pasture, Hay, `Grass silage` FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Calculate the total area per year</span>
+        <span class="n">yearly_totals</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the percentage of each area type within each year</span>
+        <span class="n">dataframe_percentage</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">yearly_totals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe_percentage</span></div>
+
+
+
+<div class="viewcode-block" id="DataManager.get_grassland_fertilization_by_system">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_grassland_fertilization_by_system">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_grassland_fertilization_by_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on grassland fertilization by system.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the grassland fertilization by system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;grassland_fertilization_by_system&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Grasslandtype&quot;</span><span class="p">,</span> <span class="s2">&quot;Farmsystem&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_dairy_area_nfs">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_dairy_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dairy_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the dairy areas from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;dairy_nfs_areas&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_beef_area_nfs">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_beef_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_beef_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on beef areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the beef areas from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;cattle_nfs_areas&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_sheep_area_nfs">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_sheep_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sheep_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the sheep areas from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;sheep_nfs_areas&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_nfs_farm_numbers">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_nfs_farm_numbers">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_nfs_farm_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on NFS farm numbers (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the NFS farm numbers (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;national_farm_survey_system_numbers&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_dairy_soil_group">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_dairy_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dairy_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the dairy soil groups from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;dairy_soil_group&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_cattle_soil_group">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_cattle_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cattle_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on cattle soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the cattle soil groups from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;cattle_soil_group&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_sheep_soil_group">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_sheep_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sheep_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep soil groups from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the sheep soil groups from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;sheep_soil_group&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_fao_fertiliser_data">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_fao_fertiliser_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_fao_fertiliser_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves FAO (Food and Agricutlure Organisation) data on fertilization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the FAO (Food and Agricutlure Organisation) data on fertilization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;FAO_fertilization&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">dataframe</span> <span class="o">*=</span> <span class="mi">1000</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+    
+
+<div class="viewcode-block" id="DataManager.get_nir_fertiliser_data">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_nir_fertiliser_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_nir_fertiliser_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves NIR (National Inventory Report, Ireland) data on fertilization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the NIR (National Inventory Report, Ireland) data on fertilization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;NIR_fertilization&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">dataframe</span> <span class="o">*=</span> <span class="mi">1000</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+
+<div class="viewcode-block" id="DataManager.get_dairy_nfs_animals">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_dairy_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dairy_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the dairy animal numbers from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;dairy_nfs_animals&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_cattle_nfs_animals">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_cattle_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cattle_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on cattle animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the cattle animal numbers from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;cattle_nfs_animals&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_sheep_nfs_animals">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_sheep_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_sheep_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep animal numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the sheep animal numbers from NFS (National Farm Survey).</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;sheep_nfs_animals&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_livestock_units">
+<a class="viewcode-back" href="../../autoapi/resource_manager/database_manager/index.html#resource_manager.database_manager.DataManager.get_livestock_units">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_livestock_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on livestock units (Teagasc).</span>
+
+<span class="sd">        Returns:    </span>
+<span class="sd">            pandas.DataFrame: A DataFrame containing the livestock units (Teagasc).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;livestock_units&quot;</span>
+
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">table</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -9,7 +9,7 @@
 project = 'Grassland Production, a GOBLIN module'
 copyright = '2024, Colm Duffy'
 author = 'Colm Duffy'
-release = '0.2.0'
+release = '0.3.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -30,6 +30,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-autoapi_dirs = ["../src/grassland_production"]  # location to parse for API reference
+autoapi_dirs = ["../src"]  # location to parse for API reference
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
