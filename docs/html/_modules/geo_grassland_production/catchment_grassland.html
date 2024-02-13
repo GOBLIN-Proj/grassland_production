@@ -97,6 +97,7 @@
 <span class="sd">Dependencies:</span>
 <span class="sd">- catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.</span>
 <span class="sd">- resource_manager.data_loader.Loader: For loading necessary proportion data.</span>
+<span class="sd">- resource_manager.grassland_data_manager.DataManager: For additional data management and calculation needs.</span>
 <span class="sd">- grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.</span>
 <span class="sd">- pandas: For data handling and processing.</span>
 
@@ -107,7 +108,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">catchment_data_api.catchment_data_api</span> <span class="kn">import</span> <span class="n">CatchmentDataAPI</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
 
 <div class="viewcode-block" id="CatchmentGrass">
@@ -150,7 +151,6 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catchment</span><span class="p">,</span>
                         <span class="n">calibration_year</span><span class="p">,</span>
                         <span class="n">target_year</span><span class="p">,</span>
-                        <span class="n">scenario_data</span><span class="p">,</span>
                         <span class="n">scenario_animals_df</span><span class="p">,</span>
                         <span class="n">baseline_animals_df</span><span class="p">):</span>
         
@@ -159,7 +159,6 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">,</span>
                                     <span class="n">target_year</span><span class="p">,</span>
-                                    <span class="n">scenario_data</span><span class="p">,</span>
                                     <span class="n">scenario_animals_df</span><span class="p">,</span>
                                     <span class="n">baseline_animals_df</span><span class="p">)</span>
         

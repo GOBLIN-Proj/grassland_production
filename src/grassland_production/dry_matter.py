@@ -14,7 +14,8 @@ Classes:
 import pandas as pd
 from itertools import product
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grass_yield import Yield
 from grassland_production.fertilisation import Fertilisation
 from grassland_production.grassland_area import Areas
@@ -39,6 +40,8 @@ class DryMatter:
 
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Fetches scenario data.
+        scenario_list (list): List of scenarios.
         data_manager_class (DataManager): Manages the data retrieval for various scenarios.
         calibration_year (int): The year used for calibrating data.
         target_year (int): The year for which the scenario is targeted.
@@ -90,10 +93,11 @@ class DryMatter:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -351,7 +355,7 @@ class DryMatter:
 
         COHORTS = self.data_manager_class.COHORTS_GROUPS
 
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
         scenario_animals_df = self.data_manager_class.scenario_animals_df
         dry_matter_req = {}
         
@@ -627,7 +631,7 @@ class DryMatter:
             cohort, reflecting the varied nature of future livestock farming scenarios.
         """
         kg_to_t = 1e-3
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
         scenario_animals_df = self.data_manager_class.scenario_animals_df
 
         cols = ["dairy", "beef", "sheep", "total"]

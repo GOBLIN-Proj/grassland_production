@@ -28,6 +28,7 @@
    Dependencies:
    - catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.
    - resource_manager.data_loader.Loader: For loading necessary proportion data.
+   - resource_manager.grassland_data_manager.DataManager: For additional data management and calculation needs.
    - grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.
    - pandas: For data handling and processing.
 
@@ -50,7 +51,7 @@ Classes
 
 
 
-.. py:class:: CatchmentGrass(catchment, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: CatchmentGrass(catchment, calibration_year, target_year, scenario_animals_df, baseline_animals_df)
 
 
    A class to manage and process grassland data for a specified catchment.

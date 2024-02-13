@@ -15,7 +15,7 @@ Classes:
 
 import pandas as pd
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
 from grassland_production.spared_area import Grasslands
 import itertools
 
@@ -54,7 +54,7 @@ class SoilGroups:
     """
     def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
 
-        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
@@ -97,6 +97,7 @@ class SoilGroups:
         groups = ("1", "2", "3")
         cohorts = soil_distribution.keys()
         scenarios = spared_area_cohorts.keys()
+
 
         data = []
 

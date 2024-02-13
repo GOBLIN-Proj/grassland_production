@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>resource_manager.scenario_data_fetcher &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">resource_manager.scenario_data_fetcher</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for resource_manager.scenario_data_fetcher</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">=========================</span>
+<span class="sd">ScenarioDataFetcher Module</span>
+<span class="sd">=========================</span>
+<span class="sd">This module contains the ScenarioDataFetcher class, which is responsible for fetching and manipulating scenario data from a pandas DataFrame.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<div class="viewcode-block" id="ScenarioDataFetcher">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher">[docs]</a>
+<span class="k">class</span> <span class="nc">ScenarioDataFetcher</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for fetching and manipulating scenario data from a pandas DataFrame.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        scenario_data (pd.DataFrame): A pandas DataFrame containing scenario data.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        get_scenario_dataframe(): Returns the entire scenario data DataFrame.</span>
+<span class="sd">        get_catchment_name(): Returns the unique catchment name from the scenario data.</span>
+<span class="sd">        get_scenario_list(): Returns a list of unique scenarios present in the scenario data.</span>
+<span class="sd">        get_scenarios_col(): Returns the &#39;Scenarios&#39; column from the scenario data.</span>
+<span class="sd">        get_cattle_system_col(): Returns the &#39;Cattle systems&#39; column from the scenario data.</span>
+<span class="sd">        get_manure_system_col(): Returns the &#39;Manure management&#39; column from the scenario data.</span>
+<span class="sd">        get_dairy_fertilisation_value(mask): Returns the &#39;Dairy Pasture fertilisation&#39; value based on the provided mask.</span>
+<span class="sd">        get_beef_fertilisation_value(mask): Returns the &#39;Beef Pasture fertilisation&#39; value based on the provided mask.</span>
+<span class="sd">        get_clover_proportion_value(mask): Returns the &#39;Clover proportion&#39; value based on the provided mask.</span>
+<span class="sd">        get_clover_fertilisation_value(mask): Returns the &#39;Clover fertilisation&#39; value based on the provided mask.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scenario_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs all the necessary attributes for the ScenarioDataFetcher object.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            scenario_data (pd.DataFrame): The scenario data as a pandas DataFrame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span> <span class="o">=</span> <span class="n">scenario_data</span>
+
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_scenario_dataframe">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_scenario_dataframe">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenario_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the entire scenario data DataFrame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: The scenario data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span></div>
+
+    
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_catchment_name">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_catchment_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_catchment_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the unique catchment name from the scenario data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The unique catchment name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="p">[</span><span class="s2">&quot;Catchment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_scenario_list">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_scenario_list">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenario_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of unique scenarios present in the scenario data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: A list of unique scenario names.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_scenarios_col">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_scenarios_col">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenarios_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Scenarios&#39; column from the scenario data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.Series: The &#39;Scenarios&#39; column.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> </div>
+
+    
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_cattle_system_col">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_cattle_system_col">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cattle_system_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Cattle systems&#39; column from the scenario data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.Series: The &#39;Cattle systems&#39; column.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="p">[</span><span class="s2">&quot;Cattle systems&quot;</span><span class="p">]</span></div>
+
+    
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_manure_system_col">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_manure_system_col">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_manure_system_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Manure management&#39; column from the scenario data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.Series: The &#39;Manure management&#39; column.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="p">[</span><span class="s2">&quot;Manure management&quot;</span><span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="ScenarioDataFetcher.get_dairy_fertilisation_value">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_dairy_fertilisation_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dairy_fertilisation_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Dairy Pasture fertilisation&#39; value based on the provided mask.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mask (pd.Series): A boolean Series to filter the DataFrame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The &#39;Dairy Pasture fertilisation&#39; value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;Dairy Pasture fertilisation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ScenarioDataFetcher.get_beef_fertilisation_value">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_beef_fertilisation_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_beef_fertilisation_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Beef Pasture fertilisation&#39; value based on the provided mask.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mask (pd.Series): A boolean Series to filter the DataFrame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The &#39;Beef Pasture fertilisation&#39; value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;Beef Pasture fertilisation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="ScenarioDataFetcher.get_clover_proportion_value">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_clover_proportion_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_clover_proportion_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Clover proportion&#39; value based on the provided mask.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mask (pd.Series): A boolean Series to filter the DataFrame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The &#39;Clover proportion&#39; value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;Clover proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="ScenarioDataFetcher.get_clover_fertilisation_value">
+<a class="viewcode-back" href="../../autoapi/resource_manager/scenario_data_fetcher/index.html#resource_manager.scenario_data_fetcher.ScenarioDataFetcher.get_clover_fertilisation_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_clover_fertilisation_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the &#39;Clover fertilisation&#39; value based on the provided mask.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mask (pd.Series): A boolean Series to filter the DataFrame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The &#39;Clover fertilisation&#39; value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;Clover fertilisation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -15,7 +15,8 @@ Classes:
 import pandas as pd
 import itertools
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.spared_area import Grasslands
 
 
@@ -36,6 +37,8 @@ class StockingRate:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
         
     Attributes:
+        sc_class (ScenarioDataFetcher): Fetches scenario data.
+        scenario_list (list): List of scenarios.
         data_manager_class (DataManager): Manages and processes grassland and livestock data.
         calibration_year (int): Year of data calibration.
         target_year (int): Target year for data analysis.
@@ -51,7 +54,9 @@ class StockingRate:
         get_stocking_rate(): Computes stocking rates for different farm types and scenarios.
     """
     def __init__(self,ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
-        self.data_manager_class = DataManager(calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+        self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.calibration_year
         self.target_year = self.data_manager_class.target_year
         self.default_calibration_year = self.data_manager_class.default_calibration_year
@@ -131,7 +136,7 @@ class StockingRate:
                 has the target year as the index and farm types (dairy, beef, sheep) as columns. 
                 Each cell contains the total livestock units for that farm type in the target year.
         """
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         scenario_animals_df = self.data_manager_class.scenario_animals_df
 
@@ -219,7 +224,7 @@ class StockingRate:
                 the stocking rate for that farm type in the respective year and scenario.
         """
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         keys = self.data_manager_class.systems
 

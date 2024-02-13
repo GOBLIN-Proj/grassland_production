@@ -14,7 +14,8 @@ Classes:
 from itertools import product
 import pandas as pd
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grassland_area import Areas
 from cattle_lca.lca import DailySpread
 
@@ -34,6 +35,8 @@ class Fertilisation:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
+        scenario_list (list): List of scenarios for the analysis.
         data_manager_class (DataManager): Instance of DataManager for managing data related to fertilization.
         loader_class (Loader): Instance of Loader to load various datasets.
         areas_class (Areas): Instance of Areas for calculating area-related data.
@@ -60,10 +63,11 @@ class Fertilisation:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -119,33 +123,30 @@ class Fertilisation:
         # empty dataframe with grass types  for Dairy
         sheep_fertilization_data_frame = pd.DataFrame(index=fertilization_index)
 
-        scenarios = list(
-            self.data_manager_class.scenario_inputs_df["Scenarios"].unique()
-        )
+        scenarios = self.scenario_list
+        scenario_column = self.sc_class.get_scenarios_col()
+        cattle_system_column = self.sc_class.get_cattle_system_col()
+        manure_system_column = self.sc_class.get_manure_system_col()
 
         self.fert_rate = {"dairy": {}, "beef": {}, "sheep": {}}
         # for each scenario
         for sc in scenarios:
             beef_mask = (
-                (self.data_manager_class.scenario_inputs_df["Scenarios"] == sc)
+                (scenario_column == sc)
                 & (
-                    self.data_manager_class.scenario_inputs_df["Cattle systems"]
-                    == "Beef"
+                    cattle_system_column == "Beef"
                 )
                 & (
-                    self.data_manager_class.scenario_inputs_df["Manure management"]
-                    == "tank liquid"
+                    manure_system_column == "tank liquid"
                 )
             )
             dairy_mask = (
-                (self.data_manager_class.scenario_inputs_df["Scenarios"] == sc)
+                (scenario_column == sc)
                 & (
-                    self.data_manager_class.scenario_inputs_df["Cattle systems"]
-                    == "Dairy"
+                    cattle_system_column== "Dairy"
                 )
                 & (
-                    self.data_manager_class.scenario_inputs_df["Manure management"]
-                    == "tank liquid"
+                    manure_system_column== "tank liquid"
                 )
             )
 
@@ -196,20 +197,15 @@ class Fertilisation:
 
                 # if pasture use scenario values for beef and dairy, average for sheep
                 if grassland_type == "Pasture" or grassland_type == "Grass silage":
+
                     _dairy.loc[
                         grassland_type, str(self.target_year)
-                    ] = self.data_manager_class.scenario_inputs_df.loc[
-                        dairy_mask, "Dairy Pasture fertilisation"
-                    ].values[
-                        0
-                    ]
+                    ] = self.sc_class.get_dairy_fertilisation_value(dairy_mask)
+
                     _beef.loc[
                         grassland_type, str(self.target_year)
-                    ] = self.data_manager_class.scenario_inputs_df.loc[
-                        beef_mask, "Beef Pasture fertilisation"
-                    ].values[
-                        0
-                    ]
+                    ] = self.sc_class.get_beef_fertilisation_value(beef_mask)
+
                     _sheep.loc[
                         grassland_type, str(self.target_year)
                     ] = fertilization_by_system_data_frame.loc[
@@ -275,9 +271,7 @@ class Fertilisation:
             self.data_manager_class.COHORTS_DICT["Sheep"]
         )
 
-        scenario_list = list(
-            self.data_manager_class.scenario_inputs_df.Scenarios.unique()
-        )
+        scenario_list = self.scenario_list
 
         spread_dict = {}
 

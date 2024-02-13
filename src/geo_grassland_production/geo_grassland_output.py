@@ -15,7 +15,7 @@ Classes:
 
 from geo_grassland_production.geo_spared_area import Grasslands
 from grassland_production.farm_data_generation import FarmData
-from grassland_production.grassland_soils import SoilGroups
+from geo_grassland_production.geo_grassland_soils import SoilGroups
 from grassland_production.dry_matter import DryMatter
 from grassland_production.stocking_rate import StockingRate
 

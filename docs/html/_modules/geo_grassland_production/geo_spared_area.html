@@ -89,7 +89,8 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.scenario_data_fetcher</span> <span class="kn">import</span> <span class="n">ScenarioDataFetcher</span>
 <span class="kn">from</span> <span class="nn">geo_grassland_production.geo_grass_yield</span> <span class="kn">import</span> <span class="n">Yield</span>
 <span class="kn">from</span> <span class="nn">grassland_production.dry_matter</span> <span class="kn">import</span> <span class="n">DryMatter</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_area</span> <span class="kn">import</span> <span class="n">Areas</span>
@@ -113,6 +114,8 @@
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        sc_class (ScenarioDataFetcher): Fetches scenario data.</span>
+<span class="sd">        scenario_list (list): List of scenarios.</span>
 <span class="sd">        data_manager_class (DataManager): Manages and processes grassland data.</span>
 <span class="sd">        calibration_year (int): Year of data calibration.</span>
 <span class="sd">        target_year (int): Target year for data analysis.</span>
@@ -138,10 +141,12 @@
         <span class="n">scenario_animals_df</span><span class="p">,</span>
         <span class="n">baseline_animals_df</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span> <span class="o">=</span> <span class="n">ScenarioDataFetcher</span><span class="p">(</span><span class="n">scenario_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_list</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span>
             <span class="n">calibration_year</span><span class="p">,</span>
             <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
             <span class="n">scenario_animals_df</span><span class="p">,</span>
             <span class="n">baseline_animals_df</span><span class="p">,</span>
         <span class="p">)</span>
@@ -202,7 +207,7 @@
 
         <span class="c1"># grass drymatter requirement for cattle and sheep, is dictionary</span>
         <span class="n">year_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">]</span>
-        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
 
         <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">systems</span>
 
@@ -277,7 +282,7 @@
 <span class="sd">                    that scenario and year.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">year_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">]</span>
-        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
 
         <span class="n">spared_area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">year_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">scenario_list</span><span class="p">)</span>
 

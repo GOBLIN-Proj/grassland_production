@@ -90,7 +90,7 @@
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
 <span class="kn">from</span> <span class="nn">grassland_production.spared_area</span> <span class="kn">import</span> <span class="n">Grasslands</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 
@@ -131,7 +131,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ef_country</span><span class="p">,</span> <span class="n">calibration_year</span><span class="p">,</span> <span class="n">target_year</span><span class="p">,</span> <span class="n">scenario_data</span><span class="p">,</span> <span class="n">scenario_animals_df</span><span class="p">,</span><span class="n">baseline_animals_df</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">,</span> <span class="n">target_year</span><span class="p">,</span> <span class="n">scenario_data</span><span class="p">,</span> <span class="n">scenario_animals_df</span><span class="p">,</span><span class="n">baseline_animals_df</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span><span class="n">calibration_year</span><span class="p">,</span> <span class="n">target_year</span><span class="p">,</span> <span class="n">scenario_animals_df</span><span class="p">,</span><span class="n">baseline_animals_df</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">calibration_year</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">target_year</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_calibration_year</span>
@@ -176,6 +176,7 @@
         <span class="n">groups</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">)</span>
         <span class="n">cohorts</span> <span class="o">=</span> <span class="n">soil_distribution</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">scenarios</span> <span class="o">=</span> <span class="n">spared_area_cohorts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
 
         <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 

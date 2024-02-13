@@ -52,6 +52,18 @@ Classes
    :param baseline_animals_df: DataFrame containing baseline animal data.
    :type baseline_animals_df: DataFrame
 
+   .. attribute:: sc_class
+
+      Instance of ScenarioDataFetcher for fetching scenario data.
+
+      :type: ScenarioDataFetcher
+
+   .. attribute:: catchment
+
+      The name of the catchment area.
+
+      :type: str
+
    .. attribute:: data_manager_class
 
       Instance of DataManager for managing data related to fertilization.

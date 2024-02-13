@@ -17,7 +17,7 @@
     ├── geo_grassland_production/
     │   └── ... (other modules and sub-packages)
     │
-    ├── geo_grassland_production/
+    ├── grassland_production/
     |   └── ... (other modules and sub-packages)
 
  ```

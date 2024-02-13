@@ -13,7 +13,8 @@ Classes:
 import pandas as pd
 import copy
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grass_yield import Yield
 from grassland_production.fertilisation import Fertilisation
 from grassland_production.grassland_area import Areas
@@ -39,6 +40,8 @@ class UtilisationRate:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Fetches scenario data.
+        scenario_list (list): List of scenarios.
         data_manager_class (DataManager): Manages and processes grassland and livestock data.
         calibration_year (int): Year of data calibration.
         target_year (int): Target year for data analysis.
@@ -69,10 +72,12 @@ class UtilisationRate:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -141,7 +146,7 @@ class UtilisationRate:
         }
 
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
 
         farm_dm_production = {}
@@ -182,7 +187,7 @@ class UtilisationRate:
         """
         kg_to_t = 1e-3
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         NFS_data = {
             "NFS_dairy":{"dairy": self.loader_class.dairy_nfs_animals()},
@@ -251,8 +256,8 @@ class UtilisationRate:
                 rate for that farm type in the respective year and scenario.
         """
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
-        scenario_df = self.data_manager_class.scenario_inputs_df
+        scenario_list = self.scenario_list
+        scenario_df = self.sc_class.get_scenario_dataframe()
 
         dry_matter_demand = self.get_farm_type_dry_matter_required()
         dry_matter_available = self.get_farm_type_dry_matter_produced()

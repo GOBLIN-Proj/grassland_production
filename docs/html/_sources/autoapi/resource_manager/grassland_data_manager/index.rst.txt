@@ -1,7 +1,7 @@
-:py:mod:`grassland_production.grassland_data_manager`
-=====================================================
+:py:mod:`resource_manager.grassland_data_manager`
+=================================================
 
-.. py:module:: grassland_production.grassland_data_manager
+.. py:module:: resource_manager.grassland_data_manager
 
 .. autoapi-nested-parse::
 
@@ -21,12 +21,12 @@ Classes
 
 .. autoapisummary::
 
-   grassland_production.grassland_data_manager.DataManager
+   resource_manager.grassland_data_manager.DataManager
 
 
 
 
-.. py:class:: DataManager(calibration_year, target_year, scenario_inputs_df, scenario_animals_df, baseline_animals_df)
+.. py:class:: DataManager(calibration_year, target_year, scenario_animals_df, baseline_animals_df)
 
 
    The Grassland Static Data Manager Module is responsible for loading and managing static data for grassland production analysis.

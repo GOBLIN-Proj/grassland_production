@@ -53,6 +53,18 @@ Classes
    :param baseline_animals_df: DataFrame containing baseline animal data.
    :type baseline_animals_df: DataFrame
 
+   .. attribute:: sc_class
+
+      Fetches scenario data.
+
+      :type: ScenarioDataFetcher
+
+   .. attribute:: scenario_list
+
+      List of scenarios.
+
+      :type: list
+
    .. attribute:: data_manager_class
 
       Manages and processes grassland data.

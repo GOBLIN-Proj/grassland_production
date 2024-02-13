@@ -14,7 +14,8 @@ Classes:
 import pandas as pd
 import itertools
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grassland_area import Areas
 from grassland_production.spared_area import Grasslands
 from grassland_production.fertilisation import Fertilisation
@@ -37,6 +38,8 @@ class FarmData:
 
     Attributes:
         loader_class (Loader): Instance of Loader to load various datasets.
+        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
+        scenario_list (list): List of scenarios for analysis.
         data_manager_class (DataManager): Instance of DataManager for managing scenario and baseline data.
         areas_class (Areas): Instance of Areas for calculating areas-related data.
         grassland_class (Grasslands): Instance for calculating grassland related data.
@@ -65,10 +68,13 @@ class FarmData:
         baseline_animals_df,
     ):
         self.loader_class = Loader()
+
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -132,9 +138,7 @@ class FarmData:
         }
 
         grassland_type = self.data_manager_class.grasslands
-        scenario_list = list(
-            self.data_manager_class.scenario_inputs_df.Scenarios.unique()
-        )
+        scenario_list = self.scenario_list
 
         year_list = list(
             (
@@ -205,6 +209,8 @@ class FarmData:
 
         fert_rate_total = self.compute_fertilization_total()
 
+        scenario_inputs_df = self.sc_class.get_scenario_dataframe()
+
         farm_data = pd.DataFrame()
 
         try:
@@ -227,14 +233,14 @@ class FarmData:
 
         new_index = 0
         for index in fert_rate_total.columns:
-            urea_mask = (self.data_manager_class.scenario_inputs_df["Scenarios"]==index)
+            urea_mask = (scenario_inputs_df["Scenarios"]==index)
 
             farm_data.loc[new_index, "ef_country"] = "ireland"
             farm_data.loc[new_index, "farm_id"] = index
             farm_data.loc[new_index, "year"] = int(target_year)
 
-            share_urea = self.data_manager_class.scenario_inputs_df.loc[urea_mask, "Urea proportion"].unique()
-            share_urea_abated = self.data_manager_class.scenario_inputs_df.loc[urea_mask, "Urea abated proportion"].unique()
+            share_urea = scenario_inputs_df.loc[urea_mask, "Urea proportion"].unique()
+            share_urea_abated = scenario_inputs_df.loc[urea_mask, "Urea abated proportion"].unique()
 
             urea_t = ((
                 share_urea

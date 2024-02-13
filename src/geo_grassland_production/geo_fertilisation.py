@@ -14,7 +14,9 @@ Classes:
 from itertools import product
 import pandas as pd
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
+
 from grassland_production.grassland_area import Areas
 from grassland_production.fertilisation import Fertilisation as Fert
 from cattle_lca.lca import DailySpread
@@ -37,6 +39,8 @@ class Fertilisation:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
+        catchment (str): The name of the catchment area.
         data_manager_class (DataManager): Instance of DataManager for managing data related to fertilization.
         loader_class (Loader): Instance of Loader to load various datasets.
         areas_class (Areas): Instance of Areas for calculating area-related data.
@@ -74,17 +78,17 @@ class Fertilisation:
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
 
-        self.catchment = scenario_data["Catchment"].unique().item()
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+
+        self.catchment = self.sc_class.get_catchment_name()
 
         self.catchment_grass = CatchmentGrass(self.catchment,
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
