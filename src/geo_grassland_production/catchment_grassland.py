@@ -22,6 +22,7 @@ Classes:
 Dependencies:
 - catchment_data_api.CatchmentDataAPI: For fetching catchment-specific grassland data.
 - resource_manager.data_loader.Loader: For loading necessary proportion data.
+- resource_manager.grassland_data_manager.DataManager: For additional data management and calculation needs.
 - grassland_production.grassland_data_manager.DataManager: For additional data management and calculation needs.
 - pandas: For data handling and processing.
 
@@ -32,7 +33,7 @@ modules and datasets for comprehensive analysis.
 """
 from catchment_data_api.catchment_data_api import CatchmentDataAPI
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
 import pandas as pd 
 
 class CatchmentGrass:
@@ -73,7 +74,6 @@ class CatchmentGrass:
     def __init__(self, catchment,
                         calibration_year,
                         target_year,
-                        scenario_data,
                         scenario_animals_df,
                         baseline_animals_df):
         
@@ -82,7 +82,6 @@ class CatchmentGrass:
 
         self.data_manager_class = DataManager(calibration_year,
                                     target_year,
-                                    scenario_data,
                                     scenario_animals_df,
                                     baseline_animals_df)
         

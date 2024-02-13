@@ -46,7 +46,6 @@ class DataManager:
         self,
         calibration_year,
         target_year,
-        scenario_inputs_df,
         scenario_animals_df,
         baseline_animals_df,
     ):
@@ -125,7 +124,6 @@ class DataManager:
                     "hilly_pasture": self.COHORTS_DICT["Sheep"]}
         }
 
-        self.scenario_inputs_df = scenario_inputs_df
         self.scenario_animals_df = scenario_animals_df
         self.baseline_animals_df = baseline_animals_df
 

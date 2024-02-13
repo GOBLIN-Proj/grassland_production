@@ -89,7 +89,8 @@
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.scenario_data_fetcher</span> <span class="kn">import</span> <span class="n">ScenarioDataFetcher</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_area</span> <span class="kn">import</span> <span class="n">Areas</span>
 <span class="kn">from</span> <span class="nn">cattle_lca.lca</span> <span class="kn">import</span> <span class="n">DailySpread</span>
 
@@ -111,6 +112,8 @@
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.</span>
+<span class="sd">        scenario_list (list): List of scenarios for the analysis.</span>
 <span class="sd">        data_manager_class (DataManager): Instance of DataManager for managing data related to fertilization.</span>
 <span class="sd">        loader_class (Loader): Instance of Loader to load various datasets.</span>
 <span class="sd">        areas_class (Areas): Instance of Areas for calculating area-related data.</span>
@@ -137,10 +140,11 @@
         <span class="n">scenario_animals_df</span><span class="p">,</span>
         <span class="n">baseline_animals_df</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span> <span class="o">=</span> <span class="n">ScenarioDataFetcher</span><span class="p">(</span><span class="n">scenario_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span>
             <span class="n">calibration_year</span><span class="p">,</span>
             <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
             <span class="n">scenario_animals_df</span><span class="p">,</span>
             <span class="n">baseline_animals_df</span><span class="p">,</span>
         <span class="p">)</span>
@@ -198,33 +202,30 @@
         <span class="c1"># empty dataframe with grass types  for Dairy</span>
         <span class="n">sheep_fertilization_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">fertilization_index</span><span class="p">)</span>
 
-        <span class="n">scenarios</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="n">scenarios</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
+        <span class="n">scenario_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenarios_col</span><span class="p">()</span>
+        <span class="n">cattle_system_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_cattle_system_col</span><span class="p">()</span>
+        <span class="n">manure_system_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_manure_system_col</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fert_rate</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="p">{}}</span>
         <span class="c1"># for each scenario</span>
         <span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">scenarios</span><span class="p">:</span>
             <span class="n">beef_mask</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
+                <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
                 <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Cattle systems&quot;</span><span class="p">]</span>
-                    <span class="o">==</span> <span class="s2">&quot;Beef&quot;</span>
+                    <span class="n">cattle_system_column</span> <span class="o">==</span> <span class="s2">&quot;Beef&quot;</span>
                 <span class="p">)</span>
                 <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Manure management&quot;</span><span class="p">]</span>
-                    <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
+                    <span class="n">manure_system_column</span> <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="n">dairy_mask</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
+                <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
                 <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Cattle systems&quot;</span><span class="p">]</span>
-                    <span class="o">==</span> <span class="s2">&quot;Dairy&quot;</span>
+                    <span class="n">cattle_system_column</span><span class="o">==</span> <span class="s2">&quot;Dairy&quot;</span>
                 <span class="p">)</span>
                 <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Manure management&quot;</span><span class="p">]</span>
-                    <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
+                    <span class="n">manure_system_column</span><span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
                 <span class="p">)</span>
             <span class="p">)</span>
 
@@ -275,20 +276,15 @@
 
                 <span class="c1"># if pasture use scenario values for beef and dairy, average for sheep</span>
                 <span class="k">if</span> <span class="n">grassland_type</span> <span class="o">==</span> <span class="s2">&quot;Pasture&quot;</span> <span class="ow">or</span> <span class="n">grassland_type</span> <span class="o">==</span> <span class="s2">&quot;Grass silage&quot;</span><span class="p">:</span>
+
                     <span class="n">_dairy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
                         <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">dairy_mask</span><span class="p">,</span> <span class="s2">&quot;Dairy Pasture fertilisation&quot;</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span>
-                        <span class="mi">0</span>
-                    <span class="p">]</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_dairy_fertilisation_value</span><span class="p">(</span><span class="n">dairy_mask</span><span class="p">)</span>
+
                     <span class="n">_beef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
                         <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">beef_mask</span><span class="p">,</span> <span class="s2">&quot;Beef Pasture fertilisation&quot;</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span>
-                        <span class="mi">0</span>
-                    <span class="p">]</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_beef_fertilisation_value</span><span class="p">(</span><span class="n">beef_mask</span><span class="p">)</span>
+
                     <span class="n">_sheep</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
                         <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
                     <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
@@ -357,9 +353,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
         <span class="p">)</span>
 
-        <span class="n">scenario_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
 
         <span class="n">spread_dict</span> <span class="o">=</span> <span class="p">{}</span>
 

@@ -15,7 +15,6 @@ Submodules
    fertilisation/index.rst
    grass_yield/index.rst
    grassland_area/index.rst
-   grassland_data_manager/index.rst
    grassland_output/index.rst
    grassland_soils/index.rst
    spared_area/index.rst

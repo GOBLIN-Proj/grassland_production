@@ -15,7 +15,8 @@ Classes:
 import pandas as pd
 from itertools import product
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from geo_grassland_production.geo_fertilisation import Fertilisation
 from grassland_production.grass_yield import Yield as GrasslandYield
 
@@ -37,6 +38,8 @@ class Yield:
         baseline_animals_df (DataFrame): DataFrame containing baseline data on animal populations.
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
+        scenario_list (list): List of scenarios for which the analysis is performed.
         data_manager_class (DataManager): Instance of DataManager for managing data related to grass yield.
         geo_fertiliser_class (Fertilisation): Instance of Fertilisation for handling geo-specific fertilization data.
         grass_yield_class (GrasslandYield): Instance of Yield class from the grassland_production lib.
@@ -72,10 +75,12 @@ class Yield:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -154,7 +159,7 @@ class Yield:
         organic_manure = self.geo_fertiliser_class.organic_fertilisation_per_ha()
 
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         clover_parameters_dict = self.get_clover_parameters()
 

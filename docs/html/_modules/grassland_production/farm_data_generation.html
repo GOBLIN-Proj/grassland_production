@@ -89,7 +89,8 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.scenario_data_fetcher</span> <span class="kn">import</span> <span class="n">ScenarioDataFetcher</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_area</span> <span class="kn">import</span> <span class="n">Areas</span>
 <span class="kn">from</span> <span class="nn">grassland_production.spared_area</span> <span class="kn">import</span> <span class="n">Grasslands</span>
 <span class="kn">from</span> <span class="nn">grassland_production.fertilisation</span> <span class="kn">import</span> <span class="n">Fertilisation</span>
@@ -114,6 +115,8 @@
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        loader_class (Loader): Instance of Loader to load various datasets.</span>
+<span class="sd">        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.</span>
+<span class="sd">        scenario_list (list): List of scenarios for analysis.</span>
 <span class="sd">        data_manager_class (DataManager): Instance of DataManager for managing scenario and baseline data.</span>
 <span class="sd">        areas_class (Areas): Instance of Areas for calculating areas-related data.</span>
 <span class="sd">        grassland_class (Grasslands): Instance for calculating grassland related data.</span>
@@ -142,10 +145,13 @@
         <span class="n">baseline_animals_df</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span> <span class="o">=</span> <span class="n">ScenarioDataFetcher</span><span class="p">(</span><span class="n">scenario_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_list</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span>
             <span class="n">calibration_year</span><span class="p">,</span>
             <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
             <span class="n">scenario_animals_df</span><span class="p">,</span>
             <span class="n">baseline_animals_df</span><span class="p">,</span>
         <span class="p">)</span>
@@ -211,9 +217,7 @@
         <span class="p">}</span>
 
         <span class="n">grassland_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">grasslands</span>
-        <span class="n">scenario_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
 
         <span class="n">year_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
             <span class="p">(</span>
@@ -287,6 +291,8 @@
 
         <span class="n">fert_rate_total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_fertilization_total</span><span class="p">()</span>
 
+        <span class="n">scenario_inputs_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_dataframe</span><span class="p">()</span>
+
         <span class="n">farm_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -309,14 +315,14 @@
 
         <span class="n">new_index</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">fert_rate_total</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="n">urea_mask</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">urea_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">scenario_inputs_df</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">index</span><span class="p">)</span>
 
             <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;ef_country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
             <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
             <span class="n">farm_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_year</span><span class="p">)</span>
 
-            <span class="n">share_urea</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-            <span class="n">share_urea_abated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea abated proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">share_urea</span> <span class="o">=</span> <span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">share_urea_abated</span> <span class="o">=</span> <span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">urea_mask</span><span class="p">,</span> <span class="s2">&quot;Urea abated proportion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
             <span class="n">urea_t</span> <span class="o">=</span> <span class="p">((</span>
                 <span class="n">share_urea</span>

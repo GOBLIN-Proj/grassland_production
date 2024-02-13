@@ -14,6 +14,7 @@ Submodules
    geo_fertilisation/index.rst
    geo_grass_yield/index.rst
    geo_grassland_output/index.rst
+   geo_grassland_soils/index.rst
    geo_spared_area/index.rst
 
 

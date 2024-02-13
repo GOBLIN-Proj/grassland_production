@@ -14,7 +14,8 @@ Classes:
 import pandas as pd
 from itertools import product
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.fertilisation import Fertilisation
 
 
@@ -33,6 +34,8 @@ class Yield:
             baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
         Attributes:
+            sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
+            scenario_list (list): List of scenarios.
             data_manager_class (DataManager): Instance of DataManager for managing data related to yield.
             fertiliser_class (Fertilisation): Instance of Fertilisation for handling fertilization-related data.
             loader_class (Loader): Instance of Loader to load various datasets.
@@ -61,10 +64,12 @@ class Yield:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -102,7 +107,7 @@ class Yield:
             - Clover fertilisation rate: The rate of clover fertilisation.
 
         """
-        scenario_df = self.data_manager_class.scenario_inputs_df
+        scenario_df = self.sc_class.get_scenario_dataframe()
 
         keys = ["dairy", "beef", "sheep"]
         inner_keys = ["proportion", "fertilisation"]
@@ -127,8 +132,8 @@ class Yield:
         for key in keys:
             for sc in scenario_df["Scenarios"].unique():
                 mask = (scenario_df["Scenarios"] == sc) & conditions[key]
-                clover_proportion = scenario_df.loc[mask, "Clover proportion"].item()
-                clover_fertilisation = scenario_df.loc[mask, "Clover fertilisation"].item()
+                clover_proportion = self.sc_class.get_clover_proportion_value(mask)
+                clover_fertilisation = self.sc_class.get_clover_fertilisation_value(mask)
                 clover_dict[key]["proportion"][sc] = clover_proportion
                 clover_dict[key]["fertilisation"][sc] = clover_fertilisation
 
@@ -161,7 +166,7 @@ class Yield:
         organic_manure = self.fertiliser_class.organic_fertilisation_per_ha()
 
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         clover_parameters_dict = self.get_clover_parameters()
 

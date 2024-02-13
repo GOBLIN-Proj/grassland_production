@@ -13,9 +13,9 @@ Classes:
 """
 
 import pandas as pd
-import copy
 from resource_manager.data_loader import Loader
-from grassland_production.grassland_data_manager import DataManager
+from resource_manager.grassland_data_manager import DataManager
+from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grass_yield import Yield
 from grassland_production.dry_matter import DryMatter
 from grassland_production.grassland_area import Areas
@@ -37,6 +37,8 @@ class Grasslands:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
     Attributes:
+        sc_class (ScenarioDataFetcher): Fetches scenario data.
+        scenario_list (list): List of scenarios.
         data_manager_class (DataManager): Manages and processes grassland data.
         calibration_year (int): Year of data calibration.
         target_year (int): Target year for data analysis.
@@ -62,10 +64,12 @@ class Grasslands:
         scenario_animals_df,
         baseline_animals_df,
     ):
+        self.sc_class = ScenarioDataFetcher(scenario_data)
+        self.scenario_list = self.sc_class.get_scenario_list()
+
         self.data_manager_class = DataManager(
             calibration_year,
             target_year,
-            scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
@@ -124,7 +128,7 @@ class Grasslands:
 
         # grass drymatter requirement for cattle and sheep, is dictionary
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         keys = self.data_manager_class.systems
 
@@ -196,7 +200,7 @@ class Grasslands:
                     that scenario and year.
         """
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
 
         spared_area = pd.DataFrame(0.0, index=year_list, columns=scenario_list)
 
@@ -237,8 +241,9 @@ class Grasslands:
         for sc in cohort_weights.keys():
             cohort_spared_area[sc] = {}
             for cohort in cohort_weights[sc].keys():
-                cohort_spared_area[sc][cohort] = spared_area.loc[self.target_year, sc].item() * cohort_weights[sc][cohort]
-
+                if cohort != "total":
+                    
+                    cohort_spared_area[sc][cohort] = spared_area.loc[self.target_year, sc].item() * cohort_weights[sc][cohort]
 
         return cohort_spared_area
     

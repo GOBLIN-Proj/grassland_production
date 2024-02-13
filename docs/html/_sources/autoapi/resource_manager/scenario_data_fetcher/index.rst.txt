@@ -1,0 +1,172 @@
+:py:mod:`resource_manager.scenario_data_fetcher`
+================================================
+
+.. py:module:: resource_manager.scenario_data_fetcher
+
+.. autoapi-nested-parse::
+
+   =========================
+   ScenarioDataFetcher Module
+   =========================
+   This module contains the ScenarioDataFetcher class, which is responsible for fetching and manipulating scenario data from a pandas DataFrame.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   resource_manager.scenario_data_fetcher.ScenarioDataFetcher
+
+
+
+
+.. py:class:: ScenarioDataFetcher(scenario_data)
+
+
+   A class for fetching and manipulating scenario data from a pandas DataFrame.
+
+   .. attribute:: scenario_data
+
+      A pandas DataFrame containing scenario data.
+
+      :type: pd.DataFrame
+
+   .. method:: get_scenario_dataframe()
+
+      Returns the entire scenario data DataFrame.
+
+   .. method:: get_catchment_name()
+
+      Returns the unique catchment name from the scenario data.
+
+   .. method:: get_scenario_list()
+
+      Returns a list of unique scenarios present in the scenario data.
+
+   .. method:: get_scenarios_col()
+
+      Returns the 'Scenarios' column from the scenario data.
+
+   .. method:: get_cattle_system_col()
+
+      Returns the 'Cattle systems' column from the scenario data.
+
+   .. method:: get_manure_system_col()
+
+      Returns the 'Manure management' column from the scenario data.
+
+   .. method:: get_dairy_fertilisation_value(mask)
+
+      Returns the 'Dairy Pasture fertilisation' value based on the provided mask.
+
+   .. method:: get_beef_fertilisation_value(mask)
+
+      Returns the 'Beef Pasture fertilisation' value based on the provided mask.
+
+   .. method:: get_clover_proportion_value(mask)
+
+      Returns the 'Clover proportion' value based on the provided mask.
+
+   .. method:: get_clover_fertilisation_value(mask)
+
+      Returns the 'Clover fertilisation' value based on the provided mask.
+      
+
+   .. py:method:: get_scenario_dataframe()
+
+      Returns the entire scenario data DataFrame.
+
+      :returns: The scenario data.
+      :rtype: pd.DataFrame
+
+
+   .. py:method:: get_catchment_name()
+
+      Returns the unique catchment name from the scenario data.
+
+      :returns: The unique catchment name.
+      :rtype: str
+
+
+   .. py:method:: get_scenario_list()
+
+      Returns a list of unique scenarios present in the scenario data.
+
+      :returns: A list of unique scenario names.
+      :rtype: List[str]
+
+
+   .. py:method:: get_scenarios_col()
+
+      Returns the 'Scenarios' column from the scenario data.
+
+      :returns: The 'Scenarios' column.
+      :rtype: pd.Series
+
+
+   .. py:method:: get_cattle_system_col()
+
+      Returns the 'Cattle systems' column from the scenario data.
+
+      :returns: The 'Cattle systems' column.
+      :rtype: pd.Series
+
+
+   .. py:method:: get_manure_system_col()
+
+      Returns the 'Manure management' column from the scenario data.
+
+      :returns: The 'Manure management' column.
+      :rtype: pd.Series
+
+
+   .. py:method:: get_dairy_fertilisation_value(mask)
+
+      Returns the 'Dairy Pasture fertilisation' value based on the provided mask.
+
+      :param mask: A boolean Series to filter the DataFrame.
+      :type mask: pd.Series
+
+      :returns: The 'Dairy Pasture fertilisation' value.
+      :rtype: float
+
+
+   .. py:method:: get_beef_fertilisation_value(mask)
+
+      Returns the 'Beef Pasture fertilisation' value based on the provided mask.
+
+      :param mask: A boolean Series to filter the DataFrame.
+      :type mask: pd.Series
+
+      :returns: The 'Beef Pasture fertilisation' value.
+      :rtype: float
+
+
+   .. py:method:: get_clover_proportion_value(mask)
+
+      Returns the 'Clover proportion' value based on the provided mask.
+
+      :param mask: A boolean Series to filter the DataFrame.
+      :type mask: pd.Series
+
+      :returns: The 'Clover proportion' value.
+      :rtype: float
+
+
+   .. py:method:: get_clover_fertilisation_value(mask)
+
+      Returns the 'Clover fertilisation' value based on the provided mask.
+
+      :param mask: A boolean Series to filter the DataFrame.
+      :type mask: pd.Series
+
+      :returns: The 'Clover fertilisation' value.
+      :rtype: float
+
+
+

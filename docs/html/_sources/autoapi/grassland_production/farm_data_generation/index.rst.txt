@@ -58,6 +58,18 @@ Classes
 
       :type: Loader
 
+   .. attribute:: sc_class
+
+      Instance of ScenarioDataFetcher for fetching scenario data.
+
+      :type: ScenarioDataFetcher
+
+   .. attribute:: scenario_list
+
+      List of scenarios for analysis.
+
+      :type: list
+
    .. attribute:: data_manager_class
 
       Instance of DataManager for managing scenario and baseline data.

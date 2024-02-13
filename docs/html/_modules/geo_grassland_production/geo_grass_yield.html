@@ -90,7 +90,8 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">from</span> <span class="nn">resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
-<span class="kn">from</span> <span class="nn">grassland_production.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+<span class="kn">from</span> <span class="nn">resource_manager.scenario_data_fetcher</span> <span class="kn">import</span> <span class="n">ScenarioDataFetcher</span>
 <span class="kn">from</span> <span class="nn">geo_grassland_production.geo_fertilisation</span> <span class="kn">import</span> <span class="n">Fertilisation</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grass_yield</span> <span class="kn">import</span> <span class="n">Yield</span> <span class="k">as</span> <span class="n">GrasslandYield</span>
 
@@ -114,6 +115,8 @@
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline data on animal populations.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.</span>
+<span class="sd">        scenario_list (list): List of scenarios for which the analysis is performed.</span>
 <span class="sd">        data_manager_class (DataManager): Instance of DataManager for managing data related to grass yield.</span>
 <span class="sd">        geo_fertiliser_class (Fertilisation): Instance of Fertilisation for handling geo-specific fertilization data.</span>
 <span class="sd">        grass_yield_class (GrasslandYield): Instance of Yield class from the grassland_production lib.</span>
@@ -149,10 +152,12 @@
         <span class="n">scenario_animals_df</span><span class="p">,</span>
         <span class="n">baseline_animals_df</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span> <span class="o">=</span> <span class="n">ScenarioDataFetcher</span><span class="p">(</span><span class="n">scenario_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_list</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span>
             <span class="n">calibration_year</span><span class="p">,</span>
             <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
             <span class="n">scenario_animals_df</span><span class="p">,</span>
             <span class="n">baseline_animals_df</span><span class="p">,</span>
         <span class="p">)</span>
@@ -236,7 +241,7 @@
         <span class="n">organic_manure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo_fertiliser_class</span><span class="o">.</span><span class="n">organic_fertilisation_per_ha</span><span class="p">()</span>
 
         <span class="n">year_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">]</span>
-        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_inputs_df</span><span class="o">.</span><span class="n">Scenarios</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
 
         <span class="n">clover_parameters_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clover_parameters</span><span class="p">()</span>
 
