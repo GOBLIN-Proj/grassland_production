@@ -14,8 +14,8 @@ Classes:
 """
 
 import pandas as pd
-from resource_manager.data_loader import Loader
-from resource_manager.grassland_data_manager import DataManager
+from grassland_production.resource_manager.data_loader import Loader
+from grassland_production.resource_manager.grassland_data_manager import DataManager
 from grassland_production.spared_area import Grasslands
 import itertools
 

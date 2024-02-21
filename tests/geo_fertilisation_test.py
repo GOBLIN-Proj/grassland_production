@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from geo_grassland_production.geo_fertilisation import Fertilisation
+from grassland_production.geo_grassland_production.geo_fertilisation import Fertilisation
 import os
 import warnings
 

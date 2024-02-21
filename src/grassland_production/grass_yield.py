@@ -13,9 +13,9 @@ Classes:
 
 import pandas as pd
 from itertools import product
-from resource_manager.data_loader import Loader
-from resource_manager.grassland_data_manager import DataManager
-from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
+from grassland_production.resource_manager.data_loader import Loader
+from grassland_production.resource_manager.grassland_data_manager import DataManager
+from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.fertilisation import Fertilisation
 
 

@@ -9,7 +9,7 @@ It is designed to provide essential data for grassland production analysis, taki
 
 import pandas as pd
 from itertools import product
-from resource_manager.data_loader import Loader
+from grassland_production.resource_manager.data_loader import Loader
 
 
 class Areas:

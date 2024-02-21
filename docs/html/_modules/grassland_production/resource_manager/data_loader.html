@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.resource_manager.data_loader &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">grassland_production.resource_manager.data_loader</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for grassland_production.resource_manager.data_loader</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">===================</span>
+<span class="sd">Data Loader Module</span>
+<span class="sd">===================</span>
+
+<span class="sd">The Data Loader module provides a set of classes and methods to facilitate the retrieval of various agricultural data.</span>
+<span class="sd">The data is retrieved from a DataManager instance which manages the underlying database connections and queries.</span>
+
+<span class="sd">Classes:</span>
+<span class="sd">    Loader: Provides methods to retrieve data from a DataManager instance.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">grassland_production.resource_manager.database_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
+
+
+<div class="viewcode-block" id="Loader">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader">[docs]</a>
+<span class="k">class</span> <span class="nc">Loader</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Loader class is designed to facilitate the retrieval of various agricultural data</span>
+<span class="sd">    related to grassland and livestock management from a DataManager instance. </span>
+<span class="sd">    This class primarily focuses on providing easy access to different sets of data </span>
+<span class="sd">    related to grassland fertilization, livestock areas, soil groups, and livestock numbers.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        dataframes (DataManager): An instance of DataManager which manages the underlying</span>
+<span class="sd">                                  database connections and queries.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        grassland_fertilization_by_system():</span>
+<span class="sd">            Retrieves data on grassland fertilization by system.</span>
+
+<span class="sd">        cso_grassland_areas():</span>
+<span class="sd">            Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas.</span>
+
+<span class="sd">        cso_grassland_area_percent():</span>
+<span class="sd">            Retrieves data on CSO (Central Statistics Office, Ireland) grassland areas as a percentage of total area (Hay, Silage, and Pasture).</span>
+
+<span class="sd">        dairy_area_nfs():</span>
+<span class="sd">            Retrieves data on dairy areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        beef_area_nfs():</span>
+<span class="sd">            Retrieves data on beef areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        sheep_area_nfs():</span>
+<span class="sd">            Retrieves data on sheep areas from NFS (National Farm Survey).</span>
+
+<span class="sd">        nfs_farm_numbers():</span>
+<span class="sd">            Retrieves data on NFS (National Farm Survey) farm numbers.</span>
+
+<span class="sd">        dairy_soil_group():</span>
+<span class="sd">            Retrieves data on dairy soil groups.</span>
+
+<span class="sd">        cattle_soil_group():</span>
+<span class="sd">            Retrieves data on cattle soil groups.</span>
+
+<span class="sd">        sheep_soil_group():</span>
+<span class="sd">            Retrieves data on sheep soil groups.</span>
+
+<span class="sd">        fao_fertilization():</span>
+<span class="sd">            Retrieves FAO (Food and Agriculture Organisation of the United Nations) data on fertilization.</span>
+
+<span class="sd">        nir_fertilization():</span>
+<span class="sd">            Retrieves NIR (Ireland&#39;s National Inventory Report) data on fertilization.</span>
+
+<span class="sd">        dairy_nfs_animals():</span>
+<span class="sd">            Retrieves data on dairy animals from NFS (National Farm Survey).</span>
+
+<span class="sd">        cattle_nfs_animals():</span>
+<span class="sd">            Retrieves data on cattle animals from NFS (National Farm Survey).</span>
+
+<span class="sd">        sheep_nfs_animals():</span>
+<span class="sd">            Retrieves data on sheep animals from NFS (National Farm Survey).</span>
+
+<span class="sd">        livestock_units():</span>
+<span class="sd">            Retrieves data on livestock units (Teagasc).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="Loader.grassland_fertilization_by_system">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.grassland_fertilization_by_system">[docs]</a>
+    <span class="k">def</span> <span class="nf">grassland_fertilization_by_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on grassland fertilization application rates segmented by various systems and </span>
+<span class="sd">        grassland types.</span>
+
+<span class="sd">        This method accesses the DataManager&#39;s &#39;get_grassland_fertilization_by_system&#39; </span>
+<span class="sd">        function to fetch data related to the application of fertilizers in different </span>
+<span class="sd">        grassland management systems.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing detailed information about </span>
+<span class="sd">                    grassland fertilization rates segmented by system and grassland type.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_grassland_fertilization_by_system</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.cso_grassland_areas">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.cso_grassland_areas">[docs]</a>
+    <span class="k">def</span> <span class="nf">cso_grassland_areas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on grassland areas from the Central Statistics Office (CSO) in Ireland.</span>
+
+<span class="sd">        This method provides access to detailed statistical information about grassland areas </span>
+<span class="sd">        reported by the CSO. The data is segmented by grassland type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame with CSO grassland areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_cso_grassland_data</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="Loader.cso_grassland_area_percent">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.cso_grassland_area_percent">[docs]</a>
+    <span class="k">def</span> <span class="nf">cso_grassland_area_percent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on grassland areas as a percentage of total area (Hay, Grass silage, Pasture) from the Central Statistics Office (CSO) in Ireland.</span>
+
+<span class="sd">        This method provides access to detailed statistical information about grassland areas </span>
+<span class="sd">        reported by the CSO. The data is segmented by grassland type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame with CSO grassland areas as a percentage of total area by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_cso_grassland_data_as_percent</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Loader.dairy_area_nfs">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.dairy_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">dairy_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy farming areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for dairy farming. It provides insights into </span>
+<span class="sd">        the size of dairy farms. The data is segmented by grassland type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on dairy farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_dairy_area_nfs</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.beef_area_nfs">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.beef_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">beef_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on beef farming areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for beef farming. It provides insights into </span>
+<span class="sd">        the size of beef farms. The data is segmented by grassland type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on beef farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_beef_area_nfs</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.sheep_area_nfs">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.sheep_area_nfs">[docs]</a>
+    <span class="k">def</span> <span class="nf">sheep_area_nfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep farming areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for sheep farming. It provides insights into </span>
+<span class="sd">        the size of sheep farms. The data is segmented by grassland type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on sheep farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_sheep_area_nfs</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.nfs_farm_numbers">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.nfs_farm_numbers">[docs]</a>
+    <span class="k">def</span> <span class="nf">nfs_farm_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on the number of farms reported in the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method provides aggregate data on the number of farms surveyed by the NFS and is </span>
+<span class="sd">        segmented by system (dairy, beef, sheep) and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing data on the number of farms per system by year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_nfs_farm_numbers</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.dairy_soil_group">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.dairy_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">dairy_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy farming soil group areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for dairy farming. It provides insights into </span>
+<span class="sd">        the size of dairy farms. The data is segmented by soil group and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on dairy farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_dairy_soil_group</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.cattle_soil_group">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.cattle_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">cattle_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on beef farming soil group areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for beef farming. It provides insights into </span>
+<span class="sd">        the size of beef farms. The data is segmented by soil group and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on beef farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_cattle_soil_group</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.sheep_soil_group">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.sheep_soil_group">[docs]</a>
+    <span class="k">def</span> <span class="nf">sheep_soil_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep farming soil group areas from the National Farm Survey (NFS).</span>
+
+<span class="sd">        This method accesses NFS data focusing on areas used for sheep farming. It provides insights into </span>
+<span class="sd">        the size of sheep farms. The data is segmented by soil group and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on sheep farming areas by type and year.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_sheep_soil_group</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.fao_fertilization">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.fao_fertilization">[docs]</a>
+    <span class="k">def</span> <span class="nf">fao_fertilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves FAO (Food and Agriculture Organisation of the United Nations) data on fertilization.</span>
+
+<span class="sd">        This method provides access to FAO data on fertilization rates segmented by type (phosphorus, potassium) and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing FAO data on fertilization by type and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_fao_fertiliser_data</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="Loader.nir_fertilization">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.nir_fertilization">[docs]</a>
+    <span class="k">def</span> <span class="nf">nir_fertilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves NIR (Ireland&#39;s National Inventory Report) data on fertilization.</span>
+
+<span class="sd">        This method provides access to NIR data on fertilization rates segmented by type (ammonium nitrate and urea) and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NIR data on fertilization by type and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_nir_fertiliser_data</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.dairy_nfs_animals">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.dairy_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">dairy_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on dairy animals numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        This method provides access to NFS data on dairy animals numbers segmented by cohort and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on dairy animals numbers by cohort and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_dairy_nfs_animals</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.cattle_nfs_animals">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.cattle_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">cattle_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on cattle animals numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        This method provides access to NFS data on cattle animals numbers segmented by cohort and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on cattle animals numbers by cohort and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_cattle_nfs_animals</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="Loader.sheep_nfs_animals">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.sheep_nfs_animals">[docs]</a>
+    <span class="k">def</span> <span class="nf">sheep_nfs_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on sheep animals numbers from NFS (National Farm Survey).</span>
+
+<span class="sd">        This method provides access to NFS data on sheep animals numbers segmented by cohort and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing NFS data on sheep animals numbers by cohort and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_sheep_nfs_animals</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="Loader.livestock_units">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader.livestock_units">[docs]</a>
+    <span class="k">def</span> <span class="nf">livestock_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves data on livestock units (Teagasc).</span>
+
+<span class="sd">        This method provides access to Teagasc data on livestock units coefs segmented by cohort and year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A pandas DataFrame containing Teagasc data on livestock units coefs by cohort and year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">get_livestock_units</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
