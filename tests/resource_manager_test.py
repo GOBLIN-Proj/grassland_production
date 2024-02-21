@@ -1,4 +1,4 @@
-from resource_manager.grassland_data_manager import DataManager
+from grassland_production.resource_manager.grassland_data_manager import DataManager
 import pandas as pd
 import os
 

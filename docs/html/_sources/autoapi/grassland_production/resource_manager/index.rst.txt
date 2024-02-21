@@ -1,0 +1,18 @@
+:py:mod:`grassland_production.resource_manager`
+===============================================
+
+.. py:module:: grassland_production.resource_manager
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   data_loader/index.rst
+   database_manager/index.rst
+   grassland_data_manager/index.rst
+   scenario_data_fetcher/index.rst
+
+

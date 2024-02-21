@@ -14,11 +14,11 @@
  ```
     src/
     │
-    ├── geo_grassland_production/
-    │   └── ... (other modules and sub-packages)
-    │
     ├── grassland_production/
-    |   └── ... (other modules and sub-packages)
+    │   └── ... (other modules and sub-packages)
+        │
+        ├── geo_grassland_production/
+        |   └── ... (other modules and sub-packages)
 
  ```
 

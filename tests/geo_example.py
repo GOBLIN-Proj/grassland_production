@@ -1,5 +1,5 @@
 import pandas as pd
-from geo_grassland_production.geo_grassland_output import GrasslandOutput
+from grassland_production.geo_grassland_production.geo_grassland_output import GrasslandOutput
 import shutil
 import os
 

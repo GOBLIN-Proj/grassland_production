@@ -2,7 +2,7 @@ import unittest
 import pandas as pd
 import shutil
 import os
-from geo_grassland_production.geo_grassland_output import GrasslandOutput
+from grassland_production.geo_grassland_production.geo_grassland_output import GrasslandOutput
 
 class TestGrasslandOutput(unittest.TestCase):
 

@@ -12,9 +12,9 @@ Classes:
 """
 import pandas as pd
 import copy
-from resource_manager.data_loader import Loader
-from resource_manager.grassland_data_manager import DataManager
-from resource_manager.scenario_data_fetcher import ScenarioDataFetcher
+from grassland_production.resource_manager.data_loader import Loader
+from grassland_production.resource_manager.grassland_data_manager import DataManager
+from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grass_yield import Yield
 from grassland_production.fertilisation import Fertilisation
 from grassland_production.grassland_area import Areas
