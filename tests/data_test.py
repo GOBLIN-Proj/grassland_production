@@ -1,5 +1,5 @@
-from resource_manager.data_loader import Loader
-from geo_grassland_production.catchment_grassland import CatchmentGrass
+from grassland_production.resource_manager.data_loader import Loader
+from grassland_production.geo_grassland_production.catchment_grassland import CatchmentGrass
 import pandas as pd
 import shutil
 import os
