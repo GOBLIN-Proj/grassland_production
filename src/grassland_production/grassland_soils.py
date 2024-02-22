@@ -112,7 +112,7 @@ class SoilGroups:
                 "Scenario": sc,
                 "year": self.target_year,
                 "cohort": cohort,
-                "soil_group": sg,
+                "soil_group": int(sg),
                 "area_ha": spared_area_cohorts[sc][cohort] * area_multiplier,
             }
             data.append(row_data)
