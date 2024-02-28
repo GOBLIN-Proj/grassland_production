@@ -72,10 +72,10 @@ class Fertilisation:
             baseline_animals_df,
         )
 
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.default_calibration_year = self.data_manager_class.default_calibration_year
-        self.default_grassland_year = self.data_manager_class.default_grassland_year
-        self.target_year = self.data_manager_class.target_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
+        self.default_grassland_year = self.data_manager_class.get_default_grassland_year()
+        self.target_year = self.data_manager_class.get_target_year()
 
         self.loader_class = Loader()
         self.areas_class = Areas(
@@ -258,7 +258,7 @@ class Fertilisation:
             - Sheep systems are excluded from this calculation.
         """
 
-        cols = self.data_manager_class.systems
+        cols = self.data_manager_class.get_farming_systems()
 
         year_list = list(
             (
@@ -267,8 +267,8 @@ class Fertilisation:
             )
         )
 
-        animal_list = list(self.data_manager_class.COHORTS_DICT["Cattle"]) + list(
-            self.data_manager_class.COHORTS_DICT["Sheep"]
+        animal_list = list(self.data_manager_class.get_cohorts()["Cattle"]) + list(
+            self.data_manager_class.get_cohorts()["Sheep"]
         )
 
         scenario_list = self.scenario_list
@@ -277,12 +277,12 @@ class Fertilisation:
 
         N_spread_past = pd.DataFrame(0.0, columns=cols, index=year_list)
 
-        baseline_animals_df = self.data_manager_class.baseline_animals_df
-        scenario_animals_df = self.data_manager_class.scenario_animals_df
+        baseline_animals_df = self.data_manager_class.get_baseline_animals_dataframe()
+        scenario_animals_df = self.data_manager_class.get_scenario_animals_dataframe()
 
         for animal_name in animal_list:
             animal_past = getattr(
-                self.data_manager_class.baseline_animals_dict[self.calibration_year][
+                self.data_manager_class.get_baseline_animals_dict()[self.calibration_year][
                     "animals"
                 ],
                 animal_name,
@@ -291,19 +291,19 @@ class Fertilisation:
                 baseline_animals_df["cohort"] == animal_name
             )
 
-            if animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]:
+            if animal_name in self.data_manager_class.get_dairy_beef_cohorts()["Dairy"]:
                 N_spread_past.loc[int(self.calibration_year), "dairy"] += (
                     self.cattle_spread_class.net_excretion_SPREAD(animal_past)
                     * baseline_animals_df.loc[mask_validation, "pop"].values[0]
                 )
 
-            elif animal_name in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]:
+            elif animal_name in self.data_manager_class.get_dairy_beef_cohorts()["Beef"]:
                 N_spread_past.loc[int(self.calibration_year), "beef"] += (
                     self.cattle_spread_class.net_excretion_SPREAD(animal_past)
                     * baseline_animals_df.loc[mask_validation, "pop"].values[0]
                 )
 
-            elif animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]:
+            elif animal_name in self.data_manager_class.get_cohorts()["Sheep"]:
                 N_spread_past.loc[int(self.calibration_year), "sheep"] = 0
 
         # Scenario future inputs
@@ -311,21 +311,21 @@ class Fertilisation:
             N_spread = N_spread_past.copy(deep=True)
 
             farm_mask = (
-                self.data_manager_class.scenario_aggregation["Scenarios"] == scenario
+                self.data_manager_class.get_scenario_aggregation()["Scenarios"] == scenario
             )
 
-            for farm_name in self.data_manager_class.scenario_aggregation.loc[
+            for farm_name in self.data_manager_class.get_scenario_aggregation().loc[
                 farm_mask, "farm_id"
             ].unique():
                 for animal_name in animal_list:
                     if (
                         animal_name
-                        in self.data_manager_class.scenario_animals_dict[farm_name][
+                        in self.data_manager_class.get_scenario_animals_dict()[farm_name][
                             "animals"
                         ].__dict__.keys()
                     ):
                         animal = getattr(
-                            self.data_manager_class.scenario_animals_dict[farm_name][
+                            self.data_manager_class.get_scenario_animals_dict()[farm_name][
                                 "animals"
                             ],
                             animal_name,
@@ -336,7 +336,7 @@ class Fertilisation:
 
                         if (
                             animal_name
-                            in self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"]
+                            in self.data_manager_class.get_dairy_beef_cohorts()["Dairy"]
                         ):
                             N_spread.loc[int(self.target_year), "dairy"] += (
                                 self.cattle_spread_class.net_excretion_SPREAD(animal)
@@ -344,7 +344,7 @@ class Fertilisation:
                             )
                         elif (
                             animal_name
-                            in self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"]
+                            in self.data_manager_class.get_dairy_beef_cohorts()["Beef"]
                         ):
                             N_spread.loc[int(self.target_year), "beef"] += (
                                 self.cattle_spread_class.net_excretion_SPREAD(
@@ -354,7 +354,7 @@ class Fertilisation:
                             )
 
                         elif (
-                            animal_name in self.data_manager_class.COHORTS_DICT["Sheep"]
+                            animal_name in self.data_manager_class.get_cohorts()["Sheep"]
                         ):
                             N_spread.loc[int(self.target_year), "sheep"] = 0
 

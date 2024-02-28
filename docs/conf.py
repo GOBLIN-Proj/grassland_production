@@ -9,7 +9,7 @@
 project = 'Grassland Production, a GOBLIN module'
 copyright = '2024, Colm Duffy'
 author = 'Colm Duffy'
-release = '0.3.0'
+release = '0.3.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

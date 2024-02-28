@@ -57,9 +57,9 @@ class StockingRate:
         self.sc_class = ScenarioDataFetcher(scenario_data)
         self.scenario_list = self.sc_class.get_scenario_list()
         self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.target_year = self.data_manager_class.target_year
-        self.default_calibration_year = self.data_manager_class.default_calibration_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.target_year = self.data_manager_class.get_target_year()
+        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
         self.loader_class = Loader()
         self.livestock_unit_values = self.loader_class.livestock_units()
         self.grassland_class = Grasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
@@ -84,10 +84,10 @@ class StockingRate:
         """
         baseline_animals_df = self.data_manager_class.baseline_animals_df
 
-        keys = self.data_manager_class.systems
-        COHORTS = self.data_manager_class.COHORTS_GROUPS
+        keys = self.data_manager_class.get_farming_systems()
+        COHORTS = self.data_manager_class.get_cohort_groups()
 
-        animal_list = self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"]
+        animal_list = self.data_manager_class.get_baseline_animals_dict()[self.calibration_year]["animals"]
 
         past_livestock_units = pd.DataFrame(0.0, index=[self.calibration_year], columns=keys)
 
@@ -138,12 +138,12 @@ class StockingRate:
         """
         scenario_list = self.scenario_list
 
-        scenario_animals_df = self.data_manager_class.scenario_animals_df
+        scenario_animals_df = self.data_manager_class.get_scenario_animals_dataframe()
 
-        keys = self.data_manager_class.systems
-        COHORTS = self.data_manager_class.COHORTS_GROUPS
+        keys = self.data_manager_class.get_farming_systems()
+        COHORTS = self.data_manager_class.get_cohort_groups()
 
-        animal_list = self.data_manager_class.scenario_animals_dict
+        animal_list = self.data_manager_class.get_scenario_animals_dict()
 
         livestock_units = {}
 
@@ -151,8 +151,8 @@ class StockingRate:
             total_livestock_units = pd.DataFrame(0.0, index=[self.target_year], columns=keys)
             livestock_units[sc] = total_livestock_units
 
-            farm_mask = self.data_manager_class.scenario_aggregation["Scenarios"] == sc
-            farm_ids = self.data_manager_class.scenario_aggregation.loc[farm_mask, "farm_id"].unique()
+            farm_mask = self.data_manager_class.get_scenario_aggregation()["Scenarios"] == sc
+            farm_ids = self.data_manager_class.get_scenario_aggregation().loc[farm_mask, "farm_id"].unique()
 
             for farm_id in farm_ids:
                 # Process dairy and beef
@@ -226,7 +226,7 @@ class StockingRate:
         year_list = [self.calibration_year, self.target_year]
         scenario_list = self.scenario_list
 
-        keys = self.data_manager_class.systems
+        keys = self.data_manager_class.get_farming_systems()
 
         livestock_units = self.get_livestock_units()
 

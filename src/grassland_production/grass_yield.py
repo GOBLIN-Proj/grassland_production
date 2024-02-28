@@ -82,12 +82,12 @@ class Yield:
             baseline_animals_df,
         )
         self.loader_class = Loader()
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.target_year = self.data_manager_class.target_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.target_year = self.data_manager_class.get_target_year()
 
-        self.soil_class_yield_gap = self.data_manager_class.soil_class_yield_gap
+        self.soil_class_yield_gap = self.data_manager_class.get_yield_gap()
 
-        self.soil_class_prop = self.data_manager_class.soil_class_prop
+        self.soil_class_prop = self.data_manager_class.get_soil_properties()
 
 
     def get_clover_parameters(self):

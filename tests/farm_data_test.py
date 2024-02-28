@@ -9,9 +9,9 @@ class FarmDataTestCase(unittest.TestCase):
     def setUp(self):
         warnings.simplefilter(action="ignore")
         # Create the DataFrame with the provided data
-        self.scenario_dataframe = pd.read_csv("./data/scenario_dataframe1.csv")
-        self.scenario_animal_dataframe = pd.read_csv("./data/future_animals.csv")
-        self.baseline_animal_dataframe = pd.read_csv("./data/past_animals.csv")
+        self.scenario_dataframe = pd.read_csv("./data/scenario_input_dataframe2.csv")
+        self.scenario_animal_dataframe = pd.read_csv("./data/scenario_animal_data.csv")
+        self.baseline_animal_dataframe = pd.read_csv("./data/baseline_animal_data.csv")
 
 
         self.farm_class = FarmData(

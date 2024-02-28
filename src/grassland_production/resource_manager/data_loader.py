@@ -288,3 +288,16 @@ class Loader:
             DataFrame: A pandas DataFrame containing Teagasc data on livestock units coefs by cohort and year.
         """
         return self.dataframes.get_livestock_units()
+    
+    
+    def lime_fertiliser_proportion_by_system(self):
+        """
+        Retrieves data on lime fertilization use segmented by proportion of various systems
+        applying lime.
+
+        Returns:
+            DataFrame: A pandas DataFrame containing detailed information about 
+                    lime fertilization segmented by system and grassland type.
+
+        """
+        return self.dataframes.get_lime_fertilisation_by_system()

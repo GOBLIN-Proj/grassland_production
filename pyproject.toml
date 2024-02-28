@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "grassland_production"
-version = "0.3.1"
+version = "0.3.2"
 description = "Computation of grassland area and production based on animal energy calculations and grassland inputs"
 authors = ["Colm Duffy"]
 license = "MIT"
