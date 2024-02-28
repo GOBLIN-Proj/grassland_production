@@ -94,10 +94,10 @@ class Fertilisation:
         )
 
 
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.default_calibration_year = self.data_manager_class.default_calibration_year
-        self.default_grassland_year = self.data_manager_class.default_grassland_year
-        self.target_year = self.data_manager_class.target_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
+        self.default_grassland_year = self.data_manager_class.get_default_grassland_year()
+        self.target_year = self.data_manager_class.get_target_year()
 
         self.loader_class = Loader()
         self.areas_class = Areas(

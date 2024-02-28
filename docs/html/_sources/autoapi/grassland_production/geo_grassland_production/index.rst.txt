@@ -11,6 +11,7 @@ Submodules
    :maxdepth: 1
 
    catchment_grassland/index.rst
+   geo_farm_data_generation/index.rst
    geo_fertilisation/index.rst
    geo_grass_yield/index.rst
    geo_grassland_output/index.rst

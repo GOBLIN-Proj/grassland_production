@@ -81,9 +81,9 @@ class UtilisationRate:
             scenario_animals_df,
             baseline_animals_df,
         )
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.target_year = self.data_manager_class.target_year
-        self.default_calibration_year = self.data_manager_class.default_calibration_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.target_year = self.data_manager_class.get_target_year()
+        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
         self.yield_class = Yield(
             ef_country,
             calibration_year,
@@ -158,7 +158,7 @@ class UtilisationRate:
             for key in keys:
                 for year in year_list:
                     total = 0
-                    for grassland in self.data_manager_class.grasslands:
+                    for grassland in self.data_manager_class.get_grassland_types():
                         total += yield_per_ha[sc][key].loc[year, grassland] * area_data[key].loc[self.calibration_year, grassland]
                     farm_dm_production_df.loc[year, key] = total
 
@@ -196,9 +196,9 @@ class UtilisationRate:
         }
 
         COHORTS = {
-            "dairy": self.data_manager_class.DAIRY_BEEF_COHORTS["Dairy"],
-            "beef": self.data_manager_class.DAIRY_BEEF_COHORTS["Beef"],
-            "sheep": self.data_manager_class.COHORTS_DICT["Sheep"],
+            "dairy": self.data_manager_class.get_dairy_beef_cohorts()["Dairy"],
+            "beef": self.data_manager_class.get_dairy_beef_cohorts()["Beef"],
+            "sheep": self.data_manager_class.get_cohorts()["Sheep"],
         }
 
         grass_feed_class = {"dairy": self.cattle_grass_feed_class,
@@ -207,8 +207,8 @@ class UtilisationRate:
 
         keys = ["dairy", "beef", "sheep"]
 
-        animal_list = list(self.data_manager_class.COHORTS_DICT["Cattle"]) + list(
-            self.data_manager_class.COHORTS_DICT["Sheep"]
+        animal_list = list(self.data_manager_class.get_cohorts()["Cattle"]) + list(
+            self.data_manager_class.get_cohorts()["Sheep"]
         )
 
         dry_matter_req = {}
@@ -218,7 +218,7 @@ class UtilisationRate:
 
             for animal_name in animal_list:
 
-                animal_past = getattr(self.data_manager_class.baseline_animals_dict[self.calibration_year]["animals"],
+                animal_past = getattr(self.data_manager_class.get_baseline_animals_dict()[self.calibration_year]["animals"],
                                   animal_name,)
 
                 for key in keys:
@@ -308,14 +308,14 @@ class UtilisationRate:
                 as the index and farm types (dairy, beef, sheep) as columns. Each cell contains the dynamic 
                 utilisation rate for that farm type in the respective year and scenario.
         """
-        grasslands = self.data_manager_class.grasslands
+        grasslands = self.data_manager_class.get_grassland_types()
         year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.data_manager_class.scenario_inputs_df.Scenarios.unique()
+        scenario_list = self.scenario_list
         cols = ["dairy", "beef", "sheep"]
 
         utilisation_rate = {}
 
-        scenario_df = self.data_manager_class.scenario_inputs_df
+        scenario_df = self.sc_class.get_scenario_dataframe()
         dry_matter_produced = self.dm_class.get_actual_dry_matter_produced()
         dry_matter_req = self.dm_class.actual_dry_matter_required()
 

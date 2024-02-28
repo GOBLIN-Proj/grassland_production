@@ -36,8 +36,6 @@ Classes
    :type calibration_year: int
    :param target_year: The target year for future scenario projections.
    :type target_year: int
-   :param scenario_inputs_df: DataFrame containing scenario input variables data.
-   :type scenario_inputs_df: DataFrame
    :param scenario_animals_df: DataFrame containing scenario animal data.
    :type scenario_animals_df: DataFrame
    :param baseline_animals_df: DataFrame containing baseline animal data.
@@ -48,6 +46,12 @@ Classes
       Instance of the Loader class for loading various datasets.
 
       :type: Loader
+
+   .. attribute:: ef_country
+
+      The EF country.
+
+      :type: str
 
    .. attribute:: calibration_year
 
@@ -90,12 +94,6 @@ Classes
       A dictionary mapping farm systems to the corresponding livestock cohorts.
 
       :type: dict
-
-   .. attribute:: scenario_inputs_df
-
-      DataFrame containing scenario input data.
-
-      :type: DataFrame
 
    .. attribute:: scenario_animals_df
 
@@ -150,5 +148,266 @@ Classes
       A list of farm systems.
 
       :type: list
+
+   .. attribute:: lime_rate
+
+      The lime rate.
+
+      :type: float
+
+   .. attribute:: default_urea_proportion
+
+      The default proportion of urea.
+
+      :type: float
+
+   .. attribute:: default_urea_abated_proportion
+
+      The default proportion of abated urea.
+
+      :type: float
+
+   .. method:: get_ef_country()
+
+      Returns the EF country.
+
+   .. method:: get_cohort_groups()
+
+      Returns the livestock cohorts for farm systems.
+
+   .. method:: get_dairy_beef_cohorts()
+
+      Returns the livestock cohorts for dairy and beef systems.
+
+   .. method:: get_cohorts()
+
+      Returns the livestock cohorts for farm systems (Cattle, Sheep).
+
+   .. method:: get_soil_properties()
+
+      Returns the soil properties for farm systems.
+
+   .. method:: get_yield_gap(soil_class)
+
+      Returns the yield gap for soil classes.
+
+   .. method:: get_default_calibration_year()
+
+      Returns the default calibration year used as a fallback when data for the specified year is not available.
+
+   .. method:: get_default_grassland_year()
+
+      Returns the default year used for grassland data when it is not specified.
+
+   .. method:: get_target_year()
+
+      Returns the target year for future scenario projections.
+
+   .. method:: get_baseline_animals_dict()
+
+      Returns the baseline livestock data as dict.
+
+   .. method:: get_baseline_animals_dataframe()
+
+      Returns the baseline livestock data as DataFrame.
+
+   .. method:: get_scenario_animals_dict()
+
+      Returns the scenario livestock data as dict.
+
+   .. method:: get_scenario_animals_dataframe()
+
+      Returns the scenario livestock data as DataFrame.
+
+   .. method:: get_scenario_aggregation()
+
+      Returns the scenario aggregation data.
+
+   .. method:: get_grassland_types()
+
+      Returns a list of grassland types.
+
+   .. method:: get_farming_systems()
+
+      Returns a list of farm systems.
+
+   .. method:: get_lime_rate()
+
+      Returns the lime rate.
+
+   .. method:: get_default_urea_proportion()
+
+      Returns the default proportion of urea.
+
+   .. method:: get_default_urea_abated_proportion()
+
+      Returns the default proportion of abated urea.
+      
+
+   .. py:method:: get_ef_country()
+
+      Returns the EF country.
+
+      :returns: The EF country.
+      :rtype: str
+
+
+   .. py:method:: get_cohort_groups()
+
+      Returns the livestock cohorts for a specified farm system.
+
+      :param system: The farm system for which to return livestock cohorts.
+      :type system: str
+
+      :returns: A list of livestock cohorts for the specified farm system.
+      :rtype: list
+
+
+   .. py:method:: get_dairy_beef_cohorts()
+
+      Returns the livestock cohorts for dairy and beef systems.
+
+      :returns: A dictionary mapping livestock categories to cohorts for dairy and beef systems.
+      :rtype: dict
+
+
+   .. py:method:: get_cohorts()
+
+      Returns the livestock cohorts for farm systems (Cattle, Sheep).
+
+      :returns: A dictionary mapping livestock categories to their cohorts.
+      :rtype: dict
+
+
+   .. py:method:: get_soil_properties()
+
+      Returns the soil properties for farm systems.
+
+      :returns: A dictionary containing soil properties for different farm systems.
+      :rtype: dict
+
+
+   .. py:method:: get_yield_gap()
+
+      Returns the yield gap for soil classes.
+
+      :returns: A dictionary mapping soil classes to yield gaps.
+      :rtype: dict
+
+
+   .. py:method:: get_calibration_year()
+
+      Returns the calibration year for data reference.
+
+      :returns: The calibration year.
+      :rtype: int
+
+
+   .. py:method:: get_default_calibration_year()
+
+      Returns the default calibration year used as a fallback when data for the specified year is not available.
+
+      :returns: The default calibration year.
+      :rtype: int
+
+
+   .. py:method:: get_default_grassland_year()
+
+      Returns the default year used for grassland data when it is not specified.
+
+      :returns: The default grassland year.
+      :rtype: int
+
+
+   .. py:method:: get_target_year()
+
+      Returns the target year for future scenario projections.
+
+      :returns: The target year.
+      :rtype: int
+
+
+   .. py:method:: get_baseline_animals_dict()
+
+      Returns the baseline livestock data.
+
+      :returns: A dictionary containing baseline livestock data.
+      :rtype: Dict
+
+
+   .. py:method:: get_baseline_animals_dataframe()
+
+      Returns the baseline livestock data.
+
+      :returns: A DataFrame containing baseline livestock data.
+      :rtype: DataFrame
+
+
+   .. py:method:: get_scenario_animals_dict()
+
+      Returns the scenario livestock data.
+
+      :returns: A dictionary containing scenario livestock data.
+      :rtype: Dict
+
+
+   .. py:method:: get_scenario_animals_dataframe()
+
+      Returns the scenario livestock data.
+
+      :returns: A DataFrame containing scenario livestock data.
+      :rtype: DataFrame
+
+
+   .. py:method:: get_scenario_aggregation()
+
+      Returns the scenario aggregation data.
+
+      :returns: A DataFrame containing scenario aggregation data.
+      :rtype: DataFrame
+
+
+   .. py:method:: get_grassland_types()
+
+      Returns a list of grassland types.
+
+      :returns: A list of grassland types.
+      :rtype: list
+
+
+   .. py:method:: get_farming_systems()
+
+      Returns a list of farm systems.
+
+      :returns: A list of farm systems.
+      :rtype: list
+
+
+   .. py:method:: get_lime_rate()
+
+      Returns the lime rate. This rate is based on maximum lime application rates provided by the
+      Department of Agriculture, Food and the Marine (DAFM) in Ireland. The maximum lime application
+      is 7.5 tonnes per hectare every 3 years. The lime rate is calculated as half of the maximum, which
+      can be applied in year 1, with the balance applied in year 3.
+
+      :returns: The lime rate.
+      :rtype: float
+
+
+   .. py:method:: get_default_urea_proportion()
+
+      Returns the default proportion of urea.
+
+      :returns: The default proportion of urea.
+      :rtype: float
+
+
+   .. py:method:: get_default_urea_abated_proportion()
+
+      Returns the default proportion of abated urea.
+
+      :returns: The default proportion of abated urea.
+      :rtype: float
+
 
 

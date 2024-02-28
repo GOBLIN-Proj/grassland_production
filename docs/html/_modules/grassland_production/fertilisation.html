@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../_static/documentation_options.js?v=71d9d8e6"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -149,10 +149,10 @@
             <span class="n">baseline_animals_df</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">calibration_year</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_calibration_year</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">default_grassland_year</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">target_year</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_calibration_year</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_default_calibration_year</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_default_grassland_year</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_target_year</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span> <span class="o">=</span> <span class="n">Areas</span><span class="p">(</span>
@@ -340,7 +340,7 @@
 <span class="sd">            - Sheep systems are excluded from this calculation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">systems</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_farming_systems</span><span class="p">()</span>
 
         <span class="n">year_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
             <span class="p">(</span>
@@ -349,8 +349,8 @@
             <span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="n">animal_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Cattle&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
+        <span class="n">animal_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_cohorts</span><span class="p">()[</span><span class="s2">&quot;Cattle&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_cohorts</span><span class="p">()[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
         <span class="p">)</span>
 
         <span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
@@ -359,12 +359,12 @@
 
         <span class="n">N_spread_past</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">year_list</span><span class="p">)</span>
 
-        <span class="n">baseline_animals_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">baseline_animals_df</span>
-        <span class="n">scenario_animals_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_animals_df</span>
+        <span class="n">baseline_animals_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_baseline_animals_dataframe</span><span class="p">()</span>
+        <span class="n">scenario_animals_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_animals_dataframe</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="n">animal_list</span><span class="p">:</span>
             <span class="n">animal_past</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">baseline_animals_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">][</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_baseline_animals_dict</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">][</span>
                     <span class="s2">&quot;animals&quot;</span>
                 <span class="p">],</span>
                 <span class="n">animal_name</span><span class="p">,</span>
@@ -373,19 +373,19 @@
                 <span class="n">baseline_animals_df</span><span class="p">[</span><span class="s2">&quot;cohort&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">animal_name</span>
             <span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">]:</span>
                 <span class="n">N_spread_past</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span> <span class="s2">&quot;dairy&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal_past</span><span class="p">)</span>
                     <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="p">)</span>
 
-            <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Beef&quot;</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Beef&quot;</span><span class="p">]:</span>
                 <span class="n">N_spread_past</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span> <span class="s2">&quot;beef&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal_past</span><span class="p">)</span>
                     <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="p">)</span>
 
-            <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_cohorts</span><span class="p">()[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]:</span>
                 <span class="n">N_spread_past</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span> <span class="s2">&quot;sheep&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># Scenario future inputs</span>
@@ -393,21 +393,21 @@
             <span class="n">N_spread</span> <span class="o">=</span> <span class="n">N_spread_past</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
             <span class="n">farm_mask</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_aggregation</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">scenario</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">scenario</span>
             <span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">farm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_aggregation</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+            <span class="k">for</span> <span class="n">farm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
                 <span class="n">farm_mask</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span>
             <span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
                 <span class="k">for</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="n">animal_list</span><span class="p">:</span>
                     <span class="k">if</span> <span class="p">(</span>
                         <span class="n">animal_name</span>
-                        <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_animals_dict</span><span class="p">[</span><span class="n">farm_name</span><span class="p">][</span>
+                        <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_animals_dict</span><span class="p">()[</span><span class="n">farm_name</span><span class="p">][</span>
                             <span class="s2">&quot;animals&quot;</span>
                         <span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
                     <span class="p">):</span>
                         <span class="n">animal</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">scenario_animals_dict</span><span class="p">[</span><span class="n">farm_name</span><span class="p">][</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_animals_dict</span><span class="p">()[</span><span class="n">farm_name</span><span class="p">][</span>
                                 <span class="s2">&quot;animals&quot;</span>
                             <span class="p">],</span>
                             <span class="n">animal_name</span><span class="p">,</span>
@@ -418,7 +418,7 @@
 
                         <span class="k">if</span> <span class="p">(</span>
                             <span class="n">animal_name</span>
-                            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">]</span>
+                            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">]</span>
                         <span class="p">):</span>
                             <span class="n">N_spread</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">),</span> <span class="s2">&quot;dairy&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
@@ -426,7 +426,7 @@
                             <span class="p">)</span>
                         <span class="k">elif</span> <span class="p">(</span>
                             <span class="n">animal_name</span>
-                            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span><span class="p">[</span><span class="s2">&quot;Beef&quot;</span><span class="p">]</span>
+                            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Beef&quot;</span><span class="p">]</span>
                         <span class="p">):</span>
                             <span class="n">N_spread</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">),</span> <span class="s2">&quot;beef&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span>
@@ -436,7 +436,7 @@
                             <span class="p">)</span>
 
                         <span class="k">elif</span> <span class="p">(</span>
-                            <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">COHORTS_DICT</span><span class="p">[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
+                            <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_cohorts</span><span class="p">()[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]</span>
                         <span class="p">):</span>
                             <span class="n">N_spread</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">),</span> <span class="s2">&quot;sheep&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 

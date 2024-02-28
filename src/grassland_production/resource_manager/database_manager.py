@@ -79,6 +79,9 @@ class DataManager:
 
         get_livestock_units():
             Retrieves data on livestock units (Teagasc).
+
+        get_lime_fertilisation_by_system():
+            Retrieves data on lime fertilization by system (Teagasc).
     """
     def __init__(self):
         """
@@ -389,6 +392,23 @@ class DataManager:
         dataframe = pd.read_sql(
             "SELECT * FROM '%s'" % (table),
             self.engine,
+        )
+
+        return dataframe
+    
+    def get_lime_fertilisation_by_system(self):
+        """
+        Retrieves data on lime fertilization by system (Teagasc). 
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the lime fertilization by system.
+        """
+        table = "lime_use_proportion_by_system"
+
+        dataframe = pd.read_sql(
+            "SELECT * FROM '%s'" % (table),
+            self.engine,
+            index_col=["Farmsystem"],
         )
 
         return dataframe

@@ -73,9 +73,9 @@ class Grasslands:
             scenario_animals_df,
             baseline_animals_df,
         )
-        self.calibration_year = self.data_manager_class.calibration_year
-        self.target_year = self.data_manager_class.target_year
-        self.default_calibration_year = self.data_manager_class.default_calibration_year
+        self.calibration_year = self.data_manager_class.get_calibration_year()
+        self.target_year = self.data_manager_class.get_target_year()
+        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()  
         self.loader_class = Loader()
         self.yield_class = Yield(
             ef_country,
@@ -130,7 +130,7 @@ class Grasslands:
         year_list = [self.calibration_year, self.target_year]
         scenario_list = self.scenario_list
 
-        keys = self.data_manager_class.systems
+        keys = self.data_manager_class.get_farming_systems()
 
         transposed_yield_per_ha = self.yield_class.get_yield()
         dry_matter_req = self.dm_class.actual_dry_matter_required()

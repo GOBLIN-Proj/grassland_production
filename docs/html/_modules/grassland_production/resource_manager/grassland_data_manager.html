@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.0 documentation</title>
+  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+        <script src="../../../_static/documentation_options.js?v=71d9d8e6"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -95,12 +95,12 @@
 <span class="sd">    Args:</span>
 <span class="sd">        calibration_year (int): The calibration year.</span>
 <span class="sd">        target_year (int): The target year for future scenario projections.</span>
-<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.</span>
 <span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
 <span class="sd">    </span>
 <span class="sd">    Attributes:</span>
 <span class="sd">        loader_class (Loader): Instance of the Loader class for loading various datasets.</span>
+<span class="sd">        ef_country (str): The EF country.</span>
 <span class="sd">        calibration_year (int): The calibration year for data reference.</span>
 <span class="sd">        default_calibration_year (int): The default calibration year used as a fallback when data for the specified year is not available.</span>
 <span class="sd">        default_grassland_year (int): The default year used for grassland data when it is not specified.</span>
@@ -108,7 +108,6 @@
 <span class="sd">        COHORTS_DICT (dict): A dictionary mapping livestock categories to their cohorts.</span>
 <span class="sd">        DAIRY_BEEF_COHORTS (dict): A dictionary mapping livestock categories to cohorts for dairy and beef systems.</span>
 <span class="sd">        COHORTS_GROUPS (dict): A dictionary mapping farm systems to the corresponding livestock cohorts.</span>
-<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input data.</span>
 <span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
 <span class="sd">        baseline_animals_dict (dict): A dictionary containing baseline livestock data.</span>
@@ -118,6 +117,30 @@
 <span class="sd">        soil_class_prop (dict): A dictionary containing soil properties for different farm systems.</span>
 <span class="sd">        grasslands (list): A list of grassland types.</span>
 <span class="sd">        systems (list): A list of farm systems.</span>
+<span class="sd">        lime_rate (float): The lime rate.</span>
+<span class="sd">        default_urea_proportion (float): The default proportion of urea.</span>
+<span class="sd">        default_urea_abated_proportion (float): The default proportion of abated urea.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        get_ef_country(): Returns the EF country.</span>
+<span class="sd">        get_cohort_groups(): Returns the livestock cohorts for farm systems.</span>
+<span class="sd">        get_dairy_beef_cohorts(): Returns the livestock cohorts for dairy and beef systems.</span>
+<span class="sd">        get_cohorts(): Returns the livestock cohorts for farm systems (Cattle, Sheep).</span>
+<span class="sd">        get_soil_properties(): Returns the soil properties for farm systems.</span>
+<span class="sd">        get_yield_gap(soil_class): Returns the yield gap for soil classes.</span>
+<span class="sd">        get_default_calibration_year(): Returns the default calibration year used as a fallback when data for the specified year is not available.</span>
+<span class="sd">        get_default_grassland_year(): Returns the default year used for grassland data when it is not specified.</span>
+<span class="sd">        get_target_year(): Returns the target year for future scenario projections.</span>
+<span class="sd">        get_baseline_animals_dict(): Returns the baseline livestock data as dict.</span>
+<span class="sd">        get_baseline_animals_dataframe(): Returns the baseline livestock data as DataFrame.</span>
+<span class="sd">        get_scenario_animals_dict(): Returns the scenario livestock data as dict.</span>
+<span class="sd">        get_scenario_animals_dataframe(): Returns the scenario livestock data as DataFrame.</span>
+<span class="sd">        get_scenario_aggregation(): Returns the scenario aggregation data.</span>
+<span class="sd">        get_grassland_types(): Returns a list of grassland types.</span>
+<span class="sd">        get_farming_systems(): Returns a list of farm systems.</span>
+<span class="sd">        get_lime_rate(): Returns the lime rate.</span>
+<span class="sd">        get_default_urea_proportion(): Returns the default proportion of urea.</span>
+<span class="sd">        get_default_urea_abated_proportion(): Returns the default proportion of abated urea.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -126,6 +149,7 @@
         <span class="n">scenario_animals_df</span><span class="p">,</span>
         <span class="n">baseline_animals_df</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ef_country</span> <span class="o">=</span> <span class="s2">&quot;ireland&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="n">calibration_year</span>
@@ -218,7 +242,258 @@
         <span class="p">}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">grasslands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Grass silage&quot;</span><span class="p">,</span> <span class="s2">&quot;Hay&quot;</span><span class="p">,</span> <span class="s2">&quot;Pasture&quot;</span><span class="p">,</span> <span class="s2">&quot;Rough grazing in use&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">systems</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">,</span> <span class="s2">&quot;beef&quot;</span><span class="p">,</span> <span class="s2">&quot;sheep&quot;</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">systems</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">,</span> <span class="s2">&quot;beef&quot;</span><span class="p">,</span> <span class="s2">&quot;sheep&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lime_rate</span> <span class="o">=</span> <span class="mf">3.25</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_urea_proportion</span> <span class="o">=</span> <span class="mf">0.2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_urea_abated_proportion</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="DataManager.get_ef_country">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_ef_country">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_ef_country</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the EF country.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The EF country.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef_country</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_cohort_groups">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_cohort_groups">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cohort_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the livestock cohorts for a specified farm system.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            system (str): The farm system for which to return livestock cohorts.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of livestock cohorts for the specified farm system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_GROUPS</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_dairy_beef_cohorts">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_dairy_beef_cohorts">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_dairy_beef_cohorts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the livestock cohorts for dairy and beef systems.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary mapping livestock categories to cohorts for dairy and beef systems.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">DAIRY_BEEF_COHORTS</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_cohorts">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_cohorts">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cohorts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the livestock cohorts for farm systems (Cattle, Sheep).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary mapping livestock categories to their cohorts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_DICT</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_soil_properties">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_soil_properties">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_soil_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the soil properties for farm systems.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary containing soil properties for different farm systems.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">soil_class_prop</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_yield_gap">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_yield_gap">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_yield_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the yield gap for soil classes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary mapping soil classes to yield gaps.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">soil_class_yield_gap</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_calibration_year">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_calibration_year">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_calibration_year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the calibration year for data reference.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The calibration year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_default_calibration_year">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_default_calibration_year">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_default_calibration_year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the default calibration year used as a fallback when data for the specified year is not available.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The default calibration year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_default_grassland_year">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_default_grassland_year">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_default_grassland_year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the default year used for grassland data when it is not specified.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The default grassland year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_target_year">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_target_year">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_target_year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the target year for future scenario projections.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The target year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_baseline_animals_dict">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_baseline_animals_dict">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_baseline_animals_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the baseline livestock data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: A dictionary containing baseline livestock data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseline_animals_dict</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_baseline_animals_dataframe">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_baseline_animals_dataframe">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_baseline_animals_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the baseline livestock data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A DataFrame containing baseline livestock data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseline_animals_df</span></div>
+
+
+<div class="viewcode-block" id="DataManager.get_scenario_animals_dict">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_scenario_animals_dict">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenario_animals_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the scenario livestock data.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: A dictionary containing scenario livestock data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_dict</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_scenario_animals_dataframe">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_scenario_animals_dataframe">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenario_animals_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the scenario livestock data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A DataFrame containing scenario livestock data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_animals_df</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_scenario_aggregation">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_scenario_aggregation">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_scenario_aggregation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the scenario aggregation data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A DataFrame containing scenario aggregation data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_aggregation</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_grassland_types">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_grassland_types">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_grassland_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of grassland types.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of grassland types.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grasslands</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_farming_systems">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_farming_systems">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_farming_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of farm systems.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of farm systems.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">systems</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_lime_rate">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_lime_rate">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lime_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the lime rate. This rate is based on maximum lime application rates provided by the </span>
+<span class="sd">        Department of Agriculture, Food and the Marine (DAFM) in Ireland. The maximum lime application </span>
+<span class="sd">        is 7.5 tonnes per hectare every 3 years. The lime rate is calculated as half of the maximum, which </span>
+<span class="sd">        can be applied in year 1, with the balance applied in year 3.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The lime rate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lime_rate</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_default_urea_proportion">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_default_urea_proportion">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_default_urea_proportion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the default proportion of urea.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The default proportion of urea.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_urea_proportion</span></div>
+
+    
+<div class="viewcode-block" id="DataManager.get_default_urea_abated_proportion">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/resource_manager/grassland_data_manager/index.html#grassland_production.resource_manager.grassland_data_manager.DataManager.get_default_urea_abated_proportion">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_default_urea_abated_proportion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the default proportion of abated urea.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The default proportion of abated urea.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_urea_abated_proportion</span></div>
+</div>
 
 </pre></div>
 

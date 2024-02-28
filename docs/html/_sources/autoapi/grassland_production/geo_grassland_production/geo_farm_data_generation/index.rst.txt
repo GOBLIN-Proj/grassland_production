@@ -1,0 +1,240 @@
+:py:mod:`grassland_production.geo_grassland_production.geo_farm_data_generation`
+================================================================================
+
+.. py:module:: grassland_production.geo_grassland_production.geo_farm_data_generation
+
+.. autoapi-nested-parse::
+
+   ==================
+   Geo Farm Data Module
+   ==================
+
+   This module includes the FarmData class which is responsible for computing various aspects of farm data,
+   such as fertilization totals and farm data in different scenarios in a specific catchment. This data is essential for lifecycle
+   assessment calculations and agricultural planning.
+
+   Classes:
+       FarmData: Manages the computation of farm data for lifecycle assessments and scenario analysis.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   grassland_production.geo_grassland_production.geo_farm_data_generation.FarmData
+
+
+
+
+.. py:class:: FarmData(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+
+
+   The FarmData class handles the computation of various farm-related data elements, including
+   fertilization rates and overall farm data for baseline and future scenarios in specific catchments. This class plays
+   a pivotal role in lifecycle assessment and agricultural scenario analysis by providing essential
+   data for these processes.
+
+   :param ef_country: The country for which the analysis is performed.
+   :type ef_country: str
+   :param calibration_year: The calibration year.
+   :type calibration_year: int
+   :param target_year: The target year for future scenario projections.
+   :type target_year: int
+   :param scenario_inputs_df: DataFrame containing scenario input variables data.
+   :type scenario_inputs_df: DataFrame
+   :param scenario_animals_df: DataFrame containing scenario animal data.
+   :type scenario_animals_df: DataFrame
+   :param baseline_animals_df: DataFrame containing baseline animal data.
+   :type baseline_animals_df: DataFrame
+
+   .. attribute:: loader_class
+
+      Instance of Loader to load various datasets.
+
+      :type: Loader
+
+   .. attribute:: sc_class
+
+      Instance of ScenarioDataFetcher for fetching scenario data.
+
+      :type: ScenarioDataFetcher
+
+   .. attribute:: scenario_list
+
+      List of scenarios for analysis.
+
+      :type: list
+
+   .. attribute:: data_manager_class
+
+      Instance of DataManager for managing scenario and baseline data.
+
+      :type: DataManager
+
+   .. attribute:: ef_country
+
+      The country for which the analysis is performed.
+
+      :type: str
+
+   .. attribute:: areas_class
+
+      Instance of Areas for calculating areas-related data.
+
+      :type: Areas
+
+   .. attribute:: grassland_class
+
+      Instance for calculating grassland related data.
+
+      :type: Grasslands
+
+   .. attribute:: fertiliser_class
+
+      Instance for handling fertilization-related calculations.
+
+      :type: Fertilisation
+
+   .. attribute:: calibration_year
+
+      The base year for data calibration.
+
+      :type: int
+
+   .. attribute:: target_year
+
+      The target year for future scenario projections.
+
+      :type: int
+
+   .. attribute:: default_calibration_year
+
+      The default calibration year.
+
+      :type: int
+
+   .. attribute:: default_grassland_year
+
+      The default grassland year.
+
+      :type: int
+
+   .. attribute:: default_urea
+
+      The default proportion of urea.
+
+      :type: float
+
+   .. attribute:: default_urea_abated
+
+      The default proportion of abated urea.
+
+      :type: float
+
+   .. method:: compute_fertilization_total()
+
+      
+      Calculates the total fertilization rates across different scenarios, considering various livestock
+      systems and grassland types.
+      
+
+   .. method:: compute_npk_value()
+
+      
+      Calculates the NPK value for a given year, scenario, livestock system, and grassland type.
+      
+
+   .. method:: compute_lime_value()
+
+      
+      Calculates the lime value for a given year, scenario, livestock system, and grassland type.
+      
+
+   .. method:: compute_farm_data_in_scenarios()
+
+      
+      Computes farm data required for lifecycle assessment in different future scenarios.
+      
+
+   .. method:: compute_farm_data_in_baseline()
+
+      
+      Computes baseline farm data for use in lifecycle assessments and scenario comparisons.
+      
+
+   .. py:method:: compute_fertilization_total()
+
+      Calculation of total fertilisation rate across scenarios.
+
+      This function aggregates the values for the livestock systems (Dairy, Beef, Sheep) and grassland types (Pasture, Silage, Hay, Rough grazing in use).
+
+      If the year is less than 2005, outside the NFS range, a mean value across years is used.
+
+      For past years, the livestock system proportions for that year are utilised in the calculations as weights for grassland types.
+      Again, a mean value is used for past years outside the NFS range.
+      In relation to the target year and the grassland type weights, the calibration year is used.
+
+      The self.fert_rate_total is used to set the farm_data
+
+
+
+   .. py:method:: compute_npk_value(year, sc, sys, g_type, dataframes)
+
+
+   .. py:method:: compute_lime_value(year, sc, sys, g_type, dataframes)
+
+
+   .. py:method:: compute_farm_data_in_scenarios()
+
+      Computes farm data for various future scenarios to be used in lifecycle assessment (LCA) calculations.
+      This method integrates data on fertilizer usage, urea proportions, and other farm-specific details to
+      generate a comprehensive dataset for each scenario.
+
+      The computation involves determining the proportions of different types of fertilizers (P, K, Lime) and
+      calculating the total usage of each based on the fertilization rates and scenarios. It also accounts for
+      urea usage and abatement (abated urea) in the scenarios.
+
+      :returns:
+
+                A pandas DataFrame with farm data for each scenario. Each row corresponds to a scenario,
+                        including information about fertilizer usage, urea proportions, and other essential data
+                        for LCA calculations.
+      :rtype: DataFrame
+
+      .. rubric:: Notes
+
+      - The method attempts to use the calibration year data; if unavailable, it falls back to a default year.
+      - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,
+      along with diesel and electricity usage.
+      - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.
+
+
+   .. py:method:: compute_farm_data_in_baseline()
+
+      Computes baseline farm data for use in lifecycle assessment (LCA) calculations. This method focuses on
+      generating a dataset reflecting the baseline agricultural practices and inputs for the calibration year,
+      which serves as a reference point.
+
+      The computation includes the assessment of various types of fertilizers (P, K, Lime, Urea) and their
+      quantities used in the calibration year. It also accounts for diesel and electricity (currently set to zero) usage in farming
+      operations.
+
+      :returns:
+
+                A pandas DataFrame containing baseline farm data. It includes detailed information about
+                        fertilizer usage, urea proportions, and other essential data elements for LCA calculations.
+      :rtype: DataFrame
+
+      .. rubric:: Notes
+
+      - Data includes total amounts of urea, lime, nitrogenous (N), phosphorus (P), and potassium (K) fertilizers,
+      along with diesel and electricity usage.
+      - Diesel and Eelectricity usage are set to 0 for now, as they are not used in the current GOBLIN model.
+
+
+

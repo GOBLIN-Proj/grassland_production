@@ -152,6 +152,12 @@ Classes
       Retrieves data on livestock units (Teagasc).
       
 
+   .. method:: get_lime_fertilisation_by_system()
+
+      
+      Retrieves data on lime fertilization by system (Teagasc).
+      
+
    .. py:method:: data_engine_creater()
 
       Creates and returns a SQLAlchemy engine for the database.
@@ -289,6 +295,14 @@ Classes
       Retrieves data on livestock units (Teagasc).
 
       :returns: A DataFrame containing the livestock units (Teagasc).
+      :rtype: pandas.DataFrame
+
+
+   .. py:method:: get_lime_fertilisation_by_system()
+
+      Retrieves data on lime fertilization by system (Teagasc).
+
+      :returns: A DataFrame containing the lime fertilization by system.
       :rtype: pandas.DataFrame
 
 

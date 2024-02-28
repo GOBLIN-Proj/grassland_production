@@ -316,4 +316,16 @@ Classes
       :rtype: DataFrame
 
 
+   .. py:method:: lime_fertiliser_proportion_by_system()
+
+      Retrieves data on lime fertilization use segmented by proportion of various systems
+      applying lime.
+
+      :returns:
+
+                A pandas DataFrame containing detailed information about
+                        lime fertilization segmented by system and grassland type.
+      :rtype: DataFrame
+
+
 
