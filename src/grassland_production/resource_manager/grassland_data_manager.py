@@ -6,7 +6,7 @@ The Grassland Static Data Manager Module is a part of the grassland production s
 static data for grassland production analysis. It is designed to provide essential data for grassland production analysis.
 """
 
-from cattle_lca.models import load_livestock_data
+from cattle_lca.resource_manager.models import load_livestock_data
 from grassland_production.resource_manager.data_loader import Loader
 
 

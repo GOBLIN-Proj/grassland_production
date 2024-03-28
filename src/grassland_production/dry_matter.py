@@ -21,8 +21,8 @@ from grassland_production.fertilisation import Fertilisation
 from grassland_production.grassland_area import Areas
 import cattle_lca.lca as cattle_lca
 import sheep_lca.lca as sheep_lca
-from cattle_lca.animal_data import AnimalData as cattle_data
-from sheep_lca.animal_data import AnimalData as sheep_data
+from cattle_lca.resource_manager.animal_data import AnimalData as cattle_data
+from sheep_lca.resource_manager.animal_data import AnimalData as sheep_data
 
 class DryMatter:
     """
