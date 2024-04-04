@@ -40,13 +40,6 @@
 
 Install from git hub. 
 
-When prompted enter your ```<username>``` and password, which is your ```<access_token>```.
-
-```<access_token>``` is provided by the repo manager.
-
-```<username>``` pass your own github username.
-
-
 ```bash
 pip install "grassland_production@git+https://github.com/GOBLIN-Proj/grassland_production.git@main" 
 
