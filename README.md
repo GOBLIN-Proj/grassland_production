@@ -76,9 +76,9 @@ def main():
     calibration_year = 2020
     target_year = 2050
 
-    scenario_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_dataframe1.csv"))
-    scenario_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"future_animals.csv"))
-    baseline_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"past_animals.csv"))
+    scenario_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_input_dataframe2.csv"))
+    scenario_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_animal_data.csv"))
+    baseline_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"baseline_animal_data.csv"))
 
     #class instance
     grassland = GrasslandOutput(
