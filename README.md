@@ -45,6 +45,12 @@ pip install "grassland_production@git+https://github.com/GOBLIN-Proj/grassland_p
 
 ```
 
+Install from PyPI
+
+```bash
+pip install grassland_production
+```
+
 ## Usage
 Below is an example usage of the grassland_production submodule, for the national level. 
 
