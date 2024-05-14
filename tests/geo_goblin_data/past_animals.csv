@@ -1,5 +1,5 @@
 ,ef_country,farm_id,Scenarios,Catchment,year,cohort,pop,daily_milk,weight,forage,grazing,con_type,con_amount,wool,t_outdoors,t_indoors,t_stabled,mm_storage,daily_spreading,n_sold,n_bought
-0,ireland,2020.0,-1.0,Blackwater (Munster),2020.0,dairy_cows,176009.0,14.953,538.0,irish_grass,pasture,concentrate,5.9812,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
+0,ireland,2020.0,-1.0,Blackwater (Munster),2020.0,dairy_cows,0.0,14.953,538.0,irish_grass,pasture,concentrate,5.9812,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
 1,ireland,2020.0,-1.0,Blackwater (Munster),2020.0,suckler_cows,30602.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.8427516053333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
 2,ireland,2020.0,-1.0,Blackwater (Munster),2020.0,DxD_calves_f,41181.87614929048,0.0,138.55,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
 3,ireland,2020.0,-1.0,Blackwater (Munster),2020.0,DxD_calves_m,28942.31346035625,0.0,171.4,irish_grass,pasture,concentrate,2.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0

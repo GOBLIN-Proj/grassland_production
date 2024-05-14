@@ -290,15 +290,15 @@ class DryMatter:
                     mask_validation = (baseline_animals_df["year"] == self.calibration_year) & (
                         baseline_animals_df["cohort"] == animal_name) & (baseline_animals_df["mm_storage"] == "tank liquid") & (baseline_animals_df["pop"] > 0)
 
-   
-                    past_total_dm_df.loc[self.calibration_year, cohort] += (
-                        self.grass_feed_class.dry_matter_from_grass(
-                            animal_past,
+                    if mask_validation.any():
+                        past_total_dm_df.loc[self.calibration_year, cohort] += (
+                            self.grass_feed_class.dry_matter_from_grass(
+                                animal_past,
+                            )
+                            * kg_to_t
+                            * 365
+                            * baseline_animals_df.loc[mask_validation, "pop"].values.item()
                         )
-                        * kg_to_t
-                        * 365
-                        * baseline_animals_df.loc[mask_validation, "pop"].values.item()
-                    )
         # Process sheep
         for landtype in COHORTS["sheep"].keys():
             for animal_name in COHORTS["sheep"][landtype]:

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.dry_matter &mdash; Grassland Production, a GOBLIN module 0.3.3 documentation</title>
+  <title>grassland_production.dry_matter &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=d5a15cff"></script>
+        <script src="../../_static/documentation_options.js?v=1e28cc32"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -374,15 +374,15 @@
                     <span class="n">mask_validation</span> <span class="o">=</span> <span class="p">(</span><span class="n">baseline_animals_df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
                         <span class="n">baseline_animals_df</span><span class="p">[</span><span class="s2">&quot;cohort&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">animal_name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">baseline_animals_df</span><span class="p">[</span><span class="s2">&quot;mm_storage&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">baseline_animals_df</span><span class="p">[</span><span class="s2">&quot;pop&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 
-   
-                    <span class="n">past_total_dm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="n">cohort</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">grass_feed_class</span><span class="o">.</span><span class="n">dry_matter_from_grass</span><span class="p">(</span>
-                            <span class="n">animal_past</span><span class="p">,</span>
+                    <span class="k">if</span> <span class="n">mask_validation</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                        <span class="n">past_total_dm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="n">cohort</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">grass_feed_class</span><span class="o">.</span><span class="n">dry_matter_from_grass</span><span class="p">(</span>
+                                <span class="n">animal_past</span><span class="p">,</span>
+                            <span class="p">)</span>
+                            <span class="o">*</span> <span class="n">kg_to_t</span>
+                            <span class="o">*</span> <span class="mi">365</span>
+                            <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
                         <span class="p">)</span>
-                        <span class="o">*</span> <span class="n">kg_to_t</span>
-                        <span class="o">*</span> <span class="mi">365</span>
-                        <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-                    <span class="p">)</span>
         <span class="c1"># Process sheep</span>
         <span class="k">for</span> <span class="n">landtype</span> <span class="ow">in</span> <span class="n">COHORTS</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="n">COHORTS</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">][</span><span class="n">landtype</span><span class="p">]:</span>
