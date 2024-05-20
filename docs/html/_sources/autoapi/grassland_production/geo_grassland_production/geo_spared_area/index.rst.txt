@@ -5,17 +5,17 @@
 
 .. autoapi-nested-parse::
 
-   ====================
-   Spared Area Module
-   ====================
+   ======================
+   Geo Spared Area Module
+   ======================
 
-   This module contains the Grasslands class, which is designed to manage and process
+   This module contains the GeoGrasslands class, which is designed to manage and process
    data related to grassland areas, specifically focusing on calculating the total
    grassland area and spared area under various scenarios. It utilizes classes from
    the grassland_production package for detailed analysis and computations.
 
    Classes:
-       Grasslands: Manages and computes grassland and spared area data.
+       GeoGrasslands: Manages and computes grassland and spared area data.
 
 
 
@@ -27,12 +27,12 @@ Classes
 
 .. autoapisummary::
 
-   grassland_production.geo_grassland_production.geo_spared_area.Grasslands
+   grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands
 
 
 
 
-.. py:class:: Grasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: GeoGrasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
 
 
    A class to manage and compute catchment grassland and spared area data under various scenarios.
@@ -117,7 +117,7 @@ Classes
 
       Class for calculating utilisation rates.
 
-      :type: UtilisationRate
+      :type: GeoUtilisationRate
 
    .. method:: get_grass_total_area()
 

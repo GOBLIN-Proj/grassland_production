@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.farm_data_generation &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.farm_data_generation &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -142,7 +142,7 @@ data for these processes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.loader_class">
 <span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.loader_class" title="Link to this definition"></a></dt>
-<dd><p>Instance of Loader to load various datasets.</p>
+<dd><p>An instance of the Loader class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../resource_manager/data_loader/index.html#grassland_production.resource_manager.data_loader.Loader" title="grassland_production.resource_manager.data_loader.Loader">Loader</a></p>
@@ -153,7 +153,7 @@ data for these processes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.sc_class">
 <span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.sc_class" title="Link to this definition"></a></dt>
-<dd><p>Instance of ScenarioDataFetcher for fetching scenario data.</p>
+<dd><p>An instance of the ScenarioDataFetcher class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../resource_manager/scenario_data_fetcher/index.html#grassland_production.resource_manager.scenario_data_fetcher.ScenarioDataFetcher" title="grassland_production.resource_manager.scenario_data_fetcher.ScenarioDataFetcher">ScenarioDataFetcher</a></p>
@@ -164,7 +164,7 @@ data for these processes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.scenario_list">
 <span class="sig-name descname"><span class="pre">scenario_list</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.scenario_list" title="Link to this definition"></a></dt>
-<dd><p>List of scenarios for analysis.</p>
+<dd><p>A list of scenarios for analysis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -175,7 +175,7 @@ data for these processes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.data_manager_class">
 <span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.data_manager_class" title="Link to this definition"></a></dt>
-<dd><p>Instance of DataManager for managing scenario and baseline data.</p>
+<dd><p>An instance of the DataManager class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../resource_manager/database_manager/index.html#grassland_production.resource_manager.database_manager.DataManager" title="grassland_production.resource_manager.database_manager.DataManager">DataManager</a></p>
@@ -184,42 +184,31 @@ data for these processes.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.areas_class">
-<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.areas_class" title="Link to this definition"></a></dt>
-<dd><p>Instance of Areas for calculating areas-related data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../grassland_area/index.html#grassland_production.grassland_area.Areas" title="grassland_production.grassland_area.Areas">Areas</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.grassland_class">
-<span class="sig-name descname"><span class="pre">grassland_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.grassland_class" title="Link to this definition"></a></dt>
-<dd><p>Instance for calculating grassland related data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../geo_grassland_production/geo_spared_area/index.html#grassland_production.geo_grassland_production.geo_spared_area.Grasslands" title="grassland_production.geo_grassland_production.geo_spared_area.Grasslands">Grasslands</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.fertiliser_class">
-<span class="sig-name descname"><span class="pre">fertiliser_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.fertiliser_class" title="Link to this definition"></a></dt>
-<dd><p>Instance for handling fertilization-related calculations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../fertilisation/index.html#grassland_production.fertilisation.Fertilisation" title="grassland_production.fertilisation.Fertilisation">Fertilisation</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.calibration_year">
 <span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.calibration_year" title="Link to this definition"></a></dt>
-<dd><p>The base year for data calibration.</p>
+<dd><p>The calibration year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.default_calibration_year">
+<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.default_calibration_year" title="Link to this definition"></a></dt>
+<dd><p>The default calibration year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.default_grassland_year">
+<span class="sig-name descname"><span class="pre">default_grassland_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.default_grassland_year" title="Link to this definition"></a></dt>
+<dd><p>The default grassland year.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
@@ -230,10 +219,43 @@ data for these processes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.target_year">
 <span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.target_year" title="Link to this definition"></a></dt>
-<dd><p>The target year for future scenario projections.</p>
+<dd><p>The target year.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.areas_class">
+<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.areas_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Areas class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../grassland_area/index.html#grassland_production.grassland_area.Areas" title="grassland_production.grassland_area.Areas">Areas</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.grassland_class">
+<span class="sig-name descname"><span class="pre">grassland_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.grassland_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Grasslands class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../spared_area/index.html#grassland_production.spared_area.Grasslands" title="grassland_production.spared_area.Grasslands">Grasslands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.farm_data_generation.FarmData.fertiliser_class">
+<span class="sig-name descname"><span class="pre">fertiliser_class</span></span><a class="headerlink" href="#grassland_production.farm_data_generation.FarmData.fertiliser_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Fertilisation class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../fertilisation/index.html#grassland_production.fertilisation.Fertilisation" title="grassland_production.fertilisation.Fertilisation">Fertilisation</a></p>
 </dd>
 </dl>
 </dd></dl>

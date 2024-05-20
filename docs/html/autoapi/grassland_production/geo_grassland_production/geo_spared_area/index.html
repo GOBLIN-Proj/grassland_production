@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.geo_grassland_production.geo_spared_area &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.geo_grassland_production.geo_spared_area &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,13 +17,13 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="grassland_production.resource_manager" href="../../resource_manager/index.html" />
+    <link rel="next" title="grassland_production.geo_grassland_production.geo_stocking_rate" href="../geo_stocking_rate/index.html" />
     <link rel="prev" title="grassland_production.geo_grassland_production.geo_grassland_soils" href="../geo_grassland_soils/index.html" /> 
 </head>
 
@@ -94,13 +94,13 @@
              
   <section id="module-grassland_production.geo_grassland_production.geo_spared_area">
 <span id="grassland-production-geo-grassland-production-geo-spared-area"></span><h1><a class="reference internal" href="#module-grassland_production.geo_grassland_production.geo_spared_area" title="grassland_production.geo_grassland_production.geo_spared_area"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production.geo_spared_area</span></code></a><a class="headerlink" href="#module-grassland_production.geo_grassland_production.geo_spared_area" title="Link to this heading"></a></h1>
-<section id="spared-area-module">
-<p>This module contains the Grasslands class, which is designed to manage and process
+<section id="geo-spared-area-module">
+<p>This module contains the GeoGrasslands class, which is designed to manage and process
 data related to grassland areas, specifically focusing on calculating the total
 grassland area and spared area under various scenarios. It utilizes classes from
 the grassland_production package for detailed analysis and computations.</p>
 <dl class="simple">
-<dt>Classes:</dt><dd><p>Grasslands: Manages and computes grassland and spared area data.</p>
+<dt>Classes:</dt><dd><p>GeoGrasslands: Manages and computes grassland and spared area data.</p>
 </dd>
 </dl>
 </section>
@@ -110,14 +110,14 @@ the grassland_production package for detailed analysis and computations.</p>
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands" title="grassland_production.geo_grassland_production.geo_spared_area.Grasslands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grasslands</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands" title="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGrasslands</span></code></a></p></td>
 <td><p>A class to manage and compute catchment grassland and spared area data under various scenarios.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_spared_area.</span></span><span class="sig-name descname"><span class="pre">Grasslands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_spared_area.</span></span><span class="sig-name descname"><span class="pre">GeoGrasslands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands" title="Link to this definition"></a></dt>
 <dd><p>A class to manage and compute catchment grassland and spared area data under various scenarios.</p>
 <p>This class integrates data from various sources to assess the total area of grasslands
 and the spared area (destocked grassland) for different scenarios.</p>
@@ -134,8 +134,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.sc_class">
-<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.sc_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.sc_class">
+<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.sc_class" title="Link to this definition"></a></dt>
 <dd><p>Fetches scenario data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -145,8 +145,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.scenario_list">
-<span class="sig-name descname"><span class="pre">scenario_list</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.scenario_list" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.scenario_list">
+<span class="sig-name descname"><span class="pre">scenario_list</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.scenario_list" title="Link to this definition"></a></dt>
 <dd><p>List of scenarios.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -156,8 +156,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.data_manager_class">
-<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.data_manager_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.data_manager_class" title="Link to this definition"></a></dt>
 <dd><p>Manages and processes grassland data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -167,8 +167,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.calibration_year">
-<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.calibration_year" title="Link to this definition"></a></dt>
 <dd><p>Year of data calibration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -178,8 +178,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.target_year">
-<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.target_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.target_year">
+<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.target_year" title="Link to this definition"></a></dt>
 <dd><p>Target year for data analysis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -189,8 +189,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.default_calibration_year">
-<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.default_calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.default_calibration_year">
+<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.default_calibration_year" title="Link to this definition"></a></dt>
 <dd><p>Default year used for calibration in case of data discrepancies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -200,8 +200,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.loader_class">
-<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.loader_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.loader_class" title="Link to this definition"></a></dt>
 <dd><p>Class for loading necessary data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -211,19 +211,19 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.yield_class">
-<span class="sig-name descname"><span class="pre">yield_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.yield_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.yield_class">
+<span class="sig-name descname"><span class="pre">yield_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.yield_class" title="Link to this definition"></a></dt>
 <dd><p>Class for managing grassland yield data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../geo_grass_yield/index.html#grassland_production.geo_grassland_production.geo_grass_yield.Yield" title="grassland_production.geo_grassland_production.geo_grass_yield.Yield">Yield</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../../grass_yield/index.html#grassland_production.grass_yield.Yield" title="grassland_production.grass_yield.Yield">Yield</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.areas_class">
-<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.areas_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.areas_class">
+<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.areas_class" title="Link to this definition"></a></dt>
 <dd><p>Class for managing grassland area data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -233,8 +233,8 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.dm_class">
-<span class="sig-name descname"><span class="pre">dm_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.dm_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.dm_class">
+<span class="sig-name descname"><span class="pre">dm_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.dm_class" title="Link to this definition"></a></dt>
 <dd><p>Class for managing dry matter data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -244,43 +244,43 @@ and the spared area (destocked grassland) for different scenarios.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.farm_based_UR">
-<span class="sig-name descname"><span class="pre">farm_based_UR</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.farm_based_UR" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.farm_based_UR">
+<span class="sig-name descname"><span class="pre">farm_based_UR</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.farm_based_UR" title="Link to this definition"></a></dt>
 <dd><p>Class for calculating utilisation rates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../utilisation_rate/index.html#grassland_production.utilisation_rate.UtilisationRate" title="grassland_production.utilisation_rate.UtilisationRate">UtilisationRate</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../geo_utilisation_rate/index.html#grassland_production.geo_grassland_production.geo_utilisation_rate.GeoUtilisationRate" title="grassland_production.geo_grassland_production.geo_utilisation_rate.GeoUtilisationRate">GeoUtilisationRate</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_grass_total_area">
-<span class="sig-name descname"><span class="pre">get_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_grass_total_area" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_grass_total_area">
+<span class="sig-name descname"><span class="pre">get_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_grass_total_area" title="Link to this definition"></a></dt>
 <dd><p>Computes and returns the total grassland area.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_non_grass_total_area">
-<span class="sig-name descname"><span class="pre">get_non_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_non_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_non_grass_total_area" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_non_grass_total_area">
+<span class="sig-name descname"><span class="pre">get_non_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_non_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_non_grass_total_area" title="Link to this definition"></a></dt>
 <dd><p>Computes and returns the total non-grassland (spared) area.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_cohort_spared_area">
-<span class="sig-name descname"><span class="pre">get_cohort_spared_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_cohort_spared_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_cohort_spared_area" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_cohort_spared_area">
+<span class="sig-name descname"><span class="pre">get_cohort_spared_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_cohort_spared_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_cohort_spared_area" title="Link to this definition"></a></dt>
 <dd><p>Computes spared area distributed across different cohorts.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_cohort_grassland_area">
-<span class="sig-name descname"><span class="pre">get_cohort_grassland_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_cohort_grassland_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.Grasslands.get_cohort_grassland_area" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_cohort_grassland_area">
+<span class="sig-name descname"><span class="pre">get_cohort_grassland_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_cohort_grassland_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_spared_area.GeoGrasslands.get_cohort_grassland_area" title="Link to this definition"></a></dt>
 <dd><p>Computes grassland area distributed across different cohorts.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">get_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>Calculates and returns the total grassland area for each scenario and system over specified years.</p>
 <p>This method computes the total area of grasslands required to meet the dry matter requirements
 for dairy, beef and sheep. It uses a weighted average yield of different grassland types within each
@@ -308,7 +308,7 @@ operates across all defined scenarios.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">get_non_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_non_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_non_grass_total_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_non_grass_total_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>Calculates and returns a DataFrame representing the spared (destocked) area for various scenarios.</p>
 <p>The spared area is defined as the difference in grassland area between the calibration year
 and the target year. For each scenario, if the year is not the target year, the spared area
@@ -334,7 +334,7 @@ that scenario and year.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">get_cohort_spared_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_cohort_spared_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_cohort_spared_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_cohort_spared_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>Calculates and returns the spared area distributed across different cohorts for each scenario.</p>
 <p>This method determines the spared area (destocked grassland) for each cohort in each scenario.
 It utilizes the weighted dry matter (DM) reduction contributions calculated by the DryMatter class
@@ -359,7 +359,7 @@ spared area origins are distributed among different cohorts.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">get_cohort_grassland_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#Grasslands.get_cohort_grassland_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_cohort_grassland_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_spared_area.html#GeoGrasslands.get_cohort_grassland_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd><p>Calculates and returns the grassland area for each cohort within each scenario.</p>
 <p>This method assesses the grassland area distribution among various cohorts for each scenario.
 It uses the actual dry matter (DM) weights, as calculated by the DryMatter class, to determine
@@ -394,7 +394,7 @@ cohorts in various scenarios.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../geo_grassland_soils/index.html" class="btn btn-neutral float-left" title="grassland_production.geo_grassland_production.geo_grassland_soils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../resource_manager/index.html" class="btn btn-neutral float-right" title="grassland_production.resource_manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../geo_stocking_rate/index.html" class="btn btn-neutral float-right" title="grassland_production.geo_grassland_production.geo_stocking_rate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

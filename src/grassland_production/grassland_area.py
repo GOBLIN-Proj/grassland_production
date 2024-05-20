@@ -6,7 +6,6 @@ The Grassland Area Module is a part of the grassland production system that deal
 the proportions and distributions of grassland areas within different farming systems. 
 It is designed to provide essential data for grassland production analysis, taking into account various factors and scenarios.
 """
-
 import pandas as pd
 from itertools import product
 from grassland_production.resource_manager.data_loader import Loader

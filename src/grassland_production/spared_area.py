@@ -11,7 +11,6 @@ the grassland_production package for detailed analysis and computations.
 Classes:
     Grasslands: Manages and computes grassland and spared area data.
 """
-
 import pandas as pd
 from grassland_production.resource_manager.data_loader import Loader
 from grassland_production.resource_manager.grassland_data_manager import DataManager
@@ -35,6 +34,9 @@ class Grasslands:
         scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
         scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+        yield_class (Yield, optional): An instance of the Yield class. If not provided, a new instance is created with default parameters.
+        dry_matter_class (DryMatter, optional): An instance of the DryMatter class. If not provided, a new instance is created with default parameters.
+        utilisation_class (UtilisationRate, optional): An instance of the UtilisationRate class. If not provided, a new instance is created with default parameters.
 
     Attributes:
         sc_class (ScenarioDataFetcher): Fetches scenario data.
@@ -63,6 +65,9 @@ class Grasslands:
         scenario_data,
         scenario_animals_df,
         baseline_animals_df,
+        yield_class = None,
+        dry_matter_class = None,
+        utilisation_class = None
     ):
         self.sc_class = ScenarioDataFetcher(scenario_data)
         self.scenario_list = self.sc_class.get_scenario_list()
@@ -77,32 +82,44 @@ class Grasslands:
         self.target_year = self.data_manager_class.get_target_year()
         self.default_calibration_year = self.data_manager_class.get_default_calibration_year()  
         self.loader_class = Loader()
-        self.yield_class = Yield(
-            ef_country,
-            calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
+
+        if yield_class is None:
+            self.yield_class = Yield(
+                ef_country,
+                calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,
+            )
+        else:
+            self.yield_class = yield_class 
+
         self.areas_class = Areas(
             self.target_year, self.calibration_year, self.default_calibration_year
         )
-        self.dm_class = DryMatter(
-            ef_country,
-            self.calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
 
-        self.farm_based_UR = UtilisationRate(ef_country,
-            self.calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,)
+        if dry_matter_class is None:
+            self.dm_class = DryMatter(
+                ef_country,
+                self.calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,
+            )
+        else:
+            self.dm_class = dry_matter_class
+
+        if utilisation_class is None:
+            self.farm_based_UR = UtilisationRate(ef_country,
+                self.calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,)
+        else:
+            self.farm_based_UR = utilisation_class
 
     def get_grass_total_area(self):
         """
@@ -133,6 +150,8 @@ class Grasslands:
         keys = self.data_manager_class.get_farming_systems()
 
         transposed_yield_per_ha = self.yield_class.get_yield()
+
+
         dry_matter_req = self.dm_class.actual_dry_matter_required()
 
         farm_based_UR = self.farm_based_UR.get_farm_based_utilisation_rate()

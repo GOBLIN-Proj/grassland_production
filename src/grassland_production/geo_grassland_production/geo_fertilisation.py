@@ -1,31 +1,29 @@
 """
-======================
-Fertilisation Module
-======================
+========================
+Geo Fertilisation Module
+========================
 
-This module encompasses the Fertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation 
+This module encompasses the GeoFertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation 
 rates and their distribution across different farm systems and scenarios. This class is used in the calculation of 
 grassland production for catchments.
 
 Classes:
-    Fertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.
+    GeoFertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.
 """
 
 from itertools import product
-import pandas as pd
 from grassland_production.resource_manager.data_loader import Loader
 from grassland_production.resource_manager.grassland_data_manager import DataManager
 from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
-
 from grassland_production.grassland_area import Areas
-from grassland_production.fertilisation import Fertilisation as Fert
+from grassland_production.fertilisation import Fertilisation
 from cattle_lca.lca import DailySpread
 from grassland_production.geo_grassland_production.catchment_grassland import CatchmentGrass
 
 
-class Fertilisation:
+class GeoFertilisation:
     """
-    The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates 
+    The GeoFertilisation class is responsible for calculating both inorganic and organic fertilization rates 
     and their application across various farm systems and scenarios. This class plays a crucial role in 
     the calculation of grassland production, providing insights into the environmental impact of fertilization 
     practices and aiding in the development of sustainable agricultural strategies.
@@ -103,7 +101,7 @@ class Fertilisation:
         self.areas_class = Areas(
             self.target_year, calibration_year, self.default_calibration_year
         )
-        self.fert_class = Fert(ef_country,
+        self.fert_class = Fertilisation(ef_country,
                                 calibration_year,
                                 target_year,
                                 scenario_data,
@@ -187,6 +185,7 @@ class Fertilisation:
         """
         spread_dict = self.compute_organic_fertilization_rate()
         grassland_areas = self.catchment_grass.get_catchment_grassland_area_caluclated()
+        
         nfs_system_proportions = self.areas_class.get_nfs_system_proportions()
         
         dairy_nfs_system_proportions = nfs_system_proportions[0]

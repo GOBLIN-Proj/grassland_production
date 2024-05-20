@@ -35,10 +35,14 @@ class FertilizationTestCase(unittest.TestCase):
 
         test2 = self.fert_class.compute_organic_fertilization_rate()
 
-        print(test)
+        test3 = self.fert_class.compute_inorganic_fertilization_rate()
 
-        print(test2)
+        print(f"organic fert: {test}")
 
+        print("#"*50)
+        print(f"organic fert rate: {test2}")
+        print("#"*50)
+        print(f"inorganic fert rate: {test3}")
 
 if __name__ == "__main__":
     unittest.main()

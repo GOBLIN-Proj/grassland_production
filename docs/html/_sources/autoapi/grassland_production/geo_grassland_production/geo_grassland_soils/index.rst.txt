@@ -5,17 +5,17 @@
 
 .. autoapi-nested-parse::
 
-   ========================
-   Grassland Soils Module
-   ========================
-   This module contains the SoilGroups class, which is responsible for managing and analyzing
+   =========================
+   GeoGrassland Soils Module
+   =========================
+   This module contains the GeoSoilGroups class, which is responsible for managing and analyzing
    soil group data related to various cohorts. It focuses on categorizing and
    distributing soil types among different livestock categories like dairy, beef, and sheep.
    The module utilizes several components from the grassland_production package to
    compute and provide detailed insights into soil group distributions for grassland management.
 
    Classes:
-       SoilGroups: Manages soil group data.
+       GeoSoilGroups: Manages soil group data.
 
 
 
@@ -27,17 +27,17 @@ Classes
 
 .. autoapisummary::
 
-   grassland_production.geo_grassland_production.geo_grassland_soils.SoilGroups
+   grassland_production.geo_grassland_production.geo_grassland_soils.GeoSoilGroups
 
 
 
 
-.. py:class:: SoilGroups(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: GeoSoilGroups(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
 
 
    A class to manage and analyze soil group data for different grassland cohorts.
 
-   The SoilGroups class integrates data from various sources to provide a comprehensive
+   The GeoSoilGroups class integrates data from various sources to provide a comprehensive
    overview of soil group distribution across different types of livestock systems, such as
    dairy, beef, and sheep. It plays a crucial role in understanding and managing
    soil-related aspects in grassland areas.
@@ -55,71 +55,11 @@ Classes
    :param baseline_animals_df: DataFrame containing baseline animal data.
    :type baseline_animals_df: DataFrame
 
-   .. attribute:: data_manager_class
+   .. attribute:: soil_groups
 
-      Manages and processes grassland data.
+      An instance of the SoilGroups class.
 
-      :type: DataManager
-
-   .. attribute:: calibration_year
-
-      Year of data calibration.
-
-      :type: int
-
-   .. attribute:: target_year
-
-      Target year for data analysis.
-
-      :type: int
-
-   .. attribute:: default_calibration_year
-
-      Default year used for calibration in case of data discrepancies.
-
-      :type: int
-
-   .. attribute:: loader_class
-
-      Class for loading necessary data.
-
-      :type: Loader
-
-   .. attribute:: scenario_animals_df
-
-      Dataframe containing animal data for different scenarios.
-
-      :type: DataFrame
-
-   .. attribute:: baseline_animals_df
-
-      Dataframe containing baseline animal data.
-
-      :type: DataFrame
-
-   .. attribute:: dairy_soil_distribution
-
-      Soil distribution data for dairy grasslands.
-
-      :type: DataFrame
-
-   .. attribute:: beef_soil_distribution
-
-      Soil distribution data for beef grasslands.
-
-      :type: DataFrame
-
-   .. attribute:: sheep_soil_distribution
-
-      Soil distribution data for sheep grasslands.
-
-      :type: DataFrame
-
-   .. attribute:: grassland_class
-
-      Class for managing grassland data.
-
-      :type: Grasslands
+      :type: SoilGroups
 
    .. method:: get_cohort_soil_groups()
 

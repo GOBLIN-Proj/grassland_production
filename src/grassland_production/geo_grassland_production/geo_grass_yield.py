@@ -1,26 +1,20 @@
 """
-====================
-Grass Yield Module
-====================
+======================
+Geo Grass Yield Module
+======================
 
-This module includes the Yield class, which calculates grass yield per hectare for various farm systems 
+This module includes the GeoYield class, which calculates grass yield per hectare for various farm systems 
 and scenarios for the selected catchment. 
 The class uses models and data to estimate yields based on different fertilization strategies 
 and soil conditions.
 
 Classes:
-    Yield: Manages the computation of grass yield for different farm systems and scenarios.
+    GeoYield: Manages the computation of grass yield for different farm systems and scenarios.
 """
+from grassland_production.geo_grassland_production.geo_fertilisation import GeoFertilisation
+from grassland_production.grass_yield import Yield
 
-import pandas as pd
-from itertools import product
-from grassland_production.resource_manager.data_loader import Loader
-from grassland_production.resource_manager.grassland_data_manager import DataManager
-from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
-from grassland_production.geo_grassland_production.geo_fertilisation import Fertilisation
-from grassland_production.grass_yield import Yield as GrasslandYield
-
-class Yield:
+class GeoYield:
     """
     The Yield class is responsible for calculating grass yield per hectare for various farm systems (dairy, beef, sheep)
     under different scenarios for the specified catchment. This calculation takes into account factors such as fertilization (both inorganic and organic),
@@ -75,16 +69,8 @@ class Yield:
         scenario_animals_df,
         baseline_animals_df,
     ):
-        self.sc_class = ScenarioDataFetcher(scenario_data)
-        self.scenario_list = self.sc_class.get_scenario_list()
 
-        self.data_manager_class = DataManager(
-            calibration_year,
-            target_year,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
-        self.geo_fertiliser_class = Fertilisation(
+        fertiliser_class = GeoFertilisation(
             ef_country,
             calibration_year,
             target_year,
@@ -93,21 +79,15 @@ class Yield:
             baseline_animals_df,
         )
 
-        #Classes from Main Model    
-        self.grass_yield_class = GrasslandYield(ef_country,
+        self.grass_yield_class = Yield(ef_country,
                         calibration_year,
                         target_year,
                         scenario_data,
                         scenario_animals_df,
-                        baseline_animals_df)
+                        baseline_animals_df,
+                        fertiliser_class=fertiliser_class
+                        )
         
-        self.loader_class = Loader()
-        self.calibration_year = self.data_manager_class.get_calibration_year()
-        self.target_year = self.data_manager_class.get_target_year()
-
-        self.soil_class_yield_gap = self.data_manager_class.get_yield_gap()
-
-        self.soil_class_prop = self.data_manager_class.get_soil_properties()
 
 
     def get_clover_parameters(self):
@@ -127,9 +107,7 @@ class Yield:
             - Clover fertilisation rate: The rate of clover fertilisation.
 
         """
-        clover_dict = self.grass_yield_class.get_clover_parameters()
-
-        return clover_dict
+        return self.grass_yield_class.get_clover_parameters()
        
 
     def get_yield(self):
@@ -150,75 +128,7 @@ class Yield:
                     - The DataFrame's rows correspond to grassland types.
                     - The DataFrame's columns correspond to calibration and target years.
         """
-        fertilization_by_system_data_frame = (
-            self.loader_class.grassland_fertilization_by_system()
-        )
-        fert_rate = self.geo_fertiliser_class.compute_inorganic_fertilization_rate()
-
-        #Catchment specific
-        organic_manure = self.geo_fertiliser_class.organic_fertilisation_per_ha()
-
-        year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.scenario_list
-
-        clover_parameters_dict = self.get_clover_parameters()
-
-        keys = ["dairy", "beef", "sheep"]
-
-        yield_per_ha = {
-            farm_type: {
-                sc: pd.DataFrame(
-                    0.0,
-                    index=fertilization_by_system_data_frame.index.levels[0],
-                    columns=year_list,
-                )
-                for sc in scenario_list
-            }
-            for farm_type in keys
-        }
-
-        for sc, farm_type, grassland_type, soil_group in product(
-            scenario_list,
-            keys,
-            fertilization_by_system_data_frame.index.levels[0],
-            self.soil_class_yield_gap.keys(),
-        ):
-            yield_per_ha_df = yield_per_ha[farm_type][sc]
-            soil_class_prop = self.soil_class_prop[farm_type].loc[
-                int(self.calibration_year), soil_group
-            ]
-
-            yield_per_ha_df.loc[grassland_type, int(self.calibration_year)] += (
-                self._yield_response_function_to_fertilizer(
-                    fert_rate[farm_type][sc].loc[
-                        grassland_type, str(self.calibration_year)
-                    ],
-                    grassland_type,
-                    manure_spread=organic_manure[sc].loc[int(self.calibration_year), farm_type],
-                )
-                * self.soil_class_yield_gap[soil_group]
-            ) * soil_class_prop
-
-            clover_prop = clover_parameters_dict[farm_type]["proportion"][sc]
-            clover_fert = clover_parameters_dict[farm_type]["fertilisation"][sc]
-
-            yield_per_ha_df.loc[grassland_type, int(self.target_year)] += (
-                self._yield_response_function_to_fertilizer(
-                    fert_rate[farm_type][sc].loc[grassland_type, str(self.target_year)],
-                    grassland_type,
-                    clover_prop=clover_prop,
-                    clover_fert=clover_fert,
-                    manure_spread=organic_manure[sc].loc[int(self.target_year), farm_type],
-                )
-                * self.soil_class_yield_gap[soil_group]
-            ) * soil_class_prop
-
-        transposed_yield_per_ha = {
-            sc: {farm_type: yield_per_ha[farm_type][sc].T for farm_type in keys}
-            for sc in scenario_list
-        }
-
-        return transposed_yield_per_ha
+        return self.grass_yield_class.get_yield()
 
 
     def _yield_response_function_to_fertilizer(
@@ -248,8 +158,4 @@ class Yield:
         Note: The result is converted to metric tons per hectare using the factor 1e-3.
 
         """
-        yield_response = self.grass_yield_class._yield_response_function_to_fertilizer(
-            fertilizer, grassland, clover_prop, clover_fert, manure_spread
-        )
-
-        return yield_response
+        return self.grass_yield_class._yield_response_function_to_fertilizer(fertilizer, grassland, clover_prop, clover_fert, manure_spread)

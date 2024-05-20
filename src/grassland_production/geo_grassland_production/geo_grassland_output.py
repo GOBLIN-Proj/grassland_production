@@ -1,7 +1,7 @@
 """
-=================================
+===============================
 Grassland Output Manager Module
-=================================
+===============================
 This module contains the GrasslandOutput class, which is responsible for managing and
 processing various outputs related to grassland production and management. The class
 integrates different aspects of grassland management, such as grasslands, farm data,
@@ -12,12 +12,11 @@ Classes:
     GrasslandOutput: Manages and computes outputs for grassland management for catchment analysis.
 
 """
-
-from grassland_production.geo_grassland_production.geo_spared_area import Grasslands
+from grassland_production.geo_grassland_production.geo_spared_area import GeoGrasslands
 from grassland_production.geo_grassland_production.geo_farm_data_generation import FarmData
-from grassland_production.geo_grassland_production.geo_grassland_soils import SoilGroups
-from grassland_production.dry_matter import DryMatter
-from grassland_production.stocking_rate import StockingRate
+from grassland_production.geo_grassland_production.geo_grassland_soils import GeoSoilGroups
+from grassland_production.geo_grassland_production.geo_dry_matter import GeoDryMatter
+from grassland_production.geo_grassland_production.geo_stocking_rate import GeoStockingRate
 
 import pandas as pd
 
@@ -40,8 +39,8 @@ class GrasslandOutput:
     Attributes:
         grassland_class (Grasslands): An instance of the (geo) Grasslands class.
         farm_data_class (FarmData): An instance of the FarmData class.
-        soil_groups_class (SoilGroups): An instance of the SoilGroups class.
-        dm_class (DryMatter): An instance of the DryMatter class.
+        soil_groups_class (GeoSoilGroups): An instance of the GeoSoilGroups class.
+        dm_class ( GeoDryMatter): An instance of the DryMatter class.
         stock_class (StockingRate): An instance of the StockingRate class.
 
     Methods:
@@ -62,7 +61,7 @@ class GrasslandOutput:
         scenario_animals_df,
         baseline_animals_df,
     ):
-        self.grassland_class = Grasslands(
+        self.grassland_class = GeoGrasslands(
             ef_country,
             calibration_year,
             target_year,
@@ -79,7 +78,7 @@ class GrasslandOutput:
             baseline_animals_df,
         )
 
-        self.soil_groups_class = SoilGroups(
+        self.soil_groups_class = GeoSoilGroups(
             ef_country,
             calibration_year,
             target_year,
@@ -88,7 +87,7 @@ class GrasslandOutput:
             baseline_animals_df,
         )
 
-        self.dm_class = DryMatter(
+        self.dm_class = GeoDryMatter(
             ef_country,
             calibration_year,
             target_year,
@@ -97,7 +96,7 @@ class GrasslandOutput:
             baseline_animals_df,
         )
 
-        self.stock_class = StockingRate(
+        self.stock_class = GeoStockingRate(
             ef_country,
             calibration_year,
             target_year,

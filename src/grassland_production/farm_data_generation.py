@@ -35,17 +35,20 @@ class FarmData:
         scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
         scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+        
 
     Attributes:
-        loader_class (Loader): Instance of Loader to load various datasets.
-        sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
-        scenario_list (list): List of scenarios for analysis.
-        data_manager_class (DataManager): Instance of DataManager for managing scenario and baseline data.
-        areas_class (Areas): Instance of Areas for calculating areas-related data.
-        grassland_class (Grasslands): Instance for calculating grassland related data.
-        fertiliser_class (Fertilisation): Instance for handling fertilization-related calculations.
-        calibration_year (int): The base year for data calibration.
-        target_year (int): The target year for future scenario projections.
+        loader_class (Loader): An instance of the Loader class.
+        sc_class (ScenarioDataFetcher): An instance of the ScenarioDataFetcher class.
+        scenario_list (list): A list of scenarios for analysis.
+        data_manager_class (DataManager): An instance of the DataManager class.
+        calibration_year (int): The calibration year.
+        default_calibration_year (int): The default calibration year.
+        default_grassland_year (int): The default grassland year.
+        target_year (int): The target year.
+        areas_class (Areas): An instance of the Areas class.
+        grassland_class (Grasslands): An instance of the Grasslands class.
+        fertiliser_class (Fertilisation): An instance of the Fertilisation class.
 
     Methods:
         compute_fertilization_total():

@@ -10,8 +10,8 @@ class FertilizationTestCase(unittest.TestCase):
         # Create the DataFrame with the provided data
 
         self.scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
-        self.scenario_animal_dataframe = pd.read_csv("./data/future_animals.csv")
-        self.baseline_animal_dataframe = pd.read_csv("./data/past_animals.csv")
+        self.scenario_animal_dataframe = pd.read_csv("./data/scenario_animal_data.csv")
+        self.baseline_animal_dataframe = pd.read_csv("./data/baseline_animal_data.csv")
 
         self.fert_class = Fertilisation(
             "ireland",
@@ -23,9 +23,18 @@ class FertilizationTestCase(unittest.TestCase):
         )
 
     def test_fertilisation(self):
-        test = self.fert_class.compute_inorganic_fertilization_rate()
+        test = self.fert_class.organic_fertilisation_per_ha()
 
-        print(test)
+        test2 = self.fert_class.compute_organic_fertilization_rate()
+
+        test3 = self.fert_class.compute_inorganic_fertilization_rate()
+
+        print(f"organic fert: {test}")
+
+        print("#"*50)
+        print(f"organic fert rate: {test2}")
+        print("#"*50)
+        print(f"inorganic fert rate: {test3}")
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ Classes
 
 
 
-.. py:class:: DryMatter(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: DryMatter(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df, yield_class=None, fertiliser_class=None)
 
 
    The DryMatter class calculates the dry matter requirements and production for different livestock systems.
@@ -50,6 +50,12 @@ Classes
    :type scenario_animals_df: DataFrame
    :param baseline_animals_df: DataFrame containing baseline animal data.
    :type baseline_animals_df: DataFrame
+   :param yield_class: An instance of the Yield class. If not provided, a new instance
+                       is created with default parameters.
+   :type yield_class: Yield, optional
+   :param fertiliser_class: An instance of the Fertilisation class. If not
+                            provided, a new instance is created with default parameters.
+   :type fertiliser_class: Fertilisation, optional
 
    .. attribute:: sc_class
 

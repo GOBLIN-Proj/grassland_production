@@ -11,7 +11,6 @@ to analyze and compute essential data related to livestock management.
 Classes:
     StockingRate: Manages livestock units and stocking rates.
 """
-
 import pandas as pd
 import itertools
 from grassland_production.resource_manager.data_loader import Loader
@@ -35,6 +34,8 @@ class StockingRate:
         scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
         scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+        grassland_class (Grasslands, optional): An instance of the Grassland class. If not 
+            provided, a new instance is created with default parameters.
         
     Attributes:
         sc_class (ScenarioDataFetcher): Fetches scenario data.
@@ -53,7 +54,15 @@ class StockingRate:
         get_livestock_units(): Aggregates livestock units for past and future scenarios.
         get_stocking_rate(): Computes stocking rates for different farm types and scenarios.
     """
-    def __init__(self,ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
+    def __init__(self,
+                 ef_country, 
+                 calibration_year, 
+                 target_year, 
+                 scenario_data, 
+                 scenario_animals_df,
+                 baseline_animals_df,
+                 grassland_class = None):
+        
         self.sc_class = ScenarioDataFetcher(scenario_data)
         self.scenario_list = self.sc_class.get_scenario_list()
         self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
@@ -62,8 +71,15 @@ class StockingRate:
         self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
         self.loader_class = Loader()
         self.livestock_unit_values = self.loader_class.livestock_units()
-        self.grassland_class = Grasslands(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df)
-
+        if grassland_class is None:
+            self.grassland_class = Grasslands(ef_country,
+                                              calibration_year,
+                                              target_year,
+                                              scenario_data,
+                                              scenario_animals_df,
+                                              baseline_animals_df)
+        else:
+            self.grassland_class = grassland_class
 
     def get_livestock_units_past(self):
         """

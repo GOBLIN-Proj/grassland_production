@@ -5,16 +5,16 @@
 
 .. autoapi-nested-parse::
 
-   ======================
-   Fertilisation Module
-   ======================
+   ========================
+   Geo Fertilisation Module
+   ========================
 
-   This module encompasses the Fertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation
+   This module encompasses the GeoFertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation
    rates and their distribution across different farm systems and scenarios. This class is used in the calculation of
    grassland production for catchments.
 
    Classes:
-       Fertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.
+       GeoFertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.
 
 
 
@@ -26,15 +26,15 @@ Classes
 
 .. autoapisummary::
 
-   grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation
+   grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation
 
 
 
 
-.. py:class:: Fertilisation(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: GeoFertilisation(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
 
 
-   The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates
+   The GeoFertilisation class is responsible for calculating both inorganic and organic fertilization rates
    and their application across various farm systems and scenarios. This class plays a crucial role in
    the calculation of grassland production, providing insights into the environmental impact of fertilization
    practices and aiding in the development of sustainable agricultural strategies.

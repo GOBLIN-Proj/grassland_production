@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.stocking_rate &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.stocking_rate &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -123,7 +123,7 @@ to analyze and compute essential data related to livestock management.</p>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="grassland_production.stocking_rate.StockingRate">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.stocking_rate.</span></span><span class="sig-name descname"><span class="pre">StockingRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/stocking_rate.html#StockingRate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.stocking_rate.StockingRate" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.stocking_rate.</span></span><span class="sig-name descname"><span class="pre">StockingRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/stocking_rate.html#StockingRate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.stocking_rate.StockingRate" title="Link to this definition"></a></dt>
 <dd><p>A class to manage and compute livestock units and stocking rates for various farm types and scenarios.</p>
 <p>The StockingRate class calculates the number of livestock units for different farm types
 (e.g., dairy, beef, sheep) and determines the stocking rate for each farm type based on the total
@@ -137,6 +137,8 @@ grassland area and respective livestock units.</p>
 <li><p><strong>scenario_inputs_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario input variables data.</p></li>
 <li><p><strong>scenario_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario animal data.</p></li>
 <li><p><strong>baseline_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing baseline animal data.</p></li>
+<li><p><strong>grassland_class</strong> (<a class="reference internal" href="../spared_area/index.html#grassland_production.spared_area.Grasslands" title="grassland_production.spared_area.Grasslands"><em>Grasslands</em></a><em>, </em><em>optional</em>) – An instance of the Grassland class. If not
+provided, a new instance is created with default parameters.</p></li>
 </ul>
 </dd>
 </dl>
@@ -234,7 +236,7 @@ grassland area and respective livestock units.</p>
 <dd><p>Class for managing grassland data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../geo_grassland_production/geo_spared_area/index.html#grassland_production.geo_grassland_production.geo_spared_area.Grasslands" title="grassland_production.geo_grassland_production.geo_spared_area.Grasslands">Grasslands</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../spared_area/index.html#grassland_production.spared_area.Grasslands" title="grassland_production.spared_area.Grasslands">Grasslands</a></p>
 </dd>
 </dl>
 </dd></dl>

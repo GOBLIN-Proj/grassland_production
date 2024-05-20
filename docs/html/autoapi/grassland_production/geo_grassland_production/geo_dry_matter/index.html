@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.geo_grassland_production.geo_dry_matter &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="grassland_production.geo_grassland_production.geo_farm_data_generation" href="../geo_farm_data_generation/index.html" />
+    <link rel="prev" title="grassland_production.geo_grassland_production.catchment_grassland" href="../catchment_grassland/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../INSTALLATION.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../database/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.database</span></code></a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../resource_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.resource_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production.geo_dry_matter</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/grassland_production/geo_grassland_production/geo_dry_matter/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-grassland_production.geo_grassland_production.geo_dry_matter">
+<span id="grassland-production-geo-grassland-production-geo-dry-matter"></span><h1><a class="reference internal" href="#module-grassland_production.geo_grassland_production.geo_dry_matter" title="grassland_production.geo_grassland_production.geo_dry_matter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production.geo_dry_matter</span></code></a><a class="headerlink" href="#module-grassland_production.geo_grassland_production.geo_dry_matter" title="Link to this heading"></a></h1>
+<section id="dry-matter-module">
+<p>This module contains the GeoDryMatter class, which is responsible for calculating dry matter requirements
+and production in various agricultural scenarios, focusing on livestock systems. It integrates data
+from multiple sources and uses lifecycle assessment methods from the cattle and sheep lca modules.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>GeoDryMatter: Manages the calculation of dry matter requirements and production for livestock systems.</p>
+</dd>
+</dl>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter" title="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoDryMatter</span></code></a></p></td>
+<td><p>The GeoDryMatter class calculates the dry matter requirements and production for different livestock systems.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_dry_matter.</span></span><span class="sig-name descname"><span class="pre">GeoDryMatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter" title="Link to this definition"></a></dt>
+<dd><p>The GeoDryMatter class calculates the dry matter requirements and production for different livestock systems.
+It utilizes various classes and modules to integrate data from the National Farm Survey, CSO, and other sources,
+and applies lifecycle assessment methods from the cattle and sheep lca modules to evaluate agricultural scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ef_country</strong> (<em>str</em>) – The country for which the analysis is performed.</p></li>
+<li><p><strong>calibration_year</strong> (<em>int</em>) – The calibration year.</p></li>
+<li><p><strong>target_year</strong> (<em>int</em>) – The target year for future scenario projections.</p></li>
+<li><p><strong>scenario_inputs_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario input variables data.</p></li>
+<li><p><strong>scenario_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing scenario animal data.</p></li>
+<li><p><strong>baseline_animals_df</strong> (<em>DataFrame</em>) – DataFrame containing baseline animal data.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.dm_class">
+<span class="sig-name descname"><span class="pre">dm_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.dm_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the DryMatter class for managing dry matter calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../dry_matter/index.html#grassland_production.dry_matter.DryMatter" title="grassland_production.dry_matter.DryMatter">DryMatter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.yield_class">
+<span class="sig-name descname"><span class="pre">yield_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.yield_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Yield class for managing yield calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../grass_yield/index.html#grassland_production.grass_yield.Yield" title="grassland_production.grass_yield.Yield">Yield</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.fertiliser_class">
+<span class="sig-name descname"><span class="pre">fertiliser_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.fertiliser_class" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Fertilisation class for managing fertilisation calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../fertilisation/index.html#grassland_production.fertilisation.Fertilisation" title="grassland_production.fertilisation.Fertilisation">Fertilisation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_actual_dry_matter_produced">
+<span class="sig-name descname"><span class="pre">get_actual_dry_matter_produced</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_actual_dry_matter_produced"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_actual_dry_matter_produced" title="Link to this definition"></a></dt>
+<dd><p>Calculates the actual dry matter produced in each livestock system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required_past">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required_past</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required_past"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required_past" title="Link to this definition"></a></dt>
+<dd><p>Calculates the dry matter requirement for past livestock systems.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required_future">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required_future</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required_future"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required_future" title="Link to this definition"></a></dt>
+<dd><p>Calculates the dry matter requirement for future livestock systems based on scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.actual_dry_matter_required" title="Link to this definition"></a></dt>
+<dd><p>Integrates past and future dry matter requirements for livestock systems.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_actual_dm_weights">
+<span class="sig-name descname"><span class="pre">get_actual_dm_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_actual_dm_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_actual_dm_weights" title="Link to this definition"></a></dt>
+<dd><p>Calculates the proportion of dry matter required for each livestock system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_dm_proportional_reduction">
+<span class="sig-name descname"><span class="pre">get_dm_proportional_reduction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_dm_proportional_reduction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_dm_proportional_reduction" title="Link to this definition"></a></dt>
+<dd><p>Determines the proportional reduction in dry matter requirement for each system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.weighted_dm_reduction_contribution">
+<span class="sig-name descname"><span class="pre">weighted_dm_reduction_contribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.weighted_dm_reduction_contribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.weighted_dm_reduction_contribution" title="Link to this definition"></a></dt>
+<dd><p>Calculates the weighted contribution of each livestock system to the total dry matter reduction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed_past">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed_past</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed_past"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed_past" title="Link to this definition"></a></dt>
+<dd><p>Computes the total amount of concentrate feed required by livestock in the past.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed_future">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed_future</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed_future"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed_future" title="Link to this definition"></a></dt>
+<dd><p>Computes the total amount of concentrate feed required by livestock in the future based on scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_dry_matter.GeoDryMatter.get_total_concentrate_feed" title="Link to this definition"></a></dt>
+<dd><p>Integrates past and future concentrate feed requirements for livestock systems.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">get_actual_dry_matter_produced</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_actual_dry_matter_produced"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Calculates the actual dry matter produced in each livestock system. This calculation is based on the yield per
+hectare of grassland specific to each system, taking into account the type of grassland and the fertilization
+practices used. The method integrates data from various sources to estimate dry matter production for different
+farm types and scenarios.</p>
+<p>The method uses historical data for grassland areas and fertilization practices, and it interpolates for years
+earlier than 2005, acknowledging that these interpolations may not be very accurate. However, data for years
+prior to 2005 is generally not critical for the analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary structured by scenario, then by farm type (dairy, beef, sheep), containing pandas</dt><dd><p>DataFrames. Each DataFrame represents the dry matter produced, indexed by grassland type and
+segmented by year (calibration year and target year). A ‘total’ column is added to summarize
+the dry matter produced across all grassland types.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If data for the calibration year is not present, a default year is used as a fallback.</p></li>
+<li><p>The method assumes that the required data is available through the loader_class and yield_class</p></li>
+</ul>
+<p>attributes, which are instances of the Loader and Yield classes, respectively.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required_past</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required_past"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Calculates the dry matter requirement for each livestock system (dairy, beef, and sheep) for the calibration year.
+The calculation is based on the livestock data available for the calibration year, using the lifecycle assessment
+method ‘dry_matter_from_grass’ to estimate the dry matter required by each animal cohort.</p>
+<p>The method processes data for dairy, beef, and sheep livestock systems, summing up the dry matter requirements
+for each type of livestock based on their population and specific dry matter intake rates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A pandas DataFrame indexed by the calibration year, with columns for dairy, beef, sheep,</dt><dd><p>and a total column summing these values. Each cell in the DataFrame represents the total
+dry matter required in tonnes per year for that livestock type.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method assumes that baseline animal data for the calibration year is available and structured</p></li>
+</ul>
+<p>appropriately for the calculation.
+- The dry matter requirement is calculated per animal and then scaled to the total population of that
+animal type.
+- The method differentiates between different types of animal management systems (e.g., tank liquid
+vs. solid manure management) and different grazing types for sheep.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required_future</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required_future"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Calculates the future dry matter requirements for each livestock system (dairy, beef, and sheep) for
+each scenario in the target year. This method considers various future scenarios based on different
+animal population, management practices and farm types.</p>
+<p>The calculation is based on the data for each scenario’s livestock, using the lifecycle assessment
+method ‘dry_matter_from_grass’ to estimate the dry matter required by each animal type. The method
+processes data for dairy, beef, and sheep livestock systems, summing up the dry matter requirements
+for each type of livestock based on their population and specific dry matter intake rates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a pandas DataFrame indexed by the target</dt><dd><p>year. The DataFrame has columns for dairy, beef, sheep, and a total column summing these
+values. Each cell represents the total dry matter required in tonnes per year for that
+livestock type under each scenario.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method assumes that scenario-specific animal data is available and structured appropriately</p></li>
+</ul>
+<p>for the calculation.
+- The dry matter requirement is calculated per animal and then scaled to the total population of
+that animal type in the scenario.
+- Different scenarios may represent varying farm management practices, livestock types, and animal
+populations, reflecting possible future states of the livestock systems.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">actual_dry_matter_required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.actual_dry_matter_required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Integrates and calculates the total dry matter requirements for livestock systems, combining both past (historic)
+and future scenarios. This method utilizes lifecycle assessment methods from cattle and sheep modules to determine the dry matter
+requirements from grass for each livestock cohort, across various scenarios and timeframes.</p>
+<p>The method first computes the dry matter requirements for the calibration year (representing the past)
+and then for the target year (representing future scenarios). It then integrates these requirements
+into a comprehensive view, providing a complete picture of dry matter needs across different time periods
+and scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a pandas DataFrame that includes the dry matter</dt><dd><p>requirements for both the calibration year and the target year. Each DataFrame is indexed by year
+and has columns for dairy, beef, sheep, and a total column summing these values.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method relies on two key internal methods: ‘actual_dry_matter_required_past’ for calculating past</p></li>
+</ul>
+<p>requirements and ‘actual_dry_matter_required_future’ for future scenario-based requirements.
+- This approach provides am integration of historical and projected data, facilitating analysis
+and comparison across different time periods and scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">get_actual_dm_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_actual_dm_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Calculates the proportional weights of dry matter requirements for each livestock cohort (dairy, beef, sheep)
+relative to the total dry matter requirements across different scenarios. This method helps in understanding
+the contribution of each livestock type to the overall dry matter requirements in each scenario.</p>
+<p>The method first retrieves the total dry matter requirements for each scenario using the
+‘actual_dry_matter_required’ method. It then computes the weight (as a proportion) of each cohort’s
+requirement relative to the total requirement for that scenario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a nested dictionary. The nested dictionary</dt><dd><p>maps each livestock cohort (dairy, beef, sheep) to its proportional weight of the total dry
+matter requirement. The ‘total’ column is excluded from this calculation.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This method provides a percentage-like view of how much each livestock type contributes to the</p></li>
+</ul>
+<p>total dry matter requirements within each scenario.
+- These weights can be used for analyses that require understanding the distribution of dry matter
+needs among different livestock types under various future scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">get_dm_proportional_reduction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_dm_proportional_reduction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Calculates the proportional reduction in dry matter requirements for each livestock cohort (dairy, beef, sheep)
+from the calibration year to the target year under various scenarios. This method assesses the impact of
+different future scenarios on the dry matter requirements compared to past requirements.</p>
+<p>The method computes the dry matter requirements for both past (calibration year) and future (target year)
+scenarios. It then determines the proportional reduction in dry matter requirements for each cohort in each
+scenario by comparing the future requirements with the past.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a nested dictionary. The nested dictionary maps</dt><dd><p>each livestock cohort to its proportional reduction in dry matter requirement relative to the past.
+A ‘total’ entry is also included, representing the sum of the proportional reductions for all cohorts.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The proportional reduction is calculated as 1 minus the ratio of future to past dry matter requirements.</p></li>
+<li><p>If the calculated proportion is negative (indicating an increase rather than a decrease), it is set to 0</p></li>
+</ul>
+<p>to reflect no reduction.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">weighted_dm_reduction_contribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.weighted_dm_reduction_contribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Calculates the weighted contribution of each livestock cohort (dairy, beef, sheep) to the total proportional
+reduction in dry matter requirements across different scenarios. This method evaluates how each cohort
+contributes to the overall reduction in dry matter needs when transitioning from the calibration year to
+the target year under various scenarios.</p>
+<p>The method first determines the proportional reduction in dry matter requirements for each cohort in each
+scenario using the ‘get_dm_proportional_reduction’ method. It then computes the weighted contribution of
+each cohort’s reduction relative to the total reduction in that scenario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a nested dictionary. The nested dictionary maps</dt><dd><p>each livestock cohort to its weighted contribution to the total proportional reduction. The ‘total’
+entry is not included in the calculation of weights.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The weighted contribution is calculated as the proportion of each cohort’s reduction relative to the</p></li>
+</ul>
+<p>total reduction in that scenario.
+- This method provides insight into which livestock cohort is contributing the most to the reduction in
+dry matter requirements in each scenario, allowing for targeted analysis and planning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed_past</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed_past"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Calculates the total amount of concentrate feed required by all livestock within each farm system (dairy, beef, sheep)
+in tonnes for the calibration year. This method estimates the concentrate feed needs based on the population and
+specific feed requirements of different types of livestock in the calibration year.</p>
+<p>The calculation involves determining the amount of concentrate feed each animal requires and then aggregating these
+amounts across all animals within each livestock cohort.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A pandas DataFrame indexed by the calibration year, with columns for dairy, beef, sheep,</dt><dd><p>and a total column summing these values. Each cell in the DataFrame represents the total
+concentrate feed required in tonnes per year for that livestock type.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The concentrate feed requirement is calculated per animal and then scaled to the total population of that</p></li>
+</ul>
+<p>animal type.
+- The method differentiates between different types of animal management systems (e.g., tank liquid vs.
+solid manure management) and different grazing types for sheep.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed_future</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed_future"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Calculates the total amount of concentrate feed required by all livestock within each farm system
+(dairy, beef, sheep) in tonnes for the target year under various scenarios. This method provides
+an estimation of future concentrate feed needs based on projected changes in livestock populations
+and management practices across different scenarios.</p>
+<p>The calculation involves determining the amount of concentrate feed each animal requires in each
+scenario and then aggregating these amounts across all animals within each livestock cohort.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a pandas DataFrame indexed by the target year,</dt><dd><p>with columns for dairy, beef, sheep, and a total column summing these values. Each cell represents
+the total concentrate feed required in tonnes per year for that livestock type under each scenario.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The concentrate feed requirement is calculated per animal and then scaled to the total population of</p></li>
+</ul>
+<p>that animal type in each scenario.
+- The method accounts for different livestock management systems and grazing types for each animal
+cohort, reflecting the varied nature of future livestock farming scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">get_total_concentrate_feed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_dry_matter.html#GeoDryMatter.get_total_concentrate_feed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd><p>Integrates and calculates the total concentrate feed requirements for livestock systems, combining both past
+(calibration year) and future (target year under various scenarios) data. This method provides a comprehensive
+view of the concentrate feed needs for different livestock cohorts across time and scenarios.</p>
+<p>The method first calculates the concentrate feed requirements for the past (calibration year) and then for the
+future (target year) under various scenarios. It then integrates these requirements, offering a complete
+picture of concentrate feed needs across different time periods and scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A dictionary with scenario keys, each containing a pandas DataFrame that includes the concentrate</dt><dd><p>feed requirements for both the calibration year and the target year. Each DataFrame is indexed by
+year and has columns for dairy, beef, sheep, and a total column summing these values.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method relies on two key internal methods: ‘get_total_concentrate_feed_past’ for calculating past</p></li>
+</ul>
+<p>requirements and ‘get_total_concentrate_feed_future’ for future scenario-based requirements.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../catchment_grassland/index.html" class="btn btn-neutral float-left" title="grassland_production.geo_grassland_production.catchment_grassland" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geo_farm_data_generation/index.html" class="btn btn-neutral float-right" title="grassland_production.geo_grassland_production.geo_farm_data_generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

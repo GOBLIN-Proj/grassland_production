@@ -5,9 +5,9 @@
 
 .. autoapi-nested-parse::
 
-   ==================
+   ====================
    Geo Farm Data Module
-   ==================
+   ====================
 
    This module includes the FarmData class which is responsible for computing various aspects of farm data,
    such as fertilization totals and farm data in different scenarios in a specific catchment. This data is essential for lifecycle

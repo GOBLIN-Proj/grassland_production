@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.geo_grassland_production.geo_fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.geo_grassland_production.geo_fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -76,35 +76,33 @@
              
   <h1>Source code for grassland_production.geo_grassland_production.geo_fertilisation</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">======================</span>
-<span class="sd">Fertilisation Module</span>
-<span class="sd">======================</span>
+<span class="sd">========================</span>
+<span class="sd">Geo Fertilisation Module</span>
+<span class="sd">========================</span>
 
-<span class="sd">This module encompasses the Fertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation </span>
+<span class="sd">This module encompasses the GeoFertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation </span>
 <span class="sd">rates and their distribution across different farm systems and scenarios. This class is used in the calculation of </span>
 <span class="sd">grassland production for catchments.</span>
 
 <span class="sd">Classes:</span>
-<span class="sd">    Fertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.</span>
+<span class="sd">    GeoFertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">grassland_production.resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
 <span class="kn">from</span> <span class="nn">grassland_production.resource_manager.grassland_data_manager</span> <span class="kn">import</span> <span class="n">DataManager</span>
 <span class="kn">from</span> <span class="nn">grassland_production.resource_manager.scenario_data_fetcher</span> <span class="kn">import</span> <span class="n">ScenarioDataFetcher</span>
-
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_area</span> <span class="kn">import</span> <span class="n">Areas</span>
-<span class="kn">from</span> <span class="nn">grassland_production.fertilisation</span> <span class="kn">import</span> <span class="n">Fertilisation</span> <span class="k">as</span> <span class="n">Fert</span>
+<span class="kn">from</span> <span class="nn">grassland_production.fertilisation</span> <span class="kn">import</span> <span class="n">Fertilisation</span>
 <span class="kn">from</span> <span class="nn">cattle_lca.lca</span> <span class="kn">import</span> <span class="n">DailySpread</span>
 <span class="kn">from</span> <span class="nn">grassland_production.geo_grassland_production.catchment_grassland</span> <span class="kn">import</span> <span class="n">CatchmentGrass</span>
 
 
-<div class="viewcode-block" id="Fertilisation">
-<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation">[docs]</a>
-<span class="k">class</span> <span class="nc">Fertilisation</span><span class="p">:</span>
+<div class="viewcode-block" id="GeoFertilisation">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation">[docs]</a>
+<span class="k">class</span> <span class="nc">GeoFertilisation</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates </span>
+<span class="sd">    The GeoFertilisation class is responsible for calculating both inorganic and organic fertilization rates </span>
 <span class="sd">    and their application across various farm systems and scenarios. This class plays a crucial role in </span>
 <span class="sd">    the calculation of grassland production, providing insights into the environmental impact of fertilization </span>
 <span class="sd">    practices and aiding in the development of sustainable agricultural strategies.</span>
@@ -182,7 +180,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span> <span class="o">=</span> <span class="n">Areas</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">,</span> <span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fert_class</span> <span class="o">=</span> <span class="n">Fert</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fert_class</span> <span class="o">=</span> <span class="n">Fertilisation</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span>
                                 <span class="n">calibration_year</span><span class="p">,</span>
                                 <span class="n">target_year</span><span class="p">,</span>
                                 <span class="n">scenario_data</span><span class="p">,</span>
@@ -193,8 +191,8 @@
 
 
 
-<div class="viewcode-block" id="Fertilisation.compute_inorganic_fertilization_rate">
-<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_inorganic_fertilization_rate">[docs]</a>
+<div class="viewcode-block" id="GeoFertilisation.compute_inorganic_fertilization_rate">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_inorganic_fertilization_rate">[docs]</a>
     <span class="k">def</span> <span class="nf">compute_inorganic_fertilization_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the inorganic fertilization rate for various farm systems (dairy, beef, sheep) across </span>
@@ -221,8 +219,8 @@
         <span class="k">return</span> <span class="n">inorganic_fertilization_rate</span></div>
 
 
-<div class="viewcode-block" id="Fertilisation.compute_organic_fertilization_rate">
-<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_organic_fertilization_rate">[docs]</a>
+<div class="viewcode-block" id="GeoFertilisation.compute_organic_fertilization_rate">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_organic_fertilization_rate">[docs]</a>
     <span class="k">def</span> <span class="nf">compute_organic_fertilization_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the rate of organic fertilizer application (primarily cattle slurry) for different farm systems. </span>
@@ -250,8 +248,8 @@
 
 
 
-<div class="viewcode-block" id="Fertilisation.organic_fertilisation_per_ha">
-<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.organic_fertilisation_per_ha">[docs]</a>
+<div class="viewcode-block" id="GeoFertilisation.organic_fertilisation_per_ha">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_fertilisation/index.html#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.organic_fertilisation_per_ha">[docs]</a>
     <span class="k">def</span> <span class="nf">organic_fertilisation_per_ha</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the rate of organic fertilization per hectare for dairy and beef farm systems. This method </span>
@@ -274,6 +272,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">spread_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_organic_fertilization_rate</span><span class="p">()</span>
         <span class="n">grassland_areas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catchment_grass</span><span class="o">.</span><span class="n">get_catchment_grassland_area_caluclated</span><span class="p">()</span>
+        
         <span class="n">nfs_system_proportions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span><span class="o">.</span><span class="n">get_nfs_system_proportions</span><span class="p">()</span>
         
         <span class="n">dairy_nfs_system_proportions</span> <span class="o">=</span> <span class="n">nfs_system_proportions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>

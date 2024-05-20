@@ -54,57 +54,69 @@ Classes
 
    .. attribute:: loader_class
 
-      Instance of Loader to load various datasets.
+      An instance of the Loader class.
 
       :type: Loader
 
    .. attribute:: sc_class
 
-      Instance of ScenarioDataFetcher for fetching scenario data.
+      An instance of the ScenarioDataFetcher class.
 
       :type: ScenarioDataFetcher
 
    .. attribute:: scenario_list
 
-      List of scenarios for analysis.
+      A list of scenarios for analysis.
 
       :type: list
 
    .. attribute:: data_manager_class
 
-      Instance of DataManager for managing scenario and baseline data.
+      An instance of the DataManager class.
 
       :type: DataManager
 
-   .. attribute:: areas_class
-
-      Instance of Areas for calculating areas-related data.
-
-      :type: Areas
-
-   .. attribute:: grassland_class
-
-      Instance for calculating grassland related data.
-
-      :type: Grasslands
-
-   .. attribute:: fertiliser_class
-
-      Instance for handling fertilization-related calculations.
-
-      :type: Fertilisation
-
    .. attribute:: calibration_year
 
-      The base year for data calibration.
+      The calibration year.
+
+      :type: int
+
+   .. attribute:: default_calibration_year
+
+      The default calibration year.
+
+      :type: int
+
+   .. attribute:: default_grassland_year
+
+      The default grassland year.
 
       :type: int
 
    .. attribute:: target_year
 
-      The target year for future scenario projections.
+      The target year.
 
       :type: int
+
+   .. attribute:: areas_class
+
+      An instance of the Areas class.
+
+      :type: Areas
+
+   .. attribute:: grassland_class
+
+      An instance of the Grasslands class.
+
+      :type: Grasslands
+
+   .. attribute:: fertiliser_class
+
+      An instance of the Fertilisation class.
+
+      :type: Fertilisation
 
    .. method:: compute_fertilization_total()
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.geo_grassland_production.geo_fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.geo_grassland_production.geo_fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -94,12 +94,12 @@
              
   <section id="module-grassland_production.geo_grassland_production.geo_fertilisation">
 <span id="grassland-production-geo-grassland-production-geo-fertilisation"></span><h1><a class="reference internal" href="#module-grassland_production.geo_grassland_production.geo_fertilisation" title="grassland_production.geo_grassland_production.geo_fertilisation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production.geo_fertilisation</span></code></a><a class="headerlink" href="#module-grassland_production.geo_grassland_production.geo_fertilisation" title="Link to this heading"></a></h1>
-<section id="fertilisation-module">
-<p>This module encompasses the Fertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation
+<section id="geo-fertilisation-module">
+<p>This module encompasses the GeoFertilisation classes (both geo_fertilisation and fertilisation), which is focused on computing various fertilisation
 rates and their distribution across different farm systems and scenarios. This class is used in the calculation of
 grassland production for catchments.</p>
 <dl class="simple">
-<dt>Classes:</dt><dd><p>Fertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.</p>
+<dt>Classes:</dt><dd><p>GeoFertilisation: Manages the computation of fertilization-related data for different farm systems and scenarios.</p>
 </dd>
 </dl>
 </section>
@@ -109,15 +109,15 @@ grassland production for catchments.</p>
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation" title="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fertilisation</span></code></a></p></td>
-<td><p>The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation" title="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoFertilisation</span></code></a></p></td>
+<td><p>The GeoFertilisation class is responsible for calculating both inorganic and organic fertilization rates</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_fertilisation.</span></span><span class="sig-name descname"><span class="pre">Fertilisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation" title="Link to this definition"></a></dt>
-<dd><p>The Fertilisation class is responsible for calculating both inorganic and organic fertilization rates
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_fertilisation.</span></span><span class="sig-name descname"><span class="pre">GeoFertilisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation" title="Link to this definition"></a></dt>
+<dd><p>The GeoFertilisation class is responsible for calculating both inorganic and organic fertilization rates
 and their application across various farm systems and scenarios. This class plays a crucial role in
 the calculation of grassland production, providing insights into the environmental impact of fertilization
 practices and aiding in the development of sustainable agricultural strategies.</p>
@@ -134,8 +134,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.sc_class">
-<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.sc_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.sc_class">
+<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.sc_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of ScenarioDataFetcher for fetching scenario data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -145,8 +145,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.catchment">
-<span class="sig-name descname"><span class="pre">catchment</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.catchment" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.catchment">
+<span class="sig-name descname"><span class="pre">catchment</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.catchment" title="Link to this definition"></a></dt>
 <dd><p>The name of the catchment area.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -156,8 +156,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.data_manager_class">
-<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.data_manager_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.data_manager_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of DataManager for managing data related to fertilization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -167,8 +167,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.loader_class">
-<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.loader_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.loader_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Loader to load various datasets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -178,8 +178,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.areas_class">
-<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.areas_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.areas_class">
+<span class="sig-name descname"><span class="pre">areas_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.areas_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Areas for calculating area-related data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -189,8 +189,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.cattle_spread_class">
-<span class="sig-name descname"><span class="pre">cattle_spread_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.cattle_spread_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.cattle_spread_class">
+<span class="sig-name descname"><span class="pre">cattle_spread_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.cattle_spread_class" title="Link to this definition"></a></dt>
 <dd><p>Instance for handling daily spread rates of fertilizers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -200,8 +200,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.calibration_year">
-<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.calibration_year" title="Link to this definition"></a></dt>
 <dd><p>The base year for data calibration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -211,8 +211,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.target_year">
-<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.target_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.target_year">
+<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.target_year" title="Link to this definition"></a></dt>
 <dd><p>The target year for future scenario projections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -222,8 +222,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.catchment_grass">
-<span class="sig-name descname"><span class="pre">catchment_grass</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.catchment_grass" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.catchment_grass">
+<span class="sig-name descname"><span class="pre">catchment_grass</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.catchment_grass" title="Link to this definition"></a></dt>
 <dd><p>Instance of CatchmentGrass for managing grassland data in the specified catchment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -233,8 +233,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.fert_class">
-<span class="sig-name descname"><span class="pre">fert_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.fert_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.fert_class">
+<span class="sig-name descname"><span class="pre">fert_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.fert_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Fertilisation class from the grassland production lib.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -244,8 +244,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.default_calibration_year">
-<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.default_calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.default_calibration_year">
+<span class="sig-name descname"><span class="pre">default_calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.default_calibration_year" title="Link to this definition"></a></dt>
 <dd><p>The default year used for calibration if the specified year is not present in the data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -255,8 +255,8 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.default_grassland_year">
-<span class="sig-name descname"><span class="pre">default_grassland_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.default_grassland_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.default_grassland_year">
+<span class="sig-name descname"><span class="pre">default_grassland_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.default_grassland_year" title="Link to this definition"></a></dt>
 <dd><p>The default grassland year used in calculations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -266,22 +266,22 @@ practices and aiding in the development of sustainable agricultural strategies.<
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_inorganic_fertilization_rate">
-<span class="sig-name descname"><span class="pre">compute_inorganic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.compute_inorganic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_inorganic_fertilization_rate" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_inorganic_fertilization_rate">
+<span class="sig-name descname"><span class="pre">compute_inorganic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.compute_inorganic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_inorganic_fertilization_rate" title="Link to this definition"></a></dt>
 <dd><p>Calculates the inorganic fertilization rate for various farm systems (dairy, beef, sheep) across
 different scenarios, considering both historical data and future scenario projections.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_organic_fertilization_rate">
-<span class="sig-name descname"><span class="pre">compute_organic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.compute_organic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.compute_organic_fertilization_rate" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_organic_fertilization_rate">
+<span class="sig-name descname"><span class="pre">compute_organic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.compute_organic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.compute_organic_fertilization_rate" title="Link to this definition"></a></dt>
 <dd><p>Computes the rate of organic fertilizer application (primarily cattle slurry) for different farm
 systems, excluding sheep systems, and calculates the total organic nitrogen spread.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.organic_fertilisation_per_ha">
-<span class="sig-name descname"><span class="pre">organic_fertilisation_per_ha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.organic_fertilisation_per_ha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.Fertilisation.organic_fertilisation_per_ha" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.organic_fertilisation_per_ha">
+<span class="sig-name descname"><span class="pre">organic_fertilisation_per_ha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.organic_fertilisation_per_ha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_fertilisation.GeoFertilisation.organic_fertilisation_per_ha" title="Link to this definition"></a></dt>
 <dd><p>Calculates the rate of organic fertilization per hectare for dairy and beef farm systems, adjusting
 the total organic nitrogen spread to a per hectare basis and considering the area of different types
 of grasslands within each farm system.</p>
@@ -289,7 +289,7 @@ of grasslands within each farm system.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">compute_inorganic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.compute_inorganic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compute_inorganic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.compute_inorganic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>Calculates the inorganic fertilization rate for various farm systems (dairy, beef, sheep) across
 different scenarios. This method determines the average fertilization rate per grassland type
 (Pasture, Silage, Hay) within each farm system, considering both historical data and future scenario
@@ -319,7 +319,7 @@ and contains columns for the calibration year and the target year.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">compute_organic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.compute_organic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compute_organic_fertilization_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.compute_organic_fertilization_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>Computes the rate of organic fertilizer application (primarily cattle slurry) for different farm systems.
 This calculation is based on the net excretion rate of nutrients from cattle, as determined by the DailySpread
 class. The method considers the nutrient content in the cattle slurry and its spread rate across various farm
@@ -350,7 +350,7 @@ nitrogen spread for that farm system and year.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">organic_fertilisation_per_ha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#Fertilisation.organic_fertilisation_per_ha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">organic_fertilisation_per_ha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_fertilisation.html#GeoFertilisation.organic_fertilisation_per_ha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>Calculates the rate of organic fertilization per hectare for dairy and beef farm systems. This method
 adjusts the total organic nitrogen spread calculated in ‘compute_organic_fertilization_rate’ to a per
 hectare basis, considering the area of different types of grasslands (Pasture, Grass silage) and the
