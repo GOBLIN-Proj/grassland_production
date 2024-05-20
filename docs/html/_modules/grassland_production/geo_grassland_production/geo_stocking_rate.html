@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grassland_production.geo_grassland_production.geo_stocking_rate &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Grassland Production, a GOBLIN module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../INSTALLATION.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Grassland Production, a GOBLIN module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">grassland_production.geo_grassland_production.geo_stocking_rate</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for grassland_production.geo_grassland_production.geo_stocking_rate</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">======================</span>
+<span class="sd">Livestock Unit Module</span>
+<span class="sd">======================</span>
+
+<span class="sd">This module contains the GeoStockingRate class, which is dedicated to calculating and managing </span>
+<span class="sd">the livestock units and stocking rates for various farm types and scenarios. This class is </span>
+<span class="sd">part of the grassland_production package and utilizes other components within the package </span>
+<span class="sd">to analyze and compute essential data related to livestock management.</span>
+
+<span class="sd">Classes:</span>
+<span class="sd">    GeoStockingRate: Manages livestock units and stocking rates.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">grassland_production.geo_grassland_production.geo_spared_area</span> <span class="kn">import</span> <span class="n">GeoGrasslands</span>
+<span class="kn">from</span> <span class="nn">grassland_production.stocking_rate</span> <span class="kn">import</span> <span class="n">StockingRate</span>
+
+
+<div class="viewcode-block" id="GeoStockingRate">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_stocking_rate/index.html#grassland_production.geo_grassland_production.geo_stocking_rate.GeoStockingRate">[docs]</a>
+<span class="k">class</span> <span class="nc">GeoStockingRate</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to manage and compute livestock units and stocking rates for various farm types and scenarios.</span>
+
+<span class="sd">    The StockingRate class calculates the number of livestock units for different farm types </span>
+<span class="sd">    (e.g., dairy, beef, sheep) and determines the stocking rate for each farm type based on the total </span>
+<span class="sd">    grassland area and respective livestock units.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ef_country (str): The country for which the analysis is performed.</span>
+<span class="sd">        calibration_year (int): The calibration year.</span>
+<span class="sd">        target_year (int): The target year for future scenario projections.</span>
+<span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.</span>
+<span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
+<span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
+<span class="sd">        </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        stocking_rate_class (StockingRate): An instance of the StockingRate class</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        get_livestock_units_past(): Calculates livestock units for past scenarios based on baseline data.</span>
+<span class="sd">        get_livestock_units_future(): Calculates livestock units for future scenarios.</span>
+<span class="sd">        get_livestock_units(): Aggregates livestock units for past and future scenarios.</span>
+<span class="sd">        get_stocking_rate(): Computes stocking rates for different farm types and scenarios.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ef_country</span><span class="p">,</span> <span class="n">calibration_year</span><span class="p">,</span> <span class="n">target_year</span><span class="p">,</span> <span class="n">scenario_data</span><span class="p">,</span> <span class="n">scenario_animals_df</span><span class="p">,</span><span class="n">baseline_animals_df</span><span class="p">):</span>
+
+        <span class="n">grassland_class</span> <span class="o">=</span> <span class="n">GeoGrasslands</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span> 
+                                     <span class="n">calibration_year</span><span class="p">,</span> 
+                                     <span class="n">target_year</span><span class="p">,</span> 
+                                     <span class="n">scenario_data</span><span class="p">,</span> 
+                                     <span class="n">scenario_animals_df</span><span class="p">,</span>
+                                     <span class="n">baseline_animals_df</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">stocking_rate_class</span> <span class="o">=</span> <span class="n">StockingRate</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span> 
+                                     <span class="n">calibration_year</span><span class="p">,</span> 
+                                     <span class="n">target_year</span><span class="p">,</span> 
+                                     <span class="n">scenario_data</span><span class="p">,</span> 
+                                     <span class="n">scenario_animals_df</span><span class="p">,</span>
+                                     <span class="n">baseline_animals_df</span><span class="p">,</span>
+                                     <span class="n">grassland_class</span><span class="o">=</span><span class="n">grassland_class</span><span class="p">)</span>
+        
+
+
+<div class="viewcode-block" id="GeoStockingRate.get_livestock_units_past">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_stocking_rate/index.html#grassland_production.geo_grassland_production.geo_stocking_rate.GeoStockingRate.get_livestock_units_past">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_livestock_units_past</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates and returns the livestock units for the baseline scenario for each farm type.</span>
+
+<span class="sd">        This method processes the baseline data to compute the livestock units present on dairy, beef, </span>
+<span class="sd">        and sheep farm types for the calibration year. It takes into account the different types of animals </span>
+<span class="sd">        within each cohort and their respective populations to calculate the total livestock units. The </span>
+<span class="sd">        livestock unit values for each animal type are obtained from the Loader class.</span>
+
+<span class="sd">        For each animal cohort (dairy, beef, and sheep), the method iterates over the respective animal </span>
+<span class="sd">        types, applying the necessary filters to the baseline data and using the livestock unit values to </span>
+<span class="sd">        compute the total livestock units for each farm type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: A DataFrame with the calibration year as the index and the farm types (dairy, beef, sheep) </span>
+<span class="sd">                    as columns. Each cell contains the total livestock units for that farm type in the calibration year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stocking_rate_class</span><span class="o">.</span><span class="n">get_livestock_units_past</span><span class="p">()</span></div>
+
+    
+    
+<div class="viewcode-block" id="GeoStockingRate.get_livestock_units_future">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_stocking_rate/index.html#grassland_production.geo_grassland_production.geo_stocking_rate.GeoStockingRate.get_livestock_units_future">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_livestock_units_future</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates and returns the livestock units for future scenarios for each farm type.</span>
+
+<span class="sd">        This method processes scenario-specific data to compute the livestock units for dairy, beef, </span>
+<span class="sd">        and sheep farm types for the target year. It considers the animal populations in each farm type </span>
+<span class="sd">        within each scenario and calculates the total livestock units using the livestock unit values </span>
+<span class="sd">        for each animal type.</span>
+
+<span class="sd">        The method iterates through each scenario and farm type, applying appropriate filters to the </span>
+<span class="sd">        scenario data. It accumulates the livestock units for each type of animal in the dairy, beef, </span>
+<span class="sd">        and sheep cohorts.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary where each key is a scenario, and its value is a DataFrame. Each DataFrame </span>
+<span class="sd">                has the target year as the index and farm types (dairy, beef, sheep) as columns. </span>
+<span class="sd">                Each cell contains the total livestock units for that farm type in the target year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stocking_rate_class</span><span class="o">.</span><span class="n">get_livestock_units_future</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="GeoStockingRate.get_livestock_units">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_stocking_rate/index.html#grassland_production.geo_grassland_production.geo_stocking_rate.GeoStockingRate.get_livestock_units">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_livestock_units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aggregates and returns livestock unit data for both past (baseline) and future scenarios.</span>
+
+<span class="sd">        This method combines the livestock unit data from past (baseline) scenarios calculated using</span>
+<span class="sd">        the get_livestock_units_past method and future scenarios calculated using the </span>
+<span class="sd">        get_livestock_units_future method. It ensures that the livestock units for the calibration </span>
+<span class="sd">        year from the past data are included in the future scenarios data, providing a complete </span>
+<span class="sd">        picture of the livestock units across all scenarios and both time periods.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary where each key is a scenario, and its value is a DataFrame. Each DataFrame </span>
+<span class="sd">                has both the calibration year and the target year as the index and farm types (dairy, beef, sheep) </span>
+<span class="sd">                as columns. Each cell contains the total livestock units for that farm type in the respective year.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stocking_rate_class</span><span class="o">.</span><span class="n">get_livestock_units</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="GeoStockingRate.get_stocking_rate">
+<a class="viewcode-back" href="../../../autoapi/grassland_production/geo_grassland_production/geo_stocking_rate/index.html#grassland_production.geo_grassland_production.geo_stocking_rate.GeoStockingRate.get_stocking_rate">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_stocking_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates and returns the stocking rates per ha for different farm types across various scenarios.</span>
+
+<span class="sd">        This method computes the stocking rate for each farm type (dairy, beef, and sheep) in each scenario, </span>
+<span class="sd">        for both the calibration year and the target year. The stocking rate is determined by dividing </span>
+<span class="sd">        the number of livestock units by the total grassland area for each farm system. The livestock units </span>
+<span class="sd">        are obtained using the get_livestock_units method, and the grassland areas are derived from the </span>
+<span class="sd">        get_cohort_grassland_area method of the Grasslands class.</span>
+
+<span class="sd">        The method iterates over each scenario and farm type, calculating the stocking rate for each combination. </span>
+<span class="sd">        The resulting stocking rates provide insights into the density of livestock per unit area of grassland.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary where each key is a scenario, and its value is a DataFrame. Each DataFrame </span>
+<span class="sd">                has years as the index and farm types (dairy, beef, sheep) as columns. Each cell contains </span>
+<span class="sd">                the stocking rate for that farm type in the respective year and scenario.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stocking_rate_class</span><span class="o">.</span><span class="n">get_stocking_rate</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Colm Duffy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

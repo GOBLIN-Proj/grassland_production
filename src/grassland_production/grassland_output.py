@@ -12,7 +12,6 @@ Classes:
     GrasslandOutput: Manages and computes outputs for grassland management.
 
 """
-
 from grassland_production.spared_area import Grasslands
 from grassland_production.farm_data_generation import FarmData
 from grassland_production.grassland_soils import SoilGroups

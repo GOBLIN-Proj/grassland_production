@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.geo_grassland_production.geo_grass_yield &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.geo_grassland_production.geo_grass_yield &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -94,13 +94,13 @@
              
   <section id="module-grassland_production.geo_grassland_production.geo_grass_yield">
 <span id="grassland-production-geo-grassland-production-geo-grass-yield"></span><h1><a class="reference internal" href="#module-grassland_production.geo_grassland_production.geo_grass_yield" title="grassland_production.geo_grassland_production.geo_grass_yield"><code class="xref py py-mod docutils literal notranslate"><span class="pre">grassland_production.geo_grassland_production.geo_grass_yield</span></code></a><a class="headerlink" href="#module-grassland_production.geo_grassland_production.geo_grass_yield" title="Link to this heading"></a></h1>
-<section id="grass-yield-module">
-<p>This module includes the Yield class, which calculates grass yield per hectare for various farm systems
+<section id="geo-grass-yield-module">
+<p>This module includes the GeoYield class, which calculates grass yield per hectare for various farm systems
 and scenarios for the selected catchment.
 The class uses models and data to estimate yields based on different fertilization strategies
 and soil conditions.</p>
 <dl class="simple">
-<dt>Classes:</dt><dd><p>Yield: Manages the computation of grass yield for different farm systems and scenarios.</p>
+<dt>Classes:</dt><dd><p>GeoYield: Manages the computation of grass yield for different farm systems and scenarios.</p>
 </dd>
 </dl>
 </section>
@@ -110,14 +110,14 @@ and soil conditions.</p>
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield" title="grassland_production.geo_grassland_production.geo_grass_yield.Yield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Yield</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield" title="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoYield</span></code></a></p></td>
 <td><p>The Yield class is responsible for calculating grass yield per hectare for various farm systems (dairy, beef, sheep)</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_grass_yield.</span></span><span class="sig-name descname"><span class="pre">Yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grassland_production.geo_grassland_production.geo_grass_yield.</span></span><span class="sig-name descname"><span class="pre">GeoYield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ef_country</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_animals_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_animals_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield" title="Link to this definition"></a></dt>
 <dd><p>The Yield class is responsible for calculating grass yield per hectare for various farm systems (dairy, beef, sheep)
 under different scenarios for the specified catchment. This calculation takes into account factors such as fertilization (both inorganic and organic),
 clover proportion, soil types, and other variables, to estimate the impact on grass yield.</p>
@@ -136,8 +136,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.sc_class">
-<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.sc_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.sc_class">
+<span class="sig-name descname"><span class="pre">sc_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.sc_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of ScenarioDataFetcher for fetching scenario data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -147,8 +147,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.scenario_list">
-<span class="sig-name descname"><span class="pre">scenario_list</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.scenario_list" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.scenario_list">
+<span class="sig-name descname"><span class="pre">scenario_list</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.scenario_list" title="Link to this definition"></a></dt>
 <dd><p>List of scenarios for which the analysis is performed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -158,8 +158,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.data_manager_class">
-<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.data_manager_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.data_manager_class">
+<span class="sig-name descname"><span class="pre">data_manager_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.data_manager_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of DataManager for managing data related to grass yield.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -169,8 +169,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.geo_fertiliser_class">
-<span class="sig-name descname"><span class="pre">geo_fertiliser_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.geo_fertiliser_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.geo_fertiliser_class">
+<span class="sig-name descname"><span class="pre">geo_fertiliser_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.geo_fertiliser_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Fertilisation for handling geo-specific fertilization data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -180,8 +180,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.grass_yield_class">
-<span class="sig-name descname"><span class="pre">grass_yield_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.grass_yield_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.grass_yield_class">
+<span class="sig-name descname"><span class="pre">grass_yield_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.grass_yield_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Yield class from the grassland_production lib.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -191,8 +191,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.loader_class">
-<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.loader_class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.loader_class">
+<span class="sig-name descname"><span class="pre">loader_class</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.loader_class" title="Link to this definition"></a></dt>
 <dd><p>Instance of Loader to load various necessary datasets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -202,8 +202,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.calibration_year">
-<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.calibration_year">
+<span class="sig-name descname"><span class="pre">calibration_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.calibration_year" title="Link to this definition"></a></dt>
 <dd><p>The base year for data calibration and historical reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -213,8 +213,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.target_year">
-<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.target_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.target_year">
+<span class="sig-name descname"><span class="pre">target_year</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.target_year" title="Link to this definition"></a></dt>
 <dd><p>The target year for future scenario projections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -224,8 +224,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.soil_class_yield_gap">
-<span class="sig-name descname"><span class="pre">soil_class_yield_gap</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.soil_class_yield_gap" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.soil_class_yield_gap">
+<span class="sig-name descname"><span class="pre">soil_class_yield_gap</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.soil_class_yield_gap" title="Link to this definition"></a></dt>
 <dd><p>A dictionary mapping soil types to their respective yield gaps.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -235,8 +235,8 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.soil_class_prop">
-<span class="sig-name descname"><span class="pre">soil_class_prop</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.soil_class_prop" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.soil_class_prop">
+<span class="sig-name descname"><span class="pre">soil_class_prop</span></span><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.soil_class_prop" title="Link to this definition"></a></dt>
 <dd><p>A DataFrame indicating the proportion of different soil types across scenarios.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -246,22 +246,22 @@ a comprehensive analysis of grassland production potential under varying agricul
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.get_clover_parameters">
-<span class="sig-name descname"><span class="pre">get_clover_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield.get_clover_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.get_clover_parameters" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.get_clover_parameters">
+<span class="sig-name descname"><span class="pre">get_clover_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield.get_clover_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.get_clover_parameters" title="Link to this definition"></a></dt>
 <dd><p>Retrieves clover parameters, such as proportion and fertilization rate, for each scenario, differentiating between
 conventional yield response curves and clover-grass systems.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield.get_yield">
-<span class="sig-name descname"><span class="pre">get_yield</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield.get_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield.get_yield" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.get_yield">
+<span class="sig-name descname"><span class="pre">get_yield</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield.get_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield.get_yield" title="Link to this definition"></a></dt>
 <dd><p>Calculates the grass yield per hectare for each grassland type, farm system, and scenario. This method takes into
 account various factors including fertilization rates, soil properties, and clover parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.Yield._yield_response_function_to_fertilizer">
-<span class="sig-name descname"><span class="pre">_yield_response_function_to_fertilizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fertilizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_fert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manure_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield._yield_response_function_to_fertilizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.Yield._yield_response_function_to_fertilizer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="grassland_production.geo_grassland_production.geo_grass_yield.GeoYield._yield_response_function_to_fertilizer">
+<span class="sig-name descname"><span class="pre">_yield_response_function_to_fertilizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fertilizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_fert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manure_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield._yield_response_function_to_fertilizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.geo_grassland_production.geo_grass_yield.GeoYield._yield_response_function_to_fertilizer" title="Link to this definition"></a></dt>
 <dd><p>An internal method that models the yield response to various factors including fertilizer application, clover proportion,
 and organic manure spread. This function is critical in determining the yield per hectare under different scenarios.</p>
 </dd></dl>
@@ -273,7 +273,7 @@ in conjunction with other related classes to gain a holistic view of the agricul
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">get_clover_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield.get_clover_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_clover_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield.get_clover_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>Defines clover proportion and rate for each scenario, differentiating between conventional
 yield response curves and clover-grass systems. This method considers scenarios for dairy,
 beef, and sheep farm systems with specific manure management practices.</p>
@@ -298,7 +298,7 @@ structure for later use in yield calculations.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">get_yield</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield.get_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_yield</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield.get_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>Calculates the yield per hectare for different scenarios and farm systems for the catchment based on fertilization and other factors.
 The method computes yield values for dairy, beef, and sheep farm systems under various scenarios.</p>
 <p>The method utilizes information on fertilization rates, organic manure spread, soil properties, and clover parameters
@@ -332,7 +332,7 @@ farm systems, grassland types, and soil groups to compute yields.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">_yield_response_function_to_fertilizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fertilizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_fert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manure_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#Yield._yield_response_function_to_fertilizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_yield_response_function_to_fertilizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fertilizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clover_fert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manure_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/geo_grassland_production/geo_grass_yield.html#GeoYield._yield_response_function_to_fertilizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>Calculate the yield response to fertilizer application based on the specified parameters.</p>
 <p>This method calculates the yield response to fertilizer application based on a yield response function taken from Finneran et al. (2011).
 The function takes into account the type of grassland, clover proportion, clover fertilization, and organic manure spread.</p>

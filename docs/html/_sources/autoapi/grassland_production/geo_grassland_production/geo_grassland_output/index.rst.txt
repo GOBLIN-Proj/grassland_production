@@ -5,9 +5,9 @@
 
 .. autoapi-nested-parse::
 
-   =================================
+   ===============================
    Grassland Output Manager Module
-   =================================
+   ===============================
    This module contains the GrasslandOutput class, which is responsible for managing and
    processing various outputs related to grassland production and management. The class
    integrates different aspects of grassland management, such as grasslands, farm data,
@@ -68,15 +68,15 @@ Classes
 
    .. attribute:: soil_groups_class
 
-      An instance of the SoilGroups class.
+      An instance of the GeoSoilGroups class.
 
-      :type: SoilGroups
+      :type: GeoSoilGroups
 
    .. attribute:: dm_class
 
       An instance of the DryMatter class.
 
-      :type: DryMatter
+      :type: GeoDryMatter
 
    .. attribute:: stock_class
 

@@ -1,27 +1,24 @@
 """
-====================
-Spared Area Module
-====================
+======================
+Geo Spared Area Module
+======================
 
-This module contains the Grasslands class, which is designed to manage and process 
+This module contains the GeoGrasslands class, which is designed to manage and process 
 data related to grassland areas, specifically focusing on calculating the total 
 grassland area and spared area under various scenarios. It utilizes classes from 
 the grassland_production package for detailed analysis and computations.
 
 Classes:
-    Grasslands: Manages and computes grassland and spared area data.
+    GeoGrasslands: Manages and computes grassland and spared area data.
 """
 
 import pandas as pd
-from grassland_production.resource_manager.data_loader import Loader
-from grassland_production.resource_manager.grassland_data_manager import DataManager
-from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
-from grassland_production.geo_grassland_production.geo_grass_yield import Yield
-from grassland_production.dry_matter import DryMatter
-from grassland_production.grassland_area import Areas
-from grassland_production.utilisation_rate import UtilisationRate
+from grassland_production.geo_grassland_production.geo_grass_yield import GeoYield
+from grassland_production.geo_grassland_production.geo_dry_matter import GeoDryMatter
+from grassland_production.geo_grassland_production.geo_utilisation_rate import GeoUtilisationRate
+from grassland_production.spared_area import Grasslands
 
-class Grasslands:
+class GeoGrasslands:
     """
     A class to manage and compute catchment grassland and spared area data under various scenarios.
 
@@ -47,7 +44,7 @@ class Grasslands:
         yield_class (Yield): Class for managing grassland yield data.
         areas_class (Areas): Class for managing grassland area data.
         dm_class (DryMatter): Class for managing dry matter data.
-        farm_based_UR (UtilisationRate): Class for calculating utilisation rates.
+        farm_based_UR (GeoUtilisationRate): Class for calculating utilisation rates.
 
     Methods:
         get_grass_total_area(): Computes and returns the total grassland area.
@@ -64,20 +61,8 @@ class Grasslands:
         scenario_animals_df,
         baseline_animals_df,
     ):
-        self.sc_class = ScenarioDataFetcher(scenario_data)
-        self.scenario_list = self.sc_class.get_scenario_list()
-
-        self.data_manager_class = DataManager(
-            calibration_year,
-            target_year,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
-        self.calibration_year = self.data_manager_class.get_calibration_year()
-        self.target_year = self.data_manager_class.get_target_year()
-        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
-        self.loader_class = Loader()
-        self.yield_class = Yield(
+        
+        yield_class = GeoYield(
             ef_country,
             calibration_year,
             target_year,
@@ -85,24 +70,32 @@ class Grasslands:
             scenario_animals_df,
             baseline_animals_df,
         )
-        self.areas_class = Areas(
-            self.target_year, self.calibration_year, self.default_calibration_year
-        )
-        self.dm_class = DryMatter(
+
+        dm_class = GeoDryMatter(
             ef_country,
-            self.calibration_year,
+            calibration_year,
             target_year,
             scenario_data,
             scenario_animals_df,
             baseline_animals_df,
         )
 
-        self.farm_based_UR = UtilisationRate(ef_country,
-            self.calibration_year,
+        farm_based_UR = GeoUtilisationRate(ef_country,
+            calibration_year,
             target_year,
             scenario_data,
             scenario_animals_df,
             baseline_animals_df,)
+        
+        self.grassland_class = Grasslands(ef_country,
+                                          calibration_year,
+                                          target_year,
+                                          scenario_data,
+                                          scenario_animals_df,
+                                          baseline_animals_df,
+                                          yield_class = yield_class,
+                                          dry_matter_class = dm_class,
+                                          utilisation_class = farm_based_UR)
 
     def get_grass_total_area(self):
         """
@@ -125,60 +118,7 @@ class Grasslands:
             DataFrame: A DataFrame with rows representing the years and columns representing each scenario. 
                     Each cell contains the total grassland area required for that scenario and year.
         """
-
-        # grass drymatter requirement for cattle and sheep, is dictionary
-        year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.scenario_list
-
-        keys = self.data_manager_class.get_farming_systems()
-
-        transposed_yield_per_ha = self.yield_class.get_yield()
-        dry_matter_req = self.dm_class.actual_dry_matter_required()
-
-        farm_based_UR = self.farm_based_UR.get_farm_based_utilisation_rate()
-
-        nfs_within_grassland_proportions = (
-            self.areas_class.get_nfs_within_system_grassland_distribution()
-        )
-
-        grass_total_area = pd.DataFrame(0.0, index=year_list, columns=scenario_list)
-
-        average_yield = 0
-
-        for sc in scenario_list:
-            for sys in keys:
-                for year in year_list:
-                    for grassland_type in transposed_yield_per_ha[sc][sys].columns:
-                        if year != self.target_year:
-                            average_yield += (
-                                transposed_yield_per_ha[sc][sys].loc[
-                                    year, grassland_type
-                                ]
-                                * nfs_within_grassland_proportions[sys].loc[
-                                    year, grassland_type
-                                ]
-                            )
-                        else:
-                            average_yield += (
-                                transposed_yield_per_ha[sc][sys].loc[
-                                    self.target_year,
-                                    grassland_type,
-                                ]
-                                * nfs_within_grassland_proportions[sys].loc[
-                                    self.calibration_year,
-                                    grassland_type,
-                                ]
-                            )
-
-                    grass_total_area.loc[year, sc] += (
-                        dry_matter_req[sc][sys].loc[year]
-                        / average_yield
-                        / farm_based_UR[sc][sys].loc[year]
-                    )
-
-                    average_yield = 0
-
-        return grass_total_area
+        return self.grassland_class.get_grass_total_area()
 
 
     def get_non_grass_total_area(self):
@@ -199,20 +139,7 @@ class Grasslands:
                     and columns representing each scenario. Each cell contains the spared area for 
                     that scenario and year.
         """
-        year_list = [self.calibration_year, self.target_year]
-        scenario_list = self.scenario_list
-
-        spared_area = pd.DataFrame(0.0, index=year_list, columns=scenario_list)
-
-        grass_total_area = self.get_grass_total_area()
-
-        for sc in scenario_list:
-            spared_area.loc[self.target_year, sc] = (
-                grass_total_area.loc[self.calibration_year, sc]
-                - grass_total_area.loc[self.target_year, sc]
-            )
-
-        return spared_area
+        return self.grassland_class.get_non_grass_total_area()
 
 
     def get_cohort_spared_area(self):
@@ -232,19 +159,7 @@ class Grasslands:
             dict: A dictionary where each key is a scenario and its value is another dictionary. 
                 The nested dictionary has cohorts as keys and their respective spared areas as values.
         """
-        cohort_weights = self.dm_class.weighted_dm_reduction_contribution()
-
-        spared_area = self.get_non_grass_total_area()
-
-        cohort_spared_area = {}
-
-        for sc in cohort_weights.keys():
-            cohort_spared_area[sc] = {}
-            for cohort in cohort_weights[sc].keys():
-                cohort_spared_area[sc][cohort] = spared_area.loc[self.target_year, sc].item() * cohort_weights[sc][cohort]
-
-
-        return cohort_spared_area
+        return self.grassland_class.get_cohort_spared_area()
     
 
     def get_cohort_grassland_area(self):
@@ -265,18 +180,5 @@ class Grasslands:
             dict: A nested dictionary where the outer keys are scenarios, the inner keys are cohorts, 
                 and the values are dictionaries with years as keys and their respective grassland areas as values.
         """
-        cohort_weights = self.dm_class.get_actual_dm_weights()
-
-        grass_area = self.get_grass_total_area()
-
-        cohort_spared_area = {}
-
-        for sc in cohort_weights.keys():
-            cohort_spared_area[sc] = {}
-            for cohort in cohort_weights[sc].keys():
-                cohort_spared_area[sc][cohort] = {}
-                for year in cohort_weights[sc][cohort].keys():
-                    cohort_spared_area[sc][cohort][year] = grass_area.loc[year, sc].item() * cohort_weights[sc][cohort][year]
-
-        return cohort_spared_area
+        return self.grassland_class.get_cohort_grassland_area()
     

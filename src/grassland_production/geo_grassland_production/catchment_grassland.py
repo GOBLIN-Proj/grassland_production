@@ -131,6 +131,7 @@ class CatchmentGrass:
                             its calculated area in hectares ('area_ha').
         """
         catchment_grassland_area = self.get_catchment_grassland_areas()
+
         grassland_proprotions = self.loader_class.cso_grassland_area_percent()
 
         data =[]

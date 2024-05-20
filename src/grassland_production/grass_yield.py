@@ -10,7 +10,6 @@ and soil conditions.
 Classes:
     Yield: Manages the computation of grass yield for different farm systems and scenarios.
 """
-
 import pandas as pd
 from itertools import product
 from grassland_production.resource_manager.data_loader import Loader
@@ -32,6 +31,7 @@ class Yield:
             scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
             scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
             baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+            fertiliser_class (Fertilisation, optional): Instance of Fertilisation for handling fertilization-related data.
 
         Attributes:
             sc_class (ScenarioDataFetcher): Instance of ScenarioDataFetcher for fetching scenario data.
@@ -63,6 +63,7 @@ class Yield:
         scenario_data,
         scenario_animals_df,
         baseline_animals_df,
+        fertiliser_class = None
     ):
         self.sc_class = ScenarioDataFetcher(scenario_data)
         self.scenario_list = self.sc_class.get_scenario_list()
@@ -73,14 +74,19 @@ class Yield:
             scenario_animals_df,
             baseline_animals_df,
         )
-        self.fertiliser_class = Fertilisation(
-            ef_country,
-            calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
+
+        if fertiliser_class is None:
+            self.fertiliser_class = Fertilisation(
+                ef_country,
+                calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,
+            )
+        else: 
+            self.fertiliser_class = fertiliser_class 
+            
         self.loader_class = Loader()
         self.calibration_year = self.data_manager_class.get_calibration_year()
         self.target_year = self.data_manager_class.get_target_year()
@@ -163,7 +169,10 @@ class Yield:
             self.loader_class.grassland_fertilization_by_system()
         )
         fert_rate = self.fertiliser_class.compute_inorganic_fertilization_rate()
+
+
         organic_manure = self.fertiliser_class.organic_fertilisation_per_ha()
+
 
         year_list = [self.calibration_year, self.target_year]
         scenario_list = self.scenario_list
@@ -190,6 +199,7 @@ class Yield:
             fertilization_by_system_data_frame.index.levels[0],
             self.soil_class_yield_gap.keys(),
         ):
+            
             yield_per_ha_df = yield_per_ha[farm_type][sc]
             soil_class_prop = self.soil_class_prop[farm_type].loc[
                 int(self.calibration_year), soil_group
@@ -205,6 +215,7 @@ class Yield:
                 )
                 * self.soil_class_yield_gap[soil_group]
             ) * soil_class_prop
+
 
             clover_prop = clover_parameters_dict[farm_type]["proportion"][sc]
             clover_fert = clover_parameters_dict[farm_type]["fertilisation"][sc]

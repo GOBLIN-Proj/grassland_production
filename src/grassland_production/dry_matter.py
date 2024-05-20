@@ -37,7 +37,10 @@ class DryMatter:
         scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
         scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
-
+        yield_class (Yield, optional): An instance of the Yield class. If not provided, a new instance 
+            is created with default parameters.
+        fertiliser_class (Fertilisation, optional): An instance of the Fertilisation class. If not 
+            provided, a new instance is created with default parameters.
 
     Attributes:
         sc_class (ScenarioDataFetcher): Fetches scenario data.
@@ -92,6 +95,8 @@ class DryMatter:
         scenario_data,
         scenario_animals_df,
         baseline_animals_df,
+        yield_class=None,
+        fertiliser_class=None,
     ):
         self.sc_class = ScenarioDataFetcher(scenario_data)
         self.scenario_list = self.sc_class.get_scenario_list()
@@ -104,25 +109,35 @@ class DryMatter:
         self.calibration_year = self.data_manager_class.get_calibration_year()
         self.target_year = self.data_manager_class.get_target_year()
         self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
-        self.yield_class = Yield(
-            ef_country,
-            calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
+
+        if yield_class is None:
+            self.yield_class = Yield(
+                ef_country,
+                calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,
+            )
+        else:
+            self.yield_class = yield_class
+
         self.areas_class = Areas(
             target_year, calibration_year, self.default_calibration_year
         )
-        self.fertiliser_class = Fertilisation(
-            ef_country,
-            calibration_year,
-            target_year,
-            scenario_data,
-            scenario_animals_df,
-            baseline_animals_df,
-        )
+
+        if fertiliser_class is None:
+            self.fertiliser_class = Fertilisation(
+                ef_country,
+                calibration_year,
+                target_year,
+                scenario_data,
+                scenario_animals_df,
+                baseline_animals_df,
+            )
+        else:
+            self.fertiliser_class = fertiliser_class
+
         self.loader_class = Loader()
         self.grass_feed_class = cattle_lca.GrassFeed(ef_country)
         self.sheep_grass_feed_class = sheep_lca.GrassFeed(ef_country)

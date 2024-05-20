@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.spared_area &mdash; Grassland Production, a GOBLIN module 0.3.4 documentation</title>
+  <title>grassland_production.spared_area &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=1e28cc32"></script>
+        <script src="../../_static/documentation_options.js?v=ba50482b"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -114,6 +114,9 @@
 <span class="sd">        scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.</span>
 <span class="sd">        scenario_animals_df (DataFrame): DataFrame containing scenario animal data.</span>
 <span class="sd">        baseline_animals_df (DataFrame): DataFrame containing baseline animal data.</span>
+<span class="sd">        yield_class (Yield, optional): An instance of the Yield class. If not provided, a new instance is created with default parameters.</span>
+<span class="sd">        dry_matter_class (DryMatter, optional): An instance of the DryMatter class. If not provided, a new instance is created with default parameters.</span>
+<span class="sd">        utilisation_class (UtilisationRate, optional): An instance of the UtilisationRate class. If not provided, a new instance is created with default parameters.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        sc_class (ScenarioDataFetcher): Fetches scenario data.</span>
@@ -142,6 +145,9 @@
         <span class="n">scenario_data</span><span class="p">,</span>
         <span class="n">scenario_animals_df</span><span class="p">,</span>
         <span class="n">baseline_animals_df</span><span class="p">,</span>
+        <span class="n">yield_class</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dry_matter_class</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">utilisation_class</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span> <span class="o">=</span> <span class="n">ScenarioDataFetcher</span><span class="p">(</span><span class="n">scenario_data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenario_list</span><span class="p">()</span>
@@ -156,32 +162,44 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_target_year</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_default_calibration_year</span><span class="p">()</span>  
         <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span> <span class="o">=</span> <span class="n">Yield</span><span class="p">(</span>
-            <span class="n">ef_country</span><span class="p">,</span>
-            <span class="n">calibration_year</span><span class="p">,</span>
-            <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
-            <span class="n">scenario_animals_df</span><span class="p">,</span>
-            <span class="n">baseline_animals_df</span><span class="p">,</span>
-        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">yield_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span> <span class="o">=</span> <span class="n">Yield</span><span class="p">(</span>
+                <span class="n">ef_country</span><span class="p">,</span>
+                <span class="n">calibration_year</span><span class="p">,</span>
+                <span class="n">target_year</span><span class="p">,</span>
+                <span class="n">scenario_data</span><span class="p">,</span>
+                <span class="n">scenario_animals_df</span><span class="p">,</span>
+                <span class="n">baseline_animals_df</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span> <span class="o">=</span> <span class="n">yield_class</span> 
+
         <span class="bp">self</span><span class="o">.</span><span class="n">areas_class</span> <span class="o">=</span> <span class="n">Areas</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dm_class</span> <span class="o">=</span> <span class="n">DryMatter</span><span class="p">(</span>
-            <span class="n">ef_country</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
-            <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
-            <span class="n">scenario_animals_df</span><span class="p">,</span>
-            <span class="n">baseline_animals_df</span><span class="p">,</span>
-        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">farm_based_UR</span> <span class="o">=</span> <span class="n">UtilisationRate</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
-            <span class="n">target_year</span><span class="p">,</span>
-            <span class="n">scenario_data</span><span class="p">,</span>
-            <span class="n">scenario_animals_df</span><span class="p">,</span>
-            <span class="n">baseline_animals_df</span><span class="p">,)</span>
+        <span class="k">if</span> <span class="n">dry_matter_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dm_class</span> <span class="o">=</span> <span class="n">DryMatter</span><span class="p">(</span>
+                <span class="n">ef_country</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
+                <span class="n">target_year</span><span class="p">,</span>
+                <span class="n">scenario_data</span><span class="p">,</span>
+                <span class="n">scenario_animals_df</span><span class="p">,</span>
+                <span class="n">baseline_animals_df</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dm_class</span> <span class="o">=</span> <span class="n">dry_matter_class</span>
+
+        <span class="k">if</span> <span class="n">utilisation_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">farm_based_UR</span> <span class="o">=</span> <span class="n">UtilisationRate</span><span class="p">(</span><span class="n">ef_country</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">,</span>
+                <span class="n">target_year</span><span class="p">,</span>
+                <span class="n">scenario_data</span><span class="p">,</span>
+                <span class="n">scenario_animals_df</span><span class="p">,</span>
+                <span class="n">baseline_animals_df</span><span class="p">,)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">farm_based_UR</span> <span class="o">=</span> <span class="n">utilisation_class</span>
 
 <div class="viewcode-block" id="Grasslands.get_grass_total_area">
 <a class="viewcode-back" href="../../autoapi/grassland_production/spared_area/index.html#grassland_production.spared_area.Grasslands.get_grass_total_area">[docs]</a>
@@ -214,6 +232,8 @@
         <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_farming_systems</span><span class="p">()</span>
 
         <span class="n">transposed_yield_per_ha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span><span class="o">.</span><span class="n">get_yield</span><span class="p">()</span>
+
+
         <span class="n">dry_matter_req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dm_class</span><span class="o">.</span><span class="n">actual_dry_matter_required</span><span class="p">()</span>
 
         <span class="n">farm_based_UR</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_based_UR</span><span class="o">.</span><span class="n">get_farm_based_utilisation_rate</span><span class="p">()</span>

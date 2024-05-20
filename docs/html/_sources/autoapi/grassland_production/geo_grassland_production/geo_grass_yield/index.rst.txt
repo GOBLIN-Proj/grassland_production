@@ -5,17 +5,17 @@
 
 .. autoapi-nested-parse::
 
-   ====================
-   Grass Yield Module
-   ====================
+   ======================
+   Geo Grass Yield Module
+   ======================
 
-   This module includes the Yield class, which calculates grass yield per hectare for various farm systems
+   This module includes the GeoYield class, which calculates grass yield per hectare for various farm systems
    and scenarios for the selected catchment.
    The class uses models and data to estimate yields based on different fertilization strategies
    and soil conditions.
 
    Classes:
-       Yield: Manages the computation of grass yield for different farm systems and scenarios.
+       GeoYield: Manages the computation of grass yield for different farm systems and scenarios.
 
 
 
@@ -27,12 +27,12 @@ Classes
 
 .. autoapisummary::
 
-   grassland_production.geo_grassland_production.geo_grass_yield.Yield
+   grassland_production.geo_grassland_production.geo_grass_yield.GeoYield
 
 
 
 
-.. py:class:: Yield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+.. py:class:: GeoYield(ef_country, calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
 
 
    The Yield class is responsible for calculating grass yield per hectare for various farm systems (dairy, beef, sheep)

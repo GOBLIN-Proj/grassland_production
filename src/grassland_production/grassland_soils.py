@@ -12,7 +12,6 @@ Classes:
     SoilGroups: Manages soil group data.
 
 """
-
 import pandas as pd
 from grassland_production.resource_manager.data_loader import Loader
 from grassland_production.resource_manager.grassland_data_manager import DataManager
@@ -35,6 +34,8 @@ class SoilGroups:
         scenario_inputs_df (DataFrame): DataFrame containing scenario input variables data.
         scenario_animals_df (DataFrame): DataFrame containing scenario animal data.
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
+        grassland_class (Grasslands, optional): An instance of the Grassland class. If not 
+            provided, a new instance is created with default parameters.
 
     Attributes:
         data_manager_class (DataManager): Manages and processes grassland data.
@@ -52,7 +53,14 @@ class SoilGroups:
     Methods:
         get_cohort_soil_groups(): Computes and returns the soil group distribution for spared (destocked) areas.
     """
-    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
+    def __init__(self, 
+                 ef_country,
+                 calibration_year, 
+                 target_year,
+                 scenario_data,
+                 scenario_animals_df,
+                 baseline_animals_df,
+                 grassland_class=None):
 
         self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
         self.calibration_year = self.data_manager_class.get_calibration_year()
@@ -64,8 +72,11 @@ class SoilGroups:
         self.dairy_soil_distribution = self.loader_class.dairy_soil_group()
         self.beef_soil_distribution = self.loader_class.cattle_soil_group()
         self.sheep_soil_distribution = self.loader_class.sheep_soil_group()
-        self.grassland_class = Grasslands(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
 
+        if grassland_class is None:
+            self.grassland_class = Grasslands(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+        else:
+            self.grassland_class = grassland_class
 
 
     def get_cohort_soil_groups(self):

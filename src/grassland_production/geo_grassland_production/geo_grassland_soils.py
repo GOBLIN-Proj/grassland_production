@@ -1,29 +1,25 @@
 """
-========================
-Grassland Soils Module
-========================
-This module contains the SoilGroups class, which is responsible for managing and analyzing
+=========================
+GeoGrassland Soils Module
+=========================
+This module contains the GeoSoilGroups class, which is responsible for managing and analyzing
 soil group data related to various cohorts. It focuses on categorizing and 
 distributing soil types among different livestock categories like dairy, beef, and sheep.
 The module utilizes several components from the grassland_production package to 
 compute and provide detailed insights into soil group distributions for grassland management.
 
 Classes:
-    SoilGroups: Manages soil group data.
+    GeoSoilGroups: Manages soil group data.
 
 """
+from grassland_production.geo_grassland_production.geo_spared_area import GeoGrasslands
+from grassland_production.grassland_soils import SoilGroups
 
-import pandas as pd
-from grassland_production.resource_manager.data_loader import Loader
-from grassland_production.resource_manager.grassland_data_manager import DataManager
-from grassland_production.geo_grassland_production.geo_spared_area import Grasslands
-import itertools
-
-class SoilGroups:
+class GeoSoilGroups:
     """
     A class to manage and analyze soil group data for different grassland cohorts.
 
-    The SoilGroups class integrates data from various sources to provide a comprehensive
+    The GeoSoilGroups class integrates data from various sources to provide a comprehensive
     overview of soil group distribution across different types of livestock systems, such as
     dairy, beef, and sheep. It plays a crucial role in understanding and managing 
     soil-related aspects in grassland areas.
@@ -37,34 +33,34 @@ class SoilGroups:
         baseline_animals_df (DataFrame): DataFrame containing baseline animal data.
 
     Attributes:
-        data_manager_class (DataManager): Manages and processes grassland data.
-        calibration_year (int): Year of data calibration.
-        target_year (int): Target year for data analysis.
-        default_calibration_year (int): Default year used for calibration in case of data discrepancies.
-        loader_class (Loader): Class for loading necessary data.
-        scenario_animals_df (DataFrame): Dataframe containing animal data for different scenarios.
-        baseline_animals_df (DataFrame): Dataframe containing baseline animal data.
-        dairy_soil_distribution (DataFrame): Soil distribution data for dairy grasslands.
-        beef_soil_distribution (DataFrame): Soil distribution data for beef grasslands.
-        sheep_soil_distribution (DataFrame): Soil distribution data for sheep grasslands.
-        grassland_class (Grasslands): Class for managing grassland data.
+        soil_groups (SoilGroups): An instance of the SoilGroups class.
 
     Methods:
         get_cohort_soil_groups(): Computes and returns the soil group distribution for spared (destocked) areas.
     """
-    def __init__(self, ef_country, calibration_year, target_year, scenario_data, scenario_animals_df,baseline_animals_df):
+    def __init__(self, 
+                 ef_country, 
+                 calibration_year, 
+                 target_year, 
+                 scenario_data, 
+                 scenario_animals_df,
+                 baseline_animals_df):
 
-        self.data_manager_class = DataManager(calibration_year, target_year, scenario_animals_df,baseline_animals_df)
-        self.calibration_year = self.data_manager_class.get_calibration_year()
-        self.target_year = self.data_manager_class.get_target_year()
-        self.default_calibration_year = self.data_manager_class.get_default_calibration_year()
-        self.loader_class = Loader()
-        self.scenario_animals_df = scenario_animals_df
-        self.baseline_animals_df = baseline_animals_df
-        self.dairy_soil_distribution = self.loader_class.dairy_soil_group()
-        self.beef_soil_distribution = self.loader_class.cattle_soil_group()
-        self.sheep_soil_distribution = self.loader_class.sheep_soil_group()
-        self.grassland_class = Grasslands(ef_country, self.calibration_year, target_year, scenario_data, scenario_animals_df, baseline_animals_df)
+        grassland_class = GeoGrasslands(ef_country,
+                                     calibration_year,
+                                     target_year,
+                                     scenario_data,
+                                     scenario_animals_df, 
+                                     baseline_animals_df)
+        
+        self.soil_groups = SoilGroups(ef_country,
+                                     calibration_year,
+                                     target_year,
+                                     scenario_data,
+                                     scenario_animals_df,
+                                     baseline_animals_df,
+                                     grassland_class=grassland_class)
+        
 
 
 
@@ -86,38 +82,5 @@ class SoilGroups:
                     and calculated area in hectares (ha). This dataframe provides a detailed 
                     view of how different soil groups are distributed within spared areas based on livstock cohorts.
         """
-        spared_area_cohorts = self.grassland_class.get_cohort_spared_area()
-
-        soil_distribution = {
-            "dairy": self.dairy_soil_distribution,
-            "beef": self.beef_soil_distribution,
-            "sheep": self.sheep_soil_distribution,
-        }
-
-        groups = ("1", "2", "3")
-        cohorts = soil_distribution.keys()
-        scenarios = spared_area_cohorts.keys()
-
-
-        data = []
-
-        for sc, sg, cohort in itertools.product(scenarios, groups, cohorts):
-            try:
-                area_multiplier = soil_distribution[cohort].loc[self.calibration_year, sg].item()
-            except KeyError:
-                print(f"KeyError encountered for {cohort} in year {self.calibration_year}. Using default calibration year {self.default_calibration_year} instead.")
-                area_multiplier = soil_distribution[cohort].loc[self.default_calibration_year, sg].item()
-
-            row_data = {
-                "Scenario": sc,
-                "year": self.target_year,
-                "cohort": cohort,
-                "soil_group": int(sg),
-                "area_ha": spared_area_cohorts[sc][cohort] * area_multiplier,
-            }
-            data.append(row_data)
-        
-        cohort_soil_groups = pd.DataFrame(data)
-
-        return cohort_soil_groups
+        return self.soil_groups.get_cohort_soil_groups()
 

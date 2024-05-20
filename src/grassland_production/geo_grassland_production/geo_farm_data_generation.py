@@ -1,7 +1,7 @@
 """
-==================
+====================
 Geo Farm Data Module
-==================
+====================
 
 This module includes the FarmData class which is responsible for computing various aspects of farm data, 
 such as fertilization totals and farm data in different scenarios in a specific catchment. This data is essential for lifecycle 
@@ -17,8 +17,8 @@ from grassland_production.resource_manager.data_loader import Loader
 from grassland_production.resource_manager.grassland_data_manager import DataManager
 from grassland_production.resource_manager.scenario_data_fetcher import ScenarioDataFetcher
 from grassland_production.grassland_area import Areas
-from grassland_production.geo_grassland_production.geo_spared_area import Grasslands
-from grassland_production.geo_grassland_production.geo_fertilisation import Fertilisation
+from grassland_production.geo_grassland_production.geo_spared_area import GeoGrasslands
+from grassland_production.geo_grassland_production.geo_fertilisation import GeoFertilisation
 
 
 class FarmData:
@@ -100,7 +100,7 @@ class FarmData:
         self.areas_class = Areas(
             self.target_year, self.calibration_year, self.default_calibration_year
         )
-        self.grassland_class = Grasslands(
+        self.grassland_class = GeoGrasslands(
             ef_country,
             calibration_year,
             target_year,
@@ -108,7 +108,7 @@ class FarmData:
             scenario_animals_df,
             baseline_animals_df,
         )
-        self.fertiliser_class = Fertilisation(
+        self.fertiliser_class = GeoFertilisation(
             ef_country,
             calibration_year,
             target_year,
