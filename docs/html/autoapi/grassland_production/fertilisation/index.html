@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -242,6 +242,29 @@ grassland production.</p>
 <dt class="sig sig-object py" id="grassland_production.fertilisation.Fertilisation.organic_fertilisation_per_ha">
 <span class="sig-name descname"><span class="pre">organic_fertilisation_per_ha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/fertilisation.html#Fertilisation.organic_fertilisation_per_ha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.fertilisation.Fertilisation.organic_fertilisation_per_ha" title="Link to this definition"></a></dt>
 <dd><p>Calculates the organic fertilization rate per hectare for different farm systems and scenarios.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.fertilisation.Fertilisation._cached_fertilization">
+<span class="sig-name descname"><span class="pre">_cached_fertilization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fertilization_data_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fertilization_cache</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grassland_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/grassland_production/fertilisation.html#Fertilisation._cached_fertilization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.fertilisation.Fertilisation._cached_fertilization" title="Link to this definition"></a></dt>
+<dd><p>Fetch fertilization data from the DataFrame with caching.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fertilization_data_frame</strong> (<em>DataFrame</em>) – Fertilization data by system.</p></li>
+<li><p><strong>fertilization_cache</strong> (<em>dict</em>) – Cache dictionary to store/retrieve computed results.</p></li>
+<li><p><strong>grassland_type</strong> (<em>str</em>) – The grassland type.</p></li>
+<li><p><strong>system</strong> (<em>str</em>) – The system (e.g., Dairy, Beef).</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cached or computed fertilization value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

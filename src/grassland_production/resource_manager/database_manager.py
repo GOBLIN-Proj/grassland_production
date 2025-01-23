@@ -63,7 +63,7 @@ class DataManager:
             Retrieves data on sheep soil groups from NFS (National Farm Survey).
 
         get_fao_fertiliser_data():
-            Retrieves FAO (Food and Agricutlure Organisation) data on fertilization.
+            Retrieves FAO (Food and Agriculture Organisation) data on fertilization.
 
         get_nir_fertiliser_data():
             Retrieves NIR (National Inventory Report, Ireland) data on fertilization.
@@ -168,6 +168,7 @@ class DataManager:
         )
 
         return dataframe
+
 
     def get_dairy_area_nfs(self):
         """

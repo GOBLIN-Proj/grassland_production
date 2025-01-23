@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.fertilisation &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -163,6 +163,28 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span> <span class="o">=</span> <span class="n">DailySpread</span><span class="p">(</span><span class="n">ef_country</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Fertilisation._cached_fertilization">
+<a class="viewcode-back" href="../../autoapi/grassland_production/fertilisation/index.html#grassland_production.fertilisation.Fertilisation._cached_fertilization">[docs]</a>
+    <span class="k">def</span> <span class="nf">_cached_fertilization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fertilization_data_frame</span><span class="p">,</span> <span class="n">fertilization_cache</span><span class="p">,</span> <span class="n">grassland_type</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch fertilization data from the DataFrame with caching.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fertilization_data_frame (DataFrame): Fertilization data by system.</span>
+<span class="sd">            fertilization_cache (dict): Cache dictionary to store/retrieve computed results.</span>
+<span class="sd">            grassland_type (str): The grassland type.</span>
+<span class="sd">            system (str): The system (e.g., Dairy, Beef).</span>
+<span class="sd">            year (int): The year.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Cached or computed fertilization value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fertilization_cache</span><span class="p">:</span>
+            <span class="n">fertilization_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="n">system</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">fertilization_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+
 
 <div class="viewcode-block" id="Fertilisation.compute_inorganic_fertilization_rate">
 <a class="viewcode-back" href="../../autoapi/grassland_production/fertilisation/index.html#grassland_production.fertilisation.Fertilisation.compute_inorganic_fertilization_rate">[docs]</a>
@@ -191,133 +213,92 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">loader_class</span><span class="o">.</span><span class="n">grassland_fertilization_by_system</span><span class="p">()</span>
         <span class="p">)</span>
 
-        <span class="n">fertilization_index</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Initialize cache for fertilization data</span>
+        <span class="n">fertilization_cache</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="n">fert_rate</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="p">{}}</span>
-
-        <span class="c1"># empty dataframe with grass types  for Dairy</span>
-        <span class="n">dairy_fertilization_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">fertilization_index</span><span class="p">)</span>
-
-        <span class="c1"># empty dataframe with grass types  for Dairy</span>
-        <span class="n">beef_fertilization_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">fertilization_index</span><span class="p">)</span>
-
-        <span class="c1"># empty dataframe with grass types  for Dairy</span>
-        <span class="n">sheep_fertilization_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">fertilization_index</span><span class="p">)</span>
 
         <span class="n">scenarios</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scenario_list</span>
         <span class="n">scenario_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_scenarios_col</span><span class="p">()</span>
         <span class="n">cattle_system_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_cattle_system_col</span><span class="p">()</span>
         <span class="n">manure_system_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_manure_system_col</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fert_rate</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;sheep&quot;</span><span class="p">:</span> <span class="p">{}}</span>
         <span class="c1"># for each scenario</span>
         <span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">scenarios</span><span class="p">:</span>
-            <span class="n">beef_mask</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="n">cattle_system_column</span> <span class="o">==</span> <span class="s2">&quot;Beef&quot;</span>
-                <span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="n">manure_system_column</span> <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-            <span class="n">dairy_mask</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="n">cattle_system_column</span><span class="o">==</span> <span class="s2">&quot;Dairy&quot;</span>
-                <span class="p">)</span>
-                <span class="o">&amp;</span> <span class="p">(</span>
-                    <span class="n">manure_system_column</span><span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
+            <span class="c1"># Cache masks for this scenario</span>
+            <span class="n">mask_cache</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;beef&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cattle_system_column</span> <span class="o">==</span> <span class="s2">&quot;Beef&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">manure_system_column</span> <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;dairy&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">scenario_column</span> <span class="o">==</span> <span class="n">sc</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cattle_system_column</span> <span class="o">==</span> <span class="s2">&quot;Dairy&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">manure_system_column</span> <span class="o">==</span> <span class="s2">&quot;tank liquid&quot;</span><span class="p">),</span>
+            <span class="p">}</span>
 
-            <span class="n">_dairy</span> <span class="o">=</span> <span class="n">dairy_fertilization_data_frame</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">_beef</span> <span class="o">=</span> <span class="n">beef_fertilization_data_frame</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">_sheep</span> <span class="o">=</span> <span class="n">sheep_fertilization_data_frame</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Initialize DataFrames for this scenario</span>
+            <span class="n">dairy_data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">beef_data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">sheep_data</span> <span class="o">=</span> <span class="p">{}</span>
+
             <span class="c1"># for each grassland type</span>
-            <span class="k">for</span> <span class="n">grassland_type</span> <span class="ow">in</span> <span class="n">fertilization_index</span><span class="p">:</span>
-                <span class="c1"># add past data to the system dataframes</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">:</span>
-                    <span class="n">_dairy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Dairy&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
-                    <span class="n">_beef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Cattle&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
-                    <span class="n">_sheep</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">_dairy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Dairy&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
-                    <span class="n">_beef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Cattle&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
-                    <span class="n">_sheep</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span>
-                        <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span><span class="p">)</span>
-                    <span class="p">]</span>
+            <span class="k">for</span> <span class="n">grassland_type</span> <span class="ow">in</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
 
-                <span class="c1"># if pasture use scenario values for beef and dairy, average for sheep</span>
-                <span class="k">if</span> <span class="n">grassland_type</span> <span class="o">==</span> <span class="s2">&quot;Pasture&quot;</span> <span class="ow">or</span> <span class="n">grassland_type</span> <span class="o">==</span> <span class="s2">&quot;Grass silage&quot;</span><span class="p">:</span>
+                <span class="c1"># Use the calibration year for calibration, or the default year if not available</span>
+                <span class="n">year_for_calibration</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> 
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> 
+                    <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span>
+                <span class="p">)</span>
 
-                    <span class="n">_dairy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_dairy_fertilisation_value</span><span class="p">(</span><span class="n">dairy_mask</span><span class="p">)</span>
+                <span class="c1"># Use cached data for past and target years</span>
+                <span class="n">dairy_data</span><span class="p">[</span><span class="n">grassland_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_fertilization</span><span class="p">(</span>
+                        <span class="n">fertilization_by_system_data_frame</span><span class="p">,</span>
+                        <span class="n">fertilization_cache</span><span class="p">,</span>
+                        <span class="n">grassland_type</span><span class="p">,</span>
+                        <span class="s2">&quot;Dairy&quot;</span><span class="p">,</span>
+                        <span class="n">year_for_calibration</span><span class="p">,</span>
+                    <span class="p">),</span>
 
-                    <span class="n">_beef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_beef_fertilisation_value</span><span class="p">(</span><span class="n">beef_mask</span><span class="p">)</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">):</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_dairy_fertilisation_value</span><span class="p">(</span><span class="n">mask_cache</span><span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">grassland_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Pasture&quot;</span><span class="p">,</span> <span class="s2">&quot;Grass silage&quot;</span><span class="p">]</span>
+                        <span class="k">else</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Dairy&quot;</span><span class="p">),</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                    <span class="p">),</span>
+                <span class="p">}</span>
 
-                    <span class="n">_sheep</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">),</span> <span class="p">:</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="n">beef_data</span><span class="p">[</span><span class="n">grassland_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_fertilization</span><span class="p">(</span>
+                        <span class="n">fertilization_by_system_data_frame</span><span class="p">,</span>
+                        <span class="n">fertilization_cache</span><span class="p">,</span>
+                        <span class="n">grassland_type</span><span class="p">,</span>
+                        <span class="s2">&quot;Cattle&quot;</span><span class="p">,</span>
+                        <span class="n">year_for_calibration</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">):</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">sc_class</span><span class="o">.</span><span class="n">get_beef_fertilisation_value</span><span class="p">(</span><span class="n">mask_cache</span><span class="p">[</span><span class="s2">&quot;beef&quot;</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">grassland_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Pasture&quot;</span><span class="p">,</span> <span class="s2">&quot;Grass silage&quot;</span><span class="p">]</span>
+                        <span class="k">else</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Cattle&quot;</span><span class="p">),</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                    <span class="p">),</span>
+                <span class="p">}</span>
 
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># if not pasture, use the average of the past data for the target year</span>
-                    <span class="n">_dairy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Dairy&quot;</span><span class="p">),</span> <span class="p">:</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-                    <span class="n">_beef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Cattle&quot;</span><span class="p">),</span> <span class="p">:</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-                    <span class="n">_sheep</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="n">grassland_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-                        <span class="p">(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">),</span> <span class="p">:</span>
-                    <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="n">sheep_data</span><span class="p">[</span><span class="n">grassland_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_fertilization</span><span class="p">(</span>
+                        <span class="n">fertilization_by_system_data_frame</span><span class="p">,</span>
+                        <span class="n">fertilization_cache</span><span class="p">,</span>
+                        <span class="n">grassland_type</span><span class="p">,</span>
+                        <span class="s2">&quot;Sheep&quot;</span><span class="p">,</span>
+                        <span class="n">year_for_calibration</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">):</span> <span class="p">(</span>
+                        <span class="n">fertilization_by_system_data_frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">grassland_type</span><span class="p">,</span> <span class="s2">&quot;Sheep&quot;</span><span class="p">),</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                    <span class="p">),</span>
+                <span class="p">}</span>
 
-            <span class="c1"># add each scenario to the system keys, and add the specific dataframe for that scenario</span>
-            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">_dairy</span>
-            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;beef&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">_beef</span>
-            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">_sheep</span>
+            <span class="c1"># Convert dictionaries to DataFrames and store in fert_rate</span>
+            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">dairy_data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;beef&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">beef_data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+            <span class="n">fert_rate</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">][</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sheep_data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">fert_rate</span></div>
 
+    
 
 <div class="viewcode-block" id="Fertilisation.compute_organic_fertilization_rate">
 <a class="viewcode-back" href="../../autoapi/grassland_production/fertilisation/index.html#grassland_production.fertilisation.Fertilisation.compute_organic_fertilization_rate">[docs]</a>
@@ -378,13 +359,13 @@
             <span class="k">if</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Dairy&quot;</span><span class="p">]:</span>
                 <span class="n">N_spread_past</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span> <span class="s2">&quot;dairy&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal_past</span><span class="p">)</span>
-                    <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
                 <span class="p">)</span>
 
             <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_dairy_beef_cohorts</span><span class="p">()[</span><span class="s2">&quot;Beef&quot;</span><span class="p">]:</span>
                 <span class="n">N_spread_past</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span><span class="p">),</span> <span class="s2">&quot;beef&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal_past</span><span class="p">)</span>
-                    <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">baseline_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_validation</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
                 <span class="p">)</span>
 
             <span class="k">elif</span> <span class="n">animal_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_cohorts</span><span class="p">()[</span><span class="s2">&quot;Sheep&quot;</span><span class="p">]:</span>
@@ -424,7 +405,7 @@
                         <span class="p">):</span>
                             <span class="n">N_spread</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">),</span> <span class="s2">&quot;dairy&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
-                                <span class="o">*</span> <span class="n">scenario_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                                <span class="o">*</span> <span class="n">scenario_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
                             <span class="p">)</span>
                         <span class="k">elif</span> <span class="p">(</span>
                             <span class="n">animal_name</span>
@@ -434,7 +415,7 @@
                                 <span class="bp">self</span><span class="o">.</span><span class="n">cattle_spread_class</span><span class="o">.</span><span class="n">net_excretion_SPREAD</span><span class="p">(</span>
                                     <span class="n">animal</span><span class="p">,</span>
                                 <span class="p">)</span>
-                                <span class="o">*</span> <span class="n">scenario_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                                <span class="o">*</span> <span class="n">scenario_animals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
                             <span class="p">)</span>
 
                         <span class="k">elif</span> <span class="p">(</span>

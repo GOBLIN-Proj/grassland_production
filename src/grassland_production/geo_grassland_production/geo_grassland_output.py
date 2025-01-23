@@ -5,7 +5,7 @@ Grassland Output Manager Module
 This module contains the GrasslandOutput class, which is responsible for managing and
 processing various outputs related to grassland production and management. The class
 integrates different aspects of grassland management, such as grasslands, farm data,
-soil groups, dry matter production, and stocking rates, to provide easy retrieval of grassland
+soil groups, dry matter production, stocking rates, and grass yield, to provide easy retrieval of grassland
 scenario results.
 
 Classes:
@@ -17,6 +17,8 @@ from grassland_production.geo_grassland_production.geo_farm_data_generation impo
 from grassland_production.geo_grassland_production.geo_grassland_soils import GeoSoilGroups
 from grassland_production.geo_grassland_production.geo_dry_matter import GeoDryMatter
 from grassland_production.geo_grassland_production.geo_stocking_rate import GeoStockingRate
+from grassland_production.geo_grassland_production.geo_grass_yield import GeoYield
+
 
 import pandas as pd
 
@@ -25,7 +27,7 @@ class GrasslandOutput:
     A class to manage and format outputs related to grassland production and management.
 
     This class integrates several aspects of grassland management, including grasslands,
-    farm data, soil groups, dry matter production, and stocking rates. It is used to
+    farm data, soil groups, dry matter production, stocking rates, and grass yield. It is used to
     format and retrieve various metrics important for grassland management decision-making.
 
     Args:
@@ -42,6 +44,7 @@ class GrasslandOutput:
         soil_groups_class (GeoSoilGroups): An instance of the GeoSoilGroups class.
         dm_class ( GeoDryMatter): An instance of the DryMatter class.
         stock_class (StockingRate): An instance of the StockingRate class.
+        yield_class (GeoYield): An instance of the GeoYield class.
 
     Methods:
         total_spared_area(): Returns the total area spared (former grassland).
@@ -51,6 +54,7 @@ class GrasslandOutput:
         baseline_farm_inputs_data(): Computes and returns baseline farm data.
         total_concentrate_feed(): formats and returns total concentrate feed data.
         grassland_stocking_rate(): formats and returns the grassland stocking rate.
+        grass_yield_per_hectare(): formats and returns the grass yield per hectare.
     """
     def __init__(
         self,
@@ -104,6 +108,16 @@ class GrasslandOutput:
             scenario_animals_df,
             baseline_animals_df,
         )
+
+        self.yield_class = GeoYield(
+            ef_country,
+            calibration_year,
+            target_year,
+            scenario_data,
+            scenario_animals_df,
+            baseline_animals_df,
+        )
+
 
     def total_spared_area(self):
         """
@@ -190,3 +204,33 @@ class GrasslandOutput:
             DataFrame: Computed grassland stocking rates.
         """
         return pd.concat(self.stock_class.get_stocking_rate(), axis=0)
+
+
+    def grass_yield_per_hectare(self):
+        """
+        Calculate and return the grass yield per hectare.
+
+        This method processes the yield data to format it into a more usable structure,
+        including scenario, year, system, and grassland type variables.
+
+        Returns:
+            DataFrame: Computed grass yield per hectare.
+        """
+        yield_data = self.yield_class.get_yield()
+        formatted_data = []
+
+        for scenario, data in yield_data.items():
+            for system, dataframe in data.items():
+                for grassland_type in dataframe.columns:
+                    for year in dataframe.index:
+                        formatted_data.append(
+                            {
+                                "scenario": scenario,
+                                "year": year,
+                                "system": system,
+                                "grassland_type": grassland_type,
+                                "yield": dataframe.loc[year, grassland_type],
+                            }
+                        )
+
+        return pd.DataFrame(formatted_data)

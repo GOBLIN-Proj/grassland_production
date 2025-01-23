@@ -11,7 +11,7 @@
    This module contains the GrasslandOutput class, which is responsible for managing and
    processing various outputs related to grassland production and management. The class
    integrates different aspects of grassland management, such as grasslands, farm data,
-   soil groups, dry matter production, and stocking rates, to provide easy retrieval of grassland
+   soil groups, dry matter production, stocking rates, and yield, to provide easy retrieval of grassland
    scenario results.
 
    Classes:
@@ -38,7 +38,7 @@ Classes
    A class to manage and format outputs related to grassland production and management.
 
    This class integrates several aspects of grassland management, including grasslands,
-   farm data, soil groups, dry matter production, and stocking rates. It is used to
+   farm data, soil groups, dry matter production, stocking rates, and yield. It is used to
    format and retrieve various metrics important for grassland management decision-making.
 
    :param ef_country: The country for which the analysis is performed.
@@ -84,6 +84,12 @@ Classes
 
       :type: StockingRate
 
+   .. attribute:: yield_class
+
+      An instance of the Yield class.
+
+      :type: Yield
+
    .. method:: total_spared_area()
 
       Returns the total area spared (former grassland).
@@ -106,11 +112,15 @@ Classes
 
    .. method:: total_concentrate_feed()
 
-      formats and returns total concentrate feed data.
+      Formats and returns total concentrate feed data.
 
    .. method:: grassland_stocking_rate()
 
-      formats and returns the grassland stocking rate.
+      Formats and returns the grassland stocking rate.
+
+   .. method:: grass_yield_per_hectare()
+
+      Formats and returns the grass yield per hectare.
       
 
    .. py:method:: total_spared_area()
@@ -184,6 +194,17 @@ Classes
       Calculate and return the grassland stocking rate per hectare, per system (dairy, beef, sheep).
 
       :returns: Computed grassland stocking rates.
+      :rtype: DataFrame
+
+
+   .. py:method:: grass_yield_per_hectare()
+
+      Calculate and return the grass yield per hectare.
+
+      This method processes the yield data to format it into a more usable structure,
+      including scenario, year, system, and grassland type variables.
+
+      :returns: Computed grass yield per hectare.
       :rtype: DataFrame
 
 

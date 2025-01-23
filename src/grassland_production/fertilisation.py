@@ -84,6 +84,25 @@ class Fertilisation:
 
         self.cattle_spread_class = DailySpread(ef_country)
 
+    def _cached_fertilization(self, fertilization_data_frame, fertilization_cache, grassland_type, system, year):
+        """
+        Fetch fertilization data from the DataFrame with caching.
+
+        Args:
+            fertilization_data_frame (DataFrame): Fertilization data by system.
+            fertilization_cache (dict): Cache dictionary to store/retrieve computed results.
+            grassland_type (str): The grassland type.
+            system (str): The system (e.g., Dairy, Beef).
+            year (int): The year.
+
+        Returns:
+            float: Cached or computed fertilization value.
+        """
+        key = (grassland_type, system, year)
+        if key not in fertilization_cache:
+            fertilization_cache[key] = fertilization_data_frame.loc[(grassland_type, system), str(year)]
+        return fertilization_cache[key]
+
 
     def compute_inorganic_fertilization_rate(self):
         """
@@ -110,132 +129,91 @@ class Fertilisation:
             self.loader_class.grassland_fertilization_by_system()
         )
 
-        fertilization_index = fertilization_by_system_data_frame.index.levels[0]
+        # Initialize cache for fertilization data
+        fertilization_cache = {}
 
         fert_rate = {"dairy": {}, "beef": {}, "sheep": {}}
-
-        # empty dataframe with grass types  for Dairy
-        dairy_fertilization_data_frame = pd.DataFrame(index=fertilization_index)
-
-        # empty dataframe with grass types  for Dairy
-        beef_fertilization_data_frame = pd.DataFrame(index=fertilization_index)
-
-        # empty dataframe with grass types  for Dairy
-        sheep_fertilization_data_frame = pd.DataFrame(index=fertilization_index)
 
         scenarios = self.scenario_list
         scenario_column = self.sc_class.get_scenarios_col()
         cattle_system_column = self.sc_class.get_cattle_system_col()
         manure_system_column = self.sc_class.get_manure_system_col()
 
-        self.fert_rate = {"dairy": {}, "beef": {}, "sheep": {}}
         # for each scenario
         for sc in scenarios:
-            beef_mask = (
-                (scenario_column == sc)
-                & (
-                    cattle_system_column == "Beef"
-                )
-                & (
-                    manure_system_column == "tank liquid"
-                )
-            )
-            dairy_mask = (
-                (scenario_column == sc)
-                & (
-                    cattle_system_column== "Dairy"
-                )
-                & (
-                    manure_system_column== "tank liquid"
-                )
-            )
+            # Cache masks for this scenario
+            mask_cache = {
+                "beef": (scenario_column == sc) & (cattle_system_column == "Beef") & (manure_system_column == "tank liquid"),
+                "dairy": (scenario_column == sc) & (cattle_system_column == "Dairy") & (manure_system_column == "tank liquid"),
+            }
 
-            _dairy = dairy_fertilization_data_frame.copy(deep=True)
-            _beef = beef_fertilization_data_frame.copy(deep=True)
-            _sheep = sheep_fertilization_data_frame.copy(deep=True)
+            # Initialize DataFrames for this scenario
+            dairy_data = {}
+            beef_data = {}
+            sheep_data = {}
+
             # for each grassland type
-            for grassland_type in fertilization_index:
-                # add past data to the system dataframes
-                if self.calibration_year > self.default_calibration_year:
-                    _dairy.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Dairy"), str(self.default_calibration_year)
-                    ]
-                    _beef.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Cattle"), str(self.default_calibration_year)
-                    ]
-                    _sheep.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Sheep"), str(self.default_calibration_year)
-                    ]
-                else:
-                    _dairy.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Dairy"), str(self.default_calibration_year)
-                    ]
-                    _beef.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Cattle"), str(self.default_calibration_year)
-                    ]
-                    _sheep.loc[
-                        grassland_type,
-                        str(self.calibration_year),
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Sheep"), str(self.default_calibration_year)
-                    ]
+            for grassland_type in fertilization_by_system_data_frame.index.levels[0]:
 
-                # if pasture use scenario values for beef and dairy, average for sheep
-                if grassland_type == "Pasture" or grassland_type == "Grass silage":
+                # Use the calibration year for calibration, or the default year if not available
+                year_for_calibration = (
+                    self.calibration_year 
+                    if self.calibration_year > self.default_calibration_year 
+                    else self.default_calibration_year
+                )
 
-                    _dairy.loc[
-                        grassland_type, str(self.target_year)
-                    ] = self.sc_class.get_dairy_fertilisation_value(dairy_mask)
+                # Use cached data for past and target years
+                dairy_data[grassland_type] = {
+                    str(self.calibration_year): self._cached_fertilization(
+                        fertilization_by_system_data_frame,
+                        fertilization_cache,
+                        grassland_type,
+                        "Dairy",
+                        year_for_calibration,
+                    ),
 
-                    _beef.loc[
-                        grassland_type, str(self.target_year)
-                    ] = self.sc_class.get_beef_fertilisation_value(beef_mask)
+                    str(self.target_year): (
+                        self.sc_class.get_dairy_fertilisation_value(mask_cache["dairy"])
+                        if grassland_type in ["Pasture", "Grass silage"]
+                        else fertilization_by_system_data_frame.loc[(grassland_type, "Dairy"), :].mean()
+                    ),
+                }
 
-                    _sheep.loc[
-                        grassland_type, str(self.target_year)
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Sheep"), :
-                    ].mean()
+                beef_data[grassland_type] = {
+                    str(self.calibration_year): self._cached_fertilization(
+                        fertilization_by_system_data_frame,
+                        fertilization_cache,
+                        grassland_type,
+                        "Cattle",
+                        year_for_calibration,
+                    ),
+                    str(self.target_year): (
+                        self.sc_class.get_beef_fertilisation_value(mask_cache["beef"])
+                        if grassland_type in ["Pasture", "Grass silage"]
+                        else fertilization_by_system_data_frame.loc[(grassland_type, "Cattle"), :].mean()
+                    ),
+                }
 
-                else:
-                    # if not pasture, use the average of the past data for the target year
-                    _dairy.loc[
-                        grassland_type, str(self.target_year)
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Dairy"), :
-                    ].mean()
-                    _beef.loc[
-                        grassland_type, str(self.target_year)
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Cattle"), :
-                    ].mean()
-                    _sheep.loc[
-                        grassland_type, str(self.target_year)
-                    ] = fertilization_by_system_data_frame.loc[
-                        (grassland_type, "Sheep"), :
-                    ].mean()
+                sheep_data[grassland_type] = {
+                    str(self.calibration_year): self._cached_fertilization(
+                        fertilization_by_system_data_frame,
+                        fertilization_cache,
+                        grassland_type,
+                        "Sheep",
+                        year_for_calibration,
+                    ),
+                    str(self.target_year): (
+                        fertilization_by_system_data_frame.loc[(grassland_type, "Sheep"), :].mean()
+                    ),
+                }
 
-            # add each scenario to the system keys, and add the specific dataframe for that scenario
-            fert_rate["dairy"][sc] = _dairy
-            fert_rate["beef"][sc] = _beef
-            fert_rate["sheep"][sc] = _sheep
+            # Convert dictionaries to DataFrames and store in fert_rate
+            fert_rate["dairy"][sc] = pd.DataFrame.from_dict(dairy_data, orient="index")
+            fert_rate["beef"][sc] = pd.DataFrame.from_dict(beef_data, orient="index")
+            fert_rate["sheep"][sc] = pd.DataFrame.from_dict(sheep_data, orient="index")
 
         return fert_rate
+    
 
     def compute_organic_fertilization_rate(self):
         """
@@ -294,13 +272,13 @@ class Fertilisation:
             if animal_name in self.data_manager_class.get_dairy_beef_cohorts()["Dairy"]:
                 N_spread_past.loc[int(self.calibration_year), "dairy"] += (
                     self.cattle_spread_class.net_excretion_SPREAD(animal_past)
-                    * baseline_animals_df.loc[mask_validation, "pop"].values[0]
+                    * baseline_animals_df.loc[mask_validation, "pop"].item()
                 )
 
             elif animal_name in self.data_manager_class.get_dairy_beef_cohorts()["Beef"]:
                 N_spread_past.loc[int(self.calibration_year), "beef"] += (
                     self.cattle_spread_class.net_excretion_SPREAD(animal_past)
-                    * baseline_animals_df.loc[mask_validation, "pop"].values[0]
+                    * baseline_animals_df.loc[mask_validation, "pop"].item()
                 )
 
             elif animal_name in self.data_manager_class.get_cohorts()["Sheep"]:
@@ -340,7 +318,7 @@ class Fertilisation:
                         ):
                             N_spread.loc[int(self.target_year), "dairy"] += (
                                 self.cattle_spread_class.net_excretion_SPREAD(animal)
-                                * scenario_animals_df.loc[mask, "pop"].values[0]
+                                * scenario_animals_df.loc[mask, "pop"].item()
                             )
                         elif (
                             animal_name
@@ -350,7 +328,7 @@ class Fertilisation:
                                 self.cattle_spread_class.net_excretion_SPREAD(
                                     animal,
                                 )
-                                * scenario_animals_df.loc[mask, "pop"].values[0]
+                                * scenario_animals_df.loc[mask, "pop"].item()
                             )
 
                         elif (

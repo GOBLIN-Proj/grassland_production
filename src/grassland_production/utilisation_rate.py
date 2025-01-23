@@ -230,26 +230,39 @@ class UtilisationRate:
             self.data_manager_class.get_cohorts()["Sheep"]
         )
 
+
+        # -------------------------------------------------------
+        # 1. Compute baseline once (no scenario dependence)
+        # -------------------------------------------------------
+        baseline_df = pd.DataFrame(0.0, index=year_list, columns=keys)
+        for animal_name in animal_list:
+            # baseline 'animal_past' object
+            animal_past = getattr(
+                self.data_manager_class.get_baseline_animals_dict()[self.calibration_year]["animals"],
+                animal_name,
+                None
+            )
+            # If this animal doesn't exist in the baseline, skip
+            if animal_past is None:
+                continue
+
+            for key in keys:
+                if animal_name in COHORTS[key]:
+                    baseline_df.loc[year_list, key] += (
+                        grass_feed_class[key].dry_matter_from_grass(animal_past)
+                        * kg_to_t
+                        * 365
+                        * NFS_data[f"NFS_{key}"][key].loc[self.calibration_year, animal_name]
+                    )
+
+        # -------------------------------------------------------
+        # 2. Replicate the same baseline DataFrame for each scenario
+        # -------------------------------------------------------
         dry_matter_req = {}
 
         for sc in scenario_list:
-            NFS_farm_dm_df = pd.DataFrame(0.0, index=year_list, columns=keys)
-
-            for animal_name in animal_list:
-
-                animal_past = getattr(self.data_manager_class.get_baseline_animals_dict()[self.calibration_year]["animals"],
-                                  animal_name,)
-
-                for key in keys:
-                    if animal_name in COHORTS[key]:
-                        NFS_farm_dm_df.loc[year_list, key] += (
-                            grass_feed_class[key].dry_matter_from_grass(animal_past,)
-                            * kg_to_t
-                            * 365
-                            * NFS_data[f"NFS_{key}"][key].loc[self.calibration_year, animal_name]
-                        )
-
-            dry_matter_req[sc] = NFS_farm_dm_df
+            # .copy() if you want each scenario to have an independent DataFrame
+            dry_matter_req[sc] = baseline_df.copy(deep=True)
 
         return dry_matter_req
 

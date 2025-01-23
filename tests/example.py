@@ -19,7 +19,7 @@ def main():
     calibration_year = 2020
     target_year = 2050
 
-    scenario_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_input_dataframe2.csv"))
+    scenario_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_input_dataframe.csv"), index_col=0)
     scenario_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"scenario_animal_data.csv"))
     baseline_animal_dataframe = pd.read_csv(os.path.join(path_to_data,"baseline_animal_data.csv"))
 
@@ -60,11 +60,12 @@ def main():
     #save results to csv
     test_data_path = "./test_data"
 
-    grassland.total_spared_area().to_csv(os.path.join(test_data_path,"spared_area.csv"))
-    grassland.total_grassland_area().to_csv(os.path.join(test_data_path,"total_grassland_area.csv"))
-    grassland.total_spared_area_breakdown().to_csv(os.path.join(test_data_path,"spared_area_breakdown.csv"))
-    grassland.total_concentrate_feed().to_csv(os.path.join(test_data_path,"concentrate_feed.csv"))
-    grassland.grassland_stocking_rate().to_csv(os.path.join(test_data_path,"stocking_rate.csv"))
+    grassland.total_spared_area().to_csv(os.path.join(test_data_path,"spared_area_0.3.6.csv"))
+    grassland.total_grassland_area().to_csv(os.path.join(test_data_path,"total_grassland_area_0.3.6.csv"))
+    grassland.total_spared_area_breakdown().to_csv(os.path.join(test_data_path,"spared_area_breakdown_0.3.6.csv"))
+    grassland.total_concentrate_feed().to_csv(os.path.join(test_data_path,"concentrate_feed_0.3.6.csv"))
+    grassland.grassland_stocking_rate().to_csv(os.path.join(test_data_path,"stocking_rate_0.3.6.csv"))
+    grassland.grass_yield_per_hectare().to_csv(os.path.join(test_data_path,"grass_yield_per_hectare_0.3.6.csv"))
 
 
 if __name__ == "__main__":

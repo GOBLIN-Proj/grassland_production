@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.dry_matter &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.dry_matter &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -462,11 +462,13 @@
         <span class="n">dry_matter_req</span> <span class="o">=</span> <span class="p">{}</span>
         
         <span class="n">animal_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_animals_dict</span><span class="p">()</span>
- 
+
+        <span class="n">scenario_aggregation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()</span>
+
         <span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">scenario_list</span><span class="p">:</span>
             <span class="n">dry_matter_req</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
-            <span class="n">farm_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span>
-            <span class="n">farm_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">farm_mask</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">farm_mask</span> <span class="o">=</span> <span class="n">scenario_aggregation</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span>
+            <span class="n">farm_ids</span> <span class="o">=</span> <span class="n">scenario_aggregation</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">farm_mask</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
             <span class="k">for</span> <span class="n">farm_id</span> <span class="ow">in</span> <span class="n">farm_ids</span><span class="p">:</span>
                 <span class="c1"># Process dairy and beef</span>
@@ -762,12 +764,13 @@
 
         <span class="n">total_concentrate_feed</span> <span class="o">=</span> <span class="p">{}</span>
         
+        <span class="n">scenario_aggregation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()</span>   
         <span class="k">for</span> <span class="n">sc</span> <span class="ow">in</span> <span class="n">scenario_list</span><span class="p">:</span>
             <span class="n">total_conc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_year</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
             <span class="n">total_concentrate_feed</span><span class="p">[</span><span class="n">sc</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_conc_df</span>
 
-            <span class="n">farm_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span>
-            <span class="n">farm_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_manager_class</span><span class="o">.</span><span class="n">get_scenario_aggregation</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">farm_mask</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">farm_mask</span> <span class="o">=</span> <span class="n">scenario_aggregation</span><span class="p">[</span><span class="s2">&quot;Scenarios&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc</span>
+            <span class="n">farm_ids</span> <span class="o">=</span> <span class="n">scenario_aggregation</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">farm_mask</span><span class="p">,</span> <span class="s2">&quot;farm_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
             <span class="k">for</span> <span class="n">farm_id</span> <span class="ow">in</span> <span class="n">farm_ids</span><span class="p">:</span>
                 <span class="c1"># Process dairy and beef</span>

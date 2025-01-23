@@ -117,6 +117,25 @@ Classes
       Calculates the organic fertilization rate per hectare for different farm systems and scenarios.
       
 
+   .. py:method:: _cached_fertilization(fertilization_data_frame, fertilization_cache, grassland_type, system, year)
+
+      Fetch fertilization data from the DataFrame with caching.
+
+      :param fertilization_data_frame: Fertilization data by system.
+      :type fertilization_data_frame: DataFrame
+      :param fertilization_cache: Cache dictionary to store/retrieve computed results.
+      :type fertilization_cache: dict
+      :param grassland_type: The grassland type.
+      :type grassland_type: str
+      :param system: The system (e.g., Dairy, Beef).
+      :type system: str
+      :param year: The year.
+      :type year: int
+
+      :returns: Cached or computed fertilization value.
+      :rtype: float
+
+
    .. py:method:: compute_inorganic_fertilization_rate()
 
       Calculates the inorganic fertilization rate for various farm systems (dairy, beef, sheep) across

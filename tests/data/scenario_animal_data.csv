@@ -1,125 +1,187 @@
 index,ef_country,farm_id,Scenarios,year,cohort,pop,daily_milk,weight,forage,grazing,con_type,con_amount,wool,t_outdoors,t_indoors,t_stabled,mm_storage,daily_spreading,n_sold,n_bought
-0,ireland,0,0,2050,dairy_cows,1060000.0,13.8,538.0,irish_grass,pasture,concentrate,2.762056476,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
-1,ireland,0,0,2050,suckler_cows,0.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.842751605333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
-2,ireland,0,0,2050,bulls,21910.8667870256,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-3,ireland,0,0,2050,DxD_calves_m,174302.747404835,0.0,171.4,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-4,ireland,0,0,2050,DxD_calves_f,248014.526065417,0.0,138.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-5,ireland,0,0,2050,DxB_calves_m,224474.678202203,0.0,176.875,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-6,ireland,0,0,2050,DxB_calves_f,223616.226981513,0.0,158.625,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-7,ireland,0,0,2050,BxB_calves_m,0.0,0.0,211.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-8,ireland,0,0,2050,BxB_calves_f,0.0,0.0,175.05,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-9,ireland,0,0,2050,DxD_heifers_less_2_yr,243002.608523332,0.0,335.65,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-10,ireland,0,0,2050,DxD_steers_less_2_yr,167898.622630552,0.0,434.2,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-11,ireland,0,0,2050,DxB_heifers_less_2_yr,216173.042088832,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-12,ireland,0,0,2050,DxB_steers_less_2_yr,216828.195426795,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-13,ireland,0,0,2050,BxB_heifers_less_2_yr,0.0,0.0,445.15,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-14,ireland,0,0,2050,BxB_steers_less_2_yr,0.0,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-15,ireland,0,0,2050,DxD_heifers_more_2_yr,7338.72149128551,0.0,481.65,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-16,ireland,0,0,2050,DxD_steers_more_2_yr,40831.2745368919,0.0,592.975,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-17,ireland,0,0,2050,DxB_heifers_more_2_yr,14173.151991269,0.0,527.275,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-18,ireland,0,0,2050,DxB_steers_more_2_yr,49932.6141518008,0.0,624.0,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-19,ireland,0,0,2050,BxB_heifers_more_2_yr,0.0,0.0,603.925,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-20,ireland,0,0,2050,BxB_steers_more_2_yr,0.0,0.0,751.75,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-21,ireland,1,0,2050,dairy_cows,0.0,0.0,538.0,irish_grass,pasture,concentrate,0.0,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
-22,ireland,1,0,2050,suckler_cows,1000.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.842751605333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
-23,ireland,1,0,2050,bulls,20.6706290443638,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-24,ireland,1,0,2050,DxD_calves_m,0.0,0.0,171.4,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-25,ireland,1,0,2050,DxD_calves_f,0.0,0.0,138.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-26,ireland,1,0,2050,DxB_calves_m,0.0,0.0,176.875,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-27,ireland,1,0,2050,DxB_calves_f,0.0,0.0,158.625,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-28,ireland,1,0,2050,BxB_calves_m,426.018017628541,0.0,211.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-29,ireland,1,0,2050,BxB_calves_f,424.083258132214,0.0,175.05,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-30,ireland,1,0,2050,DxD_heifers_less_2_yr,0.0,0.0,335.65,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-31,ireland,1,0,2050,DxD_steers_less_2_yr,0.0,0.0,434.2,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-32,ireland,1,0,2050,DxB_heifers_less_2_yr,0.0,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-33,ireland,1,0,2050,DxB_steers_less_2_yr,0.0,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-34,ireland,1,0,2050,BxB_heifers_less_2_yr,410.125362434418,0.0,445.15,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-35,ireland,1,0,2050,BxB_steers_less_2_yr,411.677410807975,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-36,ireland,1,0,2050,DxD_heifers_more_2_yr,0.0,0.0,481.65,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-37,ireland,1,0,2050,DxD_steers_more_2_yr,0.0,0.0,592.975,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-38,ireland,1,0,2050,DxB_heifers_more_2_yr,0.0,0.0,527.275,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-39,ireland,1,0,2050,DxB_steers_more_2_yr,0.0,0.0,624.0,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-40,ireland,1,0,2050,BxB_heifers_more_2_yr,59.3578037250787,0.0,603.925,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-41,ireland,1,0,2050,BxB_steers_more_2_yr,65.754110409234,0.0,751.75,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-42,ireland,4,1,2050,dairy_cows,1060000.0,13.8,538.0,irish_grass,pasture,concentrate,2.762056476,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
-43,ireland,4,1,2050,suckler_cows,0.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.842751605333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
-44,ireland,4,1,2050,bulls,21910.8667870256,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-45,ireland,4,1,2050,DxD_calves_m,174302.747404835,0.0,171.4,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-46,ireland,4,1,2050,DxD_calves_f,248014.526065417,0.0,138.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-47,ireland,4,1,2050,DxB_calves_m,224474.678202203,0.0,176.875,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-48,ireland,4,1,2050,DxB_calves_f,223616.226981513,0.0,158.625,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-49,ireland,4,1,2050,BxB_calves_m,0.0,0.0,211.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-50,ireland,4,1,2050,BxB_calves_f,0.0,0.0,175.05,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-51,ireland,4,1,2050,DxD_heifers_less_2_yr,243002.608523332,0.0,335.65,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-52,ireland,4,1,2050,DxD_steers_less_2_yr,167898.622630552,0.0,434.2,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-53,ireland,4,1,2050,DxB_heifers_less_2_yr,216173.042088832,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-54,ireland,4,1,2050,DxB_steers_less_2_yr,216828.195426795,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-55,ireland,4,1,2050,BxB_heifers_less_2_yr,0.0,0.0,445.15,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-56,ireland,4,1,2050,BxB_steers_less_2_yr,0.0,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-57,ireland,4,1,2050,DxD_heifers_more_2_yr,7338.72149128551,0.0,481.65,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-58,ireland,4,1,2050,DxD_steers_more_2_yr,40831.2745368919,0.0,592.975,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-59,ireland,4,1,2050,DxB_heifers_more_2_yr,14173.151991269,0.0,527.275,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-60,ireland,4,1,2050,DxB_steers_more_2_yr,49932.6141518008,0.0,624.0,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-61,ireland,4,1,2050,BxB_heifers_more_2_yr,0.0,0.0,603.925,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-62,ireland,4,1,2050,BxB_steers_more_2_yr,0.0,0.0,751.75,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-63,ireland,5,1,2050,dairy_cows,0.0,0.0,538.0,irish_grass,pasture,concentrate,0.0,0.0,13.5890411,10.4109589,0.0,tank liquid,broadcast,0.0,0.0
-64,ireland,5,1,2050,suckler_cows,1000.0,1.410958904,600.0,irish_grass,pasture,concentrate,0.842751605333333,0.0,12.21917808,11.78082192,0.0,tank liquid,broadcast,0.0,0.0
-65,ireland,5,1,2050,bulls,20.6706290443638,0.0,773.0,irish_grass,pasture,concentrate,0.6541409614489,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-66,ireland,5,1,2050,DxD_calves_m,0.0,0.0,171.4,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-67,ireland,5,1,2050,DxD_calves_f,0.0,0.0,138.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-68,ireland,5,1,2050,DxB_calves_m,0.0,0.0,176.875,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-69,ireland,5,1,2050,DxB_calves_f,0.0,0.0,158.625,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-70,ireland,5,1,2050,BxB_calves_m,426.018017628541,0.0,211.55,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-71,ireland,5,1,2050,BxB_calves_f,424.083258132214,0.0,175.05,irish_grass,pasture,concentrate,1.0,0.0,7.890410959,16.10958904,0.0,tank liquid,broadcast,0.0,0.0
-72,ireland,5,1,2050,DxD_heifers_less_2_yr,0.0,0.0,335.65,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-73,ireland,5,1,2050,DxD_steers_less_2_yr,0.0,0.0,434.2,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-74,ireland,5,1,2050,DxB_heifers_less_2_yr,0.0,0.0,395.875,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-75,ireland,5,1,2050,DxB_steers_less_2_yr,0.0,0.0,450.625,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-76,ireland,5,1,2050,BxB_heifers_less_2_yr,410.125362434418,0.0,445.15,irish_grass,pasture,concentrate,0.0,0.0,11.50684932,12.49315068,0.0,tank liquid,broadcast,0.0,0.0
-77,ireland,5,1,2050,BxB_steers_less_2_yr,411.677410807975,0.0,554.65,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-78,ireland,5,1,2050,DxD_heifers_more_2_yr,0.0,0.0,481.65,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-79,ireland,5,1,2050,DxD_steers_more_2_yr,0.0,0.0,592.975,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-80,ireland,5,1,2050,DxB_heifers_more_2_yr,0.0,0.0,527.275,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-81,ireland,5,1,2050,DxB_steers_more_2_yr,0.0,0.0,624.0,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-82,ireland,5,1,2050,BxB_heifers_more_2_yr,59.3578037250787,0.0,603.925,irish_grass,pasture,concentrate,0.0,0.0,12.76508968,11.23491032,0.0,tank liquid,broadcast,0.0,0.0
-83,ireland,5,1,2050,BxB_steers_more_2_yr,65.754110409234,0.0,751.75,irish_grass,pasture,concentrate,0.0,0.0,18.46575342,5.534246575,0.0,tank liquid,broadcast,0.0,0.0
-84,ireland,2,0,2050,ewes,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-85,ireland,2,0,2050,ewes,3000.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-86,ireland,2,0,2050,lamb_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-87,ireland,2,0,2050,lamb_less_1_yr,1348.19919140493,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-88,ireland,2,0,2050,lamb_more_1_yr,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-89,ireland,2,0,2050,lamb_more_1_yr,144.182712387227,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-90,ireland,2,0,2050,male_less_1_yr,1348.19919140493,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-91,ireland,2,0,2050,male_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-92,ireland,2,0,2050,ram,0.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-93,ireland,2,0,2050,ram,96.5260360124284,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-94,ireland,3,0,2050,ewes,50000.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-95,ireland,3,0,2050,ewes,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-96,ireland,3,0,2050,lamb_less_1_yr,22469.9865234156,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-97,ireland,3,0,2050,lamb_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-98,ireland,3,0,2050,lamb_more_1_yr,2403.04520738966,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-99,ireland,3,0,2050,lamb_more_1_yr,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-100,ireland,3,0,2050,male_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-101,ireland,3,0,2050,male_less_1_yr,22469.9865234156,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-102,ireland,3,0,2050,ram,1608.76726687381,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-103,ireland,3,0,2050,ram,0.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-104,ireland,6,1,2050,ewes,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-105,ireland,6,1,2050,ewes,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-106,ireland,6,1,2050,lamb_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-107,ireland,6,1,2050,lamb_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-108,ireland,6,1,2050,lamb_more_1_yr,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-109,ireland,6,1,2050,lamb_more_1_yr,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-110,ireland,6,1,2050,male_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-111,ireland,6,1,2050,male_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-112,ireland,6,1,2050,ram,0.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-113,ireland,6,1,2050,ram,0.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-114,ireland,7,1,2050,ewes,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-115,ireland,7,1,2050,ewes,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-116,ireland,7,1,2050,lamb_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-117,ireland,7,1,2050,lamb_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-118,ireland,7,1,2050,lamb_more_1_yr,0.0,0.0,68.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-119,ireland,7,1,2050,lamb_more_1_yr,0.0,0.0,68.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-120,ireland,7,1,2050,male_less_1_yr,0.0,0.0,37.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-121,ireland,7,1,2050,male_less_1_yr,0.0,0.0,37.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-122,ireland,7,1,2050,ram,0.0,0.0,86.0,average,flat_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
-123,ireland,7,1,2050,ram,0.0,0.0,86.0,average,hilly_pasture,concentrate,0.0,4.5,21.36,2.64,0.0,solid,broadcast,0.0,0.0
+0,ireland,0,0,2050,dairy_cows,1060000,13.8,538,irish_grass,pasture,concentrate,2.762056476,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+1,ireland,0,0,2050,suckler_cows,0,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+2,ireland,0,0,2050,bulls,21910.8667870256,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+3,ireland,0,0,2050,DxD_calves_m,174302.747404835,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+4,ireland,0,0,2050,DxD_calves_f,248014.526065417,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+5,ireland,0,0,2050,DxB_calves_m,224474.678202203,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+6,ireland,0,0,2050,DxB_calves_f,223616.226981513,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+7,ireland,0,0,2050,BxB_calves_m,0,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+8,ireland,0,0,2050,BxB_calves_f,0,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+9,ireland,0,0,2050,DxD_heifers_less_2_yr,243002.608523332,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+10,ireland,0,0,2050,DxD_steers_less_2_yr,167898.622630552,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+11,ireland,0,0,2050,DxB_heifers_less_2_yr,216173.042088832,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+12,ireland,0,0,2050,DxB_steers_less_2_yr,216828.195426795,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+13,ireland,0,0,2050,BxB_heifers_less_2_yr,0,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+14,ireland,0,0,2050,BxB_steers_less_2_yr,0,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+15,ireland,0,0,2050,DxD_heifers_more_2_yr,7338.72149128551,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+16,ireland,0,0,2050,DxD_steers_more_2_yr,40831.2745368919,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+17,ireland,0,0,2050,DxB_heifers_more_2_yr,14173.151991269,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+18,ireland,0,0,2050,DxB_steers_more_2_yr,49932.6141518008,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+19,ireland,0,0,2050,BxB_heifers_more_2_yr,0,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+20,ireland,0,0,2050,BxB_steers_more_2_yr,0,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+21,ireland,1,0,2050,dairy_cows,0,0,538,irish_grass,pasture,concentrate,0,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+22,ireland,1,0,2050,suckler_cows,1000,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+23,ireland,1,0,2050,bulls,20.6706290443638,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+24,ireland,1,0,2050,DxD_calves_m,0,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+25,ireland,1,0,2050,DxD_calves_f,0,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+26,ireland,1,0,2050,DxB_calves_m,0,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+27,ireland,1,0,2050,DxB_calves_f,0,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+28,ireland,1,0,2050,BxB_calves_m,426.018017628541,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+29,ireland,1,0,2050,BxB_calves_f,424.083258132214,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+30,ireland,1,0,2050,DxD_heifers_less_2_yr,0,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+31,ireland,1,0,2050,DxD_steers_less_2_yr,0,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+32,ireland,1,0,2050,DxB_heifers_less_2_yr,0,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+33,ireland,1,0,2050,DxB_steers_less_2_yr,0,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+34,ireland,1,0,2050,BxB_heifers_less_2_yr,410.125362434418,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+35,ireland,1,0,2050,BxB_steers_less_2_yr,411.677410807975,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+36,ireland,1,0,2050,DxD_heifers_more_2_yr,0,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+37,ireland,1,0,2050,DxD_steers_more_2_yr,0,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+38,ireland,1,0,2050,DxB_heifers_more_2_yr,0,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+39,ireland,1,0,2050,DxB_steers_more_2_yr,0,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+40,ireland,1,0,2050,BxB_heifers_more_2_yr,59.3578037250787,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+41,ireland,1,0,2050,BxB_steers_more_2_yr,65.754110409234,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+42,ireland,4,1,2050,dairy_cows,1060000,13.8,538,irish_grass,pasture,concentrate,2.762056476,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+43,ireland,4,1,2050,suckler_cows,0,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+44,ireland,4,1,2050,bulls,21910.8667870256,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+45,ireland,4,1,2050,DxD_calves_m,174302.747404835,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+46,ireland,4,1,2050,DxD_calves_f,248014.526065417,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+47,ireland,4,1,2050,DxB_calves_m,224474.678202203,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+48,ireland,4,1,2050,DxB_calves_f,223616.226981513,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+49,ireland,4,1,2050,BxB_calves_m,0,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+50,ireland,4,1,2050,BxB_calves_f,0,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+51,ireland,4,1,2050,DxD_heifers_less_2_yr,243002.608523332,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+52,ireland,4,1,2050,DxD_steers_less_2_yr,167898.622630552,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+53,ireland,4,1,2050,DxB_heifers_less_2_yr,216173.042088832,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+54,ireland,4,1,2050,DxB_steers_less_2_yr,216828.195426795,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+55,ireland,4,1,2050,BxB_heifers_less_2_yr,0,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+56,ireland,4,1,2050,BxB_steers_less_2_yr,0,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+57,ireland,4,1,2050,DxD_heifers_more_2_yr,7338.72149128551,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+58,ireland,4,1,2050,DxD_steers_more_2_yr,40831.2745368919,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+59,ireland,4,1,2050,DxB_heifers_more_2_yr,14173.151991269,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+60,ireland,4,1,2050,DxB_steers_more_2_yr,49932.6141518008,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+61,ireland,4,1,2050,BxB_heifers_more_2_yr,0,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+62,ireland,4,1,2050,BxB_steers_more_2_yr,0,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+63,ireland,5,1,2050,dairy_cows,0,0,538,irish_grass,pasture,concentrate,0,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+64,ireland,5,1,2050,suckler_cows,1000,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+65,ireland,5,1,2050,bulls,20.6706290443638,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+66,ireland,5,1,2050,DxD_calves_m,0,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+67,ireland,5,1,2050,DxD_calves_f,0,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+68,ireland,5,1,2050,DxB_calves_m,0,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+69,ireland,5,1,2050,DxB_calves_f,0,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+70,ireland,5,1,2050,BxB_calves_m,426.018017628541,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+71,ireland,5,1,2050,BxB_calves_f,424.083258132214,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+72,ireland,5,1,2050,DxD_heifers_less_2_yr,0,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+73,ireland,5,1,2050,DxD_steers_less_2_yr,0,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+74,ireland,5,1,2050,DxB_heifers_less_2_yr,0,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+75,ireland,5,1,2050,DxB_steers_less_2_yr,0,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+76,ireland,5,1,2050,BxB_heifers_less_2_yr,410.125362434418,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+77,ireland,5,1,2050,BxB_steers_less_2_yr,411.677410807975,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+78,ireland,5,1,2050,DxD_heifers_more_2_yr,0,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+79,ireland,5,1,2050,DxD_steers_more_2_yr,0,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+80,ireland,5,1,2050,DxB_heifers_more_2_yr,0,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+81,ireland,5,1,2050,DxB_steers_more_2_yr,0,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+82,ireland,5,1,2050,BxB_heifers_more_2_yr,59.3578037250787,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+83,ireland,5,1,2050,BxB_steers_more_2_yr,65.754110409234,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+84,ireland,8,2,2050,dairy_cows,1060000,13.8,538,irish_grass,pasture,concentrate,2.762056476,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+85,ireland,8,2,2050,suckler_cows,0,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+86,ireland,8,2,2050,bulls,21910.8667870256,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+87,ireland,8,2,2050,DxD_calves_m,174302.747404835,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+88,ireland,8,2,2050,DxD_calves_f,248014.526065417,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+89,ireland,8,2,2050,DxB_calves_m,224474.678202203,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+90,ireland,8,2,2050,DxB_calves_f,223616.226981513,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+91,ireland,8,2,2050,BxB_calves_m,0,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+92,ireland,8,2,2050,BxB_calves_f,0,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+93,ireland,8,2,2050,DxD_heifers_less_2_yr,243002.608523332,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+94,ireland,8,2,2050,DxD_steers_less_2_yr,167898.622630552,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+95,ireland,8,2,2050,DxB_heifers_less_2_yr,216173.042088832,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+96,ireland,8,2,2050,DxB_steers_less_2_yr,216828.195426795,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+97,ireland,8,2,2050,BxB_heifers_less_2_yr,0,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+98,ireland,8,2,2050,BxB_steers_less_2_yr,0,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+99,ireland,8,2,2050,DxD_heifers_more_2_yr,7338.72149128551,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+100,ireland,8,2,2050,DxD_steers_more_2_yr,40831.2745368919,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+101,ireland,8,2,2050,DxB_heifers_more_2_yr,14173.151991269,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+102,ireland,8,2,2050,DxB_steers_more_2_yr,49932.6141518008,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+103,ireland,8,2,2050,BxB_heifers_more_2_yr,0,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+104,ireland,8,2,2050,BxB_steers_more_2_yr,0,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+105,ireland,9,2,2050,dairy_cows,0,0,538,irish_grass,pasture,concentrate,0,0,13.5890411,10.4109589,0,tank liquid,broadcast,0,0
+106,ireland,9,2,2050,suckler_cows,1000,1.410958904,600,irish_grass,pasture,concentrate,0.842751605333333,0,12.21917808,11.78082192,0,tank liquid,broadcast,0,0
+107,ireland,9,2,2050,bulls,20.6706290443638,0,773,irish_grass,pasture,concentrate,0.6541409614489,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+108,ireland,9,2,2050,DxD_calves_m,0,0,171.4,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+109,ireland,9,2,2050,DxD_calves_f,0,0,138.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+110,ireland,9,2,2050,DxB_calves_m,0,0,176.875,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+111,ireland,9,2,2050,DxB_calves_f,0,0,158.625,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+112,ireland,9,2,2050,BxB_calves_m,426.018017628541,0,211.55,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+113,ireland,9,2,2050,BxB_calves_f,424.083258132214,0,175.05,irish_grass,pasture,concentrate,1,0,7.890410959,16.10958904,0,tank liquid,broadcast,0,0
+114,ireland,9,2,2050,DxD_heifers_less_2_yr,0,0,335.65,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+115,ireland,9,2,2050,DxD_steers_less_2_yr,0,0,434.2,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+116,ireland,9,2,2050,DxB_heifers_less_2_yr,0,0,395.875,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+117,ireland,9,2,2050,DxB_steers_less_2_yr,0,0,450.625,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+118,ireland,9,2,2050,BxB_heifers_less_2_yr,410.125362434418,0,445.15,irish_grass,pasture,concentrate,0,0,11.50684932,12.49315068,0,tank liquid,broadcast,0,0
+119,ireland,9,2,2050,BxB_steers_less_2_yr,411.677410807975,0,554.65,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+120,ireland,9,2,2050,DxD_heifers_more_2_yr,0,0,481.65,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+121,ireland,9,2,2050,DxD_steers_more_2_yr,0,0,592.975,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+122,ireland,9,2,2050,DxB_heifers_more_2_yr,0,0,527.275,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+123,ireland,9,2,2050,DxB_steers_more_2_yr,0,0,624,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+124,ireland,9,2,2050,BxB_heifers_more_2_yr,59.3578037250787,0,603.925,irish_grass,pasture,concentrate,0,0,12.76508968,11.23491032,0,tank liquid,broadcast,0,0
+125,ireland,9,2,2050,BxB_steers_more_2_yr,65.754110409234,0,751.75,irish_grass,pasture,concentrate,0,0,18.46575342,5.534246575,0,tank liquid,broadcast,0,0
+126,ireland,2,0,2050,ewes,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+127,ireland,2,0,2050,ewes,3000,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+128,ireland,2,0,2050,lamb_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+129,ireland,2,0,2050,lamb_less_1_yr,1348.19919140493,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+130,ireland,2,0,2050,lamb_more_1_yr,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+131,ireland,2,0,2050,lamb_more_1_yr,144.182712387227,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+132,ireland,2,0,2050,male_less_1_yr,1348.19919140493,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+133,ireland,2,0,2050,male_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+134,ireland,2,0,2050,ram,0,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+135,ireland,2,0,2050,ram,96.5260360124284,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+136,ireland,3,0,2050,ewes,50000,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+137,ireland,3,0,2050,ewes,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+138,ireland,3,0,2050,lamb_less_1_yr,22469.9865234156,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+139,ireland,3,0,2050,lamb_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+140,ireland,3,0,2050,lamb_more_1_yr,2403.04520738966,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+141,ireland,3,0,2050,lamb_more_1_yr,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+142,ireland,3,0,2050,male_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+143,ireland,3,0,2050,male_less_1_yr,22469.9865234156,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+144,ireland,3,0,2050,ram,1608.76726687381,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+145,ireland,3,0,2050,ram,0,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+146,ireland,6,1,2050,ewes,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+147,ireland,6,1,2050,ewes,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+148,ireland,6,1,2050,lamb_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+149,ireland,6,1,2050,lamb_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+150,ireland,6,1,2050,lamb_more_1_yr,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+151,ireland,6,1,2050,lamb_more_1_yr,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+152,ireland,6,1,2050,male_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+153,ireland,6,1,2050,male_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+154,ireland,6,1,2050,ram,0,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+155,ireland,6,1,2050,ram,0,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+156,ireland,7,1,2050,ewes,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+157,ireland,7,1,2050,ewes,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+158,ireland,7,1,2050,lamb_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+159,ireland,7,1,2050,lamb_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+160,ireland,7,1,2050,lamb_more_1_yr,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+161,ireland,7,1,2050,lamb_more_1_yr,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+162,ireland,7,1,2050,male_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+163,ireland,7,1,2050,male_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+164,ireland,7,1,2050,ram,0,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+165,ireland,7,1,2050,ram,0,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+166,ireland,10,2,2050,ewes,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+167,ireland,10,2,2050,ewes,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+168,ireland,10,2,2050,lamb_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+169,ireland,10,2,2050,lamb_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+170,ireland,10,2,2050,lamb_more_1_yr,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+171,ireland,10,2,2050,lamb_more_1_yr,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+172,ireland,10,2,2050,male_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+173,ireland,10,2,2050,male_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+174,ireland,10,2,2050,ram,0,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+175,ireland,10,2,2050,ram,0,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+176,ireland,11,2,2050,ewes,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+177,ireland,11,2,2050,ewes,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+178,ireland,11,2,2050,lamb_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+179,ireland,11,2,2050,lamb_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+180,ireland,11,2,2050,lamb_more_1_yr,0,0,68,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+181,ireland,11,2,2050,lamb_more_1_yr,0,0,68,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+182,ireland,11,2,2050,male_less_1_yr,0,0,37,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+183,ireland,11,2,2050,male_less_1_yr,0,0,37,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+184,ireland,11,2,2050,ram,0,0,86,average,flat_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
+185,ireland,11,2,2050,ram,0,0,86,average,hilly_pasture,concentrate,0,4.5,21.36,2.64,0,solid,broadcast,0,0
