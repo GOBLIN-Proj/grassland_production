@@ -15,7 +15,7 @@ class TestGrasslandOutput(unittest.TestCase):
 
         # Assuming the test data paths are adjusted to where the test data is located
         cls.path_to_data = "./data/"
-        cls.scenario_dataframe = pd.read_csv(os.path.join(cls.path_to_data, "scenario_input_dataframe2.csv"))
+        cls.scenario_dataframe = pd.read_csv(os.path.join(cls.path_to_data, "scenario_input_dataframe.csv"))
         cls.scenario_animal_dataframe = pd.read_csv(os.path.join(cls.path_to_data, "scenario_animal_data.csv"))
         cls.baseline_animal_dataframe = pd.read_csv(os.path.join(cls.path_to_data, "baseline_animal_data.csv"))
 

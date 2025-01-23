@@ -15,7 +15,7 @@ class TestSoilGroupFunctions(unittest.TestCase):
         self.ef_country = "ireland"
         self.calibration_year = 2020
         self.target_year = 2050
-        self.scenario_data = pd.read_csv(os.path.join(self.path_to_data, "scenario_dataframe1.csv"))
+        self.scenario_data = pd.read_csv(os.path.join(self.path_to_data, "scenario_input_dataframe.csv"))
         self.scenario_animals_df = pd.read_csv(os.path.join(self.path_to_data, "future_animals.csv"))
         self.baseline_animals_df = pd.read_csv(os.path.join(self.path_to_data, "past_animals.csv"))
 
