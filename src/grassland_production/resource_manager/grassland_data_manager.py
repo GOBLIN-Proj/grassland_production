@@ -50,7 +50,8 @@ class DataManager:
         get_dairy_beef_cohorts(): Returns the livestock cohorts for dairy and beef systems.
         get_cohorts(): Returns the livestock cohorts for farm systems (Cattle, Sheep).
         get_soil_properties(): Returns the soil properties for farm systems.
-        get_yield_gap(soil_class): Returns the yield gap for soil classes.
+        get_yield_gap(): Returns the yield gap for soil classes.
+        get_calibration_year(): Returns the calibration year for data reference.
         get_default_calibration_year(): Returns the default calibration year used as a fallback when data for the specified year is not available.
         get_default_grassland_year(): Returns the default year used for grassland data when it is not specified.
         get_target_year(): Returns the target year for future scenario projections.
@@ -77,7 +78,7 @@ class DataManager:
 
         self.calibration_year = calibration_year
         self.default_calibration_year = 2015
-        self.default_grassland_year = 2018
+        self.default_grassland_year = 2020  #2018
         self.target_year = target_year
 
         self.COHORTS_DICT = {

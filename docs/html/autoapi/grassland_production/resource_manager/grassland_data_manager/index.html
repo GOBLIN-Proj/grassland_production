@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -17,7 +17,7 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -387,8 +387,14 @@ It provides essential data for grassland production analysis, including livestoc
 
 <dl class="py method">
 <dt class="sig sig-object py" id="grassland_production.resource_manager.grassland_data_manager.DataManager.get_yield_gap">
-<span class="sig-name descname"><span class="pre">get_yield_gap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">soil_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_yield_gap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.resource_manager.grassland_data_manager.DataManager.get_yield_gap" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_yield_gap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_yield_gap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.resource_manager.grassland_data_manager.DataManager.get_yield_gap" title="Link to this definition"></a></dt>
 <dd><p>Returns the yield gap for soil classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grassland_production.resource_manager.grassland_data_manager.DataManager.get_calibration_year">
+<span class="sig-name descname"><span class="pre">get_calibration_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_calibration_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.resource_manager.grassland_data_manager.DataManager.get_calibration_year" title="Link to this definition"></a></dt>
+<dd><p>Returns the calibration year for data reference.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -557,8 +563,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="grassland_production.resource_manager.grassland_data_manager.DataManager.get_calibration_year">
-<span class="sig-name descname"><span class="pre">get_calibration_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_calibration_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grassland_production.resource_manager.grassland_data_manager.DataManager.get_calibration_year" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">get_calibration_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_calibration_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
 <dd><p>Returns the calibration year for data reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -571,8 +577,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">get_default_calibration_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_calibration_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">get_default_calibration_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_calibration_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
 <dd><p>Returns the default calibration year used as a fallback when data for the specified year is not available.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -585,8 +591,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id7">
-<span class="sig-name descname"><span class="pre">get_default_grassland_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_grassland_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">get_default_grassland_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_grassland_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
 <dd><p>Returns the default year used for grassland data when it is not specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -599,8 +605,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">get_target_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_target_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">get_target_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_target_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
 <dd><p>Returns the target year for future scenario projections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -613,8 +619,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">get_baseline_animals_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_baseline_animals_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">get_baseline_animals_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_baseline_animals_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
 <dd><p>Returns the baseline livestock data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -627,8 +633,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id10">
-<span class="sig-name descname"><span class="pre">get_baseline_animals_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_baseline_animals_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">get_baseline_animals_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_baseline_animals_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
 <dd><p>Returns the baseline livestock data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -641,8 +647,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id11">
-<span class="sig-name descname"><span class="pre">get_scenario_animals_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_animals_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">get_scenario_animals_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_animals_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
 <dd><p>Returns the scenario livestock data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -655,8 +661,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id12">
-<span class="sig-name descname"><span class="pre">get_scenario_animals_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_animals_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">get_scenario_animals_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_animals_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
 <dd><p>Returns the scenario livestock data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -669,8 +675,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id13">
-<span class="sig-name descname"><span class="pre">get_scenario_aggregation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_aggregation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">get_scenario_aggregation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_scenario_aggregation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
 <dd><p>Returns the scenario aggregation data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -683,8 +689,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id14">
-<span class="sig-name descname"><span class="pre">get_grassland_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_grassland_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">get_grassland_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_grassland_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
 <dd><p>Returns a list of grassland types.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -697,8 +703,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id15">
-<span class="sig-name descname"><span class="pre">get_farming_systems</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_farming_systems"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">get_farming_systems</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_farming_systems"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
 <dd><p>Returns a list of farm systems.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -711,8 +717,8 @@ It provides essential data for grassland production analysis, including livestoc
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id16">
-<span class="sig-name descname"><span class="pre">get_lime_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_lime_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">get_lime_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_lime_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
 <dd><p>Returns the lime rate. This rate is based on maximum lime application rates provided by the
 Department of Agriculture, Food and the Marine (DAFM) in Ireland. The maximum lime application
 is 7.5 tonnes per hectare every 3 years. The lime rate is calculated as half of the maximum, which
@@ -728,8 +734,8 @@ can be applied in year 1, with the balance applied in year 3.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id17">
-<span class="sig-name descname"><span class="pre">get_default_urea_proportion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_urea_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">get_default_urea_proportion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_urea_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
 <dd><p>Returns the default proportion of urea.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -742,8 +748,8 @@ can be applied in year 1, with the balance applied in year 3.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="id18">
-<span class="sig-name descname"><span class="pre">get_default_urea_abated_proportion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_urea_abated_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">get_default_urea_abated_proportion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/grassland_production/resource_manager/grassland_data_manager.html#DataManager.get_default_urea_abated_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
 <dd><p>Returns the default proportion of abated urea.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>

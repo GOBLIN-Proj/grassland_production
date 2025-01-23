@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.grassland_output &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.grassland_output &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -82,19 +82,19 @@
 <span class="sd">This module contains the GrasslandOutput class, which is responsible for managing and</span>
 <span class="sd">processing various outputs related to grassland production and management. The class</span>
 <span class="sd">integrates different aspects of grassland management, such as grasslands, farm data,</span>
-<span class="sd">soil groups, dry matter production, and stocking rates, to provide easy retrieval of grassland</span>
+<span class="sd">soil groups, dry matter production, stocking rates, and yield, to provide easy retrieval of grassland</span>
 <span class="sd">scenario results.</span>
 
 <span class="sd">Classes:</span>
 <span class="sd">    GrasslandOutput: Manages and computes outputs for grassland management.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-
 <span class="kn">from</span> <span class="nn">grassland_production.spared_area</span> <span class="kn">import</span> <span class="n">Grasslands</span>
 <span class="kn">from</span> <span class="nn">grassland_production.farm_data_generation</span> <span class="kn">import</span> <span class="n">FarmData</span>
 <span class="kn">from</span> <span class="nn">grassland_production.grassland_soils</span> <span class="kn">import</span> <span class="n">SoilGroups</span>
 <span class="kn">from</span> <span class="nn">grassland_production.dry_matter</span> <span class="kn">import</span> <span class="n">DryMatter</span>
 <span class="kn">from</span> <span class="nn">grassland_production.stocking_rate</span> <span class="kn">import</span> <span class="n">StockingRate</span>
+<span class="kn">from</span> <span class="nn">grassland_production.grass_yield</span> <span class="kn">import</span> <span class="n">Yield</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -105,7 +105,7 @@
 <span class="sd">    A class to manage and format outputs related to grassland production and management.</span>
 
 <span class="sd">    This class integrates several aspects of grassland management, including grasslands,</span>
-<span class="sd">    farm data, soil groups, dry matter production, and stocking rates. It is used to</span>
+<span class="sd">    farm data, soil groups, dry matter production, stocking rates, and yield. It is used to</span>
 <span class="sd">    format and retrieve various metrics important for grassland management decision-making.</span>
 
 <span class="sd">    Args:</span>
@@ -122,6 +122,7 @@
 <span class="sd">        soil_groups_class (SoilGroups): An instance of the SoilGroups class.</span>
 <span class="sd">        dm_class (DryMatter): An instance of the DryMatter class.</span>
 <span class="sd">        stock_class (StockingRate): An instance of the StockingRate class.</span>
+<span class="sd">        yield_class (Yield): An instance of the Yield class.</span>
 
 <span class="sd">    Methods:</span>
 <span class="sd">        total_spared_area(): Returns the total area spared (former grassland).</span>
@@ -129,8 +130,9 @@
 <span class="sd">        total_spared_area_breakdown(): Provides a breakdown of spared areas by soil group.</span>
 <span class="sd">        farm_inputs_data(): Computes and returns farm data for different scenarios.</span>
 <span class="sd">        baseline_farm_inputs_data(): Computes and returns baseline farm data.</span>
-<span class="sd">        total_concentrate_feed(): formats and returns total concentrate feed data.</span>
-<span class="sd">        grassland_stocking_rate(): formats and returns the grassland stocking rate.</span>
+<span class="sd">        total_concentrate_feed(): Formats and returns total concentrate feed data.</span>
+<span class="sd">        grassland_stocking_rate(): Formats and returns the grassland stocking rate.</span>
+<span class="sd">        grass_yield_per_hectare(): Formats and returns the grass yield per hectare.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -177,6 +179,15 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">stock_class</span> <span class="o">=</span> <span class="n">StockingRate</span><span class="p">(</span>
+            <span class="n">ef_country</span><span class="p">,</span>
+            <span class="n">calibration_year</span><span class="p">,</span>
+            <span class="n">target_year</span><span class="p">,</span>
+            <span class="n">scenario_data</span><span class="p">,</span>
+            <span class="n">scenario_animals_df</span><span class="p">,</span>
+            <span class="n">baseline_animals_df</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span> <span class="o">=</span> <span class="n">Yield</span><span class="p">(</span>
             <span class="n">ef_country</span><span class="p">,</span>
             <span class="n">calibration_year</span><span class="p">,</span>
             <span class="n">target_year</span><span class="p">,</span>
@@ -286,6 +297,39 @@
 <span class="sd">            DataFrame: Computed grassland stocking rates.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stock_class</span><span class="o">.</span><span class="n">get_stocking_rate</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+    
+    
+<div class="viewcode-block" id="GrasslandOutput.grass_yield_per_hectare">
+<a class="viewcode-back" href="../../autoapi/grassland_production/grassland_output/index.html#grassland_production.grassland_output.GrasslandOutput.grass_yield_per_hectare">[docs]</a>
+    <span class="k">def</span> <span class="nf">grass_yield_per_hectare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate and return the grass yield per hectare.</span>
+
+<span class="sd">        This method processes the yield data to format it into a more usable structure,</span>
+<span class="sd">        including scenario, year, system, and grassland type variables.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame: Computed grass yield per hectare.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">yield_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">yield_class</span><span class="o">.</span><span class="n">get_yield</span><span class="p">()</span>
+        <span class="n">formatted_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">scenario</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">yield_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">system</span><span class="p">,</span> <span class="n">dataframe</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">grassland_type</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+                        <span class="n">formatted_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;scenario&quot;</span><span class="p">:</span> <span class="n">scenario</span><span class="p">,</span>
+                                <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
+                                <span class="s2">&quot;system&quot;</span><span class="p">:</span> <span class="n">system</span><span class="p">,</span>
+                                <span class="s2">&quot;grassland_type&quot;</span><span class="p">:</span> <span class="n">grassland_type</span><span class="p">,</span>
+                                <span class="s2">&quot;yield&quot;</span><span class="p">:</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span><span class="p">,</span> <span class="n">grassland_type</span><span class="p">],</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">formatted_data</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

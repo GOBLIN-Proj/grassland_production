@@ -20,7 +20,7 @@ class Areas:
         calibration_year (int): The calibration year.
         target_year (int): The target year for future scenario projections.
         calibration_year (int): The calibration year.
-        defaul_calibration_year (int): The default calibration year.
+        default_calibration_year (int): The default calibration year.
 
     Attributes:
         loader_class (Loader): An instance of the Loader class for loading various datasets.
@@ -69,13 +69,14 @@ class Areas:
             area_nfs (float): The area associated with the National Farm Survey (NFS) data.
             farm_system_number (DataFrame): Farm system numbers for different years (NFS).
             nfs_dict (dict): A dictionary containing NFS data for dairy, beef, and sheep farming systems.
-            calibration_year (int): The calibration year for data reference.
+            calibration_year (int): The calibration year for data reference. Data available up to 2015.
             system (str): The farming system (e.g., "dairy", "beef", "sheep").
             grassland_type (str): The type of grassland (e.g., "Grass silage", "Hay", "Pasture", "Rough grazing in use").
 
         Returns:
             float: The proportion weight for the specified farming system and grassland type.
         """
+        
         total = (
             (
                 nfs_dict["dairy"].loc[calibration_year, grassland_type].item()

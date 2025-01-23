@@ -162,13 +162,14 @@ class StockingRate:
         animal_list = self.data_manager_class.get_scenario_animals_dict()
 
         livestock_units = {}
-
+        scenario_aggregation = self.data_manager_class.get_scenario_aggregation()
+        
         for sc in scenario_list:
             total_livestock_units = pd.DataFrame(0.0, index=[self.target_year], columns=keys)
             livestock_units[sc] = total_livestock_units
 
-            farm_mask = self.data_manager_class.get_scenario_aggregation()["Scenarios"] == sc
-            farm_ids = self.data_manager_class.get_scenario_aggregation().loc[farm_mask, "farm_id"].unique()
+            farm_mask = scenario_aggregation["Scenarios"] == sc
+            farm_ids = scenario_aggregation.loc[farm_mask, "farm_id"].unique()
 
             for farm_id in farm_ids:
                 # Process dairy and beef

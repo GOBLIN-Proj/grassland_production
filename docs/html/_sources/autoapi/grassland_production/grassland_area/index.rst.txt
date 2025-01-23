@@ -39,8 +39,8 @@ Classes
    :type target_year: int
    :param calibration_year: The calibration year.
    :type calibration_year: int
-   :param defaul_calibration_year: The default calibration year.
-   :type defaul_calibration_year: int
+   :param default_calibration_year: The default calibration year.
+   :type default_calibration_year: int
 
    .. attribute:: loader_class
 
@@ -110,7 +110,7 @@ Classes
       :type farm_system_number: DataFrame
       :param nfs_dict: A dictionary containing NFS data for dairy, beef, and sheep farming systems.
       :type nfs_dict: dict
-      :param calibration_year: The calibration year for data reference.
+      :param calibration_year: The calibration year for data reference. Data available up to 2015.
       :type calibration_year: int
       :param system: The farming system (e.g., "dairy", "beef", "sheep").
       :type system: str

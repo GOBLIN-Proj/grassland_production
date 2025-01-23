@@ -9,7 +9,7 @@ class FertilizationTestCase(unittest.TestCase):
         warnings.simplefilter(action="ignore")
         # Create the DataFrame with the provided data
 
-        self.scenario_dataframe = pd.read_csv("./data/scenario_dataframe.csv")
+        self.scenario_dataframe = pd.read_csv("./data/scenario_input_dataframe.csv")
         self.scenario_animal_dataframe = pd.read_csv("./data/scenario_animal_data.csv")
         self.baseline_animal_dataframe = pd.read_csv("./data/baseline_animal_data.csv")
 

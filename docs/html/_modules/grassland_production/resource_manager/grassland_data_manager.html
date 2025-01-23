@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.resource_manager.grassland_data_manager &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -129,7 +129,8 @@
 <span class="sd">        get_dairy_beef_cohorts(): Returns the livestock cohorts for dairy and beef systems.</span>
 <span class="sd">        get_cohorts(): Returns the livestock cohorts for farm systems (Cattle, Sheep).</span>
 <span class="sd">        get_soil_properties(): Returns the soil properties for farm systems.</span>
-<span class="sd">        get_yield_gap(soil_class): Returns the yield gap for soil classes.</span>
+<span class="sd">        get_yield_gap(): Returns the yield gap for soil classes.</span>
+<span class="sd">        get_calibration_year(): Returns the calibration year for data reference.</span>
 <span class="sd">        get_default_calibration_year(): Returns the default calibration year used as a fallback when data for the specified year is not available.</span>
 <span class="sd">        get_default_grassland_year(): Returns the default year used for grassland data when it is not specified.</span>
 <span class="sd">        get_target_year(): Returns the target year for future scenario projections.</span>
@@ -156,7 +157,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">calibration_year</span> <span class="o">=</span> <span class="n">calibration_year</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_calibration_year</span> <span class="o">=</span> <span class="mi">2015</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="mi">2018</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_grassland_year</span> <span class="o">=</span> <span class="mi">2020</span>  <span class="c1">#2018</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_year</span> <span class="o">=</span> <span class="n">target_year</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">COHORTS_DICT</span> <span class="o">=</span> <span class="p">{</span>

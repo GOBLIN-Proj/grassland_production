@@ -10,7 +10,7 @@ class YieldTestCase(unittest.TestCase):
         # Create the DataFrame with the provided data
         path = "./data/"
 
-        self.scenario_dataframe = pd.read_csv(os.path.join(path,"scenario_dataframe1.csv"))
+        self.scenario_dataframe = pd.read_csv(os.path.join(path,"scenario_input_dataframe.csv"))
         self.animal_dataframe_baseline = pd.read_csv(os.path.join(path,"past_animals.csv"))
         self.animal_dataframe_scenarios = pd.read_csv(os.path.join(path,"future_animals.csv"))
 

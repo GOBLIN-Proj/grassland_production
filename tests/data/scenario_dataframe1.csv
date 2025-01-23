@@ -1,9 +1,0 @@
-,Scenarios,Dairy pop,Beef pop,Upland sheep pop,Lowland sheep pop,Dairy prod,Beef prod,Upland sheep prod,Lowland sheep prod,Manure management,Dairy Pasture fertilisation,Beef Pasture fertilisation,Clover fertilisation,Clover proportion,Dairy GUE,Beef GUE,Urea proportion,Urea abated proportion,Crop area,Wetland area,Forest area,Conifer proportion,Broadleaf proportion,Conifer harvest,Broadleaf harvest,Conifer thinned,Afforest year,Cattle systems
-0,0,1060000,0,0,0,0,0,0,0,tank liquid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Dairy
-1,0,0,3000,0,0,0,0,0,0,tank liquid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Beef
-2,0,0,0,3000,0,0,0,0,0,tank solid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Upland sheep
-3,0,0,0,0,3000,0,0,0,0,tank solid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Lowland sheep
-4,1,1060000,0,0,0,0,0,0,0,tank liquid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Dairy
-5,1,0,3000,0,0,0,0,0,0,tank liquid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Beef
-6,1,0,0,3000,0,0,0,0,0,tank solid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Upland sheep
-7,1,0,0,0,3000,0,0,0,0,tank solid,150,110,0,0,0,0,0.2,0,0.2,0.2,1,0.2,0.3,0.4,0.3,0.4,2080,Lowland sheep

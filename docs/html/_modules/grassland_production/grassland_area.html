@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grassland_production.grassland_area &mdash; Grassland Production, a GOBLIN module 0.3.5 documentation</title>
+  <title>grassland_production.grassland_area &mdash; Grassland Production, a GOBLIN module 0.3.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -16,7 +16,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=ba50482b"></script>
+        <script src="../../_static/documentation_options.js?v=8da8c241"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -83,7 +83,6 @@
 <span class="sd">the proportions and distributions of grassland areas within different farming systems. </span>
 <span class="sd">It is designed to provide essential data for grassland production analysis, taking into account various factors and scenarios.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">from</span> <span class="nn">grassland_production.resource_manager.data_loader</span> <span class="kn">import</span> <span class="n">Loader</span>
@@ -100,7 +99,7 @@
 <span class="sd">        calibration_year (int): The calibration year.</span>
 <span class="sd">        target_year (int): The target year for future scenario projections.</span>
 <span class="sd">        calibration_year (int): The calibration year.</span>
-<span class="sd">        defaul_calibration_year (int): The default calibration year.</span>
+<span class="sd">        default_calibration_year (int): The default calibration year.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        loader_class (Loader): An instance of the Loader class for loading various datasets.</span>
@@ -151,13 +150,14 @@
 <span class="sd">            area_nfs (float): The area associated with the National Farm Survey (NFS) data.</span>
 <span class="sd">            farm_system_number (DataFrame): Farm system numbers for different years (NFS).</span>
 <span class="sd">            nfs_dict (dict): A dictionary containing NFS data for dairy, beef, and sheep farming systems.</span>
-<span class="sd">            calibration_year (int): The calibration year for data reference.</span>
+<span class="sd">            calibration_year (int): The calibration year for data reference. Data available up to 2015.</span>
 <span class="sd">            system (str): The farming system (e.g., &quot;dairy&quot;, &quot;beef&quot;, &quot;sheep&quot;).</span>
 <span class="sd">            grassland_type (str): The type of grassland (e.g., &quot;Grass silage&quot;, &quot;Hay&quot;, &quot;Pasture&quot;, &quot;Rough grazing in use&quot;).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The proportion weight for the specified farming system and grassland type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="n">total</span> <span class="o">=</span> <span class="p">(</span>
             <span class="p">(</span>
                 <span class="n">nfs_dict</span><span class="p">[</span><span class="s2">&quot;dairy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">calibration_year</span><span class="p">,</span> <span class="n">grassland_type</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>

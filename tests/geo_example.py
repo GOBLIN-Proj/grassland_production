@@ -56,15 +56,18 @@ def main():
     #per hectare stocking rate
     print(grassland.grassland_stocking_rate())
 
+    #yield per hectare
+    print(grassland.grass_yield_per_hectare())
 
     #save results to csv
     test_data_path = "./geo_test_data"
 
-    grassland.total_spared_area().to_csv(os.path.join(test_data_path,"spared_area.csv"))
-    grassland.total_grassland_area().to_csv(os.path.join(test_data_path,"total_grassland_area.csv"))
-    grassland.total_spared_area_breakdown().to_csv(os.path.join(test_data_path,"spared_area_breakdown.csv"))
-    grassland.total_concentrate_feed().to_csv(os.path.join(test_data_path,"concentrate_feed.csv"))
-    grassland.grassland_stocking_rate().to_csv(os.path.join(test_data_path,"stocking_rate.csv"))
+    grassland.total_spared_area().to_csv(os.path.join(test_data_path,"spared_area_0.3.6.csv"))
+    grassland.total_grassland_area().to_csv(os.path.join(test_data_path,"total_grassland_area_0.3.6.csv"))
+    grassland.total_spared_area_breakdown().to_csv(os.path.join(test_data_path,"spared_area_breakdown_0.3.6.csv"))
+    grassland.total_concentrate_feed().to_csv(os.path.join(test_data_path,"concentrate_feed_0.3.6.csv"))
+    grassland.grassland_stocking_rate().to_csv(os.path.join(test_data_path,"stocking_rate_0.3.6.csv"))
+    grassland.grass_yield_per_hectare().to_csv(os.path.join(test_data_path,"yield_per_hectare_0.3.6.csv"))
 
 
 if __name__ == "__main__":

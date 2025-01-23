@@ -187,9 +187,13 @@ Classes
 
       Returns the soil properties for farm systems.
 
-   .. method:: get_yield_gap(soil_class)
+   .. method:: get_yield_gap()
 
       Returns the yield gap for soil classes.
+
+   .. method:: get_calibration_year()
+
+      Returns the calibration year for data reference.
 
    .. method:: get_default_calibration_year()
 

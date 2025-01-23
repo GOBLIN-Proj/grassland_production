@@ -11,7 +11,7 @@ class DryMatterTestCase(unittest.TestCase):
         warnings.simplefilter(action='ignore')
         self.path_to_data = "./data/"
 
-        self.data_frame = pd.read_csv(os.path.join(self.path_to_data, "scenario_dataframe1.csv"))
+        self.data_frame = pd.read_csv(os.path.join(self.path_to_data, "scenario_input_dataframe.csv"))
         self.animal_dataframe_baseline = pd.read_csv("./data/past_animals.csv")
         self.animal_dataframe_scenarios = pd.read_csv("./data/future_animals.csv")
 

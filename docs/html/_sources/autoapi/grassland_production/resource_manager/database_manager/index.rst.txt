@@ -119,7 +119,7 @@ Classes
    .. method:: get_fao_fertiliser_data()
 
       
-      Retrieves FAO (Food and Agricutlure Organisation) data on fertilization.
+      Retrieves FAO (Food and Agriculture Organisation) data on fertilization.
       
 
    .. method:: get_nir_fertiliser_data()
